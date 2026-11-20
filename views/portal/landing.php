@@ -287,23 +287,6 @@ $currentUser = Session::user();
                     <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1600&q=85" 
                          alt="SDC Precision Dental Suite" 
                          class="w-full h-full object-cover filter contrast-[1.05] brightness-95 rounded-none">
-                    
-                    <!-- Tech Coordinates Header Tag -->
-                    <div class="absolute top-3 left-3 text-[9px] font-mono uppercase tracking-widest text-white/90 bg-black/75 px-2.5 py-1 rounded-none pointer-events-none z-20 flex items-center space-x-2">
-                        <span class="w-1.5 h-1.5 bg-emerald-400 animate-pulse"></span>
-                        <span>LAT: 14.5547° N // LON: 121.0244° E</span>
-                    </div>
-
-                    <!-- Centerpiece Bottom Gradient & Title -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex flex-col justify-end p-6 sm:p-8 text-white pointer-events-none rounded-none">
-                        <span class="text-[10px] font-mono tracking-widest uppercase text-teal-300 font-bold mb-1 flex items-center space-x-2">
-                            <span class="w-2 h-2 bg-teal-400"></span>
-                            <span>PRECISION OPERATORY // ATELIER SUITE</span>
-                        </span>
-                        <p class="text-xs text-stone-200 font-light leading-relaxed max-w-sm">
-                            High-precision diagnostic imaging and Class-B vacuum autoclave surgical suites.
-                        </p>
-                    </div>
 
                 </div>
             </div>
