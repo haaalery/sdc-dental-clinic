@@ -225,14 +225,20 @@ $currentUser = Session::user();
                      class="h-full w-auto max-w-none object-contain filter drop-shadow-[0_28px_36px_rgba(0,0,0,0.22)] rounded-none">
             </div>
 
-            <!-- LAYER 3A (z-30): TOP ROW (Top-Left Quote/Title Block) -->
+            <!-- LAYER 3A (z-30): TOP ROW (Top-Left Large Display Headline matching Reference Image) -->
             <div class="relative z-30 flex flex-col lg:flex-row items-start justify-between gap-6">
                 
-                <!-- Top-Left: Editorial Quote & Title Block (Above Giant Text) -->
-                <div class="max-w-md lg:max-w-lg bg-white/95 lg:bg-transparent p-2 lg:p-0 rounded-none">
-                    <div class="text-3xl sm:text-4xl font-serif font-black text-black leading-none mb-1.5">“</div>
-                    <h1 class="text-xl sm:text-2xl lg:text-[1.75rem] font-black tracking-tight uppercase leading-[1.15] text-black font-sans">
-                        CRAFTING HEALTHY, CONFIDENT SMILES THROUGH GENTLE CARE AND MODERN DENTISTRY.
+                <!-- Top-Left: Large 3-Line Staggered Display Headline (Above Giant Text) -->
+                <div class="bg-white/95 lg:bg-transparent p-2 lg:p-0 rounded-none">
+                    <h1 class="text-4xl sm:text-5xl lg:text-[3.4rem] xl:text-[4rem] font-black tracking-tight uppercase leading-[0.92] text-black font-sans">
+                        <span class="block pl-6 sm:pl-10">CRAFTING</span>
+                        <span class="block">CONFIDENT</span>
+                        <span class="inline-flex items-center pl-6 sm:pl-10 gap-4">
+                            <span>SMILES</span>
+                            <span class="text-[9px] sm:text-[10px] font-mono font-bold tracking-[0.2em] uppercase text-stone-500 leading-tight">
+                                GENTLE CARE &amp;<br>MODERN DENTISTRY
+                            </span>
+                        </span>
                     </h1>
                 </div>
 
