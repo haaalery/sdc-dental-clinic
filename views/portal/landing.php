@@ -230,19 +230,10 @@ $currentUser = Session::user();
                 
                 <!-- Top-Left: Editorial Quote & Title Block (Above Giant Text) -->
                 <div class="max-w-xs sm:max-w-sm bg-white/95 lg:bg-transparent p-2 lg:p-0 rounded-none">
-                    <div class="inline-flex items-center space-x-2 px-2 py-0.5 bg-black text-white text-[9px] font-mono tracking-[0.25em] uppercase font-bold mb-2.5 rounded-none">
-                        <span class="w-1.5 h-1.5 bg-emerald-400"></span>
-                        <span>CLINICAL ATELIER // EST. 2018</span>
-                    </div>
                     <div class="text-2xl font-serif font-black text-black leading-none mb-1">“</div>
                     <h1 class="text-lg sm:text-xl lg:text-[1.35rem] font-black tracking-tight uppercase leading-[1.15] text-black font-sans">
                         ADVANCED CLINICAL DENTISTRY ENGINEERED FOR ZERO-TRAUMA PRECISION &amp; LIFELONG AESTHETICS.
                     </h1>
-                    <div class="mt-2.5 flex items-center space-x-2 text-[10px] font-mono tracking-[0.2em] uppercase text-stone-500 font-bold">
-                        <span>SDC Dental Care</span>
-                        <span>·</span>
-                        <span class="text-emerald-700">ISO-13485 Certified</span>
-                    </div>
                 </div>
 
             </div>
