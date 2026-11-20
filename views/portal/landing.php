@@ -189,51 +189,39 @@ $currentUser = Session::user();
                     </div>
                 </div>
 
-                <!-- Right Visual: Interactive Before & After Smile Transformation Slider -->
+                <!-- Right Visual: Dual Staggered Architectural Photo Composition -->
                 <div class="lg:col-span-5">
-                    <div class="relative mx-auto max-w-md lg:max-w-none">
-                        <!-- Tactile Comparison Frame -->
-                        <div id="beforeAfterContainer" 
-                             class="relative rounded-3xl overflow-hidden shadow-2xl border border-[#E5E1D8] aspect-[4/5] bg-stone-900 select-none cursor-ew-resize group"
-                             style="touch-action: pan-y;">
+                    <div class="relative mx-auto max-w-md lg:max-w-none pt-4 pb-8 pr-4">
+                        
+                        <!-- Main Architectural Suite Frame (Background Layer) -->
+                        <div class="relative w-full h-[460px] sm:h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-[#E5E1D8] bg-stone-900 group">
+                            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=85" 
+                                 alt="SDC Dental Operatory Suite" 
+                                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter brightness-95">
                             
-                            <!-- "AFTER" Layer (Full Background: Radiant Whitened / Restored Smile) -->
-                            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=85" 
-                                 alt="After Clinical Laser Whitening" 
-                                 class="absolute inset-0 w-full h-full object-cover pointer-events-none filter brightness-105">
-                            
-                            <div class="absolute top-4 right-4 bg-stone-950/75 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[10px] font-mono tracking-widest uppercase text-teal-300 pointer-events-none border border-white/10 shadow-sm">
-                                After / Laser Lift
-                            </div>
-
-                            <!-- "BEFORE" Layer (Clipped via clip-path: Baseline Enamel Tone) -->
-                            <div id="beforeImageClip" 
-                                 class="absolute inset-0 pointer-events-none"
-                                 style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);">
-                                <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=85" 
-                                     alt="Before Treatment Baseline" 
-                                     class="absolute inset-0 w-full h-full object-cover pointer-events-none filter brightness-[0.88] sepia-[0.38] saturate-[1.3] contrast-105">
-                                
-                                <div class="absolute top-4 left-4 bg-stone-950/75 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[10px] font-mono tracking-widest uppercase text-stone-300 pointer-events-none border border-white/10 shadow-sm">
-                                    Before / Baseline
-                                </div>
-                            </div>
-
-                            <!-- Vertical Divider Line & Tactile Drag Knob -->
-                            <div id="sliderHandleBar" 
-                                 class="absolute top-0 bottom-0 pointer-events-none flex items-center justify-center -ml-[1px]" 
-                                 style="left: 50%;">
-                                <div class="w-[2px] h-full bg-white shadow-[0_0_10px_rgba(0,0,0,0.5)]"></div>
-                                <div class="absolute w-10 h-10 rounded-full bg-white text-stone-900 shadow-2xl border border-stone-200 flex items-center justify-center transition-transform group-hover:scale-110">
-                                    <i data-lucide="chevrons-left-right" class="w-4 h-4 text-stone-950"></i>
-                                </div>
-                            </div>
-
-                            <!-- Interactive Hint Pill at bottom -->
-                            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-stone-950/80 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] text-stone-300 font-mono tracking-wider pointer-events-none flex items-center space-x-1.5 shadow-md border border-white/10 whitespace-nowrap">
-                                <span>⟵ Drag to reveal transformation ⟶</span>
+                            <div class="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent flex flex-col justify-end p-7 text-white pointer-events-none">
+                                <span class="text-[10px] uppercase font-mono tracking-widest text-teal-300 font-bold block mb-1">
+                                    CLINICAL SUITE // OPERATORY
+                                </span>
+                                <p class="text-xs text-stone-300 font-light max-w-xs leading-relaxed">
+                                    Quiet, sunlit treatment operatories designed for unhurried patient care in Makati and Pasig.
+                                </p>
                             </div>
                         </div>
+
+                        <!-- Staggered Detail Frame (Foreground Overlap Layer) -->
+                        <div class="absolute -bottom-4 -left-6 sm:-left-8 w-44 sm:w-52 h-56 sm:h-64 rounded-2xl overflow-hidden border-4 border-[#F7F6F2] shadow-2xl bg-stone-900 group/sub transition-transform duration-500 hover:-translate-y-1">
+                            <img src="https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&fit=crop&w=800&q=85" 
+                                 alt="Precision Dental Artistry" 
+                                 class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover/sub:scale-110 filter brightness-95">
+                            
+                            <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent flex flex-col justify-end p-4 text-white pointer-events-none">
+                                <span class="text-[9px] uppercase font-mono tracking-widest text-stone-300 font-bold">
+                                    PRACTITIONER ATELIER
+                                </span>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -978,60 +966,6 @@ $currentUser = Session::user();
                 el.focus();
             }
         }
-
-        // Interactive Before & After Smile Transformation Slider
-        (function initBeforeAfterSlider() {
-            const container = document.getElementById('beforeAfterContainer');
-            const clip = document.getElementById('beforeImageClip');
-            const handle = document.getElementById('sliderHandleBar');
-            if (!container || !clip || !handle) return;
-
-            let isDragging = false;
-
-            function setPosition(clientX) {
-                const rect = container.getBoundingClientRect();
-                let x = clientX - rect.left;
-                if (x < 0) x = 0;
-                if (x > rect.width) x = rect.width;
-                const pct = (x / rect.width) * 100;
-                clip.style.clipPath = `polygon(0 0, ${pct}% 0, ${pct}% 100%, 0 100%)`;
-                handle.style.left = `${pct}%`;
-            }
-
-            container.addEventListener('mousedown', (e) => {
-                isDragging = true;
-                setPosition(e.clientX);
-            });
-
-            window.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
-                setPosition(e.clientX);
-            });
-
-            window.addEventListener('mouseup', () => {
-                isDragging = false;
-            });
-
-            // Touch support for mobile devices
-            container.addEventListener('touchstart', (e) => {
-                isDragging = true;
-                if (e.touches && e.touches[0]) setPosition(e.touches[0].clientX);
-            }, { passive: true });
-
-            window.addEventListener('touchmove', (e) => {
-                if (!isDragging || !e.touches || !e.touches[0]) return;
-                setPosition(e.touches[0].clientX);
-            }, { passive: true });
-
-            window.addEventListener('touchend', () => {
-                isDragging = false;
-            });
-
-            // Smooth hover preview as user moves cursor across container
-            container.addEventListener('mousemove', (e) => {
-                if (!isDragging) setPosition(e.clientX);
-            });
-        })();
 
         // Rotating Hero Headline Word
         (function initRotatingHeroWord() {
