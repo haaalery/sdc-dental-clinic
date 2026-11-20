@@ -149,7 +149,9 @@ $currentUser = Session::user();
 
                     <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-stone-950 tracking-tight leading-[1.1]">
                         Modern dentistry, <br>
-                        <span class="font-serif italic font-normal text-stone-700">thoughtfully practiced.</span>
+                        <span class="font-serif italic font-normal text-stone-700">
+                            crafted for <span id="rotatingHeroWord" class="inline-block transition-all duration-300 transform text-stone-950 underline decoration-stone-300 decoration-1 underline-offset-8">your smile.</span>
+                        </span>
                     </h2>
 
                     <p class="text-stone-600 text-base sm:text-lg mt-6 leading-relaxed max-w-xl font-normal">
@@ -187,35 +189,49 @@ $currentUser = Session::user();
                     </div>
                 </div>
 
-                <!-- Right Visual: Architectural Editorial Photography Frame -->
+                <!-- Right Visual: Interactive Before & After Smile Transformation Slider -->
                 <div class="lg:col-span-5">
                     <div class="relative mx-auto max-w-md lg:max-w-none">
-                        <div class="rounded-3xl overflow-hidden shadow-2xl border border-[#E5E1D8] aspect-[4/5] relative bg-stone-900 group">
-                            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=85" 
-                                 alt="SDC Dental Clinical Suite" 
-                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-95">
+                        <!-- Tactile Comparison Frame -->
+                        <div id="beforeAfterContainer" 
+                             class="relative rounded-3xl overflow-hidden shadow-2xl border border-[#E5E1D8] aspect-[4/5] bg-stone-900 select-none cursor-ew-resize group"
+                             style="touch-action: pan-y;">
                             
-                            <div class="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-transparent to-transparent flex flex-col justify-end p-8 text-white">
-                                <div class="flex items-center space-x-3 mb-2">
-                                    <div class="w-8 h-8 rounded-lg bg-white/10 backdrop-blur-md p-1 border border-white/20">
-                                        <img src="<?= BASE_URL ?>/assets/images/logo.png" alt="SDC" class="w-full h-full object-contain">
-                                    </div>
-                                    <span class="text-xs uppercase tracking-widest font-bold text-teal-300">SDC Dental Care</span>
-                                </div>
-                                <p class="text-xs text-stone-300 leading-relaxed font-light">
-                                    State-of-the-art diagnostic imaging, surgical sterilization, and comfortable patient suites in Metro Manila.
-                                </p>
+                            <!-- "AFTER" Layer (Full Background: Radiant Whitened / Restored Smile) -->
+                            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=85" 
+                                 alt="After Clinical Laser Whitening" 
+                                 class="absolute inset-0 w-full h-full object-cover pointer-events-none filter brightness-105">
+                            
+                            <div class="absolute top-4 right-4 bg-stone-950/75 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[10px] font-mono tracking-widest uppercase text-teal-300 pointer-events-none border border-white/10 shadow-sm">
+                                After / Laser Lift
                             </div>
-                        </div>
 
-                        <!-- Minimalist Floating Badge -->
-                        <div class="absolute -bottom-5 -left-5 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-[#E5E1D8] hidden sm:flex items-center space-x-3">
-                            <div class="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-700">
-                                <i data-lucide="check" class="w-5 h-5"></i>
+                            <!-- "BEFORE" Layer (Clipped via clip-path: Baseline Enamel Tone) -->
+                            <div id="beforeImageClip" 
+                                 class="absolute inset-0 pointer-events-none"
+                                 style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);">
+                                <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=85" 
+                                     alt="Before Treatment Baseline" 
+                                     class="absolute inset-0 w-full h-full object-cover pointer-events-none filter brightness-[0.88] sepia-[0.38] saturate-[1.3] contrast-105">
+                                
+                                <div class="absolute top-4 left-4 bg-stone-950/75 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[10px] font-mono tracking-widest uppercase text-stone-300 pointer-events-none border border-white/10 shadow-sm">
+                                    Before / Baseline
+                                </div>
                             </div>
-                            <div>
-                                <p class="text-xs font-bold text-stone-900">Hospital-Grade Standards</p>
-                                <p class="text-[11px] text-stone-500">Class-B steam autoclave</p>
+
+                            <!-- Vertical Divider Line & Tactile Drag Knob -->
+                            <div id="sliderHandleBar" 
+                                 class="absolute top-0 bottom-0 pointer-events-none flex items-center justify-center -ml-[1px]" 
+                                 style="left: 50%;">
+                                <div class="w-[2px] h-full bg-white shadow-[0_0_10px_rgba(0,0,0,0.5)]"></div>
+                                <div class="absolute w-10 h-10 rounded-full bg-white text-stone-900 shadow-2xl border border-stone-200 flex items-center justify-center transition-transform group-hover:scale-110">
+                                    <i data-lucide="chevrons-left-right" class="w-4 h-4 text-stone-950"></i>
+                                </div>
+                            </div>
+
+                            <!-- Interactive Hint Pill at bottom -->
+                            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-stone-950/80 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] text-stone-300 font-mono tracking-wider pointer-events-none flex items-center space-x-1.5 shadow-md border border-white/10 whitespace-nowrap">
+                                <span>⟵ Drag to reveal transformation ⟶</span>
                             </div>
                         </div>
                     </div>
@@ -962,6 +978,80 @@ $currentUser = Session::user();
                 el.focus();
             }
         }
+
+        // Interactive Before & After Smile Transformation Slider
+        (function initBeforeAfterSlider() {
+            const container = document.getElementById('beforeAfterContainer');
+            const clip = document.getElementById('beforeImageClip');
+            const handle = document.getElementById('sliderHandleBar');
+            if (!container || !clip || !handle) return;
+
+            let isDragging = false;
+
+            function setPosition(clientX) {
+                const rect = container.getBoundingClientRect();
+                let x = clientX - rect.left;
+                if (x < 0) x = 0;
+                if (x > rect.width) x = rect.width;
+                const pct = (x / rect.width) * 100;
+                clip.style.clipPath = `polygon(0 0, ${pct}% 0, ${pct}% 100%, 0 100%)`;
+                handle.style.left = `${pct}%`;
+            }
+
+            container.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                setPosition(e.clientX);
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                setPosition(e.clientX);
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+
+            // Touch support for mobile devices
+            container.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                if (e.touches && e.touches[0]) setPosition(e.touches[0].clientX);
+            }, { passive: true });
+
+            window.addEventListener('touchmove', (e) => {
+                if (!isDragging || !e.touches || !e.touches[0]) return;
+                setPosition(e.touches[0].clientX);
+            }, { passive: true });
+
+            window.addEventListener('touchend', () => {
+                isDragging = false;
+            });
+
+            // Smooth hover preview as user moves cursor across container
+            container.addEventListener('mousemove', (e) => {
+                if (!isDragging) setPosition(e.clientX);
+            });
+        })();
+
+        // Rotating Hero Headline Word
+        (function initRotatingHeroWord() {
+            const el = document.getElementById('rotatingHeroWord');
+            if (!el) return;
+            const words = ['your smile.', 'confidence.', 'lifelong health.', 'gentle care.', 'natural aesthetics.'];
+            let idx = 0;
+            setInterval(() => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(-6px)';
+                setTimeout(() => {
+                    idx = (idx + 1) % words.length;
+                    el.innerText = words[idx];
+                    el.style.transform = 'translateY(6px)';
+                    void el.offsetWidth;
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 250);
+            }, 3200);
+        })();
     </script>
 </body>
 </html>
