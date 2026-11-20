@@ -50,6 +50,20 @@ $currentUser = Session::user();
 
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .diagonal-slice-card {
+            transform: skewX(-8deg);
+            transition: width 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        .diagonal-slice-inner {
+            transform: skewX(8deg) scale(1.18);
+            transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .diagonal-slice-card:hover .diagonal-slice-inner {
+            transform: skewX(8deg) scale(1.10);
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col font-sans">
@@ -173,41 +187,158 @@ $currentUser = Session::user();
         </div>
     </section>
 
-    <!-- Services & Treatments Section -->
-    <section id="services" class="py-16 bg-white border-b border-slate-200">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="mb-10">
-                <span class="text-xs uppercase font-bold tracking-wider text-slate-500 block mb-1">Clinical Catalog</span>
-                <h3 class="text-2xl font-extrabold text-slate-900 tracking-tight">Our Services & Treatments</h3>
-                <p class="text-xs text-slate-500 mt-1 max-w-xl">
-                    Every procedure is conducted using sterile instruments and certified clinical dental materials. All calculations are transparent with itemized receipts.
-                </p>
-            </div>
+    <!-- Services & Treatments Section (Awwwards-style Expanding Diagonal Slideshow) -->
+    <?php
+    $trtPhotos = [
+        'TRT-001' => 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=900&q=80',
+        'TRT-002' => 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=900&q=80',
+        'TRT-003' => 'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=900&q=80',
+        'TRT-004' => 'https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&fit=crop&w=900&q=80',
+        'TRT-005' => 'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=900&q=80',
+        'TRT-006' => 'https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=900&q=80',
+        'TRT-007' => 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=900&q=80',
+        'TRT-008' => 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=900&q=80',
+        'TRT-009' => 'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=900&q=80',
+    ];
+    ?>
+    <section id="services" class="py-20 bg-slate-950 text-white overflow-hidden border-b border-slate-800 relative">
+        <!-- Ambient Background Glows -->
+        <div class="absolute top-1/4 left-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-            <!-- Services Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                    <div class="flex items-center space-x-2 mb-2">
+                        <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+                        <span class="text-xs uppercase font-bold tracking-widest text-teal-400">02 // Clinical Catalog</span>
+                    </div>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Our Services & Treatments</h3>
+                    <p class="text-xs sm:text-sm text-slate-400 mt-2 max-w-xl leading-relaxed">
+                        Precision surgical, restorative, and aesthetic procedures. Hover over any card to expand its full clinical overview, specifications, and scheduling details.
+                    </p>
+                </div>
+
+                <!-- Slider Controls & Hints -->
+                <div class="flex items-center space-x-4">
+                    <span class="hidden sm:inline-flex items-center text-xs text-slate-400 font-medium">
+                        <i data-lucide="move-horizontal" class="w-4 h-4 mr-1.5 text-teal-400"></i>
+                        Scroll or drag to explore
+                    </span>
+                    <div class="flex items-center space-x-2">
+                        <button id="sliderPrevBtn" aria-label="Previous slide" class="w-11 h-11 rounded-full bg-slate-800/80 hover:bg-white hover:text-slate-900 text-white border border-slate-700 flex items-center justify-center transition shadow-md">
+                            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                        </button>
+                        <button id="sliderNextBtn" aria-label="Next slide" class="w-11 h-11 rounded-full bg-slate-800/80 hover:bg-white hover:text-slate-900 text-white border border-slate-700 flex items-center justify-center transition shadow-md">
+                            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diagonal Slideshow Track (Peek / Adjacent Visible Carousel) -->
+        <div class="w-full relative px-4 sm:px-8 overflow-hidden">
+            <div id="servicesTrack" class="flex items-stretch space-x-5 sm:space-x-8 py-6 px-4 sm:px-8 overflow-x-auto no-scrollbar scroll-smooth cursor-grab active:cursor-grabbing select-none">
                 <?php if (!empty($treatments)): ?>
-                    <?php foreach ($treatments as $trt): ?>
-                        <div class="bg-slate-50/70 hover:bg-white rounded-2xl p-5 border border-slate-200 hover:border-slate-300 shadow-2xs transition flex flex-col justify-between">
-                            <div>
-                                <div class="flex items-start justify-between gap-2 mb-2">
-                                    <span class="text-[10px] font-bold uppercase tracking-wider text-slate-700 bg-white px-2 py-0.5 rounded border border-slate-200">
-                                        <?= htmlspecialchars($trt['category']) ?>
-                                    </span>
-                                    <span class="font-mono text-xs font-bold text-slate-900">
-                                        <?= APP_CURRENCY ?><?= number_format($trt['standard_price'], 2) ?>
-                                    </span>
+                    <?php foreach ($treatments as $idx => $trt): 
+                        $imgUrl = $trtPhotos[$trt['treatment_code']] ?? 'https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=900&q=80';
+                    ?>
+                        <!-- Diagonal Expanding Card -->
+                        <div class="diagonal-slice-card group relative h-[520px] w-[260px] sm:w-[290px] hover:w-[440px] sm:hover:w-[490px] flex-shrink-0 rounded-3xl overflow-hidden border border-slate-700/60 shadow-2xl bg-slate-900">
+                            
+                            <!-- Inner Content Wrapper (Counter-skewed to maintain straight content) -->
+                            <div class="diagonal-slice-inner absolute inset-0 w-full h-full">
+                                <!-- Background Image with smooth transition -->
+                                <img src="<?= $imgUrl ?>" 
+                                     alt="<?= htmlspecialchars($trt['treatment_name']) ?>" 
+                                     class="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-30 group-hover:blur-[2px]">
+
+                                <!-- Ambient Gradient for Default State -->
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent transition-opacity duration-500 group-hover:opacity-0"></div>
+
+                                <!-- STATE 1: Default Compact Visual View -->
+                                <div class="absolute inset-0 p-6 flex flex-col justify-between transition-opacity duration-400 group-hover:opacity-0 pointer-events-none">
+                                    <div class="flex items-center justify-between gap-2">
+                                        <span class="px-2.5 py-1 bg-slate-900/80 backdrop-blur-md rounded-full text-[10px] font-extrabold uppercase tracking-widest text-teal-300 border border-teal-500/30">
+                                            <?= htmlspecialchars($trt['category']) ?>
+                                        </span>
+                                        <span class="font-mono text-xs font-bold text-white bg-slate-900/70 backdrop-blur-md px-2.5 py-1 rounded-full border border-slate-700">
+                                            <?= APP_CURRENCY ?><?= number_format($trt['standard_price'], 2) ?>
+                                        </span>
+                                    </div>
+
+                                    <div>
+                                        <span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-1">
+                                            <?= htmlspecialchars($trt['treatment_code']) ?>
+                                        </span>
+                                        <h4 class="font-bold text-white text-base leading-snug drop-shadow-md">
+                                            <?= htmlspecialchars($trt['treatment_name']) ?>
+                                        </h4>
+                                        <div class="mt-3 flex items-center space-x-1.5 text-[11px] text-teal-400 font-semibold">
+                                            <span>Hover for Overview</span>
+                                            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h4 class="font-bold text-slate-900 text-sm mb-1.5"><?= htmlspecialchars($trt['treatment_name']) ?></h4>
-                                <p class="text-xs text-slate-500 leading-relaxed">
-                                    <?= htmlspecialchars($trt['description'] ?: 'Professional clinical procedure conducted with dental examination and consultation.') ?>
-                                </p>
-                            </div>
-                            <div class="mt-4 pt-3 border-t border-slate-200/80 flex items-center justify-between text-xs">
-                                <span class="text-slate-400 font-mono"><?= htmlspecialchars($trt['treatment_code']) ?></span>
-                                <a href="#booking-form" onclick="prefillConcern('<?= addslashes(htmlspecialchars($trt['treatment_name'])) ?>')" class="text-slate-900 hover:text-black font-bold inline-flex items-center space-x-1">
-                                    <span>Schedule &rarr;</span>
-                                </a>
+
+                                <!-- STATE 2: Expanded Overview Only View -->
+                                <div class="absolute inset-0 bg-slate-950/90 backdrop-blur-lg p-7 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out z-20 overflow-y-auto no-scrollbar">
+                                    <div>
+                                        <!-- Header Badges -->
+                                        <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
+                                            <span class="px-3 py-1 bg-teal-500/10 border border-teal-400/40 rounded-full text-[10px] font-extrabold uppercase tracking-widest text-teal-400">
+                                                <?= htmlspecialchars($trt['category']) ?>
+                                            </span>
+                                            <span class="text-xs font-mono text-slate-400">
+                                                <?= htmlspecialchars($trt['treatment_code']) ?>
+                                            </span>
+                                        </div>
+
+                                        <!-- Title & Fee -->
+                                        <h4 class="text-xl font-extrabold text-white tracking-tight leading-tight mb-2">
+                                            <?= htmlspecialchars($trt['treatment_name']) ?>
+                                        </h4>
+                                        <div class="text-2xl font-black text-teal-400 font-mono tracking-tight mb-4">
+                                            <?= APP_CURRENCY ?><?= number_format($trt['standard_price'], 2) ?>
+                                            <span class="text-[11px] text-slate-400 font-sans font-normal ml-1">standard fee</span>
+                                        </div>
+
+                                        <!-- Clinical Overview & Description -->
+                                        <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
+                                            <p class="font-medium text-slate-200">
+                                                <?= htmlspecialchars($trt['description'] ?: 'Comprehensive procedure conducted by certified attending dental clinicians.') ?>
+                                            </p>
+                                            
+                                            <!-- Specifications List -->
+                                            <div class="pt-3 border-t border-slate-800/80 space-y-2 text-[11px]">
+                                                <div class="flex items-center space-x-2 text-slate-400">
+                                                    <i data-lucide="check-circle" class="w-3.5 h-3.5 text-teal-400 flex-shrink-0"></i>
+                                                    <span>Hospital-grade sterile instruments & burs</span>
+                                                </div>
+                                                <div class="flex items-center space-x-2 text-slate-400">
+                                                    <i data-lucide="check-circle" class="w-3.5 h-3.5 text-teal-400 flex-shrink-0"></i>
+                                                    <span>Attending dentist diagnosis & consultation</span>
+                                                </div>
+                                                <div class="flex items-center space-x-2 text-slate-400">
+                                                    <i data-lucide="check-circle" class="w-3.5 h-3.5 text-teal-400 flex-shrink-0"></i>
+                                                    <span>Itemized receipt with clear transparency</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Bottom CTA -->
+                                    <div class="pt-5 mt-4 border-t border-slate-800">
+                                        <a href="#booking-form" 
+                                           onclick="prefillConcern('<?= addslashes(htmlspecialchars($trt['treatment_name'])) ?>')"
+                                           class="w-full py-3 px-4 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-xs rounded-xl shadow-lg transition flex items-center justify-center space-x-2 group-hover:scale-[1.02]">
+                                            <span>Schedule This Treatment</span>
+                                            <i data-lucide="calendar" class="w-4 h-4"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -217,6 +348,54 @@ $currentUser = Session::user();
             </div>
         </div>
     </section>
+
+    <script>
+        // Interactive Controls & Drag-To-Scroll for the Diagonal Slideshow
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.getElementById('servicesTrack');
+            const prevBtn = document.getElementById('sliderPrevBtn');
+            const nextBtn = document.getElementById('sliderNextBtn');
+            
+            if (track && prevBtn && nextBtn) {
+                const scrollStep = 340;
+                
+                prevBtn.addEventListener('click', function() {
+                    track.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+                });
+                
+                nextBtn.addEventListener('click', function() {
+                    track.scrollBy({ left: scrollStep, behavior: 'smooth' });
+                });
+
+                // Mouse Drag-To-Scroll
+                let isDown = false;
+                let startX;
+                let scrollLeft;
+
+                track.addEventListener('mousedown', (e) => {
+                    isDown = true;
+                    startX = e.pageX - track.offsetLeft;
+                    scrollLeft = track.scrollLeft;
+                });
+
+                track.addEventListener('mouseleave', () => {
+                    isDown = false;
+                });
+
+                track.addEventListener('mouseup', () => {
+                    isDown = false;
+                });
+
+                track.addEventListener('mousemove', (e) => {
+                    if (!isDown) return;
+                    e.preventDefault();
+                    const x = e.pageX - track.offsetLeft;
+                    const walk = (x - startX) * 1.5;
+                    track.scrollLeft = scrollLeft - walk;
+                });
+            }
+        });
+    </script>
 
     <!-- Clinical Standards & What to Expect -->
     <section id="standards" class="py-16 bg-slate-50 border-b border-slate-200">
