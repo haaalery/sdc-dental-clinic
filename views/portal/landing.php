@@ -102,74 +102,8 @@ $currentUser = Session::user();
 </head>
 <body class="bg-[#F7F6F2] text-stone-900 antialiased min-h-screen flex flex-col font-sans">
 
-    <!-- Top Emergency & Info Banner (Warm Alabaster Linen) -->
-    <div class="bg-[#EFECE6] text-stone-600 text-xs py-2 px-4 border-b border-[#E5E1D8]">
-        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-            <div class="flex items-center space-x-4">
-                <span class="flex items-center space-x-1.5">
-                    <i data-lucide="phone" class="w-3.5 h-3.5 text-stone-500"></i>
-                    <span>Inquiries & Appointments: <strong class="text-stone-950 font-bold">+63 917 111 2233</strong></span>
-                </span>
-                <span class="hidden md:inline text-stone-300">|</span>
-                <span class="hidden md:flex items-center space-x-1.5">
-                    <i data-lucide="clock" class="w-3.5 h-3.5 text-stone-500"></i>
-                    <span>Mon – Sat: 9:00 AM – 6:00 PM</span>
-                </span>
-            </div>
-            <div class="flex items-center space-x-4">
-                <span class="text-stone-500">Branches in Makati & Pasig</span>
-                <?php if ($isLoggedIn): ?>
-                    <a href="<?= BASE_URL ?>/index.php?page=dashboard" class="text-stone-950 hover:text-black font-bold underline">
-                        Staff Dashboard (<?= htmlspecialchars($currentUser['username']) ?>) &rarr;
-                    </a>
-                <?php else: ?>
-                    <a href="<?= BASE_URL ?>/index.php?page=login" class="text-stone-600 hover:text-stone-950 font-semibold flex items-center space-x-1 transition">
-                        <i data-lucide="lock" class="w-3 h-3 text-stone-500"></i>
-                        <span>Staff Login</span>
-                    </a>
-                <?php endif; ?>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Navigation Bar -->
-    <header class="bg-[#F7F6F2]/95 backdrop-blur-md text-stone-900 border-b border-[#E5E1D8] sticky top-0 z-30 shadow-xs">
-        <div class="max-w-6xl mx-auto px-4 py-3.5 flex items-center justify-between">
-            <!-- Brand with Official Logo -->
-            <a href="<?= BASE_URL ?>/index.php" 
-               id="brandLogoLink" 
-               onclick="handleBrandClick(event)" 
-               class="flex items-center space-x-3 cursor-pointer select-none"
-               title="Return to top">
-                <div class="w-10 h-10 rounded-none bg-stone-950 flex items-center justify-center p-1.5 shadow-xs flex-shrink-0">
-                    <img src="<?= BASE_URL ?>/assets/images/logo.png" alt="SDC Dental Care" class="w-full h-full object-contain">
-                </div>
-                <div>
-                    <h1 class="text-base font-extrabold text-stone-950 tracking-tight leading-tight">SDC DENTAL</h1>
-                    <p class="text-[10px] text-stone-500 font-bold tracking-wider uppercase">Care Management</p>
-                </div>
-            </a>
-
-            <!-- Navigation Links -->
-            <nav class="hidden md:flex items-center space-x-8 text-xs font-semibold text-stone-600">
-                <a href="#services" class="hover:text-stone-950 transition">Services & Treatments</a>
-                <a href="#standards" class="hover:text-stone-950 transition">Clinical Standards</a>
-                <a href="#dentists" class="hover:text-stone-950 transition">Our Doctors</a>
-                <a href="#locations" class="hover:text-stone-950 transition">Hours & Branches</a>
-            </nav>
-
-            <!-- Action Button -->
-            <div class="flex items-center space-x-3">
-                <a href="#booking-form" class="inline-flex items-center space-x-1.5 px-4 py-2 bg-stone-950 hover:bg-stone-800 text-white text-xs font-semibold rounded-none shadow-xs transition">
-                    <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
-                    <span>Book Appointment</span>
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Full Hero Section (Faithfully matching Image 1 Aesthetic & Image 2 Wireframe Layout, Zero Round Borders) -->
-    <section id="heroSection" class="relative w-full lg:h-[calc(100vh-72px)] min-h-[calc(100vh-72px)] bg-white border-b border-[#E5E1D8] flex flex-col justify-between overflow-hidden rounded-none select-none">
+    <!-- Full Hero Section with Navigation Inside (Faithfully matching Image 1 Aesthetic & Image 2 Wireframe Layout, Zero Round Borders) -->
+    <section id="heroSection" class="relative w-full lg:h-screen min-h-screen bg-white border-b border-[#E5E1D8] flex flex-col justify-between overflow-hidden rounded-none select-none">
         
         <!-- Subtle Futuristic Blueprint & Watermark Grid (From Image 1) -->
         <div class="absolute inset-0 opacity-[0.035] pointer-events-none" style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(to right, #000 1px, transparent 1px); background-size: 70px 70px;"></div>
@@ -177,20 +111,71 @@ $currentUser = Session::user();
             SDC
         </div>
 
-        <!-- Wireframe 3-Column Layout: Left (Title, Media, Text) | Center (Image) | Right (Card, Text, CTA) -->
-        <div class="w-full h-full flex-1 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch px-6 sm:px-10 lg:px-14 py-8 lg:py-10 relative z-10">
+        <!-- 1. NAVIGATION BAR (Integrated Inside Hero Section at Top, Image 1 Aesthetic, Zero Round Borders) -->
+        <nav class="w-full border-b border-stone-200/90 px-6 sm:px-10 lg:px-14 py-4 flex items-center justify-between z-30 bg-white/95 backdrop-blur-sm rounded-none">
+            <!-- Brand with Official Logo -->
+            <a href="<?= BASE_URL ?>/index.php" 
+               id="brandLogoLink" 
+               onclick="handleBrandClick(event)" 
+               class="flex items-center space-x-3 cursor-pointer select-none group"
+               title="Return to top">
+                <div class="w-10 h-10 rounded-none bg-black flex items-center justify-center p-1.5 shadow-xs flex-shrink-0">
+                    <img src="<?= BASE_URL ?>/assets/images/logo.png" alt="SDC Dental Care" class="w-full h-full object-contain">
+                </div>
+                <div>
+                    <h1 class="text-base font-extrabold text-black tracking-tight leading-none uppercase">SDC DENTAL</h1>
+                    <p class="text-[9px] text-stone-500 font-mono tracking-[0.2em] uppercase font-bold mt-1">Clinical Atelier</p>
+                </div>
+            </a>
+
+            <!-- Navigation Links (Matching Image 1 Style & Spacing) -->
+            <div class="hidden md:flex items-center space-x-8 uppercase font-mono text-[11px] font-bold tracking-[0.2em] text-stone-600">
+                <a href="#services" class="hover:text-black transition">Services</a>
+                <a href="#standards" class="hover:text-black transition">Standards</a>
+                <a href="#dentists" class="hover:text-black transition">Doctors</a>
+                <a href="#locations" class="hover:text-black transition">Branches</a>
+            </div>
+
+            <!-- Right Actions (Staff Login & Appointment CTA with zero rounded borders) -->
+            <div class="flex items-center space-x-4">
+                <div class="hidden xl:flex items-center space-x-2 text-[11px] font-mono text-stone-500 mr-2">
+                    <i data-lucide="phone" class="w-3.5 h-3.5 text-stone-400"></i>
+                    <span>+63 917 111 2233</span>
+                </div>
+
+                <?php if ($isLoggedIn): ?>
+                    <a href="<?= BASE_URL ?>/index.php?page=dashboard" class="hidden sm:inline-flex items-center space-x-1.5 uppercase font-mono text-[11px] font-bold tracking-wider text-black hover:text-stone-600 transition">
+                        <i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i>
+                        <span>Dashboard</span>
+                    </a>
+                <?php else: ?>
+                    <a href="<?= BASE_URL ?>/index.php?page=login" class="hidden sm:inline-flex items-center space-x-1.5 uppercase font-mono text-[11px] font-bold tracking-wider text-stone-600 hover:text-black transition">
+                        <i data-lucide="lock" class="w-3 h-3 text-stone-400"></i>
+                        <span>Staff Login</span>
+                    </a>
+                <?php endif; ?>
+
+                <a href="#booking-form" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-black hover:bg-stone-800 text-white text-xs font-bold uppercase tracking-wider rounded-none shadow-xs transition">
+                    <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                    <span>Book Appointment</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- 2. Wireframe 3-Column Layout: Left (Title, Media, Text) | Center (Image) | Right (Card, Text, CTA) -->
+        <div class="w-full flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch px-6 sm:px-10 lg:px-14 py-6 lg:py-8 relative z-10">
             
             <!-- LEFT COLUMN: Title (Top) | Media (Middle) | Text (Bottom) -->
-            <div class="lg:col-span-4 flex flex-col justify-between space-y-8 z-20">
+            <div class="lg:col-span-4 flex flex-col justify-between space-y-6 lg:space-y-0 z-20">
                 
                 <!-- 1. Title Block (Directly on canvas like Image 1) -->
                 <div>
-                    <h1 class="text-4xl sm:text-6xl lg:text-[3.8rem] xl:text-[4.4rem] font-black tracking-tight uppercase leading-[0.9] text-black font-sans">
+                    <h1 class="text-4xl sm:text-5xl lg:text-[3.4rem] xl:text-[4rem] font-black tracking-tight uppercase leading-[0.92] text-black font-sans">
                         ADVANCED <br>
                         CLINICAL <br>
                         DENTISTRY
                     </h1>
-                    <div class="mt-4 flex items-center space-x-2 text-[10px] font-mono tracking-[0.25em] uppercase text-stone-500 font-bold">
+                    <div class="mt-3 flex items-center space-x-2 text-[10px] font-mono tracking-[0.25em] uppercase text-stone-500 font-bold">
                         <span>SDC ATELIER</span>
                         <span>·</span>
                         <span>TECHNOLOGY</span>
@@ -198,14 +183,14 @@ $currentUser = Session::user();
                 </div>
 
                 <!-- 2. Media Block & 3. Text Block (Pinned at Bottom-Left like Image 1) -->
-                <div class="space-y-4 max-w-sm">
+                <div class="space-y-3 max-w-sm">
                     <!-- Media Tile with Play Button (Zero Round Borders) -->
-                    <div class="relative w-full h-36 sm:h-44 bg-stone-900 border border-stone-200 overflow-hidden group rounded-none shadow-sm">
+                    <div class="relative w-full h-32 sm:h-40 bg-stone-900 border border-stone-200 overflow-hidden group rounded-none shadow-sm">
                         <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=800&q=80" 
                              alt="Clinical Procedure Video Preview" 
                              class="w-full h-full object-cover filter grayscale contrast-125 group-hover:scale-105 transition duration-700 rounded-none">
                         <div class="absolute inset-0 bg-black/25 flex items-center justify-center">
-                            <a href="#services" class="w-12 h-12 bg-white text-black flex items-center justify-center shadow-md transition transform group-hover:scale-110 rounded-none cursor-pointer" aria-label="Watch clinical preview">
+                            <a href="#services" class="w-11 h-11 bg-white text-black flex items-center justify-center shadow-md transition transform group-hover:scale-110 rounded-none cursor-pointer" aria-label="Watch clinical preview">
                                 <i data-lucide="play" class="w-4 h-4 fill-current ml-0.5"></i>
                             </a>
                         </div>
@@ -220,13 +205,13 @@ $currentUser = Session::user();
             </div>
 
             <!-- CENTER COLUMN: Large Centerpiece Image (Seamlessly floating with depth like Image 1) -->
-            <div class="lg:col-span-5 h-[480px] sm:h-[600px] lg:h-full relative flex items-center justify-center">
-                <div class="relative w-full h-full max-h-[660px] overflow-hidden border border-stone-200 bg-stone-100 shadow-xl group rounded-none">
+            <div class="lg:col-span-5 h-[420px] sm:h-[500px] lg:h-full relative flex items-center justify-center min-h-0">
+                <div class="relative w-full h-full max-h-full overflow-hidden border border-stone-200 bg-stone-100 shadow-xl group rounded-none">
                     <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1600&q=85" 
                          alt="SDC Precision Dental Suite" 
                          class="w-full h-full object-cover filter contrast-[1.05] brightness-95 transition-transform duration-700 ease-out group-hover:scale-105 rounded-none">
                     
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex flex-col justify-end p-8 text-white pointer-events-none rounded-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent flex flex-col justify-end p-6 sm:p-8 text-white pointer-events-none rounded-none">
                         <span class="text-[10px] font-mono tracking-widest uppercase text-teal-300 font-bold mb-1">
                             PRECISION OPERATORY // ATELIER
                         </span>
@@ -238,7 +223,7 @@ $currentUser = Session::user();
             </div>
 
             <!-- RIGHT COLUMN: Card (Top) | Text (Middle) | CTA (Bottom) -->
-            <div class="lg:col-span-3 flex flex-col justify-between space-y-8 z-20">
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6 lg:space-y-0 z-20">
                 
                 <!-- 1. Card Block (Specialized Article Teaser like Image 1) -->
                 <div class="max-w-xs">
@@ -258,7 +243,7 @@ $currentUser = Session::user();
                 </div>
 
                 <!-- 2. Text Block & 3. CTA Block (Bottom-Right like Image 1) -->
-                <div class="space-y-6 max-w-xs pt-4 border-t border-stone-200">
+                <div class="space-y-5 max-w-xs pt-4 border-t border-stone-200">
                     <div>
                         <span class="text-[9px] font-mono uppercase tracking-widest text-stone-400 font-bold block mb-1">
                             CARE & INNOVATION
@@ -281,45 +266,45 @@ $currentUser = Session::user();
 
         </div>
 
-    </section>
-
-    <!-- Infinite Scope of Practice Editorial Marquee Ribbon (Zero Rounded Corners) -->
-    <div class="w-full border-b border-[#E5E1D8] bg-[#EFECE6] py-3.5 overflow-hidden select-none rounded-none">
-        <div class="ticker-track flex items-center space-x-8 whitespace-nowrap font-mono text-[11px] font-bold tracking-[0.26em] uppercase text-stone-500">
-            <span>✦ COSMETIC LASER WHITENING</span>
-            <span class="text-stone-300">/</span>
-            <span>✦ PORCELAIN RESTORATION</span>
-            <span class="text-stone-300">/</span>
-            <span>✦ ULTRASONIC PERIODONTICS</span>
-            <span class="text-stone-300">/</span>
-            <span>✦ DIGITAL INTRAORAL RADIOGRAPHY</span>
-            <span class="text-stone-300">/</span>
-            <span>✦ MICROSCOPIC ENDODONTICS</span>
-            <span class="text-stone-300">/</span>
-            <span>✦ INVISIBLE ORTHODONTIC ALIGNMENT</span>
-            <span class="text-stone-300">/</span>
-            <span>✦ CLASS-B VACUUM STERILIZATION</span>
-            <span class="text-stone-300">/</span>
-            <span>✦ ITEMIZED POS FEE TRANSPARENCY</span>
-            <span class="text-stone-300">/</span>
-            <span>✦ COSMETIC LASER WHITENING</span>
-            <span class="text-stone-300">/</span>
-            <span>✦ PORCELAIN RESTORATION</span>
-            <span class="text-stone-300">/</span>
-            <span>✦ ULTRASONIC PERIODONTICS</span>
-            <span class="text-stone-300">/</span>
-            <span>✦ DIGITAL INTRAORAL RADIOGRAPHY</span>
-            <span class="text-stone-300">/</span>
-            <span>✦ MICROSCOPIC ENDODONTICS</span>
-            <span class="text-stone-300">/</span>
-            <span>✦ INVISIBLE ORTHODONTIC ALIGNMENT</span>
-            <span class="text-stone-300">/</span>
-            <span>✦ CLASS-B VACUUM STERILIZATION</span>
-            <span class="text-stone-300">/</span>
-            <span>✦ ITEMIZED POS FEE TRANSPARENCY</span>
-            <span class="text-stone-300">/</span>
+        <!-- 3. Infinite Scope of Practice Editorial Marquee Ribbon (Inside Hero at Bottom, Zero Round Borders) -->
+        <div class="w-full border-t border-[#E5E1D8] bg-[#F7F6F2] py-3 overflow-hidden select-none rounded-none flex-shrink-0">
+            <div class="ticker-track flex items-center space-x-8 whitespace-nowrap font-mono text-[11px] font-bold tracking-[0.26em] uppercase text-stone-500">
+                <span>✦ COSMETIC LASER WHITENING</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ PORCELAIN RESTORATION</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ ULTRASONIC PERIODONTICS</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ DIGITAL INTRAORAL RADIOGRAPHY</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ MICROSCOPIC ENDODONTICS</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ INVISIBLE ORTHODONTIC ALIGNMENT</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ CLASS-B VACUUM STERILIZATION</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ ITEMIZED POS FEE TRANSPARENCY</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ COSMETIC LASER WHITENING</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ PORCELAIN RESTORATION</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ ULTRASONIC PERIODONTICS</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ DIGITAL INTRAORAL RADIOGRAPHY</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ MICROSCOPIC ENDODONTICS</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ INVISIBLE ORTHODONTIC ALIGNMENT</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ CLASS-B VACUUM STERILIZATION</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ ITEMIZED POS FEE TRANSPARENCY</span>
+                <span class="text-stone-300">/</span>
+            </div>
         </div>
-    </div>
+
+    </section>
 
     <!-- Services & Treatments Section (Awwwards Contiguous Diagonal Slices) -->
     <?php
