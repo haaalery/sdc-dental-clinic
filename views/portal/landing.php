@@ -249,9 +249,68 @@ $currentUser = Session::user();
     ?>
     <!-- Services & Treatments Section (Awwwards Horizontal Slideshow + Exhibition Modal) -->
     <?php
+    // Multi-angle / procedure gallery for each specific treatment
+    $trtGalleries = [
+        'TRT-001' => [
+            'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=85'
+        ],
+        'TRT-002' => [
+            'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=1200&q=85'
+        ],
+        'TRT-003' => [
+            'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=85'
+        ],
+        'TRT-004' => [
+            'https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=1200&q=85'
+        ],
+        'TRT-005' => [
+            'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&fit=crop&w=1200&q=85'
+        ],
+        'TRT-006' => [
+            'https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=85'
+        ],
+        'TRT-007' => [
+            'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=85'
+        ],
+        'TRT-008' => [
+            'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&fit=crop&w=1200&q=85'
+        ],
+        'TRT-009' => [
+            'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=85'
+        ],
+    ];
+
     $treatmentsData = [];
     foreach ($treatments as $idx => $t) {
         $code = $t['treatment_code'];
+        $gallery = $trtGalleries[$code] ?? [$trtPhotos[$code] ?? 'https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=1200&q=85'];
         $treatmentsData[] = [
             'id' => $t['id'],
             'index' => str_pad($idx + 1, 2, '0', STR_PAD_LEFT),
@@ -260,7 +319,8 @@ $currentUser = Session::user();
             'category' => $t['category'],
             'price' => APP_CURRENCY . number_format($t['standard_price'], 2),
             'description' => $t['description'] ?: 'Comprehensive procedure conducted by certified attending dental clinicians.',
-            'image' => $trtPhotos[$code] ?? 'https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=1200&q=85',
+            'image' => $gallery[0],
+            'gallery' => $gallery,
             'duration' => $trtDetails[$code]['duration'] ?? '45 mins',
             'comfort' => $trtDetails[$code]['comfort'] ?? 'Clinical Grade',
             'inclusions' => $trtDetails[$code]['inclusions'] ?? 'Consultation Included'
@@ -323,7 +383,7 @@ $currentUser = Session::user();
         </div>
     </section>
 
-    <!-- Editorial Procedure Exhibition Modal (Inspired Directly by Reference Lookbook) -->
+    <!-- Editorial Procedure Exhibition Modal (Only Details & Photos of THAT Selected Procedure) -->
     <div id="procedureModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-3 sm:p-6 md:p-8 hidden opacity-0 transition-opacity duration-300">
         
         <!-- Modal Container (Warm Linen Luxury Aesthetic from Reference Screenshot) -->
@@ -331,10 +391,10 @@ $currentUser = Session::user();
             
             <!-- Top Minimalist Catalogue Bar -->
             <div class="flex items-center justify-between border-b border-stone-300/80 px-6 sm:px-8 py-4 text-[11px] uppercase tracking-[0.22em] font-mono text-stone-500 bg-[#f4efe8]">
-                <span>Catalogue // Clinical Disciplines</span>
+                <span id="modalTopCode">PROCEDURE // SPECIFICATION</span>
                 <span class="font-serif italic font-normal text-stone-800 text-sm normal-case hidden sm:inline">SDC Dental Atelier</span>
                 <div class="flex items-center space-x-4">
-                    <span id="modalActiveCounter" class="font-semibold text-stone-800">01 / 09</span>
+                    <span id="modalActiveCounter" class="font-semibold text-stone-800">VIEW 01 / 04</span>
                     <button type="button" onclick="closeProcedureModal()" class="text-stone-500 hover:text-stone-950 font-bold uppercase tracking-wider text-xs flex items-center space-x-1 transition">
                         <span>Close [✕]</span>
                     </button>
@@ -345,7 +405,7 @@ $currentUser = Session::user();
             <div class="flex-1 overflow-y-auto no-scrollbar p-6 sm:p-10">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                     
-                    <!-- Left: Big Picture Display Frame -->
+                    <!-- Left: Big Picture Display Frame (Swaps when clicking thumbnails below) -->
                     <div class="lg:col-span-5 relative">
                         <div class="relative w-full aspect-[3/4] sm:h-[460px] rounded-2xl overflow-hidden shadow-xl bg-stone-900 border border-stone-300/80 group">
                             <img id="modalBigImage" 
@@ -361,12 +421,12 @@ $currentUser = Session::user();
                                     </span>
                                     <p id="modalCodePill" class="text-xs font-mono text-stone-400">TRT-009</p>
                                 </div>
-                                <span class="text-[10px] text-stone-300 font-mono">Attending Clinician Suite</span>
+                                <span class="text-[10px] text-stone-300 font-mono">Clinical Procedure View</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Right: Big Editorial Headline & Clinical Info -->
+                    <!-- Right: Big Editorial Headline & Clinical Info for THAT Procedure -->
                     <div class="lg:col-span-7 flex flex-col justify-center">
                         <div class="mb-3">
                             <span id="modalCategory" class="text-xs uppercase tracking-[0.25em] font-mono text-stone-500 block mb-2">
@@ -421,34 +481,20 @@ $currentUser = Session::user();
                     </div>
                 </div>
 
-                <!-- Bottom: Clickable Horizontal Thumbnail Filmstrip (Transfers to the Big Picture) -->
+                <!-- Bottom: Gallery of THIS Specific Procedure (Clicking transfers to the Big Picture) -->
                 <div class="mt-8 pt-6 border-t border-stone-300">
                     <div class="flex items-center justify-between mb-3">
                         <span class="text-[11px] uppercase tracking-widest font-mono text-stone-500">
-                            Available Procedures (Click or hover thumbnail to transfer into big picture):
+                            Procedure Gallery & Clinical Angles (Click thumbnail to transfer into big picture):
                         </span>
                         <span class="text-xs text-stone-400 hidden sm:inline font-mono">
-                            9 Disciplines
+                            Multiple Angles
                         </span>
                     </div>
 
-                    <!-- Filmstrip Row in Modal -->
-                    <div class="flex items-center space-x-3 sm:space-x-4 overflow-x-auto no-scrollbar py-2 select-none">
-                        <?php foreach ($treatmentsData as $idx => $item): ?>
-                            <button type="button" 
-                                    onclick="selectModalTreatment(<?= $idx ?>)" 
-                                    onmouseenter="selectModalTreatment(<?= $idx ?>)"
-                                    data-thumb-idx="<?= $idx ?>"
-                                    class="modal-thumb-card group relative h-28 sm:h-32 w-18 sm:w-22 rounded-xl overflow-hidden border-2 border-stone-300/80 hover:border-stone-800 transition-all flex-shrink-0 cursor-pointer shadow-sm">
-                                <img src="<?= htmlspecialchars($item['image']) ?>" 
-                                     alt="<?= htmlspecialchars($item['name']) ?>" 
-                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                
-                                <span class="absolute top-1.5 left-1.5 text-[9px] font-mono font-bold text-white bg-black/60 px-1 rounded">
-                                    <?= $item['index'] ?>
-                                </span>
-                            </button>
-                        <?php endforeach; ?>
+                    <!-- Filmstrip of Photos for THIS Procedure Only -->
+                    <div id="modalGalleryFilmstrip" class="flex items-center space-x-3 sm:space-x-4 overflow-x-auto no-scrollbar py-2 select-none">
+                        <!-- Populated dynamically via JavaScript with photos of the selected procedure -->
                     </div>
                 </div>
             </div>
@@ -458,13 +504,74 @@ $currentUser = Session::user();
 
     <script>
         const allTreatments = <?= json_encode($treatmentsData) ?>;
-        let currentModalIdx = 0;
+        let currentTreatment = null;
 
-        // Open Modal and display selected treatment
+        // Open Modal and display ONLY that procedure's details and photos
         function openProcedureModal(index) {
-            currentModalIdx = index;
-            selectModalTreatment(index);
+            const t = allTreatments[index];
+            if (!t) return;
+            currentTreatment = t;
 
+            // Populate text details
+            const title = document.getElementById('modalTitle');
+            const category = document.getElementById('modalCategory');
+            const topCode = document.getElementById('modalTopCode');
+            const categoryPill = document.getElementById('modalCategoryPill');
+            const codePill = document.getElementById('modalCodePill');
+            const price = document.getElementById('modalPrice');
+            const desc = document.getElementById('modalDescription');
+            const duration = document.getElementById('modalDuration');
+            const comfort = document.getElementById('modalComfort');
+            const inclusions = document.getElementById('modalInclusions');
+            const bookingBtn = document.getElementById('modalBookingBtn');
+
+            title.innerText = t.name;
+            category.innerText = `${t.index} / ${t.category.toUpperCase()}`;
+            topCode.innerText = `${t.code} // ${t.category.toUpperCase()}`;
+            categoryPill.innerText = t.category;
+            codePill.innerText = t.code;
+            price.innerText = t.price;
+            desc.innerText = t.description;
+            duration.innerText = t.duration;
+            comfort.innerText = t.comfort;
+            inclusions.innerText = t.inclusions;
+
+            if (bookingBtn) {
+                bookingBtn.onclick = () => {
+                    closeProcedureModal();
+                    prefillConcern(t.name);
+                };
+            }
+
+            // Set the big image to the first photo of this procedure
+            setBigImage(t.gallery[0], 0, t.gallery.length);
+
+            // Populate the bottom filmstrip with ONLY photos of this procedure
+            const filmstrip = document.getElementById('modalGalleryFilmstrip');
+            filmstrip.innerHTML = '';
+
+            t.gallery.forEach((photoUrl, pIdx) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = `modal-photo-thumb group relative h-28 sm:h-32 w-20 sm:w-24 rounded-xl overflow-hidden border-2 ${pIdx === 0 ? 'border-stone-950 ring-2 ring-stone-950/20' : 'border-stone-300/80 hover:border-stone-800'} transition-all flex-shrink-0 cursor-pointer shadow-sm`;
+                btn.innerHTML = `
+                    <img src="${photoUrl}" alt="${t.name} view ${pIdx + 1}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <span class="absolute top-1.5 left-1.5 text-[9px] font-mono font-bold text-white bg-black/60 px-1 rounded">
+                        0${pIdx + 1}
+                    </span>
+                `;
+                btn.onclick = () => {
+                    setBigImage(photoUrl, pIdx, t.gallery.length);
+                    highlightPhotoThumb(pIdx);
+                };
+                btn.onmouseenter = () => {
+                    setBigImage(photoUrl, pIdx, t.gallery.length);
+                    highlightPhotoThumb(pIdx);
+                };
+                filmstrip.appendChild(btn);
+            });
+
+            // Show modal
             const modal = document.getElementById('procedureModal');
             const container = document.getElementById('modalContainer');
             if (modal && container) {
@@ -476,6 +583,39 @@ $currentUser = Session::user();
                 }, 10);
                 document.body.style.overflow = 'hidden';
             }
+
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+
+        // Transfer clicked/hovered photo into the Big Picture frame
+        function setBigImage(url, index, total) {
+            const bigImg = document.getElementById('modalBigImage');
+            const counter = document.getElementById('modalActiveCounter');
+            if (bigImg) {
+                bigImg.style.opacity = '0.35';
+                setTimeout(() => {
+                    bigImg.src = url;
+                    bigImg.style.opacity = '1';
+                }, 120);
+            }
+            if (counter) {
+                counter.innerText = `VIEW 0${index + 1} / 0${total}`;
+            }
+        }
+
+        function highlightPhotoThumb(index) {
+            const thumbs = document.querySelectorAll('.modal-photo-thumb');
+            thumbs.forEach((th, i) => {
+                if (i === index) {
+                    th.classList.add('border-stone-950', 'ring-2', 'ring-stone-950/20');
+                    th.classList.remove('border-stone-300/80');
+                } else {
+                    th.classList.remove('border-stone-950', 'ring-2', 'ring-stone-950/20');
+                    th.classList.add('border-stone-300/80');
+                }
+            });
         }
 
         // Close Modal
@@ -490,70 +630,6 @@ $currentUser = Session::user();
                     modal.classList.add('hidden');
                     document.body.style.overflow = '';
                 }, 300);
-            }
-        }
-
-        // Transfer Picture and Update Info in Modal
-        function selectModalTreatment(index) {
-            currentModalIdx = index;
-            const t = allTreatments[index];
-            if (!t) return;
-
-            const bigImg = document.getElementById('modalBigImage');
-            const title = document.getElementById('modalTitle');
-            const category = document.getElementById('modalCategory');
-            const categoryPill = document.getElementById('modalCategoryPill');
-            const codePill = document.getElementById('modalCodePill');
-            const price = document.getElementById('modalPrice');
-            const desc = document.getElementById('modalDescription');
-            const duration = document.getElementById('modalDuration');
-            const comfort = document.getElementById('modalComfort');
-            const inclusions = document.getElementById('modalInclusions');
-            const counter = document.getElementById('modalActiveCounter');
-            const bookingBtn = document.getElementById('modalBookingBtn');
-
-            if (bigImg && title) {
-                // Smooth image swap with subtle opacity cross-fade
-                bigImg.style.opacity = '0.35';
-                setTimeout(() => {
-                    bigImg.src = t.image;
-                    bigImg.alt = t.name;
-                    bigImg.style.opacity = '1';
-                }, 120);
-
-                title.innerText = t.name;
-                category.innerText = `${t.index} / ${t.category}`;
-                categoryPill.innerText = t.category;
-                codePill.innerText = t.code;
-                price.innerText = t.price;
-                desc.innerText = t.description;
-                duration.innerText = t.duration;
-                comfort.innerText = t.comfort;
-                inclusions.innerText = t.inclusions;
-                counter.innerText = `${t.index} / ${String(allTreatments.length).padStart(2, '0')}`;
-
-                if (bookingBtn) {
-                    bookingBtn.onclick = () => {
-                        closeProcedureModal();
-                        prefillConcern(t.name);
-                    };
-                }
-
-                // Highlight active thumbnail card
-                const thumbs = document.querySelectorAll('.modal-thumb-card');
-                thumbs.forEach((th, i) => {
-                    if (i === index) {
-                        th.classList.add('border-stone-950', 'ring-2', 'ring-stone-950/20');
-                        th.classList.remove('border-stone-300/80');
-                    } else {
-                        th.classList.remove('border-stone-950', 'ring-2', 'ring-stone-950/20');
-                        th.classList.add('border-stone-300/80');
-                    }
-                });
-
-                if (window.lucide) {
-                    lucide.createIcons();
-                }
             }
         }
 
