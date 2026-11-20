@@ -302,22 +302,25 @@ $currentUser = Session::user();
                         $padIndex = str_pad($idx + 1, 2, '0', STR_PAD_LEFT);
                         $meta = $trtDetails[$trt['treatment_code']] ?? ['duration' => '45 mins', 'comfort' => 'Clinical Grade', 'inclusions' => 'Consultation Included'];
                     ?>
-                        <!-- Seamless Vertical Accordion Strip (Straight, Touching Adjacent Slices with Zero Gap) -->
-                        <div class="gallery-strip group relative h-[590px] w-[180px] sm:w-[210px] md:w-[230px] hover:w-[540px] sm:hover:w-[620px] md:hover:w-[680px] -ml-[1px] first:ml-0 overflow-hidden border-r border-t border-b border-white/10 first:border-l bg-slate-950">
+                        <!-- Seamless Vertical Accordion Strip (Expands to Pure Full Slide on Hover) -->
+                        <a href="#booking-form" 
+                           onclick="prefillConcern('<?= addslashes(htmlspecialchars($trt['treatment_name'])) ?>')"
+                           title="Click to schedule <?= htmlspecialchars($trt['treatment_name']) ?>"
+                           class="gallery-strip group relative h-[590px] w-[170px] sm:w-[200px] md:w-[220px] hover:w-[580px] sm:hover:w-[700px] md:hover:w-[820px] -ml-[1px] first:ml-0 overflow-hidden border-r border-t border-b border-white/10 first:border-l bg-slate-950 block cursor-pointer">
                             
-                            <!-- Un-skewed, Native High-Res Image & Content Frame -->
+                            <!-- Image Frame -->
                             <div class="gallery-strip-inner absolute inset-0 w-full h-full">
                                 
-                                <!-- Background Image with Parallax Scale & Soft Blur on Hover -->
+                                <!-- Pure Crystal-Clear Photography (Full Slide on Hover, Zero Blur, Zero Dimming) -->
                                 <img src="<?= $imgUrl ?>" 
                                      alt="<?= htmlspecialchars($trt['treatment_name']) ?>" 
-                                     class="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-30 group-hover:blur-[2px]">
+                                     class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105 filter brightness-90 group-hover:brightness-100">
 
-                                <!-- Ambient Dark Vignette -->
-                                <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-black/90 transition-opacity duration-500 group-hover:opacity-0"></div>
+                                <!-- Gentle Ambient Vignette (Fades Out Completely on Hover) -->
+                                <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 transition-opacity duration-500 group-hover:opacity-0"></div>
 
-                                <!-- STATE 1: Collapsed View (Vertical Editorial Typographic Ribbon) -->
-                                <div class="absolute inset-0 p-6 flex flex-col justify-between transition-all duration-500 group-hover:opacity-0 pointer-events-none z-10">
+                                <!-- Collapsed State Labels (Fades Out Completely on Hover - Zero Text on Hover) -->
+                                <div class="absolute inset-0 p-6 flex flex-col justify-between transition-opacity duration-500 group-hover:opacity-0 pointer-events-none z-10">
                                     <!-- Clean Numerals -->
                                     <div class="flex items-center justify-between">
                                         <span class="font-mono text-2xl font-light text-white/50 tracking-tighter">
@@ -346,73 +349,8 @@ $currentUser = Session::user();
                                     </div>
                                 </div>
 
-                                <!-- STATE 2: Expanded Overview Only View (Clean, Real, Human, Zero AI Slop) -->
-                                <div class="absolute inset-0 bg-[#0a0f18]/95 backdrop-blur-2xl p-8 sm:p-10 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out z-20 overflow-y-auto no-scrollbar">
-                                    <div>
-                                        <!-- Category + Code Header -->
-                                        <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
-                                            <div class="flex items-center space-x-3">
-                                                <span class="text-[10px] tracking-[0.25em] uppercase font-bold text-teal-400">
-                                                    <?= htmlspecialchars($trt['category']) ?>
-                                                </span>
-                                                <span class="text-white/30 text-xs">/</span>
-                                                <span class="font-mono text-xs text-white/50">
-                                                    NO. <?= $padIndex ?>
-                                                </span>
-                                            </div>
-                                            <span class="font-mono text-xs text-white/40 tracking-wider">
-                                                <?= htmlspecialchars($trt['treatment_code']) ?>
-                                            </span>
-                                        </div>
-
-                                        <!-- Title -->
-                                        <h4 class="text-2xl sm:text-3xl font-serif text-white tracking-tight leading-snug mb-3">
-                                            <?= htmlspecialchars($trt['treatment_name']) ?>
-                                        </h4>
-
-                                        <!-- Transparent Upfront Fee -->
-                                        <div class="flex items-baseline space-x-2 mb-6">
-                                            <span class="text-3xl font-black text-white font-mono tracking-tight">
-                                                <?= APP_CURRENCY ?><?= number_format($trt['standard_price'], 2) ?>
-                                            </span>
-                                            <span class="text-xs text-slate-400 font-light">standard clinic fee</span>
-                                        </div>
-
-                                        <!-- Authentic Clinical Overview -->
-                                        <p class="text-sm text-slate-300 leading-relaxed font-light mb-6">
-                                            <?= htmlspecialchars($trt['description'] ?: 'Specialized procedure performed by licensed clinicians with diagnostic assessment.') ?>
-                                        </p>
-
-                                        <!-- Editorial Metadata Bar (Real Specifics, No AI Buzzwords) -->
-                                        <div class="grid grid-cols-3 gap-3 border-t border-b border-white/10 py-4 text-xs">
-                                            <div>
-                                                <span class="block text-[9px] uppercase tracking-widest text-slate-500 mb-0.5">Session</span>
-                                                <span class="text-white font-medium"><?= $meta['duration'] ?></span>
-                                            </div>
-                                            <div>
-                                                <span class="block text-[9px] uppercase tracking-widest text-slate-500 mb-0.5">Focus</span>
-                                                <span class="text-white font-medium"><?= $meta['comfort'] ?></span>
-                                            </div>
-                                            <div>
-                                                <span class="block text-[9px] uppercase tracking-widest text-slate-500 mb-0.5">Scope</span>
-                                                <span class="text-white font-medium truncate block"><?= $meta['inclusions'] ?></span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Bottom CTA -->
-                                    <div class="pt-6 border-t border-white/10">
-                                        <a href="#booking-form" 
-                                           onclick="prefillConcern('<?= addslashes(htmlspecialchars($trt['treatment_name'])) ?>')"
-                                           class="w-full py-4 px-6 bg-white hover:bg-teal-400 text-slate-950 font-bold text-xs uppercase tracking-wider rounded-full shadow-xl transition flex items-center justify-center space-x-2 group-hover:scale-[1.01]">
-                                            <span>Schedule This Treatment</span>
-                                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                                        </a>
-                                    </div>
-                                </div>
-
                             </div>
-                        </div>
+                        </a>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <p class="text-xs text-slate-400 italic">No services listed at this moment.</p>
