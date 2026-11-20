@@ -67,31 +67,31 @@ $currentUser = Session::user();
 
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col font-sans">
+<body class="bg-[#F7F6F2] text-stone-900 antialiased min-h-screen flex flex-col font-sans">
 
-    <!-- Top Emergency & Info Banner (Light Slate) -->
-    <div class="bg-slate-100 text-slate-600 text-xs py-2 px-4 border-b border-slate-200">
+    <!-- Top Emergency & Info Banner (Warm Alabaster Linen) -->
+    <div class="bg-[#EFECE6] text-stone-600 text-xs py-2 px-4 border-b border-[#E5E1D8]">
         <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
             <div class="flex items-center space-x-4">
                 <span class="flex items-center space-x-1.5">
-                    <i data-lucide="phone" class="w-3.5 h-3.5 text-slate-500"></i>
-                    <span>Inquiries & Appointments: <strong class="text-slate-900 font-bold">+63 917 111 2233</strong></span>
+                    <i data-lucide="phone" class="w-3.5 h-3.5 text-stone-500"></i>
+                    <span>Inquiries & Appointments: <strong class="text-stone-950 font-bold">+63 917 111 2233</strong></span>
                 </span>
-                <span class="hidden md:inline text-slate-300">|</span>
+                <span class="hidden md:inline text-stone-300">|</span>
                 <span class="hidden md:flex items-center space-x-1.5">
-                    <i data-lucide="clock" class="w-3.5 h-3.5 text-slate-500"></i>
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-stone-500"></i>
                     <span>Mon – Sat: 9:00 AM – 6:00 PM</span>
                 </span>
             </div>
             <div class="flex items-center space-x-4">
-                <span class="text-slate-500">Branches in Makati & Pasig</span>
+                <span class="text-stone-500">Branches in Makati & Pasig</span>
                 <?php if ($isLoggedIn): ?>
-                    <a href="<?= BASE_URL ?>/index.php?page=dashboard" class="text-slate-900 hover:text-black font-bold underline">
+                    <a href="<?= BASE_URL ?>/index.php?page=dashboard" class="text-stone-950 hover:text-black font-bold underline">
                         Staff Dashboard (<?= htmlspecialchars($currentUser['username']) ?>) &rarr;
                     </a>
                 <?php else: ?>
-                    <a href="<?= BASE_URL ?>/index.php?page=login" class="text-slate-600 hover:text-slate-900 font-semibold flex items-center space-x-1 transition">
-                        <i data-lucide="lock" class="w-3 h-3 text-slate-500"></i>
+                    <a href="<?= BASE_URL ?>/index.php?page=login" class="text-stone-600 hover:text-stone-950 font-semibold flex items-center space-x-1 transition">
+                        <i data-lucide="lock" class="w-3 h-3 text-stone-500"></i>
                         <span>Staff Login</span>
                     </a>
                 <?php endif; ?>
@@ -100,7 +100,7 @@ $currentUser = Session::user();
     </div>
 
     <!-- Main Navigation Bar -->
-    <header class="bg-white text-slate-800 border-b border-slate-200 sticky top-0 z-30 shadow-xs">
+    <header class="bg-[#F7F6F2]/95 backdrop-blur-md text-stone-900 border-b border-[#E5E1D8] sticky top-0 z-30 shadow-xs">
         <div class="max-w-6xl mx-auto px-4 py-3.5 flex items-center justify-between">
             <!-- Brand with Official Logo -->
             <a href="<?= BASE_URL ?>/index.php" 
@@ -108,26 +108,26 @@ $currentUser = Session::user();
                onclick="handleBrandClick(event)" 
                class="flex items-center space-x-3 cursor-pointer select-none"
                title="Return to top">
-                <div class="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center p-1.5 shadow-xs flex-shrink-0">
+                <div class="w-10 h-10 rounded-xl bg-stone-950 flex items-center justify-center p-1.5 shadow-xs flex-shrink-0">
                     <img src="<?= BASE_URL ?>/assets/images/logo.png" alt="SDC Dental Care" class="w-full h-full object-contain">
                 </div>
                 <div>
-                    <h1 class="text-base font-extrabold text-slate-900 tracking-tight leading-tight">SDC DENTAL</h1>
-                    <p class="text-[10px] text-slate-500 font-bold tracking-wider uppercase">Care Management</p>
+                    <h1 class="text-base font-extrabold text-stone-950 tracking-tight leading-tight">SDC DENTAL</h1>
+                    <p class="text-[10px] text-stone-500 font-bold tracking-wider uppercase">Care Management</p>
                 </div>
             </a>
 
             <!-- Navigation Links -->
-            <nav class="hidden md:flex items-center space-x-8 text-xs font-semibold text-slate-600">
-                <a href="#services" class="hover:text-slate-900 transition">Services & Treatments</a>
-                <a href="#standards" class="hover:text-slate-900 transition">Clinical Standards</a>
-                <a href="#dentists" class="hover:text-slate-900 transition">Our Doctors</a>
-                <a href="#locations" class="hover:text-slate-900 transition">Hours & Branches</a>
+            <nav class="hidden md:flex items-center space-x-8 text-xs font-semibold text-stone-600">
+                <a href="#services" class="hover:text-stone-950 transition">Services & Treatments</a>
+                <a href="#standards" class="hover:text-stone-950 transition">Clinical Standards</a>
+                <a href="#dentists" class="hover:text-stone-950 transition">Our Doctors</a>
+                <a href="#locations" class="hover:text-stone-950 transition">Hours & Branches</a>
             </nav>
 
             <!-- Action Button -->
             <div class="flex items-center space-x-3">
-                <a href="#booking-form" class="inline-flex items-center space-x-1.5 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-xl shadow-xs transition">
+                <a href="#booking-form" class="inline-flex items-center space-x-1.5 px-4 py-2 bg-stone-950 hover:bg-stone-800 text-white text-xs font-semibold rounded-xl shadow-xs transition">
                     <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
                     <span>Book Appointment</span>
                 </a>
@@ -135,53 +135,53 @@ $currentUser = Session::user();
         </div>
     </header>
 
-    <!-- Hero Section (Awwwards Editorial Aesthetic) -->
-    <section class="bg-slate-50 border-b border-slate-200 py-20 md:py-28 relative overflow-hidden">
+    <!-- Hero Section (Awwwards Editorial Aesthetic - Warm Alabaster) -->
+    <section class="bg-[#F7F6F2] border-b border-[#E5E1D8] py-20 md:py-28 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
                 
                 <!-- Left Editorial Headline -->
                 <div class="lg:col-span-7">
-                    <div class="inline-flex items-center space-x-2 text-[11px] font-bold tracking-[0.2em] uppercase text-slate-500 mb-6">
-                        <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+                    <div class="inline-flex items-center space-x-2 text-[11px] font-bold tracking-[0.2em] uppercase text-stone-500 mb-6">
+                        <span class="w-1.5 h-1.5 rounded-full bg-stone-900"></span>
                         <span>Makati & Pasig Suites · Clinical Dental Care</span>
                     </div>
 
-                    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.1]">
+                    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-stone-950 tracking-tight leading-[1.1]">
                         Modern dentistry, <br>
-                        <span class="font-serif italic font-normal text-slate-700">thoughtfully practiced.</span>
+                        <span class="font-serif italic font-normal text-stone-700">thoughtfully practiced.</span>
                     </h2>
 
-                    <p class="text-slate-600 text-base sm:text-lg mt-6 leading-relaxed max-w-xl font-normal">
+                    <p class="text-stone-600 text-base sm:text-lg mt-6 leading-relaxed max-w-xl font-normal">
                         A calm, unhurried clinical environment where preventive oral healthcare meets specialized restorative and aesthetic dentistry. Clear treatment plans, transparent pricing, and attentive attending doctors.
                     </p>
 
                     <!-- Editorial Practice Metrics (No Clutter, Clean Editorial Design) -->
-                    <div class="grid grid-cols-3 gap-6 pt-8 mt-8 border-t border-slate-200/80 text-xs">
+                    <div class="grid grid-cols-3 gap-6 pt-8 mt-8 border-t border-[#E5E1D8] text-xs">
                         <div>
-                            <span class="font-mono text-slate-400 block text-[10px] tracking-widest uppercase mb-1">01 / Doctors</span>
-                            <span class="font-bold text-slate-900 text-sm block">Licensed MDs</span>
-                            <span class="text-slate-500 text-[11px]">Direct clinician care</span>
+                            <span class="font-mono text-stone-400 block text-[10px] tracking-widest uppercase mb-1">01 / Doctors</span>
+                            <span class="font-bold text-stone-900 text-sm block">Licensed MDs</span>
+                            <span class="text-stone-500 text-[11px]">Direct clinician care</span>
                         </div>
                         <div>
-                            <span class="font-mono text-slate-400 block text-[10px] tracking-widest uppercase mb-1">02 / Integrity</span>
-                            <span class="font-bold text-slate-900 text-sm block">Transparent</span>
-                            <span class="text-slate-500 text-[11px]">Itemized POS receipts</span>
+                            <span class="font-mono text-stone-400 block text-[10px] tracking-widest uppercase mb-1">02 / Integrity</span>
+                            <span class="font-bold text-stone-900 text-sm block">Transparent</span>
+                            <span class="text-stone-500 text-[11px]">Itemized POS receipts</span>
                         </div>
                         <div>
-                            <span class="font-mono text-slate-400 block text-[10px] tracking-widest uppercase mb-1">03 / Locations</span>
-                            <span class="font-bold text-slate-900 text-sm block">2 Branches</span>
-                            <span class="text-slate-500 text-[11px]">Makati & Pasig</span>
+                            <span class="font-mono text-stone-400 block text-[10px] tracking-widest uppercase mb-1">03 / Locations</span>
+                            <span class="font-bold text-stone-900 text-sm block">2 Branches</span>
+                            <span class="text-stone-500 text-[11px]">Makati & Pasig</span>
                         </div>
                     </div>
 
                     <!-- Action Buttons -->
                     <div class="mt-10 flex flex-wrap items-center gap-4">
-                        <a href="#booking-form" class="px-7 py-4 bg-slate-900 hover:bg-black text-white font-semibold text-xs tracking-wider uppercase rounded-full shadow-md transition inline-flex items-center space-x-2">
+                        <a href="#booking-form" class="px-7 py-4 bg-stone-950 hover:bg-black text-white font-semibold text-xs tracking-wider uppercase rounded-full shadow-md transition inline-flex items-center space-x-2">
                             <span>Reserve a Visit</span>
                             <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </a>
-                        <a href="#services" class="px-7 py-4 bg-white hover:bg-slate-100 text-slate-800 font-semibold text-xs tracking-wider uppercase rounded-full border border-slate-300 shadow-xs transition">
+                        <a href="#services" class="px-7 py-4 bg-white hover:bg-[#EFECE6] text-stone-800 font-semibold text-xs tracking-wider uppercase rounded-full border border-[#E5E1D8] shadow-xs transition">
                             View Treatments
                         </a>
                     </div>
@@ -190,32 +190,32 @@ $currentUser = Session::user();
                 <!-- Right Visual: Architectural Editorial Photography Frame -->
                 <div class="lg:col-span-5">
                     <div class="relative mx-auto max-w-md lg:max-w-none">
-                        <div class="rounded-3xl overflow-hidden shadow-2xl border border-slate-200/80 aspect-[4/5] relative bg-slate-900 group">
+                        <div class="rounded-3xl overflow-hidden shadow-2xl border border-[#E5E1D8] aspect-[4/5] relative bg-stone-900 group">
                             <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=85" 
                                  alt="SDC Dental Clinical Suite" 
                                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-95">
                             
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex flex-col justify-end p-8 text-white">
+                            <div class="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-transparent to-transparent flex flex-col justify-end p-8 text-white">
                                 <div class="flex items-center space-x-3 mb-2">
                                     <div class="w-8 h-8 rounded-lg bg-white/10 backdrop-blur-md p-1 border border-white/20">
                                         <img src="<?= BASE_URL ?>/assets/images/logo.png" alt="SDC" class="w-full h-full object-contain">
                                     </div>
                                     <span class="text-xs uppercase tracking-widest font-bold text-teal-300">SDC Dental Care</span>
                                 </div>
-                                <p class="text-xs text-slate-300 leading-relaxed font-light">
+                                <p class="text-xs text-stone-300 leading-relaxed font-light">
                                     State-of-the-art diagnostic imaging, surgical sterilization, and comfortable patient suites in Metro Manila.
                                 </p>
                             </div>
                         </div>
 
                         <!-- Minimalist Floating Badge -->
-                        <div class="absolute -bottom-5 -left-5 bg-white p-4 rounded-2xl shadow-xl border border-slate-200 hidden sm:flex items-center space-x-3">
+                        <div class="absolute -bottom-5 -left-5 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-[#E5E1D8] hidden sm:flex items-center space-x-3">
                             <div class="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-700">
                                 <i data-lucide="check" class="w-5 h-5"></i>
                             </div>
                             <div>
-                                <p class="text-xs font-bold text-slate-900">Hospital-Grade Standards</p>
-                                <p class="text-[11px] text-slate-500">Class-B steam autoclave</p>
+                                <p class="text-xs font-bold text-stone-900">Hospital-Grade Standards</p>
+                                <p class="text-[11px] text-stone-500">Class-B steam autoclave</p>
                             </div>
                         </div>
                     </div>
@@ -660,60 +660,60 @@ $currentUser = Session::user();
         });
     </script>
 
-    <!-- Clinical Standards & What to Expect (Refined Editorial Layout) -->
-    <section id="standards" class="py-24 bg-white border-b border-slate-200">
+    <!-- Clinical Standards & What to Expect (Refined Warm Editorial Layout) -->
+    <section id="standards" class="py-24 bg-[#FAF9F5] border-b border-[#E5E1D8]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-xl mb-14">
-                <span class="text-[11px] uppercase tracking-[0.25em] font-semibold text-slate-400 block mb-2">Practice Standard</span>
-                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-                    Our Clinical Principles<span class="font-serif italic font-normal text-slate-500">.</span>
+                <span class="text-[11px] uppercase tracking-[0.25em] font-semibold text-stone-400 block mb-2">Practice Standard</span>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-stone-950 tracking-tight">
+                    Our Clinical Principles<span class="font-serif italic font-normal text-stone-500">.</span>
                 </h3>
-                <p class="text-sm text-slate-500 mt-3 leading-relaxed">
+                <p class="text-sm text-stone-600 mt-3 leading-relaxed">
                     Conservative diagnostics, hospital-grade instrument reprocessing, and an ethical doctor-patient relationship.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Principle 01 -->
-                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between hover:border-slate-300 transition">
+                <div class="p-8 rounded-3xl bg-white border border-[#E5E1D8] flex flex-col justify-between hover:border-stone-400/80 shadow-xs transition">
                     <div>
-                        <span class="font-mono text-xs font-bold text-slate-400 tracking-widest uppercase block mb-6">01 / STERILIZATION</span>
-                        <h4 class="text-lg font-bold text-slate-900 mb-3">Class-B Steam Autoclave</h4>
-                        <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                        <span class="font-mono text-xs font-bold text-stone-400 tracking-widest uppercase block mb-6">01 / STERILIZATION</span>
+                        <h4 class="text-lg font-bold text-stone-950 mb-3">Class-B Steam Autoclave</h4>
+                        <p class="text-xs text-stone-600 leading-relaxed font-normal">
                             All surgical handpieces, burs, and diagnostic sets undergo enzymatic ultrasonic cleaning and Class-B vacuum autoclave steam sterilization, sealed in individual medical indicator pouches.
                         </p>
                     </div>
-                    <div class="pt-6 mt-6 border-t border-slate-200/80 flex items-center space-x-2 text-[11px] text-slate-500 font-medium">
+                    <div class="pt-6 mt-6 border-t border-[#EFECE6] flex items-center space-x-2 text-[11px] text-stone-500 font-medium">
                         <i data-lucide="shield-check" class="w-4 h-4 text-teal-600"></i>
                         <span>Zero reuse on single-use items</span>
                     </div>
                 </div>
 
                 <!-- Principle 02 -->
-                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between hover:border-slate-300 transition">
+                <div class="p-8 rounded-3xl bg-white border border-[#E5E1D8] flex flex-col justify-between hover:border-stone-400/80 shadow-xs transition">
                     <div>
-                        <span class="font-mono text-xs font-bold text-slate-400 tracking-widest uppercase block mb-6">02 / DIAGNOSIS</span>
-                        <h4 class="text-lg font-bold text-slate-900 mb-3">Conservative Treatment Planning</h4>
-                        <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                        <span class="font-mono text-xs font-bold text-stone-400 tracking-widest uppercase block mb-6">02 / DIAGNOSIS</span>
+                        <h4 class="text-lg font-bold text-stone-950 mb-3">Conservative Treatment Planning</h4>
+                        <p class="text-xs text-stone-600 leading-relaxed font-normal">
                             We advocate tooth preservation first. Every finding is backed by clinical diagnostics and detailed explanation before any procedure begins—no forced or unnecessary dental work.
                         </p>
                     </div>
-                    <div class="pt-6 mt-6 border-t border-slate-200/80 flex items-center space-x-2 text-[11px] text-slate-500 font-medium">
+                    <div class="pt-6 mt-6 border-t border-[#EFECE6] flex items-center space-x-2 text-[11px] text-stone-500 font-medium">
                         <i data-lucide="user-check" class="w-4 h-4 text-teal-600"></i>
                         <span>Attending clinician consultation</span>
                     </div>
                 </div>
 
                 <!-- Principle 03 -->
-                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between hover:border-slate-300 transition">
+                <div class="p-8 rounded-3xl bg-white border border-[#E5E1D8] flex flex-col justify-between hover:border-stone-400/80 shadow-xs transition">
                     <div>
-                        <span class="font-mono text-xs font-bold text-slate-400 tracking-widest uppercase block mb-6">03 / BILLING</span>
-                        <h4 class="text-lg font-bold text-slate-900 mb-3">Transparent Itemized Receipts</h4>
-                        <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                        <span class="font-mono text-xs font-bold text-stone-400 tracking-widest uppercase block mb-6">03 / BILLING</span>
+                        <h4 class="text-lg font-bold text-stone-950 mb-3">Transparent Itemized Receipts</h4>
+                        <p class="text-xs text-stone-600 leading-relaxed font-normal">
                             You receive a complete itemized POS breakdown before leaving the chair. Payments accepted via Cash, GCash, Maya, and major debit/credit cards with zero arbitrary surcharges.
                         </p>
                     </div>
-                    <div class="pt-6 mt-6 border-t border-slate-200/80 flex items-center space-x-2 text-[11px] text-slate-500 font-medium">
+                    <div class="pt-6 mt-6 border-t border-[#EFECE6] flex items-center space-x-2 text-[11px] text-stone-500 font-medium">
                         <i data-lucide="receipt" class="w-4 h-4 text-teal-600"></i>
                         <span>Full fee transparency</span>
                     </div>
@@ -723,34 +723,34 @@ $currentUser = Session::user();
     </section>
 
     <!-- Our Attending Dentists (Clean Editorial Portrait Cards) -->
-    <section id="dentists" class="py-24 bg-slate-50 border-b border-slate-200">
+    <section id="dentists" class="py-24 bg-[#F7F6F2] border-b border-[#E5E1D8]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
                 <div>
-                    <span class="text-[11px] uppercase tracking-[0.25em] font-semibold text-slate-400 block mb-2">Clinical Team</span>
-                    <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-                        Our Attending Dentists<span class="font-serif italic font-normal text-slate-500">.</span>
+                    <span class="text-[11px] uppercase tracking-[0.25em] font-semibold text-stone-400 block mb-2">Clinical Team</span>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-stone-950 tracking-tight">
+                        Our Attending Dentists<span class="font-serif italic font-normal text-stone-500">.</span>
                     </h3>
-                    <p class="text-sm text-slate-500 mt-2">Licensed practitioners leading patient consultations and surgical procedures.</p>
+                    <p class="text-sm text-stone-600 mt-2">Licensed practitioners leading patient consultations and surgical procedures.</p>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <?php foreach ($dentists as $doc): ?>
-                    <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-xs flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 hover:shadow-md transition">
-                        <div class="w-16 h-16 rounded-2xl bg-slate-900 text-white font-serif font-bold text-xl flex items-center justify-center flex-shrink-0 shadow-sm">
+                    <div class="bg-white rounded-3xl p-8 border border-[#E5E1D8] shadow-xs flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 hover:shadow-md transition">
+                        <div class="w-16 h-16 rounded-2xl bg-stone-950 text-white font-serif font-bold text-xl flex items-center justify-center flex-shrink-0 shadow-sm">
                             Dr
                         </div>
                         <div class="flex-1">
                             <div class="flex items-center space-x-2">
-                                <h4 class="font-bold text-slate-900 text-base tracking-tight"><?= htmlspecialchars($doc['full_name']) ?></h4>
-                                <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-100 text-slate-600">DMD</span>
+                                <h4 class="font-bold text-stone-950 text-base tracking-tight"><?= htmlspecialchars($doc['full_name']) ?></h4>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#EFECE6] text-stone-700">DMD</span>
                             </div>
-                            <p class="text-xs text-slate-600 font-semibold mt-1"><?= htmlspecialchars($doc['specialization'] ?: 'General & Aesthetic Dentistry') ?></p>
+                            <p class="text-xs text-stone-700 font-semibold mt-1"><?= htmlspecialchars($doc['specialization'] ?: 'General & Aesthetic Dentistry') ?></p>
                             <?php if (!empty($doc['license_no'])): ?>
-                                <p class="text-[11px] text-slate-400 font-mono mt-0.5">PRC License: <?= htmlspecialchars($doc['license_no']) ?></p>
+                                <p class="text-[11px] text-stone-400 font-mono mt-0.5">PRC License: <?= htmlspecialchars($doc['license_no']) ?></p>
                             <?php endif; ?>
-                            <p class="text-xs text-slate-500 mt-3 leading-relaxed">
+                            <p class="text-xs text-stone-600 mt-3 leading-relaxed">
                                 Direct patient assessments, preventive care, complex restorative dentistry, and dental health consultations across Makati and Pasig branches.
                             </p>
                         </div>
@@ -761,34 +761,34 @@ $currentUser = Session::user();
     </section>
 
     <!-- Clinic Hours & Branch Locations -->
-    <section id="locations" class="py-16 bg-slate-50 border-b border-slate-200">
+    <section id="locations" class="py-16 bg-[#FAF9F5] border-b border-[#E5E1D8]">
         <div class="max-w-6xl mx-auto px-4">
             <div class="mb-10">
-                <span class="text-xs uppercase font-bold tracking-wider text-slate-500 block mb-1">Visit Us</span>
-                <h3 class="text-2xl font-extrabold text-slate-900 tracking-tight">Clinic Hours & Branch Locations</h3>
-                <p class="text-xs text-slate-500 mt-1">Conveniently accessible clinic branches with clean clinical operatories.</p>
+                <span class="text-xs uppercase font-bold tracking-wider text-stone-500 block mb-1">Visit Us</span>
+                <h3 class="text-2xl font-extrabold text-stone-950 tracking-tight">Clinic Hours & Branch Locations</h3>
+                <p class="text-xs text-stone-600 mt-1">Conveniently accessible clinic branches with clean clinical operatories.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-slate-700">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-stone-700">
                 <?php foreach ($branches as $br): ?>
-                    <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs space-y-3">
+                    <div class="p-6 rounded-2xl bg-white border border-[#E5E1D8] shadow-2xs space-y-3">
                         <div class="flex items-center justify-between">
-                            <h4 class="font-bold text-slate-900 text-sm flex items-center space-x-2">
-                                <i data-lucide="map-pin" class="w-4 h-4 text-slate-800"></i>
+                            <h4 class="font-bold text-stone-950 text-sm flex items-center space-x-2">
+                                <i data-lucide="map-pin" class="w-4 h-4 text-stone-900"></i>
                                 <span><?= htmlspecialchars($br['branch_name']) ?></span>
                             </h4>
-                            <span class="font-mono text-[11px] font-bold text-slate-700 px-2 py-0.5 rounded bg-slate-100 border border-slate-200">
+                            <span class="font-mono text-[11px] font-bold text-stone-700 px-2 py-0.5 rounded bg-[#EFECE6] border border-[#E5E1D8]">
                                 <?= htmlspecialchars($br['branch_code']) ?>
                             </span>
                         </div>
-                        <p class="text-slate-600"><?= htmlspecialchars($br['address'] ?: 'Clinic address on file.') ?></p>
-                        <p class="flex items-center space-x-1.5 text-slate-600">
-                            <i data-lucide="phone" class="w-3.5 h-3.5 text-slate-400"></i>
+                        <p class="text-stone-600"><?= htmlspecialchars($br['address'] ?: 'Clinic address on file.') ?></p>
+                        <p class="flex items-center space-x-1.5 text-stone-600">
+                            <i data-lucide="phone" class="w-3.5 h-3.5 text-stone-400"></i>
                             <span><?= htmlspecialchars($br['contact_number'] ?: '+63 917 111 2233') ?></span>
                         </p>
-                        <div class="pt-2 border-t border-slate-100 text-slate-500 flex justify-between items-center">
+                        <div class="pt-2 border-t border-[#EFECE6] text-stone-500 flex justify-between items-center">
                             <span>Regular Operating Hours:</span>
-                            <span class="font-semibold text-slate-900">Mon - Sat: 9:00 AM – 6:00 PM</span>
+                            <span class="font-semibold text-stone-900">Mon - Sat: 9:00 AM – 6:00 PM</span>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -796,13 +796,13 @@ $currentUser = Session::user();
         </div>
     </section>
 
-    <!-- Online Appointment Booking Form (Directly on Landing Page) -->
-    <section id="booking-form" class="py-16 bg-slate-100/70 border-b border-slate-200">
+    <!-- Online Appointment Booking Form (Warm Linen Surface) -->
+    <section id="booking-form" class="py-20 bg-[#F0ECE4] border-b border-[#E5E1D8]">
         <div class="max-w-4xl mx-auto px-4">
             <div class="text-center mb-8">
-                <span class="text-xs uppercase font-bold tracking-wider text-slate-500 block mb-1">Direct Scheduling</span>
-                <h3 class="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">Request an Appointment Online</h3>
-                <p class="text-xs text-slate-500 mt-1 max-w-lg mx-auto">
+                <span class="text-xs uppercase font-bold tracking-wider text-stone-500 block mb-1">Direct Scheduling</span>
+                <h3 class="text-2xl md:text-3xl font-extrabold text-stone-950 tracking-tight">Request an Appointment Online</h3>
+                <p class="text-xs text-stone-600 mt-1 max-w-lg mx-auto">
                     Fill out the form below with your preferred schedule and dental concern. Our reception desk will review availability and confirm your booking right away.
                 </p>
             </div>
@@ -814,44 +814,44 @@ $currentUser = Session::user();
                 </div>
             <?php endif; ?>
 
-            <div class="bg-white rounded-3xl p-6 md:p-10 border border-slate-200 shadow-md text-slate-800">
+            <div class="bg-white rounded-3xl p-6 md:p-10 border border-[#E5E1D8] shadow-xl text-stone-800">
                 <form action="<?= BASE_URL ?>/index.php?page=portal_submit" method="POST" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <!-- Patient Full Name -->
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
                                 Your Full Name <span class="text-rose-500">*</span>
                             </label>
                             <input type="text" name="name" required placeholder="e.g. Maria Santos"
-                                   class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-slate-900 transition">
+                                   class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 placeholder-stone-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
                         </div>
 
                         <!-- Phone Number -->
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
                                 Contact Phone Number <span class="text-rose-500">*</span>
                             </label>
                             <input type="tel" name="phone" required placeholder="e.g. 0917 123 4567"
-                                   class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-slate-900 transition">
+                                   class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 placeholder-stone-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <!-- Preferred Date -->
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
                                 Preferred Date <span class="text-rose-500">*</span>
                             </label>
                             <input type="date" name="preferred_date" required min="<?= date('Y-m-d') ?>" value="<?= date('Y-m-d', strtotime('+1 day')) ?>"
-                                   class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-slate-900 transition">
+                                   class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
                         </div>
 
                         <!-- Preferred Time Slot -->
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
                                 Preferred Time <span class="text-rose-500">*</span>
                             </label>
-                            <select name="preferred_time" required class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-slate-900 transition">
+                            <select name="preferred_time" required class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
                                 <option value="09:00:00">09:00 AM - Morning Slot</option>
                                 <option value="10:00:00">10:00 AM - Morning Slot</option>
                                 <option value="11:00:00">11:00 AM - Morning Slot</option>
@@ -866,10 +866,10 @@ $currentUser = Session::user();
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <!-- Branch Selection -->
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
                                 Clinic Branch
                             </label>
-                            <select name="branch_id" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-slate-900 transition">
+                            <select name="branch_id" class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
                                 <?php foreach ($branches as $branch): ?>
                                     <option value="<?= $branch['id'] ?>">
                                         <?= htmlspecialchars($branch['branch_name']) ?>
@@ -880,10 +880,10 @@ $currentUser = Session::user();
 
                         <!-- Preferred Dentist Selection -->
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
                                 Preferred Dentist (Optional)
                             </label>
-                            <select name="preferred_dentist_id" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-slate-900 transition">
+                            <select name="preferred_dentist_id" class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
                                 <option value="">Any Available Attending Dentist</option>
                                 <?php foreach ($dentists as $d): ?>
                                     <option value="<?= $d['dentist_id'] ?>">
@@ -896,20 +896,20 @@ $currentUser = Session::user();
 
                     <!-- Dental Concern (Required by Interview Spec) -->
                     <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
                             Dental Concern / Reason for Visit <span class="text-rose-500">*</span>
                         </label>
                         <textarea name="dental_concern" id="inpDentalConcern" rows="3" required placeholder="Please describe what you are experiencing (e.g. Toothache, routine dental cleaning, filling replacement, wisdom tooth extraction, braces consultation)..."
-                                  class="w-full p-3.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-slate-900 transition"></textarea>
+                                  class="w-full p-3.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 placeholder-stone-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition"></textarea>
                     </div>
 
                     <!-- Submit Button -->
                     <div class="pt-2">
-                        <button type="submit" class="w-full py-3.5 px-6 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-2xl shadow-xs transition flex items-center justify-center space-x-2 text-sm">
+                        <button type="submit" class="w-full py-3.5 px-6 bg-stone-950 hover:bg-stone-800 text-white font-bold rounded-2xl shadow-xs transition flex items-center justify-center space-x-2 text-sm">
                             <i data-lucide="check-circle" class="w-4 h-4"></i>
                             <span>Submit Appointment Request</span>
                         </button>
-                        <p class="text-center text-[11px] text-slate-500 mt-2.5">
+                        <p class="text-center text-[11px] text-stone-500 mt-2.5">
                             No upfront payment required. Our front desk staff will verify clinic availability and contact you directly.
                         </p>
                     </div>
@@ -918,26 +918,26 @@ $currentUser = Session::user();
         </div>
     </section>
 
-    <!-- Clinic Footer with Logo -->
-    <footer class="bg-white text-slate-500 text-xs py-12 border-t border-slate-200">
+    <!-- Clinic Footer with Logo (Warm Linen Tone) -->
+    <footer class="bg-[#EFECE6] text-stone-600 text-xs py-14 border-t border-[#E5E1D8]">
         <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="flex items-center space-x-3.5 cursor-pointer select-none" onclick="handleBrandClick(event)" title="Return to top">
-                <div class="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center p-1.5 shadow-xs flex-shrink-0">
+                <div class="w-10 h-10 rounded-xl bg-stone-950 flex items-center justify-center p-1.5 shadow-xs flex-shrink-0">
                     <img src="<?= BASE_URL ?>/assets/images/logo.png" alt="SDC Logo" class="w-full h-full object-contain">
                 </div>
                 <div>
-                    <p class="font-extrabold text-slate-900 text-sm tracking-tight"><?= APP_NAME ?></p>
-                    <p class="text-[11px] text-slate-500 mt-0.5">Professional Healthcare & Clinical Dental Services</p>
-                    <p class="text-[11px] text-slate-400 mt-1">&copy; <?= date('Y') ?> <?= APP_NAME ?>. All rights reserved.</p>
+                    <p class="font-extrabold text-stone-950 text-sm tracking-tight"><?= APP_NAME ?></p>
+                    <p class="text-[11px] text-stone-500 mt-0.5">Professional Healthcare & Clinical Dental Services</p>
+                    <p class="text-[11px] text-stone-400 mt-1">&copy; <?= date('Y') ?> <?= APP_NAME ?>. All rights reserved.</p>
                 </div>
             </div>
 
-            <div class="flex items-center space-x-6 text-slate-600 font-medium">
-                <a href="#services" class="hover:text-slate-900 transition">Services</a>
-                <a href="#standards" class="hover:text-slate-900 transition">Clinical Standards</a>
-                <a href="#dentists" class="hover:text-slate-900 transition">Dentists</a>
-                <a href="#booking-form" class="hover:text-slate-900 transition">Book Visit</a>
-                <a href="<?= BASE_URL ?>/index.php?page=login" class="text-slate-900 hover:underline font-bold transition">Staff Login &rarr;</a>
+            <div class="flex items-center space-x-6 text-stone-600 font-medium">
+                <a href="#services" class="hover:text-stone-950 transition">Services</a>
+                <a href="#standards" class="hover:text-stone-950 transition">Clinical Standards</a>
+                <a href="#dentists" class="hover:text-stone-950 transition">Dentists</a>
+                <a href="#booking-form" class="hover:text-stone-950 transition">Book Visit</a>
+                <a href="<?= BASE_URL ?>/index.php?page=login" class="text-stone-950 hover:underline font-bold transition">Staff Login &rarr;</a>
             </div>
         </div>
     </footer>
