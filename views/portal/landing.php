@@ -218,10 +218,10 @@ $currentUser = Session::user();
                 </h2>
             </div>
 
-            <!-- LAYER 2 (z-20): Full-Height Foreground Cutout Image (Dental Handpiece & Dock Connector overlapping Giant Text) -->
+            <!-- LAYER 2 (z-20): Full-Height Foreground Cutout Image (Dental Handpiece & Ultrasonic Scaler overlapping Giant Text) -->
             <div class="relative lg:absolute lg:inset-y-0 lg:left-1/2 lg:-translate-x-1/2 z-20 flex items-center justify-center pointer-events-none select-none my-4 lg:my-0 h-[360px] sm:h-[440px] lg:h-full">
-                <img src="<?= BASE_URL ?>/assets/images/dental_handpiece_cutout.png"
-                     alt="SDC Precision Dental Handpiece and Dock Connector"
+                <img src="<?= BASE_URL ?>/assets/images/dental_handpiece_scaler_cutout.png"
+                     alt="SDC Precision Dental Handpiece and Ultrasonic Scaler"
                      class="h-full w-auto max-w-none object-contain filter drop-shadow-[0_28px_36px_rgba(0,0,0,0.22)] rounded-none">
             </div>
 
