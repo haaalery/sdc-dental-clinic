@@ -54,13 +54,15 @@ $currentUser = Session::user();
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Awwwards Clean Architectural Vertical Strip Accordion (Straight, Non-Diagonal) */
+        /* Awwwards Seamless Diagonal Slanted Strip Accordion */
         .gallery-strip {
+            transform: skewX(-8deg);
             transition: width 0.75s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, z-index 0.2s ease;
             flex-shrink: 0;
-            will-change: width;
+            will-change: width, transform;
         }
         .gallery-strip-inner {
+            transform: skewX(8deg) scale(1.28);
             transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .gallery-strip:hover {
@@ -68,7 +70,7 @@ $currentUser = Session::user();
             box-shadow: 0 35px 80px -20px rgba(0, 0, 0, 0.95);
         }
         .gallery-strip:hover .gallery-strip-inner {
-            transform: scale(1.04);
+            transform: skewX(8deg) scale(1.15);
         }
         .writing-vertical-rl {
             writing-mode: vertical-rl;
@@ -289,24 +291,24 @@ $currentUser = Session::user();
             </div>
         </div>
 
-        <!-- Seamless Edge-to-Edge Vertical Accordion Gallery (Clean Architectural Monolith) -->
+        <!-- Seamless Edge-to-Edge Diagonal Accordion (Expands to Pure Full Slide on Hover) -->
         <div class="w-full relative overflow-hidden py-4">
             <!-- Subtle Vignette Masks on Left & Right Edges -->
             <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#0a0f18] to-transparent z-20 pointer-events-none"></div>
             <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#0a0f18] to-transparent z-20 pointer-events-none"></div>
 
-            <div id="servicesTrack" class="flex items-stretch space-x-0 py-6 px-8 sm:px-16 overflow-x-auto no-scrollbar scroll-smooth cursor-grab active:cursor-grabbing select-none">
+            <div id="servicesTrack" class="flex items-stretch space-x-0 py-6 px-10 sm:px-20 overflow-x-auto no-scrollbar scroll-smooth cursor-grab active:cursor-grabbing select-none">
                 <?php if (!empty($treatments)): ?>
                     <?php foreach ($treatments as $idx => $trt): 
                         $imgUrl = $trtPhotos[$trt['treatment_code']] ?? 'https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=900&q=80';
                         $padIndex = str_pad($idx + 1, 2, '0', STR_PAD_LEFT);
                         $meta = $trtDetails[$trt['treatment_code']] ?? ['duration' => '45 mins', 'comfort' => 'Clinical Grade', 'inclusions' => 'Consultation Included'];
                     ?>
-                        <!-- Seamless Vertical Accordion Strip (Expands to Pure Full Slide on Hover) -->
+                        <!-- Seamless Diagonal Strip (Touches Adjacent Slanted Slices With Zero Gap) -->
                         <a href="#booking-form" 
                            onclick="prefillConcern('<?= addslashes(htmlspecialchars($trt['treatment_name'])) ?>')"
                            title="Click to schedule <?= htmlspecialchars($trt['treatment_name']) ?>"
-                           class="gallery-strip group relative h-[590px] w-[170px] sm:w-[200px] md:w-[220px] hover:w-[580px] sm:hover:w-[700px] md:hover:w-[820px] -ml-[1px] first:ml-0 overflow-hidden border-r border-t border-b border-white/10 first:border-l bg-slate-950 block cursor-pointer">
+                           class="gallery-strip group relative h-[590px] w-[170px] sm:w-[200px] md:w-[220px] hover:w-[580px] sm:hover:w-[700px] md:hover:w-[820px] -ml-[2px] first:ml-0 overflow-hidden border-r border-t border-b border-white/10 first:border-l bg-slate-950 block cursor-pointer">
                             
                             <!-- Image Frame -->
                             <div class="gallery-strip-inner absolute inset-0 w-full h-full">
