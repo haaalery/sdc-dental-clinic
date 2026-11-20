@@ -40,16 +40,17 @@ $currentUser = Session::user();
         }
     </script>
 
-    <!-- Google Fonts: Plus Jakarta Sans -->
+    <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', Georgia, serif; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
@@ -66,7 +67,7 @@ $currentUser = Session::user();
         }
         .diagonal-strip:hover {
             z-index: 30;
-            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(45, 212, 191, 0.4);
+            box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.9);
         }
         .diagonal-strip:hover .diagonal-strip-inner {
             transform: skewX(9deg) scale(1.15);
@@ -141,64 +142,97 @@ $currentUser = Session::user();
         </div>
     </header>
 
-    <!-- Hero Section (Light, Clean Gray Aesthetic) -->
-    <section class="bg-gradient-to-b from-white via-slate-50 to-slate-100/60 border-b border-slate-200 py-16 md:py-20 relative overflow-hidden">
-        <div class="max-w-6xl mx-auto px-4 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-                <div class="lg:col-span-8">
-                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-white text-slate-700 border border-slate-200 shadow-2xs mb-5">
-                        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-slate-500"></i>
-                        <span>Premier Clinical Dentistry & Oral Health</span>
+    <!-- Hero Section (Awwwards Editorial Aesthetic) -->
+    <section class="bg-slate-50 border-b border-slate-200 py-20 md:py-28 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                
+                <!-- Left Editorial Headline -->
+                <div class="lg:col-span-7">
+                    <div class="inline-flex items-center space-x-2 text-[11px] font-bold tracking-[0.2em] uppercase text-slate-500 mb-6">
+                        <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+                        <span>Makati & Pasig Suites · Clinical Dental Care</span>
                     </div>
-                    <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                        Gentle, Comprehensive Dental Care for You & Your Family.
+
+                    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.1]">
+                        Modern dentistry, <br>
+                        <span class="font-serif italic font-normal text-slate-700">thoughtfully practiced.</span>
                     </h2>
-                    <p class="text-slate-600 text-base md:text-lg mt-4 leading-relaxed max-w-2xl font-normal">
-                        From preventive oral prophylaxis and restorative fillings to root canal therapy and orthodontic braces, SDC Dental Care offers high-standard dental procedures with complete pricing transparency and certified attending doctors.
+
+                    <p class="text-slate-600 text-base sm:text-lg mt-6 leading-relaxed max-w-xl font-normal">
+                        A calm, unhurried clinical environment where preventive oral healthcare meets specialized restorative and aesthetic dentistry. Clear treatment plans, transparent pricing, and attentive attending doctors.
                     </p>
 
-                    <!-- Quick Practice Highlights -->
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-8 text-xs font-semibold text-slate-700">
-                        <div class="flex items-center space-x-2.5 p-3.5 bg-white rounded-xl border border-slate-200 shadow-2xs">
-                            <i data-lucide="shield-check" class="w-4 h-4 text-slate-800 flex-shrink-0"></i>
-                            <span>Hospital-Grade Sterilization</span>
+                    <!-- Editorial Practice Metrics (No Clutter, Clean Editorial Design) -->
+                    <div class="grid grid-cols-3 gap-6 pt-8 mt-8 border-t border-slate-200/80 text-xs">
+                        <div>
+                            <span class="font-mono text-slate-400 block text-[10px] tracking-widest uppercase mb-1">01 / Doctors</span>
+                            <span class="font-bold text-slate-900 text-sm block">Licensed MDs</span>
+                            <span class="text-slate-500 text-[11px]">Direct clinician care</span>
                         </div>
-                        <div class="flex items-center space-x-2.5 p-3.5 bg-white rounded-xl border border-slate-200 shadow-2xs">
-                            <i data-lucide="receipt" class="w-4 h-4 text-slate-800 flex-shrink-0"></i>
-                            <span>Transparent, Itemized Receipts</span>
+                        <div>
+                            <span class="font-mono text-slate-400 block text-[10px] tracking-widest uppercase mb-1">02 / Integrity</span>
+                            <span class="font-bold text-slate-900 text-sm block">Transparent</span>
+                            <span class="text-slate-500 text-[11px]">Itemized POS receipts</span>
                         </div>
-                        <div class="flex items-center space-x-2.5 p-3.5 bg-white rounded-xl border border-slate-200 shadow-2xs">
-                            <i data-lucide="credit-card" class="w-4 h-4 text-slate-800 flex-shrink-0"></i>
-                            <span>Cash, GCash/Maya & Card</span>
+                        <div>
+                            <span class="font-mono text-slate-400 block text-[10px] tracking-widest uppercase mb-1">03 / Locations</span>
+                            <span class="font-bold text-slate-900 text-sm block">2 Branches</span>
+                            <span class="text-slate-500 text-[11px]">Makati & Pasig</span>
                         </div>
                     </div>
 
-                    <div class="mt-8 flex flex-wrap items-center gap-3">
-                        <a href="#booking-form" class="px-6 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm rounded-xl shadow-xs transition inline-flex items-center space-x-2">
-                            <span>Book an Appointment Online</span>
-                            <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                    <!-- Action Buttons -->
+                    <div class="mt-10 flex flex-wrap items-center gap-4">
+                        <a href="#booking-form" class="px-7 py-4 bg-slate-900 hover:bg-black text-white font-semibold text-xs tracking-wider uppercase rounded-full shadow-md transition inline-flex items-center space-x-2">
+                            <span>Reserve a Visit</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </a>
-                        <a href="#services" class="px-5 py-3.5 bg-white hover:bg-slate-50 text-slate-700 font-semibold text-sm rounded-xl border border-slate-200 shadow-2xs transition">
-                            Browse Dental Services
+                        <a href="#services" class="px-7 py-4 bg-white hover:bg-slate-100 text-slate-800 font-semibold text-xs tracking-wider uppercase rounded-full border border-slate-300 shadow-xs transition">
+                            View Treatments
                         </a>
                     </div>
                 </div>
 
-                <!-- Prominent Logo Showcase in Hero -->
-                <div class="lg:col-span-4 flex justify-center lg:justify-end">
-                    <div class="p-6 bg-slate-900 border border-slate-800 rounded-3xl shadow-xl text-center max-w-xs text-white">
-                        <img src="<?= BASE_URL ?>/assets/images/logo.png" alt="SDC Dental Emblem" class="w-48 h-48 mx-auto object-contain">
-                        <div class="mt-3 pt-3 border-t border-slate-800 text-center">
-                            <span class="text-xs font-bold text-white tracking-wider uppercase block">SDC DENTAL CARE</span>
-                            <span class="text-[11px] text-slate-400">Professional Healthcare Standards</span>
+                <!-- Right Visual: Architectural Editorial Photography Frame -->
+                <div class="lg:col-span-5">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <div class="rounded-3xl overflow-hidden shadow-2xl border border-slate-200/80 aspect-[4/5] relative bg-slate-900 group">
+                            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=85" 
+                                 alt="SDC Dental Clinical Suite" 
+                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-95">
+                            
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex flex-col justify-end p-8 text-white">
+                                <div class="flex items-center space-x-3 mb-2">
+                                    <div class="w-8 h-8 rounded-lg bg-white/10 backdrop-blur-md p-1 border border-white/20">
+                                        <img src="<?= BASE_URL ?>/assets/images/logo.png" alt="SDC" class="w-full h-full object-contain">
+                                    </div>
+                                    <span class="text-xs uppercase tracking-widest font-bold text-teal-300">SDC Dental Care</span>
+                                </div>
+                                <p class="text-xs text-slate-300 leading-relaxed font-light">
+                                    State-of-the-art diagnostic imaging, surgical sterilization, and comfortable patient suites in Metro Manila.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Minimalist Floating Badge -->
+                        <div class="absolute -bottom-5 -left-5 bg-white p-4 rounded-2xl shadow-xl border border-slate-200 hidden sm:flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-700">
+                                <i data-lucide="check" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-slate-900">Hospital-Grade Standards</p>
+                                <p class="text-[11px] text-slate-500">Class-B steam autoclave</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Services & Treatments Section (Awwwards-style Expanding Diagonal Slideshow) -->
+    <!-- Services & Treatments Section (Awwwards Contiguous Diagonal Slices) -->
     <?php
     $trtPhotos = [
         'TRT-001' => 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=900&q=80',
@@ -211,36 +245,45 @@ $currentUser = Session::user();
         'TRT-008' => 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=900&q=80',
         'TRT-009' => 'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=900&q=80',
     ];
-    ?>
-    <section id="services" class="py-20 bg-slate-950 text-white overflow-hidden border-b border-slate-800 relative">
-        <!-- Ambient Background Glows -->
-        <div class="absolute top-1/4 left-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-0 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+    // Real human clinical details for each procedure
+    $trtDetails = [
+        'TRT-001' => ['duration' => '30 mins', 'comfort' => 'Non-Invasive', 'inclusions' => 'Visual Exam & Oral Roadmap'],
+        'TRT-002' => ['duration' => '45 mins', 'comfort' => 'Gentle Scaling', 'inclusions' => 'Ultrasonic Cleansing & Polish'],
+        'TRT-003' => ['duration' => '60 mins', 'comfort' => 'Local Comfort', 'inclusions' => 'Subgingival Root Planing'],
+        'TRT-004' => ['duration' => '40 mins', 'comfort' => 'Shade-Matched', 'inclusions' => 'Sculpted Composite Resin'],
+        'TRT-005' => ['duration' => '35 mins', 'comfort' => 'Local Anesthesia', 'inclusions' => 'Simple Non-Surgical Extraction'],
+        'TRT-006' => ['duration' => '60–90 mins', 'comfort' => 'Surgical Care', 'inclusions' => 'Odontectomy & Fine Suturing'],
+        'TRT-007' => ['duration' => '75 mins', 'comfort' => 'Tooth-Saving', 'inclusions' => 'Canal Debridement & Sealing'],
+        'TRT-008' => ['duration' => 'Monthly Care', 'comfort' => 'Custom Alignment', 'inclusions' => 'Banded Brackets & Adjustments'],
+        'TRT-009' => ['duration' => '60 mins', 'comfort' => 'Enamel-Safe', 'inclusions' => 'Blue LED Laser Whitening System'],
+    ];
+    ?>
+    <section id="services" class="py-24 bg-[#0a0f18] text-white overflow-hidden border-b border-slate-800 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div>
-                    <div class="flex items-center space-x-2 mb-2">
-                        <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
-                        <span class="text-xs uppercase font-bold tracking-widest text-teal-400">02 // Clinical Catalog</span>
-                    </div>
-                    <h3 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Our Services & Treatments</h3>
-                    <p class="text-xs sm:text-sm text-slate-400 mt-2 max-w-xl leading-relaxed">
-                        Precision surgical, restorative, and aesthetic procedures. Hover over any card to expand its full clinical overview, specifications, and scheduling details.
+                    <span class="text-[11px] uppercase tracking-[0.25em] font-semibold text-teal-400 block mb-2">
+                        Clinical Catalog
+                    </span>
+                    <h3 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+                        Signature Treatments<span class="font-serif italic font-normal text-slate-400">.</span>
+                    </h3>
+                    <p class="text-slate-400 text-xs sm:text-sm mt-3 max-w-xl leading-relaxed">
+                        Nine focused dental disciplines across our Makati and Pasig clinics. Hover across each slice to inspect the treatment overview, clinical duration, and upfront fees.
                     </p>
                 </div>
 
-                <!-- Slider Controls & Hints -->
-                <div class="flex items-center space-x-4">
-                    <span class="hidden sm:inline-flex items-center text-xs text-slate-400 font-medium">
-                        <i data-lucide="move-horizontal" class="w-4 h-4 mr-1.5 text-teal-400"></i>
-                        Scroll or drag to explore
+                <!-- Minimalist Navigation Controls -->
+                <div class="flex items-center space-x-5">
+                    <span class="hidden sm:inline-block text-[11px] uppercase tracking-widest text-slate-500 font-mono">
+                        [ 01 — 09 ]
                     </span>
                     <div class="flex items-center space-x-2">
-                        <button id="sliderPrevBtn" aria-label="Previous slide" class="w-11 h-11 rounded-full bg-slate-800/80 hover:bg-white hover:text-slate-900 text-white border border-slate-700 flex items-center justify-center transition shadow-md">
+                        <button id="sliderPrevBtn" aria-label="Previous treatment" class="w-12 h-12 rounded-full border border-white/20 hover:border-white hover:bg-white hover:text-slate-950 text-white flex items-center justify-center transition shadow-lg">
                             <i data-lucide="chevron-left" class="w-5 h-5"></i>
                         </button>
-                        <button id="sliderNextBtn" aria-label="Next slide" class="w-11 h-11 rounded-full bg-slate-800/80 hover:bg-white hover:text-slate-900 text-white border border-slate-700 flex items-center justify-center transition shadow-md">
+                        <button id="sliderNextBtn" aria-label="Next treatment" class="w-12 h-12 rounded-full border border-white/20 hover:border-white hover:bg-white hover:text-slate-950 text-white flex items-center justify-center transition shadow-lg">
                             <i data-lucide="chevron-right" class="w-5 h-5"></i>
                         </button>
                     </div>
@@ -248,120 +291,122 @@ $currentUser = Session::user();
             </div>
         </div>
 
-        <!-- Contiguous Diagonal Slanted Accordion (Stuck Together Edge-to-Edge) -->
+        <!-- Seamless Edge-to-Edge Diagonal Accordion -->
         <div class="w-full relative overflow-hidden py-4">
-            <!-- Left & Right Vignette Shadows for Overflow Peek Effect -->
-            <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-slate-950 to-transparent z-20 pointer-events-none"></div>
-            <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-slate-950 to-transparent z-20 pointer-events-none"></div>
+            <!-- Subtle Vignette Masks on Left & Right Edges -->
+            <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#0a0f18] to-transparent z-20 pointer-events-none"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#0a0f18] to-transparent z-20 pointer-events-none"></div>
 
-            <div id="servicesTrack" class="flex items-stretch space-x-0 py-8 px-10 sm:px-16 overflow-x-auto no-scrollbar scroll-smooth cursor-grab active:cursor-grabbing select-none">
+            <div id="servicesTrack" class="flex items-stretch space-x-0 py-6 px-8 sm:px-16 overflow-x-auto no-scrollbar scroll-smooth cursor-grab active:cursor-grabbing select-none">
                 <?php if (!empty($treatments)): ?>
                     <?php foreach ($treatments as $idx => $trt): 
                         $imgUrl = $trtPhotos[$trt['treatment_code']] ?? 'https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=900&q=80';
                         $padIndex = str_pad($idx + 1, 2, '0', STR_PAD_LEFT);
+                        $meta = $trtDetails[$trt['treatment_code']] ?? ['duration' => '45 mins', 'comfort' => 'Clinical Grade', 'inclusions' => 'Consultation Included'];
                     ?>
-                        <!-- Seamless Diagonal Strip (Stuck Together via skewX and zero-gap) -->
-                        <div class="diagonal-strip group relative h-[560px] w-[170px] sm:w-[200px] md:w-[220px] hover:w-[520px] sm:hover:w-[580px] md:hover:w-[640px] -ml-[2px] first:ml-0 overflow-hidden border-r border-t border-b border-slate-700/60 first:border-l bg-slate-950">
+                        <!-- Seamless Diagonal Strip (Touches Adjacent Strip With Zero Gap) -->
+                        <div class="diagonal-strip group relative h-[580px] w-[170px] sm:w-[200px] md:w-[220px] hover:w-[540px] sm:hover:w-[600px] md:hover:w-[660px] -ml-[1px] first:ml-0 overflow-hidden border-r border-t border-b border-white/10 first:border-l bg-slate-950">
                             
-                            <!-- Counter-Skewed Inner Content Container -->
+                            <!-- Counter-Skewed Container to keep imagery and typography un-distorted -->
                             <div class="diagonal-strip-inner absolute inset-0 w-full h-full">
+                                
                                 <!-- Background Image with Parallax Scale & Soft Blur on Hover -->
                                 <img src="<?= $imgUrl ?>" 
                                      alt="<?= htmlspecialchars($trt['treatment_name']) ?>" 
-                                     class="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-25 group-hover:blur-[2px]">
+                                     class="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-30 group-hover:blur-[2px]">
 
                                 <!-- Ambient Dark Vignette -->
-                                <div class="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-slate-950/20 to-slate-950/85 transition-opacity duration-500 group-hover:opacity-0"></div>
+                                <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-black/90 transition-opacity duration-500 group-hover:opacity-0"></div>
 
                                 <!-- STATE 1: Collapsed View (Vertical Editorial Typographic Ribbon) -->
-                                <div class="absolute inset-0 p-5 flex flex-col justify-between transition-all duration-500 group-hover:opacity-0 pointer-events-none z-10">
-                                    <!-- Architectural Index Numerals -->
+                                <div class="absolute inset-0 p-6 flex flex-col justify-between transition-all duration-500 group-hover:opacity-0 pointer-events-none z-10">
+                                    <!-- Clean Numerals -->
                                     <div class="flex items-center justify-between">
-                                        <span class="font-mono text-2xl font-black text-white/40 tracking-tighter">
+                                        <span class="font-mono text-2xl font-light text-white/50 tracking-tighter">
                                             <?= $padIndex ?>
                                         </span>
-                                        <span class="w-1.5 h-1.5 rounded-full bg-teal-400/80"></span>
+                                        <span class="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
                                     </div>
 
                                     <!-- Vertical Rotated Text Ribbon -->
                                     <div class="my-auto flex flex-col items-center justify-center">
-                                        <div class="writing-vertical-rl rotate-180 flex items-center space-x-3 space-x-reverse">
-                                            <span class="font-mono text-[9px] uppercase tracking-widest text-teal-400 font-bold py-1 px-1.5 bg-slate-900/80 rounded border border-teal-500/20 mb-2">
+                                        <div class="writing-vertical-rl rotate-180 flex items-center space-x-4 space-x-reverse">
+                                            <span class="font-mono text-[9px] uppercase tracking-widest text-teal-400 font-medium py-1 px-2 bg-black/60 rounded border border-white/10 mb-2">
                                                 <?= htmlspecialchars($trt['category']) ?>
                                             </span>
-                                            <h4 class="font-bold text-white text-xs tracking-wider uppercase whitespace-nowrap drop-shadow-md">
+                                            <h4 class="font-bold text-white text-xs tracking-[0.2em] uppercase whitespace-nowrap drop-shadow-md">
                                                 <?= htmlspecialchars($trt['treatment_name']) ?>
                                             </h4>
                                         </div>
                                     </div>
 
-                                    <!-- Bottom Price & Expand Hint -->
-                                    <div class="pt-3 border-t border-white/10 flex flex-col items-center text-center">
-                                        <span class="font-mono text-xs font-bold text-teal-300">
+                                    <!-- Bottom Price -->
+                                    <div class="pt-4 border-t border-white/10 flex flex-col items-center text-center">
+                                        <span class="font-mono text-xs font-semibold text-white tracking-tight">
                                             <?= APP_CURRENCY ?><?= number_format($trt['standard_price'], 0) ?>
                                         </span>
-                                        <span class="text-[9px] text-slate-400 tracking-widest uppercase mt-0.5">Explore ↗</span>
                                     </div>
                                 </div>
 
-                                <!-- STATE 2: Expanded Overview Only View (Reveals with Cinematic Glassmorphism) -->
-                                <div class="absolute inset-0 bg-slate-950/94 backdrop-blur-xl p-8 sm:p-9 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out z-20 overflow-y-auto no-scrollbar">
+                                <!-- STATE 2: Expanded Overview Only View (Clean, Real, Human, Zero AI Slop) -->
+                                <div class="absolute inset-0 bg-[#0a0f18]/95 backdrop-blur-2xl p-8 sm:p-10 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out z-20 overflow-y-auto no-scrollbar">
                                     <div>
-                                        <!-- Top Row: Index + Category + Code -->
-                                        <div class="flex items-center justify-between border-b border-slate-800/80 pb-4 mb-5">
+                                        <!-- Category + Code Header -->
+                                        <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
                                             <div class="flex items-center space-x-3">
-                                                <span class="font-mono text-xs font-bold text-teal-400 bg-teal-500/10 px-2.5 py-1 rounded-md border border-teal-500/30">
-                                                    NO. <?= $padIndex ?>
-                                                </span>
-                                                <span class="px-3 py-1 bg-slate-800 text-slate-200 rounded-md text-[10px] font-extrabold uppercase tracking-widest border border-slate-700">
+                                                <span class="text-[10px] tracking-[0.25em] uppercase font-bold text-teal-400">
                                                     <?= htmlspecialchars($trt['category']) ?>
                                                 </span>
+                                                <span class="text-white/30 text-xs">/</span>
+                                                <span class="font-mono text-xs text-white/50">
+                                                    NO. <?= $padIndex ?>
+                                                </span>
                                             </div>
-                                            <span class="text-xs font-mono text-slate-400 tracking-wider">
+                                            <span class="font-mono text-xs text-white/40 tracking-wider">
                                                 <?= htmlspecialchars($trt['treatment_code']) ?>
                                             </span>
                                         </div>
 
-                                        <!-- Title & Transparent Pricing -->
-                                        <h4 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-snug mb-3">
+                                        <!-- Title -->
+                                        <h4 class="text-2xl sm:text-3xl font-serif text-white tracking-tight leading-snug mb-3">
                                             <?= htmlspecialchars($trt['treatment_name']) ?>
                                         </h4>
-                                        <div class="flex items-baseline space-x-2 mb-5">
-                                            <span class="text-3xl font-black text-teal-400 font-mono tracking-tight">
+
+                                        <!-- Transparent Upfront Fee -->
+                                        <div class="flex items-baseline space-x-2 mb-6">
+                                            <span class="text-3xl font-black text-white font-mono tracking-tight">
                                                 <?= APP_CURRENCY ?><?= number_format($trt['standard_price'], 2) ?>
                                             </span>
-                                            <span class="text-xs text-slate-400 font-medium">standard clinic fee</span>
+                                            <span class="text-xs text-slate-400 font-light">standard clinic fee</span>
                                         </div>
 
-                                        <!-- Procedure Overview -->
-                                        <div class="space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed">
-                                            <p class="font-normal text-slate-200 bg-slate-900/60 p-4 rounded-xl border border-slate-800/80">
-                                                <?= htmlspecialchars($trt['description'] ?: 'Comprehensive surgical and restorative procedure performed by licensed attending clinicians.') ?>
-                                            </p>
-                                            
-                                            <!-- Clinical Specifications -->
-                                            <div class="space-y-2.5 text-xs text-slate-400">
-                                                <div class="flex items-center space-x-2.5">
-                                                    <i data-lucide="shield-check" class="w-4 h-4 text-teal-400 flex-shrink-0"></i>
-                                                    <span>Class-B autoclave steam sterilization on all instruments</span>
-                                                </div>
-                                                <div class="flex items-center space-x-2.5">
-                                                    <i data-lucide="user-check" class="w-4 h-4 text-teal-400 flex-shrink-0"></i>
-                                                    <span>Personal attending dentist assessment & dental history review</span>
-                                                </div>
-                                                <div class="flex items-center space-x-2.5">
-                                                    <i data-lucide="receipt" class="w-4 h-4 text-teal-400 flex-shrink-0"></i>
-                                                    <span>Official itemized POS receipt with zero hidden surcharges</span>
-                                                </div>
+                                        <!-- Authentic Clinical Overview -->
+                                        <p class="text-sm text-slate-300 leading-relaxed font-light mb-6">
+                                            <?= htmlspecialchars($trt['description'] ?: 'Specialized procedure performed by licensed clinicians with diagnostic assessment.') ?>
+                                        </p>
+
+                                        <!-- Editorial Metadata Bar (Real Specifics, No AI Buzzwords) -->
+                                        <div class="grid grid-cols-3 gap-3 border-t border-b border-white/10 py-4 text-xs">
+                                            <div>
+                                                <span class="block text-[9px] uppercase tracking-widest text-slate-500 mb-0.5">Session</span>
+                                                <span class="text-white font-medium"><?= $meta['duration'] ?></span>
+                                            </div>
+                                            <div>
+                                                <span class="block text-[9px] uppercase tracking-widest text-slate-500 mb-0.5">Focus</span>
+                                                <span class="text-white font-medium"><?= $meta['comfort'] ?></span>
+                                            </div>
+                                            <div>
+                                                <span class="block text-[9px] uppercase tracking-widest text-slate-500 mb-0.5">Scope</span>
+                                                <span class="text-white font-medium truncate block"><?= $meta['inclusions'] ?></span>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- Bottom CTA Action -->
-                                    <div class="pt-6 mt-6 border-t border-slate-800/90 flex flex-col sm:flex-row items-center gap-3">
+                                    <!-- Bottom CTA -->
+                                    <div class="pt-6 border-t border-white/10">
                                         <a href="#booking-form" 
                                            onclick="prefillConcern('<?= addslashes(htmlspecialchars($trt['treatment_name'])) ?>')"
-                                           class="w-full py-3.5 px-6 bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold text-xs sm:text-sm rounded-xl shadow-lg transition flex items-center justify-center space-x-2">
+                                           class="w-full py-4 px-6 bg-white hover:bg-teal-400 text-slate-950 font-bold text-xs uppercase tracking-wider rounded-full shadow-xl transition flex items-center justify-center space-x-2 group-hover:scale-[1.01]">
                                             <span>Schedule This Treatment</span>
                                             <i data-lucide="arrow-right" class="w-4 h-4"></i>
                                         </a>
@@ -433,74 +478,98 @@ $currentUser = Session::user();
         });
     </script>
 
-    <!-- Clinical Standards & What to Expect -->
-    <section id="standards" class="py-16 bg-slate-50 border-b border-slate-200">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="max-w-xl mb-10">
-                <span class="text-xs uppercase font-bold tracking-wider text-slate-500 block mb-1">Our Practice</span>
-                <h3 class="text-2xl font-extrabold text-slate-900 tracking-tight">Clinical Standards You Can Trust</h3>
-                <p class="text-xs text-slate-500 mt-1">
-                    We maintain hospital-grade infection control and an ethical, patient-centered approach to dental healthcare.
+    <!-- Clinical Standards & What to Expect (Refined Editorial Layout) -->
+    <section id="standards" class="py-24 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-xl mb-14">
+                <span class="text-[11px] uppercase tracking-[0.25em] font-semibold text-slate-400 block mb-2">Practice Standard</span>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                    Our Clinical Principles<span class="font-serif italic font-normal text-slate-500">.</span>
+                </h3>
+                <p class="text-sm text-slate-500 mt-3 leading-relaxed">
+                    Conservative diagnostics, hospital-grade instrument reprocessing, and an ethical doctor-patient relationship.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-slate-600">
-                <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs">
-                    <div class="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center font-bold text-base mb-4">
-                        <i data-lucide="shield" class="w-5 h-5 text-slate-800"></i>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Principle 01 -->
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between hover:border-slate-300 transition">
+                    <div>
+                        <span class="font-mono text-xs font-bold text-slate-400 tracking-widest uppercase block mb-6">01 / STERILIZATION</span>
+                        <h4 class="text-lg font-bold text-slate-900 mb-3">Class-B Steam Autoclave</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                            All surgical handpieces, burs, and diagnostic sets undergo enzymatic ultrasonic cleaning and Class-B vacuum autoclave steam sterilization, sealed in individual medical indicator pouches.
+                        </p>
                     </div>
-                    <h4 class="font-bold text-slate-900 text-sm mb-2">Hospital-Grade Sterilization</h4>
-                    <p class="leading-relaxed">
-                        Every surgical instrument, scaler, and bur goes through ultrasonic cleaning, surgical packaging, and hospital-grade autoclave steam sterilization. Disposables are strictly single-use.
-                    </p>
+                    <div class="pt-6 mt-6 border-t border-slate-200/80 flex items-center space-x-2 text-[11px] text-slate-500 font-medium">
+                        <i data-lucide="shield-check" class="w-4 h-4 text-teal-600"></i>
+                        <span>Zero reuse on single-use items</span>
+                    </div>
                 </div>
 
-                <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs">
-                    <div class="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center font-bold text-base mb-4">
-                        <i data-lucide="smile" class="w-5 h-5 text-slate-800"></i>
+                <!-- Principle 02 -->
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between hover:border-slate-300 transition">
+                    <div>
+                        <span class="font-mono text-xs font-bold text-slate-400 tracking-widest uppercase block mb-6">02 / DIAGNOSIS</span>
+                        <h4 class="text-lg font-bold text-slate-900 mb-3">Conservative Treatment Planning</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                            We advocate tooth preservation first. Every finding is backed by clinical diagnostics and detailed explanation before any procedure begins—no forced or unnecessary dental work.
+                        </p>
                     </div>
-                    <h4 class="font-bold text-slate-900 text-sm mb-2">Gentle, Patient-First Care</h4>
-                    <p class="leading-relaxed">
-                        We know visiting the dentist can feel stressful. Our attending dentists explain every step beforehand, offer gentle anesthesia, and work comfortably at your own pace.
-                    </p>
+                    <div class="pt-6 mt-6 border-t border-slate-200/80 flex items-center space-x-2 text-[11px] text-slate-500 font-medium">
+                        <i data-lucide="user-check" class="w-4 h-4 text-teal-600"></i>
+                        <span>Attending clinician consultation</span>
+                    </div>
                 </div>
 
-                <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs">
-                    <div class="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center font-bold text-base mb-4">
-                        <i data-lucide="file-check" class="w-5 h-5 text-slate-800"></i>
+                <!-- Principle 03 -->
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between hover:border-slate-300 transition">
+                    <div>
+                        <span class="font-mono text-xs font-bold text-slate-400 tracking-widest uppercase block mb-6">03 / BILLING</span>
+                        <h4 class="text-lg font-bold text-slate-900 mb-3">Transparent Itemized Receipts</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                            You receive a complete itemized POS breakdown before leaving the chair. Payments accepted via Cash, GCash, Maya, and major debit/credit cards with zero arbitrary surcharges.
+                        </p>
                     </div>
-                    <h4 class="font-bold text-slate-900 text-sm mb-2">Transparent Treatment Planning</h4>
-                    <p class="leading-relaxed">
-                        No surprise fees or unnecessary procedures. We present clear diagnostic findings, treatment options, itemized fees, and installment options for ongoing care (like braces or endodontics).
-                    </p>
+                    <div class="pt-6 mt-6 border-t border-slate-200/80 flex items-center space-x-2 text-[11px] text-slate-500 font-medium">
+                        <i data-lucide="receipt" class="w-4 h-4 text-teal-600"></i>
+                        <span>Full fee transparency</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Our Attending Dentists -->
-    <section id="dentists" class="py-16 bg-white border-b border-slate-200">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="mb-10">
-                <span class="text-xs uppercase font-bold tracking-wider text-slate-500 block mb-1">Medical Team</span>
-                <h3 class="text-2xl font-extrabold text-slate-900 tracking-tight">Our Attending Dentists</h3>
-                <p class="text-xs text-slate-500 mt-1">Licensed dental clinicians dedicated to gentle, quality oral healthcare.</p>
+    <!-- Our Attending Dentists (Clean Editorial Portrait Cards) -->
+    <section id="dentists" class="py-24 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+                <div>
+                    <span class="text-[11px] uppercase tracking-[0.25em] font-semibold text-slate-400 block mb-2">Clinical Team</span>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                        Our Attending Dentists<span class="font-serif italic font-normal text-slate-500">.</span>
+                    </h3>
+                    <p class="text-sm text-slate-500 mt-2">Licensed practitioners leading patient consultations and surgical procedures.</p>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <?php foreach ($dentists as $doc): ?>
-                    <div class="bg-slate-50/70 rounded-2xl p-5 border border-slate-200 shadow-2xs flex items-start space-x-4">
-                        <div class="w-12 h-12 rounded-xl bg-slate-900 text-white font-bold flex items-center justify-center text-sm flex-shrink-0">
+                    <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-xs flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 hover:shadow-md transition">
+                        <div class="w-16 h-16 rounded-2xl bg-slate-900 text-white font-serif font-bold text-xl flex items-center justify-center flex-shrink-0 shadow-sm">
                             Dr
                         </div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 text-sm"><?= htmlspecialchars($doc['full_name']) ?></h4>
-                            <p class="text-xs text-slate-600 font-semibold mt-0.5"><?= htmlspecialchars($doc['specialization'] ?: 'General Dentistry') ?></p>
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-2">
+                                <h4 class="font-bold text-slate-900 text-base tracking-tight"><?= htmlspecialchars($doc['full_name']) ?></h4>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-100 text-slate-600">DMD</span>
+                            </div>
+                            <p class="text-xs text-slate-600 font-semibold mt-1"><?= htmlspecialchars($doc['specialization'] ?: 'General & Aesthetic Dentistry') ?></p>
                             <?php if (!empty($doc['license_no'])): ?>
-                                <p class="text-[11px] text-slate-400 mt-0.5 font-mono">PRC License: <?= htmlspecialchars($doc['license_no']) ?></p>
+                                <p class="text-[11px] text-slate-400 font-mono mt-0.5">PRC License: <?= htmlspecialchars($doc['license_no']) ?></p>
                             <?php endif; ?>
-                            <p class="text-xs text-slate-500 mt-2 leading-relaxed">
-                                Attending clinician for oral diagnosis, restorations, surgical procedures, and specialized patient care.
+                            <p class="text-xs text-slate-500 mt-3 leading-relaxed">
+                                Direct patient assessments, preventive care, complex restorative dentistry, and dental health consultations across Makati and Pasig branches.
                             </p>
                         </div>
                     </div>
