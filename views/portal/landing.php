@@ -124,12 +124,12 @@ $currentUser = Session::user();
             <a href="<?= BASE_URL ?>/index.php" 
                id="brandLogoLink" 
                onclick="handleBrandClick(event)" 
-               class="flex items-center space-x-3 group cursor-pointer transition-transform duration-300 ease-out hover:-translate-y-0.5 select-none"
+               class="flex items-center space-x-3 cursor-pointer select-none"
                title="Return to top">
-                <div class="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center p-1.5 shadow-xs flex-shrink-0 transition-transform duration-300 ease-out group-hover:scale-105 group-hover:-translate-y-0.5">
+                <div class="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center p-1.5 shadow-xs flex-shrink-0">
                     <img src="<?= BASE_URL ?>/assets/images/logo.png" alt="SDC Dental Care" class="w-full h-full object-contain">
                 </div>
-                <div class="transition-transform duration-300 ease-out group-hover:-translate-y-0.5">
+                <div>
                     <h1 class="text-base font-extrabold text-slate-900 tracking-tight leading-tight">SDC DENTAL</h1>
                     <p class="text-[10px] text-slate-500 font-bold tracking-wider uppercase">Care Management</p>
                 </div>
@@ -939,8 +939,8 @@ $currentUser = Session::user();
     <!-- Clinic Footer with Logo -->
     <footer class="bg-white text-slate-500 text-xs py-12 border-t border-slate-200">
         <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="flex items-center space-x-3.5 cursor-pointer group transition-transform duration-300 ease-out hover:-translate-y-0.5 select-none" onclick="handleBrandClick(event)" title="Return to top">
-                <div class="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center p-1.5 shadow-xs flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
+            <div class="flex items-center space-x-3.5 cursor-pointer select-none" onclick="handleBrandClick(event)" title="Return to top">
+                <div class="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center p-1.5 shadow-xs flex-shrink-0">
                     <img src="<?= BASE_URL ?>/assets/images/logo.png" alt="SDC Logo" class="w-full h-full object-contain">
                 </div>
                 <div>
