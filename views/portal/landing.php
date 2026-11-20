@@ -53,16 +53,27 @@ $currentUser = Session::user();
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        .diagonal-slice-card {
-            transform: skewX(-8deg);
-            transition: width 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s ease, box-shadow 0.5s ease;
+        /* Awwwards Seamless Diagonal Slanted Strip Accordion */
+        .diagonal-strip {
+            transform: skewX(-9deg);
+            transition: width 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s ease, box-shadow 0.4s ease, z-index 0.2s ease;
+            flex-shrink: 0;
+            will-change: width, transform;
         }
-        .diagonal-slice-inner {
-            transform: skewX(8deg) scale(1.18);
-            transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+        .diagonal-strip-inner {
+            transform: skewX(9deg) scale(1.28);
+            transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .diagonal-slice-card:hover .diagonal-slice-inner {
-            transform: skewX(8deg) scale(1.10);
+        .diagonal-strip:hover {
+            z-index: 30;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(45, 212, 191, 0.4);
+        }
+        .diagonal-strip:hover .diagonal-strip-inner {
+            transform: skewX(9deg) scale(1.15);
+        }
+        .writing-vertical-rl {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
         }
     </style>
 </head>
@@ -237,104 +248,122 @@ $currentUser = Session::user();
             </div>
         </div>
 
-        <!-- Diagonal Slideshow Track (Peek / Adjacent Visible Carousel) -->
-        <div class="w-full relative px-4 sm:px-8 overflow-hidden">
-            <div id="servicesTrack" class="flex items-stretch space-x-5 sm:space-x-8 py-6 px-4 sm:px-8 overflow-x-auto no-scrollbar scroll-smooth cursor-grab active:cursor-grabbing select-none">
+        <!-- Contiguous Diagonal Slanted Accordion (Stuck Together Edge-to-Edge) -->
+        <div class="w-full relative overflow-hidden py-4">
+            <!-- Left & Right Vignette Shadows for Overflow Peek Effect -->
+            <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-slate-950 to-transparent z-20 pointer-events-none"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-slate-950 to-transparent z-20 pointer-events-none"></div>
+
+            <div id="servicesTrack" class="flex items-stretch space-x-0 py-8 px-10 sm:px-16 overflow-x-auto no-scrollbar scroll-smooth cursor-grab active:cursor-grabbing select-none">
                 <?php if (!empty($treatments)): ?>
                     <?php foreach ($treatments as $idx => $trt): 
                         $imgUrl = $trtPhotos[$trt['treatment_code']] ?? 'https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=900&q=80';
+                        $padIndex = str_pad($idx + 1, 2, '0', STR_PAD_LEFT);
                     ?>
-                        <!-- Diagonal Expanding Card -->
-                        <div class="diagonal-slice-card group relative h-[520px] w-[260px] sm:w-[290px] hover:w-[440px] sm:hover:w-[490px] flex-shrink-0 rounded-3xl overflow-hidden border border-slate-700/60 shadow-2xl bg-slate-900">
+                        <!-- Seamless Diagonal Strip (Stuck Together via skewX and zero-gap) -->
+                        <div class="diagonal-strip group relative h-[560px] w-[170px] sm:w-[200px] md:w-[220px] hover:w-[520px] sm:hover:w-[580px] md:hover:w-[640px] -ml-[2px] first:ml-0 overflow-hidden border-r border-t border-b border-slate-700/60 first:border-l bg-slate-950">
                             
-                            <!-- Inner Content Wrapper (Counter-skewed to maintain straight content) -->
-                            <div class="diagonal-slice-inner absolute inset-0 w-full h-full">
-                                <!-- Background Image with smooth transition -->
+                            <!-- Counter-Skewed Inner Content Container -->
+                            <div class="diagonal-strip-inner absolute inset-0 w-full h-full">
+                                <!-- Background Image with Parallax Scale & Soft Blur on Hover -->
                                 <img src="<?= $imgUrl ?>" 
                                      alt="<?= htmlspecialchars($trt['treatment_name']) ?>" 
-                                     class="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-30 group-hover:blur-[2px]">
+                                     class="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-25 group-hover:blur-[2px]">
 
-                                <!-- Ambient Gradient for Default State -->
-                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent transition-opacity duration-500 group-hover:opacity-0"></div>
+                                <!-- Ambient Dark Vignette -->
+                                <div class="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-slate-950/20 to-slate-950/85 transition-opacity duration-500 group-hover:opacity-0"></div>
 
-                                <!-- STATE 1: Default Compact Visual View -->
-                                <div class="absolute inset-0 p-6 flex flex-col justify-between transition-opacity duration-400 group-hover:opacity-0 pointer-events-none">
-                                    <div class="flex items-center justify-between gap-2">
-                                        <span class="px-2.5 py-1 bg-slate-900/80 backdrop-blur-md rounded-full text-[10px] font-extrabold uppercase tracking-widest text-teal-300 border border-teal-500/30">
-                                            <?= htmlspecialchars($trt['category']) ?>
+                                <!-- STATE 1: Collapsed View (Vertical Editorial Typographic Ribbon) -->
+                                <div class="absolute inset-0 p-5 flex flex-col justify-between transition-all duration-500 group-hover:opacity-0 pointer-events-none z-10">
+                                    <!-- Architectural Index Numerals -->
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-mono text-2xl font-black text-white/40 tracking-tighter">
+                                            <?= $padIndex ?>
                                         </span>
-                                        <span class="font-mono text-xs font-bold text-white bg-slate-900/70 backdrop-blur-md px-2.5 py-1 rounded-full border border-slate-700">
-                                            <?= APP_CURRENCY ?><?= number_format($trt['standard_price'], 2) ?>
-                                        </span>
+                                        <span class="w-1.5 h-1.5 rounded-full bg-teal-400/80"></span>
                                     </div>
 
-                                    <div>
-                                        <span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-1">
-                                            <?= htmlspecialchars($trt['treatment_code']) ?>
-                                        </span>
-                                        <h4 class="font-bold text-white text-base leading-snug drop-shadow-md">
-                                            <?= htmlspecialchars($trt['treatment_name']) ?>
-                                        </h4>
-                                        <div class="mt-3 flex items-center space-x-1.5 text-[11px] text-teal-400 font-semibold">
-                                            <span>Hover for Overview</span>
-                                            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                                    <!-- Vertical Rotated Text Ribbon -->
+                                    <div class="my-auto flex flex-col items-center justify-center">
+                                        <div class="writing-vertical-rl rotate-180 flex items-center space-x-3 space-x-reverse">
+                                            <span class="font-mono text-[9px] uppercase tracking-widest text-teal-400 font-bold py-1 px-1.5 bg-slate-900/80 rounded border border-teal-500/20 mb-2">
+                                                <?= htmlspecialchars($trt['category']) ?>
+                                            </span>
+                                            <h4 class="font-bold text-white text-xs tracking-wider uppercase whitespace-nowrap drop-shadow-md">
+                                                <?= htmlspecialchars($trt['treatment_name']) ?>
+                                            </h4>
                                         </div>
+                                    </div>
+
+                                    <!-- Bottom Price & Expand Hint -->
+                                    <div class="pt-3 border-t border-white/10 flex flex-col items-center text-center">
+                                        <span class="font-mono text-xs font-bold text-teal-300">
+                                            <?= APP_CURRENCY ?><?= number_format($trt['standard_price'], 0) ?>
+                                        </span>
+                                        <span class="text-[9px] text-slate-400 tracking-widest uppercase mt-0.5">Explore ↗</span>
                                     </div>
                                 </div>
 
-                                <!-- STATE 2: Expanded Overview Only View -->
-                                <div class="absolute inset-0 bg-slate-950/90 backdrop-blur-lg p-7 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out z-20 overflow-y-auto no-scrollbar">
+                                <!-- STATE 2: Expanded Overview Only View (Reveals with Cinematic Glassmorphism) -->
+                                <div class="absolute inset-0 bg-slate-950/94 backdrop-blur-xl p-8 sm:p-9 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out z-20 overflow-y-auto no-scrollbar">
                                     <div>
-                                        <!-- Header Badges -->
-                                        <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
-                                            <span class="px-3 py-1 bg-teal-500/10 border border-teal-400/40 rounded-full text-[10px] font-extrabold uppercase tracking-widest text-teal-400">
-                                                <?= htmlspecialchars($trt['category']) ?>
-                                            </span>
-                                            <span class="text-xs font-mono text-slate-400">
+                                        <!-- Top Row: Index + Category + Code -->
+                                        <div class="flex items-center justify-between border-b border-slate-800/80 pb-4 mb-5">
+                                            <div class="flex items-center space-x-3">
+                                                <span class="font-mono text-xs font-bold text-teal-400 bg-teal-500/10 px-2.5 py-1 rounded-md border border-teal-500/30">
+                                                    NO. <?= $padIndex ?>
+                                                </span>
+                                                <span class="px-3 py-1 bg-slate-800 text-slate-200 rounded-md text-[10px] font-extrabold uppercase tracking-widest border border-slate-700">
+                                                    <?= htmlspecialchars($trt['category']) ?>
+                                                </span>
+                                            </div>
+                                            <span class="text-xs font-mono text-slate-400 tracking-wider">
                                                 <?= htmlspecialchars($trt['treatment_code']) ?>
                                             </span>
                                         </div>
 
-                                        <!-- Title & Fee -->
-                                        <h4 class="text-xl font-extrabold text-white tracking-tight leading-tight mb-2">
+                                        <!-- Title & Transparent Pricing -->
+                                        <h4 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-snug mb-3">
                                             <?= htmlspecialchars($trt['treatment_name']) ?>
                                         </h4>
-                                        <div class="text-2xl font-black text-teal-400 font-mono tracking-tight mb-4">
-                                            <?= APP_CURRENCY ?><?= number_format($trt['standard_price'], 2) ?>
-                                            <span class="text-[11px] text-slate-400 font-sans font-normal ml-1">standard fee</span>
+                                        <div class="flex items-baseline space-x-2 mb-5">
+                                            <span class="text-3xl font-black text-teal-400 font-mono tracking-tight">
+                                                <?= APP_CURRENCY ?><?= number_format($trt['standard_price'], 2) ?>
+                                            </span>
+                                            <span class="text-xs text-slate-400 font-medium">standard clinic fee</span>
                                         </div>
 
-                                        <!-- Clinical Overview & Description -->
-                                        <div class="space-y-3 text-xs text-slate-300 leading-relaxed">
-                                            <p class="font-medium text-slate-200">
-                                                <?= htmlspecialchars($trt['description'] ?: 'Comprehensive procedure conducted by certified attending dental clinicians.') ?>
+                                        <!-- Procedure Overview -->
+                                        <div class="space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                                            <p class="font-normal text-slate-200 bg-slate-900/60 p-4 rounded-xl border border-slate-800/80">
+                                                <?= htmlspecialchars($trt['description'] ?: 'Comprehensive surgical and restorative procedure performed by licensed attending clinicians.') ?>
                                             </p>
                                             
-                                            <!-- Specifications List -->
-                                            <div class="pt-3 border-t border-slate-800/80 space-y-2 text-[11px]">
-                                                <div class="flex items-center space-x-2 text-slate-400">
-                                                    <i data-lucide="check-circle" class="w-3.5 h-3.5 text-teal-400 flex-shrink-0"></i>
-                                                    <span>Hospital-grade sterile instruments & burs</span>
+                                            <!-- Clinical Specifications -->
+                                            <div class="space-y-2.5 text-xs text-slate-400">
+                                                <div class="flex items-center space-x-2.5">
+                                                    <i data-lucide="shield-check" class="w-4 h-4 text-teal-400 flex-shrink-0"></i>
+                                                    <span>Class-B autoclave steam sterilization on all instruments</span>
                                                 </div>
-                                                <div class="flex items-center space-x-2 text-slate-400">
-                                                    <i data-lucide="check-circle" class="w-3.5 h-3.5 text-teal-400 flex-shrink-0"></i>
-                                                    <span>Attending dentist diagnosis & consultation</span>
+                                                <div class="flex items-center space-x-2.5">
+                                                    <i data-lucide="user-check" class="w-4 h-4 text-teal-400 flex-shrink-0"></i>
+                                                    <span>Personal attending dentist assessment & dental history review</span>
                                                 </div>
-                                                <div class="flex items-center space-x-2 text-slate-400">
-                                                    <i data-lucide="check-circle" class="w-3.5 h-3.5 text-teal-400 flex-shrink-0"></i>
-                                                    <span>Itemized receipt with clear transparency</span>
+                                                <div class="flex items-center space-x-2.5">
+                                                    <i data-lucide="receipt" class="w-4 h-4 text-teal-400 flex-shrink-0"></i>
+                                                    <span>Official itemized POS receipt with zero hidden surcharges</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- Bottom CTA -->
-                                    <div class="pt-5 mt-4 border-t border-slate-800">
+                                    <!-- Bottom CTA Action -->
+                                    <div class="pt-6 mt-6 border-t border-slate-800/90 flex flex-col sm:flex-row items-center gap-3">
                                         <a href="#booking-form" 
                                            onclick="prefillConcern('<?= addslashes(htmlspecialchars($trt['treatment_name'])) ?>')"
-                                           class="w-full py-3 px-4 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-xs rounded-xl shadow-lg transition flex items-center justify-center space-x-2 group-hover:scale-[1.02]">
+                                           class="w-full py-3.5 px-6 bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold text-xs sm:text-sm rounded-xl shadow-lg transition flex items-center justify-center space-x-2">
                                             <span>Schedule This Treatment</span>
-                                            <i data-lucide="calendar" class="w-4 h-4"></i>
+                                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -350,22 +379,34 @@ $currentUser = Session::user();
     </section>
 
     <script>
-        // Interactive Controls & Drag-To-Scroll for the Diagonal Slideshow
+        // High-Precision Drag, Scroll & Wheel Navigation for the Seamless Diagonal Accordion
         document.addEventListener('DOMContentLoaded', function() {
             const track = document.getElementById('servicesTrack');
             const prevBtn = document.getElementById('sliderPrevBtn');
             const nextBtn = document.getElementById('sliderNextBtn');
             
-            if (track && prevBtn && nextBtn) {
-                const scrollStep = 340;
+            if (track) {
+                const scrollStep = 380;
                 
-                prevBtn.addEventListener('click', function() {
-                    track.scrollBy({ left: -scrollStep, behavior: 'smooth' });
-                });
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', function() {
+                        track.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+                    });
+                }
                 
-                nextBtn.addEventListener('click', function() {
-                    track.scrollBy({ left: scrollStep, behavior: 'smooth' });
-                });
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', function() {
+                        track.scrollBy({ left: scrollStep, behavior: 'smooth' });
+                    });
+                }
+
+                // Mouse Wheel Horizontal Scroll
+                track.addEventListener('wheel', (e) => {
+                    if (e.deltaY !== 0) {
+                        e.preventDefault();
+                        track.scrollBy({ left: e.deltaY * 1.5, behavior: 'auto' });
+                    }
+                }, { passive: false });
 
                 // Mouse Drag-To-Scroll
                 let isDown = false;
@@ -378,19 +419,14 @@ $currentUser = Session::user();
                     scrollLeft = track.scrollLeft;
                 });
 
-                track.addEventListener('mouseleave', () => {
-                    isDown = false;
-                });
-
-                track.addEventListener('mouseup', () => {
-                    isDown = false;
-                });
+                track.addEventListener('mouseleave', () => { isDown = false; });
+                track.addEventListener('mouseup', () => { isDown = false; });
 
                 track.addEventListener('mousemove', (e) => {
                     if (!isDown) return;
                     e.preventDefault();
                     const x = e.pageX - track.offsetLeft;
-                    const walk = (x - startX) * 1.5;
+                    const walk = (x - startX) * 1.6;
                     track.scrollLeft = scrollLeft - walk;
                 });
             }
