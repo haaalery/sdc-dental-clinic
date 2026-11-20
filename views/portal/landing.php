@@ -141,7 +141,7 @@ $currentUser = Session::user();
                onclick="handleBrandClick(event)" 
                class="flex items-center space-x-3 cursor-pointer select-none"
                title="Return to top">
-                <div class="w-10 h-10 rounded-xl bg-stone-950 flex items-center justify-center p-1.5 shadow-xs flex-shrink-0">
+                <div class="w-10 h-10 rounded-none bg-stone-950 flex items-center justify-center p-1.5 shadow-xs flex-shrink-0">
                     <img src="<?= BASE_URL ?>/assets/images/logo.png" alt="SDC Dental Care" class="w-full h-full object-contain">
                 </div>
                 <div>
@@ -160,7 +160,7 @@ $currentUser = Session::user();
 
             <!-- Action Button -->
             <div class="flex items-center space-x-3">
-                <a href="#booking-form" class="inline-flex items-center space-x-1.5 px-4 py-2 bg-stone-950 hover:bg-stone-800 text-white text-xs font-semibold rounded-xl shadow-xs transition">
+                <a href="#booking-form" class="inline-flex items-center space-x-1.5 px-4 py-2 bg-stone-950 hover:bg-stone-800 text-white text-xs font-semibold rounded-none shadow-xs transition">
                     <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
                     <span>Book Appointment</span>
                 </a>
@@ -168,133 +168,96 @@ $currentUser = Session::user();
         </div>
     </header>
 
-    <!-- Full Hero Section (Edge-to-Edge High-Tech Biotech / Architectural Editorial Screen) -->
-    <section id="heroSection" class="relative w-full min-h-[calc(100vh-72px)] bg-[#F7F6F2] border-b border-[#E5E1D8] px-6 sm:px-10 lg:px-16 py-8 sm:py-12 flex flex-col justify-between overflow-hidden">
+    <!-- Full Hero Section Following Wireframe (Zero Round Borders, Pure Architectural modernist grid) -->
+    <section id="heroSection" class="relative w-full min-h-[calc(100vh-72px)] bg-[#F7F6F2] border-b border-[#E5E1D8] px-4 sm:px-8 lg:px-12 py-6 sm:py-8 flex flex-col justify-between overflow-hidden rounded-none">
         
         <!-- Subtle Architectural Ambient Watermark Grid -->
-        <div class="absolute inset-0 opacity-[0.035] pointer-events-none" style="background-image: linear-gradient(#1c1917 1px, transparent 1px), linear-gradient(to right, #1c1917 1px, transparent 1px); background-size: 80px 80px;"></div>
+        <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: linear-gradient(#1c1917 1px, transparent 1px), linear-gradient(to right, #1c1917 1px, transparent 1px); background-size: 80px 80px;"></div>
 
-        <!-- Full Canvas Grid -->
-        <div class="w-full h-full flex-1 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center relative z-10 my-auto">
+        <!-- Wireframe 3-Column Layout: Left (Title, Media, Text) | Center (Image) | Right (Card, Text, CTA) -->
+        <div class="w-full flex-1 grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-stretch relative z-10 my-auto rounded-none">
             
-            <!-- Left Column: Towering Geometric Headline & Bottom-Left Vignette -->
-            <div class="lg:col-span-5 flex flex-col justify-between h-full space-y-8 lg:space-y-12 z-20">
-                <div>
-                    <div class="flex items-center space-x-3 mb-6">
-                        <span class="w-2.5 h-2.5 rounded-full bg-stone-900 animate-pulse"></span>
-                        <span class="font-mono text-xs font-bold tracking-[0.28em] uppercase text-stone-500">
+            <!-- LEFT COLUMN (Title, Media, Text) -->
+            <div class="lg:col-span-4 flex flex-col justify-between space-y-5 rounded-none">
+                
+                <!-- 1. Title Block -->
+                <div class="bg-white border border-[#E5E1D8] p-6 sm:p-8 flex-1 flex flex-col justify-center rounded-none shadow-xs">
+                    <div class="flex items-center space-x-2.5 mb-4 rounded-none">
+                        <span class="w-2 h-2 bg-stone-900 rounded-none"></span>
+                        <span class="font-mono text-[10px] font-bold tracking-[0.25em] uppercase text-stone-500">
                             SDC ATELIER // METRO MANILA
                         </span>
                     </div>
-
-                    <!-- Massive Bold Geometric Tech Typography (Matches Reference) -->
-                    <h2 class="text-5xl sm:text-7xl lg:text-[5rem] xl:text-[5.8rem] font-black tracking-tighter uppercase leading-[0.88] text-stone-950">
+                    <h2 class="text-3xl sm:text-4xl lg:text-[2.75rem] xl:text-[3.2rem] font-black tracking-tight uppercase leading-[0.92] text-stone-950 rounded-none">
                         ADVANCED <br>
                         <span class="tracking-tight text-stone-900">CLINICAL</span> <br>
                         <span class="font-serif italic font-normal text-stone-600 lowercase tracking-normal">dentistry</span>
                     </h2>
-                    
-                    <p class="text-stone-600 text-xs sm:text-sm mt-8 max-w-md font-light leading-relaxed">
-                        A high-precision clinical practice uniting digital diagnostic imaging, ultrasonic dental care, and bespoke aesthetic restorations across Makati & Pasig.
+                </div>
+
+                <!-- 2. Media Block -->
+                <div class="relative w-full h-44 sm:h-48 bg-stone-900 border border-[#E5E1D8] overflow-hidden group rounded-none shadow-xs">
+                    <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=800&q=80" 
+                         alt="Clinical procedure media" 
+                         class="w-full h-full object-cover filter brightness-90 group-hover:scale-105 transition duration-700 rounded-none">
+                    <div class="absolute inset-0 bg-black/30 flex items-center justify-center rounded-none">
+                        <a href="#services" class="w-11 h-11 bg-white text-stone-950 flex items-center justify-center shadow-lg transition transform group-hover:scale-110 rounded-none" aria-label="Watch clinical preview">
+                            <i data-lucide="play" class="w-4 h-4 fill-current ml-0.5"></i>
+                        </a>
+                    </div>
+                    <div class="absolute top-2.5 left-2.5 bg-stone-950/85 px-2 py-0.5 text-white font-mono text-[9px] uppercase tracking-widest border border-white/10 rounded-none">
+                        MEDIA // 01
+                    </div>
+                </div>
+
+                <!-- 3. Text Block -->
+                <div class="bg-white border border-[#E5E1D8] p-5 rounded-none shadow-xs">
+                    <span class="text-[9px] font-mono uppercase tracking-widest text-teal-700 font-bold block mb-1">
+                        CLINICAL FOCUS
+                    </span>
+                    <p class="text-xs text-stone-600 leading-relaxed font-light">
+                        Exploring non-invasive laser diagnostics, digital intraoral radiographs, and gentle restorative workflows across Makati & Pasig.
                     </p>
                 </div>
 
-                <!-- Bottom-Left Vignette: Compact Video / Procedure Preview Tile (Matches Reference) -->
-                <div class="pt-6 border-t border-[#E5E1D8] max-w-md">
-                    <div class="flex items-start space-x-4">
-                        <a href="#services" class="relative w-28 h-20 rounded-2xl overflow-hidden bg-stone-900 border border-[#E5E1D8] flex-shrink-0 group block shadow-md">
-                            <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=600&q=80" 
-                                 alt="Procedure preview" 
-                                 class="w-full h-full object-cover filter brightness-90 group-hover:scale-110 transition duration-500">
-                            <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-                                <div class="w-9 h-9 rounded-full bg-white text-stone-950 flex items-center justify-center shadow-lg transition transform group-hover:scale-110">
-                                    <i data-lucide="play" class="w-4 h-4 fill-current ml-0.5"></i>
-                                </div>
-                            </div>
-                        </a>
-                        <div>
-                            <span class="text-[10px] font-mono uppercase tracking-widest text-teal-700 font-bold block mb-1">
-                                CLINICAL PREVIEW // 01
-                            </span>
-                            <p class="text-xs text-stone-600 leading-relaxed font-light">
-                                Exploring non-invasive laser diagnostics, digital radiography, and gentle restorative workflows.
-                            </p>
-                        </div>
-                    </div>
-                </div>
             </div>
 
-            <!-- Center Column: Prominent High-Tech Visual with 3D Spatial Tilt & Interactive Hotspots -->
-            <div class="lg:col-span-4 relative flex items-center justify-center hero-perspective">
-                <div id="heroTiltCard" class="hero-tilt-card relative w-full h-[460px] sm:h-[540px] lg:h-[600px] xl:h-[640px] rounded-3xl overflow-hidden shadow-2xl border border-[#E5E1D8] bg-stone-950 group select-none">
-                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1400&q=85" 
+            <!-- CENTER COLUMN (Image: Single tall vertical image block) -->
+            <div class="lg:col-span-5 h-full flex flex-col min-h-[500px] lg:min-h-full rounded-none">
+                <div class="relative w-full h-full flex-1 bg-stone-950 border border-[#E5E1D8] overflow-hidden group select-none rounded-none shadow-md">
+                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1600&q=85" 
                          alt="SDC High-Tech Clinical Operatory" 
-                         class="w-full h-full object-cover filter brightness-95 transition-transform duration-700 ease-out group-hover:scale-105">
+                         class="w-full h-full object-cover filter brightness-95 transition-transform duration-700 ease-out group-hover:scale-105 rounded-none">
                     
-                    <div class="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-transparent to-transparent flex flex-col justify-end p-8 text-white pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-transparent to-transparent flex flex-col justify-end p-8 text-white pointer-events-none rounded-none">
                         <span class="text-[10px] font-mono tracking-widest uppercase text-teal-300 font-bold mb-1">
-                            DIAGNOSTIC SUITE // ATELIER
+                            DIAGNOSTIC SUITE // OPERATORY
                         </span>
-                        <p class="text-xs text-stone-300 font-light leading-relaxed">
-                            Click or hover glowing markers to explore our clinical technology.
+                        <p class="text-xs text-stone-300 font-light leading-relaxed max-w-sm">
+                            Class-B vacuum autoclave sterilization, surgical precision, and unhurried doctor consultations.
                         </p>
                     </div>
 
-                    <!-- HOTSPOT 01: Laser Whitening (Upper Right) -->
-                    <div class="absolute top-[26%] right-[18%] z-30 group/spot">
-                        <button type="button" aria-label="Explore laser whitening" class="hotspot-pulse w-7 h-7 rounded-full bg-teal-400 text-stone-950 flex items-center justify-center font-mono font-black text-xs shadow-lg transition transform hover:scale-125 focus:outline-none cursor-pointer">
-                            +
-                        </button>
-                        <!-- Floating Glassmorphic Spec Card -->
-                        <div class="absolute right-0 top-9 w-60 p-3.5 rounded-2xl bg-stone-950/90 backdrop-blur-md text-white border border-white/20 shadow-2xl opacity-0 translate-y-2 pointer-events-none group-hover/spot:opacity-100 group-hover/spot:translate-y-0 group-hover/spot:pointer-events-auto transition-all duration-300 z-40">
-                            <span class="text-[9px] uppercase tracking-widest font-mono text-teal-400 font-bold block mb-1">SPEC 01 // COSMETIC</span>
-                            <h5 class="text-xs font-bold mb-1">Blue LED Laser Whitening</h5>
-                            <p class="text-[11px] text-stone-300 leading-tight">Gently lifts deep enamel stains by 6–8 shades in a single 60-min appointment.</p>
-                        </div>
-                    </div>
-
-                    <!-- HOTSPOT 02: Digital Radiography (Center Left) -->
-                    <div class="absolute top-[52%] left-[16%] z-30 group/spot">
-                        <button type="button" aria-label="Explore digital imaging" class="hotspot-pulse w-7 h-7 rounded-full bg-white text-stone-950 flex items-center justify-center font-mono font-black text-xs shadow-lg transition transform hover:scale-125 focus:outline-none cursor-pointer">
-                            +
-                        </button>
-                        <!-- Floating Glassmorphic Spec Card -->
-                        <div class="absolute left-0 top-9 w-60 p-3.5 rounded-2xl bg-stone-950/90 backdrop-blur-md text-white border border-white/20 shadow-2xl opacity-0 translate-y-2 pointer-events-none group-hover/spot:opacity-100 group-hover/spot:translate-y-0 group-hover/spot:pointer-events-auto transition-all duration-300 z-40">
-                            <span class="text-[9px] uppercase tracking-widest font-mono text-amber-300 font-bold block mb-1">SPEC 02 // DIAGNOSTICS</span>
-                            <h5 class="text-xs font-bold mb-1">Digital Intraoral Imaging</h5>
-                            <p class="text-[11px] text-stone-300 leading-tight">Instant HD radiographs with 80% less radiation exposure than conventional film.</p>
-                        </div>
-                    </div>
-
-                    <!-- HOTSPOT 03: Surgical Sterilization (Bottom Right) -->
-                    <div class="absolute bottom-[28%] right-[22%] z-30 group/spot">
-                        <button type="button" aria-label="Explore hospital-grade autoclave" class="hotspot-pulse w-7 h-7 rounded-full bg-teal-300 text-stone-950 flex items-center justify-center font-mono font-black text-xs shadow-lg transition transform hover:scale-125 focus:outline-none cursor-pointer">
-                            +
-                        </button>
-                        <!-- Floating Glassmorphic Spec Card -->
-                        <div class="absolute right-0 bottom-9 w-60 p-3.5 rounded-2xl bg-stone-950/90 backdrop-blur-md text-white border border-white/20 shadow-2xl opacity-0 translate-y-2 pointer-events-none group-hover/spot:opacity-100 group-hover/spot:translate-y-0 group-hover/spot:pointer-events-auto transition-all duration-300 z-40">
-                            <span class="text-[9px] uppercase tracking-widest font-mono text-teal-300 font-bold block mb-1">SPEC 03 // STERILIZATION</span>
-                            <h5 class="text-xs font-bold mb-1">Class-B Vacuum Autoclave</h5>
-                            <p class="text-[11px] text-stone-300 leading-tight">134°C medical sterilization with zero reuse on single-use barrier supplies.</p>
-                        </div>
+                    <div class="absolute top-4 left-4 bg-stone-950/85 px-3 py-1 text-white font-mono text-[10px] uppercase tracking-widest border border-white/10 rounded-none">
+                        CENTRAL ATELIER
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column: Editorial Teasers & Direct Actions (Matches Reference) -->
-            <div class="lg:col-span-3 flex flex-col justify-between h-full space-y-8 lg:space-y-12">
+            <!-- RIGHT COLUMN (Card, Text, CTA) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-5 rounded-none">
                 
-                <!-- Top Right Card: Specialized Standards Teaser -->
-                <a href="#standards" class="group block p-5 rounded-3xl bg-white border border-[#E5E1D8] hover:border-stone-400/80 shadow-sm transition">
-                    <div class="w-full h-36 rounded-2xl overflow-hidden bg-stone-900 mb-4 relative">
+                <!-- 1. Card Block -->
+                <a href="#standards" class="group block p-4 bg-white border border-[#E5E1D8] hover:border-stone-900 rounded-none shadow-xs transition">
+                    <div class="w-full h-36 bg-stone-900 mb-3 relative overflow-hidden rounded-none">
                         <img src="https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&fit=crop&w=600&q=80" 
                              alt="Sterilization & Clinical Standards" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500 filter brightness-95">
-                        <div class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-white font-mono text-[9px] font-bold">
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500 filter brightness-95 rounded-none">
+                        <div class="absolute top-2 left-2 px-2 py-0.5 bg-black/70 text-white font-mono text-[9px] font-bold rounded-none">
                             PROTOCOL
                         </div>
                     </div>
-                    <span class="text-[10px] font-mono uppercase tracking-widest text-stone-500 font-bold block mb-1">
+                    <span class="text-[9px] font-mono uppercase tracking-widest text-stone-500 font-bold block mb-1">
                         PRACTICE STANDARD
                     </span>
                     <h4 class="text-xs font-bold text-stone-950 group-hover:underline leading-snug">
@@ -302,14 +265,21 @@ $currentUser = Session::user();
                     </h4>
                 </a>
 
-                <!-- Bottom Right Philosophy Note & Reserve Action -->
-                <div class="pt-6 border-t border-[#E5E1D8]">
-                    <p class="text-xs text-stone-500 leading-relaxed mb-6 font-light">
-                        Direct doctor consultations, transparent itemized receipts, and comfortable private suites in Metro Manila.
+                <!-- 2. Text Block -->
+                <div class="bg-white border border-[#E5E1D8] p-5 flex-1 flex flex-col justify-center rounded-none shadow-xs">
+                    <span class="text-[9px] font-mono uppercase tracking-widest text-stone-400 font-bold block mb-1">
+                        PHILOSOPHY
+                    </span>
+                    <p class="text-xs text-stone-600 leading-relaxed font-light">
+                        A calm, unhurried clinical environment centered on tooth preservation, itemized POS receipts, and direct care by licensed dental MDs.
                     </p>
-                    <a href="#booking-form" class="inline-flex items-center space-x-2 px-6 py-3.5 bg-stone-950 hover:bg-black text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-md transition group">
-                        <span>Reserve Visit</span>
-                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1"></i>
+                </div>
+
+                <!-- 3. CTA Block -->
+                <div class="rounded-none">
+                    <a href="#booking-form" class="w-full py-4 px-6 bg-stone-950 hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition flex items-center justify-between border border-stone-950 rounded-none shadow-sm group">
+                        <span>Reserve Appointment</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
                     </a>
                 </div>
 
@@ -317,8 +287,8 @@ $currentUser = Session::user();
 
         </div>
 
-        <!-- Infinite Scope of Practice Editorial Marquee Ribbon -->
-        <div class="w-full border-t border-[#E5E1D8] pt-5 pb-2 mt-8 overflow-hidden select-none">
+        <!-- Infinite Scope of Practice Editorial Marquee Ribbon (Zero Rounded Corners) -->
+        <div class="w-full border-t border-[#E5E1D8] pt-4 pb-1 mt-6 overflow-hidden select-none rounded-none">
             <div class="ticker-track flex items-center space-x-8 whitespace-nowrap font-mono text-[11px] font-bold tracking-[0.26em] uppercase text-stone-500">
                 <span>✦ COSMETIC LASER WHITENING</span>
                 <span class="text-stone-300">/</span>
@@ -336,7 +306,6 @@ $currentUser = Session::user();
                 <span class="text-stone-300">/</span>
                 <span>✦ ITEMIZED POS FEE TRANSPARENCY</span>
                 <span class="text-stone-300">/</span>
-                <!-- Loop repeat for seamless continuous animation -->
                 <span>✦ COSMETIC LASER WHITENING</span>
                 <span class="text-stone-300">/</span>
                 <span>✦ PORCELAIN RESTORATION</span>
