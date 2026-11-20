@@ -247,7 +247,7 @@ $currentUser = Session::user();
         'TRT-009' => ['duration' => '60 mins', 'comfort' => 'Enamel-Safe', 'inclusions' => 'Blue LED Laser Whitening System'],
     ];
     ?>
-    <!-- Services & Treatments Section (Awwwards Master-Detail Exhibition Showcase) -->
+    <!-- Services & Treatments Section (Awwwards Horizontal Slideshow + Exhibition Modal) -->
     <?php
     $treatmentsData = [];
     foreach ($treatments as $idx => $t) {
@@ -266,174 +266,260 @@ $currentUser = Session::user();
             'inclusions' => $trtDetails[$code]['inclusions'] ?? 'Consultation Included'
         ];
     }
-    $initialTrt = $treatmentsData[0] ?? null;
     ?>
-    <section id="services" class="py-24 bg-[#f3eee7] text-stone-900 border-b border-stone-300/80 overflow-hidden relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="services" class="py-24 bg-[#0a0f18] text-white overflow-hidden border-b border-slate-800 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                    <span class="text-[11px] uppercase tracking-[0.25em] font-semibold text-teal-400 block mb-2">
+                        Clinical Catalog
+                    </span>
+                    <h3 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+                        Signature Treatments<span class="font-serif italic font-normal text-slate-400">.</span>
+                    </h3>
+                    <p class="text-slate-400 text-xs sm:text-sm mt-3 max-w-xl leading-relaxed">
+                        Nine focused dental disciplines across our Makati and Pasig clinics. Hover across each slice to expand, or click any picture to open the full procedure lookbook.
+                    </p>
+                </div>
+
+                <!-- Minimalist Navigation Controls -->
+                <div class="flex items-center space-x-5">
+                    <span class="hidden sm:inline-block text-[11px] uppercase tracking-widest text-slate-500 font-mono">
+                        [ 01 — 09 ]
+                    </span>
+                    <div class="flex items-center space-x-2">
+                        <button id="sliderPrevBtn" aria-label="Previous treatment" class="w-12 h-12 rounded-full border border-white/20 hover:border-white hover:bg-white hover:text-slate-950 text-white flex items-center justify-center transition shadow-lg">
+                            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                        </button>
+                        <button id="sliderNextBtn" aria-label="Next treatment" class="w-12 h-12 rounded-full border border-white/20 hover:border-white hover:bg-white hover:text-slate-950 text-white flex items-center justify-center transition shadow-lg">
+                            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seamless Edge-to-Edge Straight Slideshow (Expands on Hover, Clicks to Open Modal) -->
+        <div class="w-full relative overflow-hidden py-4">
+            <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#0a0f18] to-transparent z-20 pointer-events-none"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#0a0f18] to-transparent z-20 pointer-events-none"></div>
+
+            <div id="servicesTrack" class="flex items-stretch space-x-0 py-6 px-8 sm:px-16 overflow-x-auto no-scrollbar scroll-smooth cursor-grab active:cursor-grabbing select-none">
+                <?php foreach ($treatmentsData as $idx => $trt): ?>
+                    <!-- Pure Photographic Strip (Straight, Stationary, Zero Text) -->
+                    <button type="button" 
+                            onclick="openProcedureModal(<?= $idx ?>)"
+                            title="Click to view full details for <?= htmlspecialchars($trt['name']) ?>"
+                            class="gallery-strip group relative h-[590px] w-[170px] sm:w-[200px] md:w-[220px] hover:w-[580px] sm:hover:w-[720px] md:hover:w-[840px] -ml-[1px] first:ml-0 overflow-hidden border-r border-t border-b border-white/10 first:border-l bg-slate-950 block cursor-pointer text-left focus:outline-none">
+                        
+                        <div class="gallery-strip-inner absolute inset-0 w-full h-full">
+                            <img src="<?= htmlspecialchars($trt['image']) ?>" 
+                                 alt="<?= htmlspecialchars($trt['name']) ?>" 
+                                 class="absolute inset-0 w-full h-full object-cover">
+                        </div>
+                    </button>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+
+    <!-- Editorial Procedure Exhibition Modal (Inspired Directly by Reference Lookbook) -->
+    <div id="procedureModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-3 sm:p-6 md:p-8 hidden opacity-0 transition-opacity duration-300">
+        
+        <!-- Modal Container (Warm Linen Luxury Aesthetic from Reference Screenshot) -->
+        <div class="bg-[#f4efe8] text-stone-900 rounded-3xl overflow-hidden shadow-2xl max-w-6xl w-full max-h-[92vh] flex flex-col border border-stone-300 transform scale-95 transition-transform duration-300" id="modalContainer">
             
-            <!-- Minimalist Editorial Top Bar -->
-            <div class="flex items-center justify-between border-b border-stone-300 pb-5 mb-10 text-[11px] uppercase tracking-[0.22em] font-mono text-stone-500">
+            <!-- Top Minimalist Catalogue Bar -->
+            <div class="flex items-center justify-between border-b border-stone-300/80 px-6 sm:px-8 py-4 text-[11px] uppercase tracking-[0.22em] font-mono text-stone-500 bg-[#f4efe8]">
                 <span>Catalogue // Clinical Disciplines</span>
-                <span class="font-serif italic font-normal text-stone-800 text-sm normal-case tracking-normal">SDC Dental Atelier</span>
-                <span id="activeCounter" class="font-semibold text-stone-800">01 / <?= str_pad(count($treatmentsData), 2, '0', STR_PAD_LEFT) ?></span>
+                <span class="font-serif italic font-normal text-stone-800 text-sm normal-case hidden sm:inline">SDC Dental Atelier</span>
+                <div class="flex items-center space-x-4">
+                    <span id="modalActiveCounter" class="font-semibold text-stone-800">01 / 09</span>
+                    <button type="button" onclick="closeProcedureModal()" class="text-stone-500 hover:text-stone-950 font-bold uppercase tracking-wider text-xs flex items-center space-x-1 transition">
+                        <span>Close [✕]</span>
+                    </button>
+                </div>
             </div>
 
-            <!-- Main Stage (Left: Big Feature Picture / Right: Large Editorial Headline & Info) -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center mb-12">
-                
-                <!-- Left: Big Picture Display -->
-                <div class="lg:col-span-5 relative">
-                    <div class="relative w-full aspect-[3/4] sm:h-[540px] rounded-2xl overflow-hidden shadow-2xl bg-stone-900 border border-stone-300/80 group">
-                        <img id="mainStageImage" 
-                             src="<?= htmlspecialchars($initialTrt['image'] ?? '') ?>" 
-                             alt="<?= htmlspecialchars($initialTrt['name'] ?? '') ?>" 
-                             class="w-full h-full object-cover transition-all duration-700 ease-out filter brightness-95">
-                        
-                        <!-- Floating Minimalist Card Tag -->
-                        <div class="absolute bottom-5 left-5 right-5 p-4 rounded-xl bg-stone-950/80 backdrop-blur-md text-white flex items-center justify-between shadow-lg">
-                            <div>
-                                <span id="mainStageCategoryPill" class="text-[10px] uppercase tracking-widest text-teal-400 font-mono font-bold block">
-                                    <?= htmlspecialchars($initialTrt['category'] ?? '') ?>
-                                </span>
-                                <p id="mainStageCodePill" class="text-xs font-mono text-stone-400 mt-0.5">
-                                    <?= htmlspecialchars($initialTrt['code'] ?? '') ?>
-                                </p>
+            <!-- Middle Stage: Left Big Picture / Right Large Editorial Headline & Details -->
+            <div class="flex-1 overflow-y-auto no-scrollbar p-6 sm:p-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                    
+                    <!-- Left: Big Picture Display Frame -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative w-full aspect-[3/4] sm:h-[460px] rounded-2xl overflow-hidden shadow-xl bg-stone-900 border border-stone-300/80 group">
+                            <img id="modalBigImage" 
+                                 src="" 
+                                 alt="" 
+                                 class="w-full h-full object-cover transition-all duration-500 ease-out filter brightness-95">
+                            
+                            <!-- Floating Info Tag on the Big Picture -->
+                            <div class="absolute bottom-4 left-4 right-4 p-3.5 rounded-xl bg-stone-950/80 backdrop-blur-md text-white flex items-center justify-between shadow-md">
+                                <div>
+                                    <span id="modalCategoryPill" class="text-[9px] uppercase tracking-widest text-teal-400 font-mono font-bold block">
+                                        COSMETIC
+                                    </span>
+                                    <p id="modalCodePill" class="text-xs font-mono text-stone-400">TRT-009</p>
+                                </div>
+                                <span class="text-[10px] text-stone-300 font-mono">Attending Clinician Suite</span>
                             </div>
-                            <a id="mainStageBookingBtn" 
+                        </div>
+                    </div>
+
+                    <!-- Right: Big Editorial Headline & Clinical Info -->
+                    <div class="lg:col-span-7 flex flex-col justify-center">
+                        <div class="mb-3">
+                            <span id="modalCategory" class="text-xs uppercase tracking-[0.25em] font-mono text-stone-500 block mb-2">
+                                01 / COSMETIC DENTISTRY
+                            </span>
+                            
+                            <!-- Large High-Fashion Headline (Le Oh Botanic style) -->
+                            <h3 id="modalTitle" class="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-stone-950 tracking-tight leading-[1.08]">
+                                Laser Teeth Whitening
+                            </h3>
+                        </div>
+
+                        <!-- Upfront Fee -->
+                        <div class="flex items-baseline space-x-3 my-4">
+                            <span id="modalPrice" class="text-3xl sm:text-4xl font-mono font-bold text-stone-950 tracking-tight">
+                                ₱6,500.00
+                            </span>
+                            <span class="text-xs font-mono text-stone-500">standard clinical rate</span>
+                        </div>
+
+                        <!-- Clinical Overview Description -->
+                        <p id="modalDescription" class="text-stone-700 text-sm sm:text-base leading-relaxed max-w-xl font-light mb-6">
+                            Professional in-clinic clinical bleaching engineered to gently lift deep enamel discoloration by up to 6–8 shades in a single sitting.
+                        </p>
+
+                        <!-- Editorial Specifications Bar -->
+                        <div class="grid grid-cols-3 gap-3 border-t border-b border-stone-300/80 py-4 mb-6 text-xs max-w-xl">
+                            <div>
+                                <span class="block text-[9px] uppercase tracking-widest text-stone-400 mb-0.5">Session</span>
+                                <span id="modalDuration" class="font-bold text-stone-900 text-sm">60 Mins</span>
+                            </div>
+                            <div>
+                                <span class="block text-[9px] uppercase tracking-widest text-stone-400 mb-0.5">Comfort</span>
+                                <span id="modalComfort" class="font-bold text-stone-900 text-sm">Enamel-Safe</span>
+                            </div>
+                            <div>
+                                <span class="block text-[9px] uppercase tracking-widest text-stone-400 mb-0.5">Scope</span>
+                                <span id="modalInclusions" class="font-bold text-stone-900 text-sm truncate block">Blue LED Laser</span>
+                            </div>
+                        </div>
+
+                        <!-- Action Button -->
+                        <div>
+                            <a id="modalBookingBtn" 
                                href="#booking-form" 
-                               onclick="prefillConcern('<?= addslashes(htmlspecialchars($initialTrt['name'] ?? '')) ?>')"
-                               class="px-4 py-2 bg-white text-stone-950 text-xs font-bold rounded-lg hover:bg-teal-400 transition flex items-center space-x-1.5 shadow-xs">
-                                <span>Schedule Visit</span>
-                                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                               onclick="closeProcedureModal()"
+                               class="inline-flex items-center space-x-2 px-8 py-3.5 bg-stone-950 hover:bg-stone-800 text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-lg transition">
+                                <span>Schedule This Procedure</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right: Big Editorial Headline & Comprehensive Procedure Overview -->
-                <div class="lg:col-span-7 flex flex-col justify-center">
-                    <div class="mb-4">
-                        <span id="mainStageCategory" class="text-xs uppercase tracking-[0.25em] font-mono text-stone-500 block mb-3">
-                            <?= htmlspecialchars($initialTrt['index'] ?? '01') ?> / <?= htmlspecialchars($initialTrt['category'] ?? '') ?>
+                <!-- Bottom: Clickable Horizontal Thumbnail Filmstrip (Transfers to the Big Picture) -->
+                <div class="mt-8 pt-6 border-t border-stone-300">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-[11px] uppercase tracking-widest font-mono text-stone-500">
+                            Available Procedures (Click or hover thumbnail to transfer into big picture):
                         </span>
-                        
-                        <!-- Big High-Fashion Headline (Le Oh Botanic style) -->
-                        <h3 id="mainStageTitle" class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-stone-950 tracking-tight leading-[1.08] transition-opacity duration-300">
-                            <?= htmlspecialchars($initialTrt['name'] ?? '') ?>
-                        </h3>
-                    </div>
-
-                    <!-- Fee -->
-                    <div class="flex items-baseline space-x-3 my-6">
-                        <span id="mainStagePrice" class="text-3xl sm:text-4xl font-mono font-bold text-stone-950 tracking-tight">
-                            <?= htmlspecialchars($initialTrt['price'] ?? '') ?>
+                        <span class="text-xs text-stone-400 hidden sm:inline font-mono">
+                            9 Disciplines
                         </span>
-                        <span class="text-xs font-mono text-stone-500">standard clinic rate</span>
                     </div>
 
-                    <!-- Clinical Description -->
-                    <p id="mainStageDescription" class="text-stone-700 text-sm sm:text-base leading-relaxed max-w-xl font-light mb-8">
-                        <?= htmlspecialchars($initialTrt['description'] ?? '') ?>
-                    </p>
-
-                    <!-- Editorial Specification Bar -->
-                    <div class="grid grid-cols-3 gap-4 border-t border-b border-stone-300 py-5 mb-8 text-xs max-w-xl">
-                        <div>
-                            <span class="block text-[10px] uppercase tracking-widest text-stone-400 mb-1">Session</span>
-                            <span id="mainStageDuration" class="font-bold text-stone-900 text-sm">
-                                <?= htmlspecialchars($initialTrt['duration'] ?? '') ?>
-                            </span>
-                        </div>
-                        <div>
-                            <span class="block text-[10px] uppercase tracking-widest text-stone-400 mb-1">Comfort</span>
-                            <span id="mainStageComfort" class="font-bold text-stone-900 text-sm">
-                                <?= htmlspecialchars($initialTrt['comfort'] ?? '') ?>
-                            </span>
-                        </div>
-                        <div>
-                            <span class="block text-[10px] uppercase tracking-widest text-stone-400 mb-1">Inclusions</span>
-                            <span id="mainStageInclusions" class="font-bold text-stone-900 text-sm truncate block">
-                                <?= htmlspecialchars($initialTrt['inclusions'] ?? '') ?>
-                            </span>
-                        </div>
+                    <!-- Filmstrip Row in Modal -->
+                    <div class="flex items-center space-x-3 sm:space-x-4 overflow-x-auto no-scrollbar py-2 select-none">
+                        <?php foreach ($treatmentsData as $idx => $item): ?>
+                            <button type="button" 
+                                    onclick="selectModalTreatment(<?= $idx ?>)" 
+                                    onmouseenter="selectModalTreatment(<?= $idx ?>)"
+                                    data-thumb-idx="<?= $idx ?>"
+                                    class="modal-thumb-card group relative h-28 sm:h-32 w-18 sm:w-22 rounded-xl overflow-hidden border-2 border-stone-300/80 hover:border-stone-800 transition-all flex-shrink-0 cursor-pointer shadow-sm">
+                                <img src="<?= htmlspecialchars($item['image']) ?>" 
+                                     alt="<?= htmlspecialchars($item['name']) ?>" 
+                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                
+                                <span class="absolute top-1.5 left-1.5 text-[9px] font-mono font-bold text-white bg-black/60 px-1 rounded">
+                                    <?= $item['index'] ?>
+                                </span>
+                            </button>
+                        <?php endforeach; ?>
                     </div>
-
-                    <!-- Primary Action -->
-                    <div>
-                        <a id="mainStagePrimaryCta" 
-                           href="#booking-form" 
-                           onclick="prefillConcern('<?= addslashes(htmlspecialchars($initialTrt['name'] ?? '')) ?>')"
-                           class="inline-flex items-center space-x-2.5 px-8 py-4 bg-stone-950 hover:bg-stone-800 text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-lg transition">
-                            <span>Schedule This Procedure</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bottom: Clickable Horizontal Thumbnail Filmstrip (Transfers to the Big Picture) -->
-            <div class="pt-8 border-t border-stone-300">
-                <div class="flex items-center justify-between mb-4">
-                    <span class="text-[11px] uppercase tracking-widest font-mono text-stone-500">
-                        Select a procedure (Click or hover thumbnail to transfer to stage):
-                    </span>
-                    <span class="text-xs text-stone-400 hidden sm:inline font-mono">
-                        9 Available Disciplines
-                    </span>
-                </div>
-
-                <!-- Filmstrip Row -->
-                <div id="thumbnailFilmstrip" class="flex items-center space-x-3 sm:space-x-4 overflow-x-auto no-scrollbar py-2 select-none">
-                    <?php foreach ($treatmentsData as $idx => $item): ?>
-                        <button type="button" 
-                                onclick="selectTreatment(<?= $idx ?>)" 
-                                onmouseenter="previewTreatment(<?= $idx ?>)"
-                                data-index="<?= $idx ?>"
-                                class="thumb-card group relative h-32 sm:h-36 w-20 sm:w-24 rounded-xl overflow-hidden border-2 <?= $idx === 0 ? 'border-stone-950 ring-2 ring-stone-950/20' : 'border-stone-300/80 hover:border-stone-600' ?> transition-all flex-shrink-0 cursor-pointer shadow-sm">
-                            <img src="<?= htmlspecialchars($item['image']) ?>" 
-                                 alt="<?= htmlspecialchars($item['name']) ?>" 
-                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                            
-                            <div class="absolute inset-0 bg-stone-950/20 group-hover:bg-transparent transition-colors"></div>
-                            
-                            <span class="absolute top-1.5 left-1.5 text-[9px] font-mono font-bold text-white bg-black/60 px-1 rounded">
-                                <?= $item['index'] ?>
-                            </span>
-                        </button>
-                    <?php endforeach; ?>
                 </div>
             </div>
 
         </div>
-    </section>
+    </div>
 
     <script>
-        const treatmentsList = <?= json_encode($treatmentsData) ?>;
-        let selectedIndex = 0;
+        const allTreatments = <?= json_encode($treatmentsData) ?>;
+        let currentModalIdx = 0;
 
-        function updateStage(t) {
-            const img = document.getElementById('mainStageImage');
-            const title = document.getElementById('mainStageTitle');
-            const category = document.getElementById('mainStageCategory');
-            const categoryPill = document.getElementById('mainStageCategoryPill');
-            const codePill = document.getElementById('mainStageCodePill');
-            const price = document.getElementById('mainStagePrice');
-            const desc = document.getElementById('mainStageDescription');
-            const duration = document.getElementById('mainStageDuration');
-            const comfort = document.getElementById('mainStageComfort');
-            const inclusions = document.getElementById('mainStageInclusions');
-            const counter = document.getElementById('activeCounter');
-            const bookingBtn = document.getElementById('mainStageBookingBtn');
-            const primaryCta = document.getElementById('mainStagePrimaryCta');
+        // Open Modal and display selected treatment
+        function openProcedureModal(index) {
+            currentModalIdx = index;
+            selectModalTreatment(index);
 
-            if (img && title) {
-                // Smooth image swap with subtle opacity fade
-                img.style.opacity = '0.4';
+            const modal = document.getElementById('procedureModal');
+            const container = document.getElementById('modalContainer');
+            if (modal && container) {
+                modal.classList.remove('hidden');
                 setTimeout(() => {
-                    img.src = t.image;
-                    img.alt = t.name;
-                    img.style.opacity = '1';
-                }, 150);
+                    modal.classList.remove('opacity-0');
+                    container.classList.remove('scale-95');
+                    container.classList.add('scale-100');
+                }, 10);
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Close Modal
+        function closeProcedureModal() {
+            const modal = document.getElementById('procedureModal');
+            const container = document.getElementById('modalContainer');
+            if (modal && container) {
+                modal.classList.add('opacity-0');
+                container.classList.remove('scale-100');
+                container.classList.add('scale-95');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }, 300);
+            }
+        }
+
+        // Transfer Picture and Update Info in Modal
+        function selectModalTreatment(index) {
+            currentModalIdx = index;
+            const t = allTreatments[index];
+            if (!t) return;
+
+            const bigImg = document.getElementById('modalBigImage');
+            const title = document.getElementById('modalTitle');
+            const category = document.getElementById('modalCategory');
+            const categoryPill = document.getElementById('modalCategoryPill');
+            const codePill = document.getElementById('modalCodePill');
+            const price = document.getElementById('modalPrice');
+            const desc = document.getElementById('modalDescription');
+            const duration = document.getElementById('modalDuration');
+            const comfort = document.getElementById('modalComfort');
+            const inclusions = document.getElementById('modalInclusions');
+            const counter = document.getElementById('modalActiveCounter');
+            const bookingBtn = document.getElementById('modalBookingBtn');
+
+            if (bigImg && title) {
+                // Smooth image swap with subtle opacity cross-fade
+                bigImg.style.opacity = '0.35';
+                setTimeout(() => {
+                    bigImg.src = t.image;
+                    bigImg.alt = t.name;
+                    bigImg.style.opacity = '1';
+                }, 120);
 
                 title.innerText = t.name;
                 category.innerText = `${t.index} / ${t.category}`;
@@ -444,49 +530,90 @@ $currentUser = Session::user();
                 duration.innerText = t.duration;
                 comfort.innerText = t.comfort;
                 inclusions.innerText = t.inclusions;
-                counter.innerText = `${t.index} / ${String(treatmentsList.length).padStart(2, '0')}`;
+                counter.innerText = `${t.index} / ${String(allTreatments.length).padStart(2, '0')}`;
 
                 if (bookingBtn) {
-                    bookingBtn.onclick = () => prefillConcern(t.name);
+                    bookingBtn.onclick = () => {
+                        closeProcedureModal();
+                        prefillConcern(t.name);
+                    };
                 }
-                if (primaryCta) {
-                    primaryCta.onclick = () => prefillConcern(t.name);
-                }
+
+                // Highlight active thumbnail card
+                const thumbs = document.querySelectorAll('.modal-thumb-card');
+                thumbs.forEach((th, i) => {
+                    if (i === index) {
+                        th.classList.add('border-stone-950', 'ring-2', 'ring-stone-950/20');
+                        th.classList.remove('border-stone-300/80');
+                    } else {
+                        th.classList.remove('border-stone-950', 'ring-2', 'ring-stone-950/20');
+                        th.classList.add('border-stone-300/80');
+                    }
+                });
+
                 if (window.lucide) {
                     lucide.createIcons();
                 }
             }
         }
 
-        function highlightThumbnail(index) {
-            const thumbs = document.querySelectorAll('.thumb-card');
-            thumbs.forEach((th, i) => {
-                if (i === index) {
-                    th.classList.add('border-stone-950', 'ring-2', 'ring-stone-950/20');
-                    th.classList.remove('border-stone-300/80');
-                } else {
-                    th.classList.remove('border-stone-950', 'ring-2', 'ring-stone-950/20');
-                    th.classList.add('border-stone-300/80');
+        // Close on ESC key or clicking outside container
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeProcedureModal();
+        });
+
+        document.getElementById('procedureModal')?.addEventListener('click', (e) => {
+            if (e.target === document.getElementById('procedureModal')) {
+                closeProcedureModal();
+            }
+        });
+
+        // Slideshow Navigation (Prev/Next buttons, wheel, drag)
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.getElementById('servicesTrack');
+            const prevBtn = document.getElementById('sliderPrevBtn');
+            const nextBtn = document.getElementById('sliderNextBtn');
+            
+            if (track) {
+                const scrollStep = 380;
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', function() {
+                        track.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+                    });
                 }
-            });
-        }
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', function() {
+                        track.scrollBy({ left: scrollStep, behavior: 'smooth' });
+                    });
+                }
 
-        function selectTreatment(index) {
-            selectedIndex = index;
-            const t = treatmentsList[index];
-            if (t) {
-                updateStage(t);
-                highlightThumbnail(index);
-            }
-        }
+                track.addEventListener('wheel', (e) => {
+                    if (e.deltaY !== 0) {
+                        e.preventDefault();
+                        track.scrollBy({ left: e.deltaY * 1.5, behavior: 'auto' });
+                    }
+                }, { passive: false });
 
-        function previewTreatment(index) {
-            const t = treatmentsList[index];
-            if (t) {
-                updateStage(t);
-                highlightThumbnail(index);
+                let isDown = false;
+                let startX;
+                let scrollLeft;
+
+                track.addEventListener('mousedown', (e) => {
+                    isDown = true;
+                    startX = e.pageX - track.offsetLeft;
+                    scrollLeft = track.scrollLeft;
+                });
+                track.addEventListener('mouseleave', () => { isDown = false; });
+                track.addEventListener('mouseup', () => { isDown = false; });
+                track.addEventListener('mousemove', (e) => {
+                    if (!isDown) return;
+                    e.preventDefault();
+                    const x = e.pageX - track.offsetLeft;
+                    const walk = (x - startX) * 1.6;
+                    track.scrollLeft = scrollLeft - walk;
+                });
             }
-        }
+        });
     </script>
 
     <!-- Clinical Standards & What to Expect (Refined Editorial Layout) -->
