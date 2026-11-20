@@ -135,128 +135,114 @@ $currentUser = Session::user();
         </div>
     </header>
 
-    <!-- Hero Section (High-Tech Biotech / Architectural Editorial Layout from Reference) -->
-    <section class="bg-[#F7F6F2] border-b border-[#E5E1D8] py-12 md:py-20 relative overflow-hidden">
+    <!-- Full Hero Section (Edge-to-Edge High-Tech Biotech / Architectural Editorial Screen) -->
+    <section class="relative w-full min-h-[calc(100vh-72px)] bg-[#F7F6F2] border-b border-[#E5E1D8] px-6 sm:px-10 lg:px-16 py-8 sm:py-12 flex flex-col justify-between overflow-hidden">
         
         <!-- Subtle Architectural Ambient Watermark Grid -->
-        <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: linear-gradient(#1c1917 1px, transparent 1px), linear-gradient(to right, #1c1917 1px, transparent 1px); background-size: 80px 80px;"></div>
+        <div class="absolute inset-0 opacity-[0.035] pointer-events-none" style="background-image: linear-gradient(#1c1917 1px, transparent 1px), linear-gradient(to right, #1c1917 1px, transparent 1px); background-size: 80px 80px;"></div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <!-- Full Canvas Grid -->
+        <div class="w-full h-full flex-1 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center relative z-10 my-auto">
             
-            <!-- Main Architectural Canvas Frame -->
-            <div class="relative bg-white/90 backdrop-blur-sm rounded-[2.5rem] border border-[#E5E1D8] shadow-2xl overflow-hidden p-6 sm:p-10 lg:p-14">
-                
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center relative">
-                    
-                    <!-- Left Column: Massive Wide Bold Headline & Subtitle -->
-                    <div class="lg:col-span-6 z-20 flex flex-col justify-between space-y-8">
-                        <div>
-                            <div class="flex items-center space-x-3 mb-6">
-                                <span class="w-2 h-2 rounded-full bg-stone-900 animate-pulse"></span>
-                                <span class="font-mono text-[11px] font-bold tracking-[0.28em] uppercase text-stone-500">
-                                    SDC ATELIER // METRO MANILA
-                                </span>
-                            </div>
+            <!-- Left Column: Towering Geometric Headline & Bottom-Left Vignette -->
+            <div class="lg:col-span-5 flex flex-col justify-between h-full space-y-8 lg:space-y-12 z-20">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <span class="w-2.5 h-2.5 rounded-full bg-stone-900 animate-pulse"></span>
+                        <span class="font-mono text-xs font-bold tracking-[0.28em] uppercase text-stone-500">
+                            SDC ATELIER // METRO MANILA
+                        </span>
+                    </div>
 
-                            <!-- Massive Bold Geometric Tech Typography (Matches Reference) -->
-                            <h2 class="text-4xl sm:text-6xl lg:text-[4.2rem] font-black tracking-tight uppercase leading-[0.92] text-stone-950">
-                                ADVANCED <br>
-                                <span class="tracking-tight text-stone-900">CLINICAL</span> <br>
-                                <span class="font-serif italic font-normal text-stone-600 lowercase tracking-normal">dentistry</span>
-                            </h2>
-                            
-                            <p class="text-stone-600 text-xs sm:text-sm mt-6 max-w-md font-light leading-relaxed">
-                                A high-precision clinical practice uniting digital diagnostic imaging, ultrasonic dental care, and bespoke aesthetic restorations in Makati & Pasig.
+                    <!-- Massive Bold Geometric Tech Typography (Matches Reference) -->
+                    <h2 class="text-5xl sm:text-7xl lg:text-[5rem] xl:text-[5.8rem] font-black tracking-tighter uppercase leading-[0.88] text-stone-950">
+                        ADVANCED <br>
+                        <span class="tracking-tight text-stone-900">CLINICAL</span> <br>
+                        <span class="font-serif italic font-normal text-stone-600 lowercase tracking-normal">dentistry</span>
+                    </h2>
+                    
+                    <p class="text-stone-600 text-xs sm:text-sm mt-8 max-w-md font-light leading-relaxed">
+                        A high-precision clinical practice uniting digital diagnostic imaging, ultrasonic dental care, and bespoke aesthetic restorations across Makati & Pasig.
+                    </p>
+                </div>
+
+                <!-- Bottom-Left Vignette: Compact Video / Procedure Preview Tile (Matches Reference) -->
+                <div class="pt-6 border-t border-[#E5E1D8] max-w-md">
+                    <div class="flex items-start space-x-4">
+                        <a href="#services" class="relative w-28 h-20 rounded-2xl overflow-hidden bg-stone-900 border border-[#E5E1D8] flex-shrink-0 group block shadow-md">
+                            <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Procedure preview" 
+                                 class="w-full h-full object-cover filter brightness-90 group-hover:scale-110 transition duration-500">
+                            <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+                                <div class="w-9 h-9 rounded-full bg-white text-stone-950 flex items-center justify-center shadow-lg transition transform group-hover:scale-110">
+                                    <i data-lucide="play" class="w-4 h-4 fill-current ml-0.5"></i>
+                                </div>
+                            </div>
+                        </a>
+                        <div>
+                            <span class="text-[10px] font-mono uppercase tracking-widest text-teal-700 font-bold block mb-1">
+                                CLINICAL PREVIEW // 01
+                            </span>
+                            <p class="text-xs text-stone-600 leading-relaxed font-light">
+                                Exploring non-invasive laser diagnostics, digital radiography, and gentle restorative workflows.
                             </p>
                         </div>
+                    </div>
+                </div>
+            </div>
 
-                        <!-- Bottom-Left Vignette: Compact Video / Procedure Preview Tile (Matches Reference) -->
-                        <div class="pt-4 border-t border-[#EFECE6] max-w-sm">
-                            <div class="flex items-start space-x-4">
-                                <a href="#services" class="relative w-24 h-20 rounded-xl overflow-hidden bg-stone-900 border border-[#E5E1D8] flex-shrink-0 group block shadow-md">
-                                    <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=600&q=80" 
-                                         alt="Procedure preview" 
-                                         class="w-full h-full object-cover filter brightness-90 group-hover:scale-110 transition duration-500">
-                                    <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
-                                        <div class="w-8 h-8 rounded-full bg-white text-stone-950 flex items-center justify-center shadow-lg transition transform group-hover:scale-110">
-                                            <i data-lucide="play" class="w-3.5 h-3.5 fill-current ml-0.5"></i>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div>
-                                    <span class="text-[9px] font-mono uppercase tracking-widest text-teal-600 font-bold block mb-1">
-                                        CLINICAL PREVIEW
-                                    </span>
-                                    <p class="text-[11px] text-stone-600 leading-relaxed">
-                                        Exploring non-invasive laser diagnostics, digital radiography, and gentle restorative workflows.
-                                    </p>
-                                </div>
-                            </div>
+            <!-- Center Column: Prominent High-Tech Clinical Visual (Expansive Full Scale) -->
+            <div class="lg:col-span-4 relative flex items-center justify-center">
+                <div class="relative w-full h-[440px] sm:h-[520px] lg:h-[580px] xl:h-[620px] rounded-3xl overflow-hidden shadow-2xl border border-[#E5E1D8] bg-stone-950 group">
+                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1400&q=85" 
+                         alt="SDC High-Tech Clinical Operatory" 
+                         class="w-full h-full object-cover filter brightness-95 transition-transform duration-700 ease-out group-hover:scale-105">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent flex flex-col justify-end p-8 text-white pointer-events-none">
+                        <span class="text-[10px] font-mono tracking-widest uppercase text-teal-300 font-bold mb-1">
+                            DIAGNOSTIC SUITE // METRO MANILA
+                        </span>
+                        <p class="text-xs text-stone-300 font-light leading-relaxed">
+                            Class-B vacuum autoclave sterilization & digital operatory imaging.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Editorial Teasers & Direct Actions (Matches Reference) -->
+            <div class="lg:col-span-3 flex flex-col justify-between h-full space-y-8 lg:space-y-12">
+                
+                <!-- Top Right Card: Specialized Standards Teaser -->
+                <a href="#standards" class="group block p-5 rounded-3xl bg-white border border-[#E5E1D8] hover:border-stone-400/80 shadow-sm transition">
+                    <div class="w-full h-36 rounded-2xl overflow-hidden bg-stone-900 mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&fit=crop&w=600&q=80" 
+                             alt="Sterilization & Clinical Standards" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500 filter brightness-95">
+                        <div class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-white font-mono text-[9px] font-bold">
+                            PROTOCOL
                         </div>
                     </div>
+                    <span class="text-[10px] font-mono uppercase tracking-widest text-stone-500 font-bold block mb-1">
+                        PRACTICE STANDARD
+                    </span>
+                    <h4 class="text-xs font-bold text-stone-950 group-hover:underline leading-snug">
+                        Class-B Vacuum Autoclave & Surgical Hygiene Standards
+                    </h4>
+                </a>
 
-                    <!-- Center & Right: Hero Centerpiece & Flanking Editorial Teasers -->
-                    <div class="lg:col-span-6 relative z-10">
-                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
-                            
-                            <!-- Centerpiece: Prominent Diagonal High-Tech Clinical Visual (Matches Reference) -->
-                            <div class="sm:col-span-7 relative">
-                                <div class="relative w-full h-[380px] sm:h-[460px] rounded-2xl overflow-hidden shadow-2xl border border-[#E5E1D8] bg-stone-950 group">
-                                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=85" 
-                                         alt="SDC High-Tech Clinical Operatory" 
-                                         class="w-full h-full object-cover filter brightness-95 transition-transform duration-700 ease-out group-hover:scale-105">
-                                    
-                                    <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent flex flex-col justify-end p-6 text-white pointer-events-none">
-                                        <span class="text-[9px] font-mono tracking-widest uppercase text-teal-300 font-bold mb-1">
-                                            DIAGNOSTIC SUITE // 01
-                                        </span>
-                                        <p class="text-xs text-stone-300 font-light leading-relaxed">
-                                            Class-B sterilization & digital operatory imaging.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Right Flank: Editorial Article Teaser & Direct Booking Link (Matches Reference) -->
-                            <div class="sm:col-span-5 flex flex-col justify-between space-y-6">
-                                
-                                <!-- Top Right Card: Specialized Standards Teaser -->
-                                <a href="#standards" class="group block p-4 rounded-2xl bg-[#FAF9F5] border border-[#E5E1D8] hover:border-stone-400/80 shadow-xs transition">
-                                    <div class="w-full h-28 rounded-xl overflow-hidden bg-stone-900 mb-3 relative">
-                                        <img src="https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&fit=crop&w=600&q=80" 
-                                             alt="Sterilization & Clinical Standards" 
-                                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500 filter brightness-95">
-                                        <div class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/60 backdrop-blur-md text-white font-mono text-[9px]">
-                                            PROTOCOL
-                                        </div>
-                                    </div>
-                                    <span class="text-[9px] font-mono uppercase tracking-widest text-stone-500 font-bold block mb-1">
-                                        PRACTICE STANDARD
-                                    </span>
-                                    <h4 class="text-xs font-bold text-stone-950 group-hover:underline leading-snug">
-                                        Class-B Vacuum Autoclave & Surgical Hygiene Standards
-                                    </h4>
-                                </a>
-
-                                <!-- Bottom Right Note & Action Link -->
-                                <div class="pt-2">
-                                    <p class="text-[11px] text-stone-500 leading-relaxed mb-4">
-                                        Direct doctor consultations, transparent itemized receipts, and comfortable suites in Metro Manila.
-                                    </p>
-                                    <a href="#booking-form" class="inline-flex items-center space-x-2 text-xs font-bold text-stone-950 uppercase tracking-wider group hover:text-stone-700 transition">
-                                        <span>Reserve Visit</span>
-                                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1"></i>
-                                    </a>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-
+                <!-- Bottom Right Philosophy Note & Reserve Action -->
+                <div class="pt-6 border-t border-[#E5E1D8]">
+                    <p class="text-xs text-stone-500 leading-relaxed mb-6 font-light">
+                        Direct doctor consultations, transparent itemized receipts, and comfortable private suites in Metro Manila.
+                    </p>
+                    <a href="#booking-form" class="inline-flex items-center space-x-2 px-6 py-3.5 bg-stone-950 hover:bg-black text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-md transition group">
+                        <span>Reserve Visit</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1"></i>
+                    </a>
                 </div>
 
             </div>
+
         </div>
     </section>
 
