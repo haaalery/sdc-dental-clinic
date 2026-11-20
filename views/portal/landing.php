@@ -279,14 +279,14 @@ $currentUser = Session::user();
 
             </div>
 
-            <!-- CENTER COLUMN: Large Centerpiece Image spanning Full Height of Hero Section with 3D Tilt & Interactive Hotspots -->
-            <div class="lg:col-span-5 h-full relative flex items-center justify-center min-h-0 hero-perspective -my-6 lg:-my-8 py-0 z-20">
-                <div id="heroTiltCard" class="hero-tilt-card relative w-full h-full min-h-[460px] lg:min-h-0 overflow-hidden border-x lg:border border-stone-200 bg-stone-900 shadow-2xl group rounded-none">
+            <!-- CENTER COLUMN: Large Centerpiece Image spanning Full Height of Hero Section (Stationary, Clean, Zero Round Borders) -->
+            <div class="lg:col-span-5 h-full relative flex items-center justify-center min-h-0 -my-6 lg:-my-8 py-0 z-20">
+                <div class="relative w-full h-full min-h-[460px] lg:min-h-0 overflow-hidden border-x lg:border border-stone-200 bg-stone-900 shadow-2xl rounded-none">
                     
-                    <!-- 100% VISIBLE FULL-CONTRAST IMAGE -->
+                    <!-- 100% VISIBLE FULL-CONTRAST STATIC IMAGE -->
                     <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1600&q=85" 
                          alt="SDC Precision Dental Suite" 
-                         class="w-full h-full object-cover filter contrast-[1.05] brightness-95 transition-transform duration-700 ease-out group-hover:scale-105 rounded-none">
+                         class="w-full h-full object-cover filter contrast-[1.05] brightness-95 rounded-none">
                     
                     <!-- Tech Coordinates Header Tag -->
                     <div class="absolute top-3 left-3 text-[9px] font-mono uppercase tracking-widest text-white/90 bg-black/75 px-2.5 py-1 rounded-none pointer-events-none z-20 flex items-center space-x-2">
@@ -294,48 +294,6 @@ $currentUser = Session::user();
                         <span>LAT: 14.5547° N // LON: 121.0244° E</span>
                     </div>
 
-                    <!-- HOTSPOT 01: 3D Scanner (Top Left) -->
-                    <div class="absolute top-[26%] left-[26%] z-30 group/hotspot">
-                        <div class="relative w-7 h-7 bg-black text-white text-[10px] font-mono font-bold flex items-center justify-center border border-white shadow-lg cursor-pointer hover:bg-stone-800 rounded-none transition transform group-hover/hotspot:scale-110">
-                            <span>01</span>
-                            <span class="absolute inset-0 border border-teal-400 animate-ping opacity-60 rounded-none pointer-events-none"></span>
-                        </div>
-                        <!-- Hotspot Tooltip Card -->
-                        <div class="absolute left-9 top-1/2 -translate-y-1/2 w-52 sm:w-60 bg-white text-stone-900 border border-stone-300 p-3 shadow-2xl opacity-0 group-hover/hotspot:opacity-100 transition-all duration-200 pointer-events-none rounded-none z-40">
-                            <span class="text-[8px] font-mono tracking-widest uppercase text-stone-400 font-bold block mb-1">EQUIPMENT // 01</span>
-                            <div class="text-xs font-black uppercase text-black leading-tight">3D Digital Oral Scanner</div>
-                            <div class="text-[10px] text-stone-500 mt-1 leading-snug">5-micron volumetric accuracy for virtual crown milling without messy impressions.</div>
-                        </div>
-                    </div>
-
-                    <!-- HOTSPOT 02: Autoclave Suite (Mid Right) -->
-                    <div class="absolute top-[52%] right-[22%] z-30 group/hotspot">
-                        <div class="relative w-7 h-7 bg-black text-white text-[10px] font-mono font-bold flex items-center justify-center border border-white shadow-lg cursor-pointer hover:bg-stone-800 rounded-none transition transform group-hover/hotspot:scale-110">
-                            <span>02</span>
-                            <span class="absolute inset-0 border border-teal-400 animate-ping opacity-60 rounded-none pointer-events-none"></span>
-                        </div>
-                        <!-- Hotspot Tooltip Card -->
-                        <div class="absolute right-9 top-1/2 -translate-y-1/2 w-52 sm:w-60 bg-white text-stone-900 border border-stone-300 p-3 shadow-2xl opacity-0 group-hover/hotspot:opacity-100 transition-all duration-200 pointer-events-none rounded-none z-40">
-                            <span class="text-[8px] font-mono tracking-widest uppercase text-stone-400 font-bold block mb-1">EQUIPMENT // 02</span>
-                            <div class="text-xs font-black uppercase text-black leading-tight">Class-B Vacuum Autoclave</div>
-                            <div class="text-[10px] text-stone-500 mt-1 leading-snug">Hospital-grade fractionated vacuum sterilization with verified digital spore tracking.</div>
-                        </div>
-                    </div>
-
-                    <!-- HOTSPOT 03: Ultrasonic Scaler (Bottom Left) -->
-                    <div class="absolute bottom-[24%] left-[28%] z-30 group/hotspot">
-                        <div class="relative w-7 h-7 bg-black text-white text-[10px] font-mono font-bold flex items-center justify-center border border-white shadow-lg cursor-pointer hover:bg-stone-800 rounded-none transition transform group-hover/hotspot:scale-110">
-                            <span>03</span>
-                            <span class="absolute inset-0 border border-teal-400 animate-ping opacity-60 rounded-none pointer-events-none"></span>
-                        </div>
-                        <!-- Hotspot Tooltip Card -->
-                        <div class="absolute left-9 bottom-0 w-52 sm:w-60 bg-white text-stone-900 border border-stone-300 p-3 shadow-2xl opacity-0 group-hover/hotspot:opacity-100 transition-all duration-200 pointer-events-none rounded-none z-40">
-                            <span class="text-[8px] font-mono tracking-widest uppercase text-stone-400 font-bold block mb-1">EQUIPMENT // 03</span>
-                            <div class="text-xs font-black uppercase text-black leading-tight">Piezo Ultrasonic Scaler</div>
-                            <div class="text-[10px] text-stone-500 mt-1 leading-snug">Deep calculus debridement with micro-vibrations, safeguarding healthy dental enamel.</div>
-                        </div>
-                    </div>
-                    
                     <!-- Centerpiece Bottom Gradient & Title -->
                     <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex flex-col justify-end p-6 sm:p-8 text-white pointer-events-none rounded-none">
                         <span class="text-[10px] font-mono tracking-widest uppercase text-teal-300 font-bold mb-1 flex items-center space-x-2">
@@ -1295,38 +1253,6 @@ $currentUser = Session::user();
                     el.style.transform = 'translateY(0)';
                 }, 250);
             }, 3200);
-        })();
-        // 3D Spatial Tilt Physics for Hero Centerpiece Card
-        (function initHeroTilt() {
-            const hero = document.getElementById('heroSection');
-            const card = document.getElementById('heroTiltCard');
-            if (!hero || !card) return;
-
-            let ticking = false;
-
-            hero.addEventListener('mousemove', (e) => {
-                if (!ticking) {
-                    window.requestAnimationFrame(() => {
-                        const rect = card.getBoundingClientRect();
-                        const cardX = rect.left + rect.width / 2;
-                        const cardY = rect.top + rect.height / 2;
-
-                        const deltaX = (e.clientX - cardX) / (window.innerWidth / 2);
-                        const deltaY = (e.clientY - cardY) / (window.innerHeight / 2);
-
-                        const rotX = -deltaY * 7;
-                        const rotY = deltaX * 7;
-
-                        card.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
-                        ticking = false;
-                    });
-                    ticking = true;
-                }
-            });
-
-            hero.addEventListener('mouseleave', () => {
-                card.style.transform = 'rotateX(0deg) rotateY(0deg)';
-            });
         })();
 
         // Sticky Navbar Scroll Elevation (Solid opaque white, clean border)
