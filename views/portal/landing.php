@@ -226,7 +226,7 @@ $currentUser = Session::user();
             </div>
 
             <!-- LAYER 3A (z-30): TOP ROW (Top-Left Large Display Headline matching Reference Image) -->
-            <div class="relative z-30 flex flex-col lg:flex-row items-start justify-between gap-6">
+            <div class="relative z-30 flex flex-col lg:flex-row items-start justify-between gap-6 sm:pl-8 lg:pl-16 xl:pl-24 lg:pt-6">
                 
                 <!-- Top-Left: Large 3-Line Staggered Display Headline (Above Giant Text) -->
                 <div class="bg-white/95 lg:bg-transparent p-2 lg:p-0 rounded-none">
