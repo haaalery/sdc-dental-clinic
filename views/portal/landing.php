@@ -65,24 +65,6 @@ $currentUser = Session::user();
             box-shadow: 0 35px 80px -20px rgba(0, 0, 0, 0.95);
         }
 
-        /* Smooth Upward Click Glide Animation */
-        @keyframes smoothGlideUp {
-            0% {
-                transform: translateY(0);
-            }
-            35% {
-                transform: translateY(-8px);
-            }
-            70% {
-                transform: translateY(-2px);
-            }
-            100% {
-                transform: translateY(0);
-            }
-        }
-        .animate-glide-up {
-            animation: smoothGlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col font-sans">
@@ -120,7 +102,7 @@ $currentUser = Session::user();
     <!-- Main Navigation Bar -->
     <header class="bg-white text-slate-800 border-b border-slate-200 sticky top-0 z-30 shadow-xs">
         <div class="max-w-6xl mx-auto px-4 py-3.5 flex items-center justify-between">
-            <!-- Brand with Official Logo (Smooth Upward Animation & Scroll to Top on Click) -->
+            <!-- Brand with Official Logo -->
             <a href="<?= BASE_URL ?>/index.php" 
                id="brandLogoLink" 
                onclick="handleBrandClick(event)" 
@@ -966,15 +948,7 @@ $currentUser = Session::user();
         function handleBrandClick(event) {
             if (event) event.preventDefault();
 
-            // Trigger smooth upward micro-animation on the logo element
-            const brandLink = document.getElementById('brandLogoLink');
-            if (brandLink) {
-                brandLink.classList.remove('animate-glide-up');
-                void brandLink.offsetWidth; // Force CSS repaint / reflow
-                brandLink.classList.add('animate-glide-up');
-            }
-
-            // Smoothly glide window to top
+            // Smoothly scroll window to top
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
