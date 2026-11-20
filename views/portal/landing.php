@@ -54,15 +54,13 @@ $currentUser = Session::user();
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Awwwards Seamless Diagonal Slanted Strip Accordion */
+        /* Awwwards Clean Architectural Vertical Strip Accordion (Straight, Non-Diagonal) */
         .gallery-strip {
-            transform: skewX(-8deg);
             transition: width 0.75s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, z-index 0.2s ease;
             flex-shrink: 0;
-            will-change: width, transform;
+            will-change: width;
         }
         .gallery-strip-inner {
-            transform: skewX(8deg) scale(1.28);
             transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .gallery-strip:hover {
@@ -70,11 +68,7 @@ $currentUser = Session::user();
             box-shadow: 0 35px 80px -20px rgba(0, 0, 0, 0.95);
         }
         .gallery-strip:hover .gallery-strip-inner {
-            transform: skewX(8deg) scale(1.15);
-        }
-        .writing-vertical-rl {
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
+            transform: scale(1.03);
         }
     </style>
 </head>
@@ -297,60 +291,22 @@ $currentUser = Session::user();
             <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#0a0f18] to-transparent z-20 pointer-events-none"></div>
             <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#0a0f18] to-transparent z-20 pointer-events-none"></div>
 
-            <div id="servicesTrack" class="flex items-stretch space-x-0 py-6 px-10 sm:px-20 overflow-x-auto no-scrollbar scroll-smooth cursor-grab active:cursor-grabbing select-none">
+            <div id="servicesTrack" class="flex items-stretch space-x-0 py-6 px-8 sm:px-16 overflow-x-auto no-scrollbar scroll-smooth cursor-grab active:cursor-grabbing select-none">
                 <?php if (!empty($treatments)): ?>
                     <?php foreach ($treatments as $idx => $trt): 
                         $imgUrl = $trtPhotos[$trt['treatment_code']] ?? 'https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=900&q=80';
-                        $padIndex = str_pad($idx + 1, 2, '0', STR_PAD_LEFT);
-                        $meta = $trtDetails[$trt['treatment_code']] ?? ['duration' => '45 mins', 'comfort' => 'Clinical Grade', 'inclusions' => 'Consultation Included'];
                     ?>
-                        <!-- Seamless Diagonal Strip (Touches Adjacent Slanted Slices With Zero Gap) -->
+                        <!-- Pure Photographic Strip (Straight, Zero Text, Expands on Hover) -->
                         <a href="#booking-form" 
                            onclick="prefillConcern('<?= addslashes(htmlspecialchars($trt['treatment_name'])) ?>')"
-                           title="Click to schedule <?= htmlspecialchars($trt['treatment_name']) ?>"
-                           class="gallery-strip group relative h-[590px] w-[170px] sm:w-[200px] md:w-[220px] hover:w-[580px] sm:hover:w-[700px] md:hover:w-[820px] -ml-[2px] first:ml-0 overflow-hidden border-r border-t border-b border-white/10 first:border-l bg-slate-950 block cursor-pointer">
+                           title="<?= htmlspecialchars($trt['treatment_name']) ?> — <?= APP_CURRENCY ?><?= number_format($trt['standard_price'], 2) ?>"
+                           class="gallery-strip group relative h-[590px] w-[170px] sm:w-[200px] md:w-[220px] hover:w-[580px] sm:hover:w-[720px] md:hover:w-[840px] -ml-[1px] first:ml-0 overflow-hidden border-r border-t border-b border-white/10 first:border-l bg-slate-950 block cursor-pointer">
                             
-                            <!-- Image Frame -->
+                            <!-- Pure Full Image Frame (No Text Overlay) -->
                             <div class="gallery-strip-inner absolute inset-0 w-full h-full">
-                                
-                                <!-- Pure Crystal-Clear Photography (Full Slide on Hover, Zero Blur, Zero Dimming) -->
                                 <img src="<?= $imgUrl ?>" 
                                      alt="<?= htmlspecialchars($trt['treatment_name']) ?>" 
-                                     class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105 filter brightness-90 group-hover:brightness-100">
-
-                                <!-- Gentle Ambient Vignette (Fades Out Completely on Hover) -->
-                                <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 transition-opacity duration-500 group-hover:opacity-0"></div>
-
-                                <!-- Collapsed State Labels (Fades Out Completely on Hover - Zero Text on Hover) -->
-                                <div class="absolute inset-0 p-6 flex flex-col justify-between transition-opacity duration-500 group-hover:opacity-0 pointer-events-none z-10">
-                                    <!-- Clean Numerals -->
-                                    <div class="flex items-center justify-between">
-                                        <span class="font-mono text-2xl font-light text-white/50 tracking-tighter">
-                                            <?= $padIndex ?>
-                                        </span>
-                                        <span class="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
-                                    </div>
-
-                                    <!-- Vertical Rotated Text Ribbon -->
-                                    <div class="my-auto flex flex-col items-center justify-center">
-                                        <div class="writing-vertical-rl rotate-180 flex items-center space-x-4 space-x-reverse">
-                                            <span class="font-mono text-[9px] uppercase tracking-widest text-teal-400 font-medium py-1 px-2 bg-black/60 rounded border border-white/10 mb-2">
-                                                <?= htmlspecialchars($trt['category']) ?>
-                                            </span>
-                                            <h4 class="font-bold text-white text-xs tracking-[0.2em] uppercase whitespace-nowrap drop-shadow-md">
-                                                <?= htmlspecialchars($trt['treatment_name']) ?>
-                                            </h4>
-                                        </div>
-                                    </div>
-
-                                    <!-- Bottom Price -->
-                                    <div class="pt-4 border-t border-white/10 flex flex-col items-center text-center">
-                                        <span class="font-mono text-xs font-semibold text-white tracking-tight">
-                                            <?= APP_CURRENCY ?><?= number_format($trt['standard_price'], 0) ?>
-                                        </span>
-                                    </div>
-                                </div>
-
+                                     class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105 filter brightness-95 group-hover:brightness-105">
                             </div>
                         </a>
                     <?php endforeach; ?>
