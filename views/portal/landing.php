@@ -225,7 +225,7 @@ $currentUser = Session::user();
                      class="h-full w-auto max-w-none object-contain filter drop-shadow-[0_28px_36px_rgba(0,0,0,0.22)] rounded-none">
             </div>
 
-            <!-- LAYER 3A (z-30): TOP ROW (Top-Left Quote/Title Block & Top-Right Striped Numeral + Article Protocol Card) -->
+            <!-- LAYER 3A (z-30): TOP ROW (Top-Left Quote/Title Block) -->
             <div class="relative z-30 flex flex-col lg:flex-row items-start justify-between gap-6">
                 
                 <!-- Top-Left: Editorial Quote & Title Block (Above Giant Text) -->
@@ -242,32 +242,6 @@ $currentUser = Session::user();
                         <span>SDC Dental Care</span>
                         <span>·</span>
                         <span class="text-emerald-700">ISO-13485 Certified</span>
-                    </div>
-                </div>
-
-                <!-- Top-Right: Diagonal-Striped Architectural Number & Compact Article Card -->
-                <div class="flex items-start space-x-5 self-end lg:self-start">
-                    <!-- Compact Article Protocol Teaser -->
-                    <a href="#standards" class="group hidden sm:flex items-center space-x-3 border border-stone-200 bg-white p-2.5 hover:border-black transition duration-200 rounded-none shadow-xs max-w-[260px]">
-                        <div class="w-16 h-16 bg-stone-900 overflow-hidden relative flex-shrink-0 rounded-none">
-                            <img src="https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&fit=crop&w=400&q=80"
-                                 alt="Clinical Standards"
-                                 class="w-full h-full object-cover filter grayscale contrast-125 rounded-none">
-                        </div>
-                        <div class="min-w-0">
-                            <span class="text-[8px] font-mono uppercase tracking-widest text-stone-400 font-bold block mb-0.5">
-                                ARTICLE // PROTOCOL
-                            </span>
-                            <h4 class="text-[10px] font-extrabold text-black group-hover:underline uppercase tracking-wide leading-snug">
-                                Read our specialized clinical standards
-                            </h4>
-                        </div>
-                    </a>
-
-                    <!-- Diagonal-Hatched Display Number (Inspo: Striped '15' in Top-Right) -->
-                    <div class="hidden xl:block select-none pointer-events-none leading-none font-black text-[5.5rem] tracking-tighter"
-                         style="background: repeating-linear-gradient(-45deg, #1c1917, #1c1917 2px, transparent 2px, transparent 6px); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                        18
                     </div>
                 </div>
 
