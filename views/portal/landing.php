@@ -54,21 +54,19 @@ $currentUser = Session::user();
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Awwwards Clean Architectural Vertical Strip Accordion (Straight, Non-Diagonal) */
+        /* Awwwards Clean Architectural Vertical Strip Accordion (Straight, Position-Aware) */
         .gallery-strip {
             transition: width 0.75s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, z-index 0.2s ease;
             flex-shrink: 0;
             will-change: width;
         }
-        .gallery-strip-inner {
-            transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+        .gallery-strip img {
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+            will-change: transform;
         }
         .gallery-strip:hover {
             z-index: 30;
             box-shadow: 0 35px 80px -20px rgba(0, 0, 0, 0.95);
-        }
-        .gallery-strip:hover .gallery-strip-inner {
-            transform: scale(1.03);
         }
     </style>
 </head>
@@ -318,7 +316,7 @@ $currentUser = Session::user();
     </section>
 
     <script>
-        // High-Precision Drag, Scroll & Wheel Navigation for the Seamless Diagonal Accordion
+        // High-Precision Drag, Scroll, Wheel & Position-Aware Hover Parallax
         document.addEventListener('DOMContentLoaded', function() {
             const track = document.getElementById('servicesTrack');
             const prevBtn = document.getElementById('sliderPrevBtn');
@@ -338,6 +336,62 @@ $currentUser = Session::user();
                         track.scrollBy({ left: scrollStep, behavior: 'smooth' });
                     });
                 }
+
+                // Position-Aware Hover: Auto-Align into Viewport & Coordinate-Based Parallax
+                const strips = track.querySelectorAll('.gallery-strip');
+                let autoScrollTimeout;
+
+                strips.forEach((strip, index) => {
+                    strip.addEventListener('mouseenter', function() {
+                        // Dim neighboring strips subtly to highlight the active photo
+                        strips.forEach(s => {
+                            if (s !== strip) {
+                                s.style.opacity = '0.65';
+                                s.style.filter = 'grayscale(25%)';
+                            } else {
+                                s.style.opacity = '1';
+                                s.style.filter = 'none';
+                            }
+                        });
+
+                        // Position-based viewport auto-framing
+                        clearTimeout(autoScrollTimeout);
+                        autoScrollTimeout = setTimeout(() => {
+                            const trackRect = track.getBoundingClientRect();
+                            const stripRect = strip.getBoundingClientRect();
+                            
+                            // Check if the expanded strip extends outside visible bounds
+                            if (stripRect.right > trackRect.right - 60 || stripRect.left < trackRect.left + 60) {
+                                strip.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                            }
+                        }, 120);
+                    });
+
+                    // Cursor-position responsive parallax within the active picture
+                    strip.addEventListener('mousemove', function(e) {
+                        const rect = strip.getBoundingClientRect();
+                        const x = (e.clientX - rect.left) / rect.width;
+                        const y = (e.clientY - rect.top) / rect.height;
+                        const img = strip.querySelector('img');
+                        if (img) {
+                            const moveX = (x - 0.5) * -30;
+                            const moveY = (y - 0.5) * -18;
+                            img.style.transform = `scale(1.06) translate(${moveX}px, ${moveY}px)`;
+                        }
+                    });
+
+                    strip.addEventListener('mouseleave', function() {
+                        const img = strip.querySelector('img');
+                        if (img) {
+                            img.style.transform = '';
+                        }
+                        // Reset siblings
+                        strips.forEach(s => {
+                            s.style.opacity = '';
+                            s.style.filter = '';
+                        });
+                    });
+                });
 
                 // Mouse Wheel Horizontal Scroll
                 track.addEventListener('wheel', (e) => {
