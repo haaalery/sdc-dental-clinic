@@ -65,6 +65,39 @@ $currentUser = Session::user();
             box-shadow: 0 35px 70px -15px rgba(28, 25, 23, 0.45);
         }
 
+        /* Smooth Infinite Editorial Marquee */
+        @keyframes tickerTape {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .ticker-track {
+            display: flex;
+            width: 200%;
+            animation: tickerTape 32s linear infinite;
+        }
+        .ticker-track:hover {
+            animation-play-state: paused;
+        }
+
+        /* Interactive Clinical Hotspot Pulse */
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.7); }
+            50% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(20, 184, 166, 0); }
+        }
+        .hotspot-pulse {
+            animation: pulseGlow 2.8s infinite;
+        }
+
+        /* 3D Perspective Container */
+        .hero-perspective {
+            perspective: 1200px;
+        }
+        .hero-tilt-card {
+            transform-style: preserve-3d;
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+        }
+
     </style>
 </head>
 <body class="bg-[#F7F6F2] text-stone-900 antialiased min-h-screen flex flex-col font-sans">
@@ -136,7 +169,7 @@ $currentUser = Session::user();
     </header>
 
     <!-- Full Hero Section (Edge-to-Edge High-Tech Biotech / Architectural Editorial Screen) -->
-    <section class="relative w-full min-h-[calc(100vh-72px)] bg-[#F7F6F2] border-b border-[#E5E1D8] px-6 sm:px-10 lg:px-16 py-8 sm:py-12 flex flex-col justify-between overflow-hidden">
+    <section id="heroSection" class="relative w-full min-h-[calc(100vh-72px)] bg-[#F7F6F2] border-b border-[#E5E1D8] px-6 sm:px-10 lg:px-16 py-8 sm:py-12 flex flex-col justify-between overflow-hidden">
         
         <!-- Subtle Architectural Ambient Watermark Grid -->
         <div class="absolute inset-0 opacity-[0.035] pointer-events-none" style="background-image: linear-gradient(#1c1917 1px, transparent 1px), linear-gradient(to right, #1c1917 1px, transparent 1px); background-size: 80px 80px;"></div>
@@ -191,20 +224,59 @@ $currentUser = Session::user();
                 </div>
             </div>
 
-            <!-- Center Column: Prominent High-Tech Clinical Visual (Expansive Full Scale) -->
-            <div class="lg:col-span-4 relative flex items-center justify-center">
-                <div class="relative w-full h-[440px] sm:h-[520px] lg:h-[580px] xl:h-[620px] rounded-3xl overflow-hidden shadow-2xl border border-[#E5E1D8] bg-stone-950 group">
+            <!-- Center Column: Prominent High-Tech Visual with 3D Spatial Tilt & Interactive Hotspots -->
+            <div class="lg:col-span-4 relative flex items-center justify-center hero-perspective">
+                <div id="heroTiltCard" class="hero-tilt-card relative w-full h-[460px] sm:h-[540px] lg:h-[600px] xl:h-[640px] rounded-3xl overflow-hidden shadow-2xl border border-[#E5E1D8] bg-stone-950 group select-none">
                     <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1400&q=85" 
                          alt="SDC High-Tech Clinical Operatory" 
                          class="w-full h-full object-cover filter brightness-95 transition-transform duration-700 ease-out group-hover:scale-105">
                     
-                    <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent flex flex-col justify-end p-8 text-white pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-transparent to-transparent flex flex-col justify-end p-8 text-white pointer-events-none">
                         <span class="text-[10px] font-mono tracking-widest uppercase text-teal-300 font-bold mb-1">
-                            DIAGNOSTIC SUITE // METRO MANILA
+                            DIAGNOSTIC SUITE // ATELIER
                         </span>
                         <p class="text-xs text-stone-300 font-light leading-relaxed">
-                            Class-B vacuum autoclave sterilization & digital operatory imaging.
+                            Click or hover glowing markers to explore our clinical technology.
                         </p>
+                    </div>
+
+                    <!-- HOTSPOT 01: Laser Whitening (Upper Right) -->
+                    <div class="absolute top-[26%] right-[18%] z-30 group/spot">
+                        <button type="button" aria-label="Explore laser whitening" class="hotspot-pulse w-7 h-7 rounded-full bg-teal-400 text-stone-950 flex items-center justify-center font-mono font-black text-xs shadow-lg transition transform hover:scale-125 focus:outline-none cursor-pointer">
+                            +
+                        </button>
+                        <!-- Floating Glassmorphic Spec Card -->
+                        <div class="absolute right-0 top-9 w-60 p-3.5 rounded-2xl bg-stone-950/90 backdrop-blur-md text-white border border-white/20 shadow-2xl opacity-0 translate-y-2 pointer-events-none group-hover/spot:opacity-100 group-hover/spot:translate-y-0 group-hover/spot:pointer-events-auto transition-all duration-300 z-40">
+                            <span class="text-[9px] uppercase tracking-widest font-mono text-teal-400 font-bold block mb-1">SPEC 01 // COSMETIC</span>
+                            <h5 class="text-xs font-bold mb-1">Blue LED Laser Whitening</h5>
+                            <p class="text-[11px] text-stone-300 leading-tight">Gently lifts deep enamel stains by 6–8 shades in a single 60-min appointment.</p>
+                        </div>
+                    </div>
+
+                    <!-- HOTSPOT 02: Digital Radiography (Center Left) -->
+                    <div class="absolute top-[52%] left-[16%] z-30 group/spot">
+                        <button type="button" aria-label="Explore digital imaging" class="hotspot-pulse w-7 h-7 rounded-full bg-white text-stone-950 flex items-center justify-center font-mono font-black text-xs shadow-lg transition transform hover:scale-125 focus:outline-none cursor-pointer">
+                            +
+                        </button>
+                        <!-- Floating Glassmorphic Spec Card -->
+                        <div class="absolute left-0 top-9 w-60 p-3.5 rounded-2xl bg-stone-950/90 backdrop-blur-md text-white border border-white/20 shadow-2xl opacity-0 translate-y-2 pointer-events-none group-hover/spot:opacity-100 group-hover/spot:translate-y-0 group-hover/spot:pointer-events-auto transition-all duration-300 z-40">
+                            <span class="text-[9px] uppercase tracking-widest font-mono text-amber-300 font-bold block mb-1">SPEC 02 // DIAGNOSTICS</span>
+                            <h5 class="text-xs font-bold mb-1">Digital Intraoral Imaging</h5>
+                            <p class="text-[11px] text-stone-300 leading-tight">Instant HD radiographs with 80% less radiation exposure than conventional film.</p>
+                        </div>
+                    </div>
+
+                    <!-- HOTSPOT 03: Surgical Sterilization (Bottom Right) -->
+                    <div class="absolute bottom-[28%] right-[22%] z-30 group/spot">
+                        <button type="button" aria-label="Explore hospital-grade autoclave" class="hotspot-pulse w-7 h-7 rounded-full bg-teal-300 text-stone-950 flex items-center justify-center font-mono font-black text-xs shadow-lg transition transform hover:scale-125 focus:outline-none cursor-pointer">
+                            +
+                        </button>
+                        <!-- Floating Glassmorphic Spec Card -->
+                        <div class="absolute right-0 bottom-9 w-60 p-3.5 rounded-2xl bg-stone-950/90 backdrop-blur-md text-white border border-white/20 shadow-2xl opacity-0 translate-y-2 pointer-events-none group-hover/spot:opacity-100 group-hover/spot:translate-y-0 group-hover/spot:pointer-events-auto transition-all duration-300 z-40">
+                            <span class="text-[9px] uppercase tracking-widest font-mono text-teal-300 font-bold block mb-1">SPEC 03 // STERILIZATION</span>
+                            <h5 class="text-xs font-bold mb-1">Class-B Vacuum Autoclave</h5>
+                            <p class="text-[11px] text-stone-300 leading-tight">134°C medical sterilization with zero reuse on single-use barrier supplies.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -243,6 +315,45 @@ $currentUser = Session::user();
 
             </div>
 
+        </div>
+
+        <!-- Infinite Scope of Practice Editorial Marquee Ribbon -->
+        <div class="w-full border-t border-[#E5E1D8] pt-5 pb-2 mt-8 overflow-hidden select-none">
+            <div class="ticker-track flex items-center space-x-8 whitespace-nowrap font-mono text-[11px] font-bold tracking-[0.26em] uppercase text-stone-500">
+                <span>✦ COSMETIC LASER WHITENING</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ PORCELAIN RESTORATION</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ ULTRASONIC PERIODONTICS</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ DIGITAL INTRAORAL RADIOGRAPHY</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ MICROSCOPIC ENDODONTICS</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ INVISIBLE ORTHODONTIC ALIGNMENT</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ CLASS-B VACUUM STERILIZATION</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ ITEMIZED POS FEE TRANSPARENCY</span>
+                <span class="text-stone-300">/</span>
+                <!-- Loop repeat for seamless continuous animation -->
+                <span>✦ COSMETIC LASER WHITENING</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ PORCELAIN RESTORATION</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ ULTRASONIC PERIODONTICS</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ DIGITAL INTRAORAL RADIOGRAPHY</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ MICROSCOPIC ENDODONTICS</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ INVISIBLE ORTHODONTIC ALIGNMENT</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ CLASS-B VACUUM STERILIZATION</span>
+                <span class="text-stone-300">/</span>
+                <span>✦ ITEMIZED POS FEE TRANSPARENCY</span>
+                <span class="text-stone-300">/</span>
+            </div>
         </div>
     </section>
 
@@ -1002,6 +1113,38 @@ $currentUser = Session::user();
                     el.style.transform = 'translateY(0)';
                 }, 250);
             }, 3200);
+        })();
+        // 3D Spatial Tilt Physics for Hero Centerpiece Card
+        (function initHeroTilt() {
+            const hero = document.getElementById('heroSection');
+            const card = document.getElementById('heroTiltCard');
+            if (!hero || !card) return;
+
+            let ticking = false;
+
+            hero.addEventListener('mousemove', (e) => {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        const rect = card.getBoundingClientRect();
+                        const cardX = rect.left + rect.width / 2;
+                        const cardY = rect.top + rect.height / 2;
+                        
+                        const deltaX = (e.clientX - cardX) / (window.innerWidth / 2);
+                        const deltaY = (e.clientY - cardY) / (window.innerHeight / 2);
+                        
+                        const rotX = -deltaY * 7;
+                        const rotY = deltaX * 7;
+                        
+                        card.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+
+            hero.addEventListener('mouseleave', () => {
+                card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+            });
         })();
     </script>
 </body>
