@@ -247,39 +247,8 @@ $currentUser = Session::user();
 
             </div>
 
-            <!-- LAYER 3B (z-30): BOTTOM ROW (Bottom-Left Video Preview Tile & Bottom-Right High-Contrast Black Booking Card) -->
-            <div class="relative z-30 flex flex-col lg:flex-row items-stretch lg:items-end justify-between gap-6 mt-6 lg:mt-0">
-                
-                <!-- Bottom-Left: 4K Surgical Macro Video Preview Tile with Center Play Button -->
-                <div class="max-w-xs sm:max-w-[300px] space-y-2.5">
-                    <div class="relative w-full h-36 sm:h-40 bg-stone-900 border border-stone-300 overflow-hidden group/vid rounded-none shadow-md cursor-pointer"
-                         onclick="openProcedureModal(0)"
-                         title="Click to view surgical specifications">
-                        <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=800&q=80"
-                             alt="Clinical Procedure Video Preview"
-                             class="w-full h-full object-cover filter contrast-115 rounded-none">
-                        
-                        <div class="absolute top-2.5 left-2.5 px-2 py-0.5 bg-black/85 text-white font-mono text-[8px] uppercase tracking-widest flex items-center space-x-1.5 rounded-none z-10">
-                            <span class="w-1.5 h-1.5 bg-emerald-400"></span>
-                            <span>4K SURGICAL MACRO</span>
-                        </div>
-
-                        <!-- Center Play Button (Sharp Square, Zero Round Borders) -->
-                        <div class="absolute inset-0 bg-black/25 flex items-center justify-center z-10">
-                            <div class="w-11 h-11 bg-black text-white border border-white flex items-center justify-center shadow-lg transition transform group-hover/vid:scale-105 rounded-none">
-                                <i data-lucide="play" class="w-4 h-4 fill-current ml-0.5"></i>
-                            </div>
-                        </div>
-
-                        <div class="absolute bottom-2.5 right-2.5 px-2 py-0.5 bg-white text-black font-mono text-[8px] font-bold uppercase tracking-wider rounded-none z-10">
-                            SPEC 01 // EXPLORE
-                        </div>
-                    </div>
-
-                    <p class="text-[11px] text-stone-600 leading-relaxed font-normal bg-white/90 lg:bg-transparent">
-                        Exploring opportunities to make specialized restorative and aesthetic dentistry more precise, gentle, and accessible.
-                    </p>
-                </div>
+            <!-- LAYER 3B (z-30): BOTTOM ROW (Bottom-Right High-Contrast Black Booking Card) -->
+            <div class="relative z-30 flex flex-col lg:flex-row items-stretch lg:items-end justify-end gap-6 mt-6 lg:mt-0">
 
                 <!-- Bottom-Right: Sleek Solid Black Status & Booking Card (Inspo: Bottom-Right Dark Match Card, Zero Round Borders) -->
                 <div class="w-full sm:w-[340px] bg-stone-950 text-white border border-black p-5 shadow-xl rounded-none flex flex-col justify-between space-y-4">
