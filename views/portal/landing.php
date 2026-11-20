@@ -213,8 +213,8 @@ $currentUser = Session::user();
 
             <!-- LAYER 1 (z-10): Giant Monumental Full-Width Background Typography (Sits Behind the Handpiece Cutout) -->
             <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none select-none z-10 px-4 overflow-hidden">
-                <h2 class="text-[15.5vw] lg:text-[14.8vw] font-black uppercase tracking-tighter leading-none text-stone-950 whitespace-nowrap text-center">
-                    SDC&nbsp;DENTAL
+                <h2 class="text-[10.8vw] lg:text-[10.4vw] font-black uppercase tracking-tighter leading-none text-stone-950 whitespace-nowrap text-center">
+                    SDC&nbsp;DENTAL&nbsp;CARE
                 </h2>
             </div>
 
