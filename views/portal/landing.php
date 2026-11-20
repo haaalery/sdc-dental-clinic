@@ -202,168 +202,160 @@ $currentUser = Session::user();
             </div>
         </nav>
 
-        <!-- 2. Wireframe 3-Column Layout: Left (Title, Media, Text) | Center (Hotspots Over Full Hero) | Right (Card, Text, CTA) -->
-        <div
-            class="w-full flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch px-6 sm:px-10 lg:px-14 py-6 lg:py-8 relative z-10">
+        <!-- 2. Main Hero Canvas: Arda Guler Inspired Multi-Layer Cutout Composition (Zero Round Borders) -->
+        <div class="w-full flex-1 min-h-[640px] lg:min-h-0 relative flex flex-col justify-between px-6 sm:px-10 lg:px-14 py-6 lg:py-8 overflow-hidden">
 
-            <!-- Architectural Corner Crosshairs (High-Tech Blueprint Aesthetic) -->
-            <span class="absolute top-2 left-6 sm:left-10 text-stone-300 font-mono text-xs select-none pointer-events-none">+</span>
-            <span class="absolute top-2 right-6 sm:right-10 text-stone-300 font-mono text-xs select-none pointer-events-none">+</span>
-            <span class="absolute bottom-2 left-6 sm:left-10 text-stone-300 font-mono text-xs select-none pointer-events-none">+</span>
-            <span class="absolute bottom-2 right-6 sm:right-10 text-stone-300 font-mono text-xs select-none pointer-events-none">+</span>
+            <!-- Architectural Corner Crosshairs -->
+            <span class="absolute top-2 left-6 sm:left-10 text-stone-300 font-mono text-xs select-none pointer-events-none z-10">+</span>
+            <span class="absolute top-2 right-6 sm:right-10 text-stone-300 font-mono text-xs select-none pointer-events-none z-10">+</span>
+            <span class="absolute bottom-2 left-6 sm:left-10 text-stone-300 font-mono text-xs select-none pointer-events-none z-10">+</span>
+            <span class="absolute bottom-2 right-6 sm:right-10 text-stone-300 font-mono text-xs select-none pointer-events-none z-10">+</span>
 
-            <!-- LEFT COLUMN: Title (Top) | Media (Middle) | Text (Bottom) -->
-            <div class="lg:col-span-4 flex flex-col justify-between space-y-6 lg:space-y-0 z-20">
+            <!-- LAYER 1 (z-10): Giant Monumental Full-Width Background Typography (Sits Behind the Handpiece Cutout) -->
+            <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none select-none z-10 px-4 overflow-hidden">
+                <h2 class="text-[15.5vw] lg:text-[14.8vw] font-black uppercase tracking-tighter leading-none text-stone-950 whitespace-nowrap text-center">
+                    SDC&nbsp;DENTAL
+                </h2>
+            </div>
 
-                <!-- 1. Title Block (Directly on canvas like Image 1) -->
-                <div>
-                    <div class="inline-flex items-center space-x-2 px-2 py-0.5 bg-black text-white text-[9px] font-mono tracking-[0.25em] uppercase font-bold mb-3 rounded-none shadow-xs">
-                        <span class="w-1.5 h-1.5 bg-emerald-400 animate-pulse"></span>
+            <!-- LAYER 2 (z-20): Full-Height Foreground Cutout Image (Dental Handpiece & Dock Connector overlapping Giant Text) -->
+            <div class="relative lg:absolute lg:inset-y-0 lg:left-1/2 lg:-translate-x-1/2 z-20 flex items-center justify-center pointer-events-none select-none my-4 lg:my-0 h-[360px] sm:h-[440px] lg:h-full">
+                <img src="<?= BASE_URL ?>/assets/images/dental_handpiece_cutout.png"
+                     alt="SDC Precision Dental Handpiece and Dock Connector"
+                     class="h-full w-auto max-w-none object-contain filter drop-shadow-[0_28px_36px_rgba(0,0,0,0.22)] rounded-none">
+            </div>
+
+            <!-- LAYER 3A (z-30): TOP ROW (Top-Left Quote/Title Block & Top-Right Striped Numeral + Article Protocol Card) -->
+            <div class="relative z-30 flex flex-col lg:flex-row items-start justify-between gap-6">
+                
+                <!-- Top-Left: Editorial Quote & Title Block (Above Giant Text) -->
+                <div class="max-w-xs sm:max-w-sm bg-white/95 lg:bg-transparent p-2 lg:p-0 rounded-none">
+                    <div class="inline-flex items-center space-x-2 px-2 py-0.5 bg-black text-white text-[9px] font-mono tracking-[0.25em] uppercase font-bold mb-2.5 rounded-none">
+                        <span class="w-1.5 h-1.5 bg-emerald-400"></span>
                         <span>CLINICAL ATELIER // EST. 2018</span>
                     </div>
-                    <h1 class="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4.2rem] font-black tracking-tight uppercase leading-[0.9] text-black font-sans">
-                        ADVANCED <br>
-                        CLINICAL <br>
-                        DENTISTRY
+                    <div class="text-2xl font-serif font-black text-black leading-none mb-1">“</div>
+                    <h1 class="text-lg sm:text-xl lg:text-[1.35rem] font-black tracking-tight uppercase leading-[1.15] text-black font-sans">
+                        ADVANCED CLINICAL DENTISTRY ENGINEERED FOR ZERO-TRAUMA PRECISION &amp; LIFELONG AESTHETICS.
                     </h1>
-                    <div class="mt-3 flex items-center space-x-2 text-[10px] font-mono tracking-[0.22em] uppercase text-stone-500 font-bold">
-                        <span>SDC ATELIER</span>
+                    <div class="mt-2.5 flex items-center space-x-2 text-[10px] font-mono tracking-[0.2em] uppercase text-stone-500 font-bold">
+                        <span>SDC Dental Care</span>
                         <span>·</span>
-                        <span>TECHNOLOGY</span>
-                        <span>·</span>
-                        <span class="text-emerald-700">ISO-13485</span>
+                        <span class="text-emerald-700">ISO-13485 Certified</span>
                     </div>
                 </div>
 
-                <!-- 2. Media Block & 3. Text Block (Pinned at Bottom-Left like Image 1) -->
-                <div class="space-y-3 max-w-sm">
-                    <!-- Media Tile with Play Button (Interactive Procedure Exhibition Trigger, Zero Round Borders) -->
-                    <div class="relative w-full h-32 sm:h-40 bg-stone-900 border border-stone-200 overflow-hidden group rounded-none shadow-sm cursor-pointer" 
+                <!-- Top-Right: Diagonal-Striped Architectural Number & Compact Article Card -->
+                <div class="flex items-start space-x-5 self-end lg:self-start">
+                    <!-- Compact Article Protocol Teaser -->
+                    <a href="#standards" class="group hidden sm:flex items-center space-x-3 border border-stone-200 bg-white p-2.5 hover:border-black transition duration-200 rounded-none shadow-xs max-w-[260px]">
+                        <div class="w-16 h-16 bg-stone-900 overflow-hidden relative flex-shrink-0 rounded-none">
+                            <img src="https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&fit=crop&w=400&q=80"
+                                 alt="Clinical Standards"
+                                 class="w-full h-full object-cover filter grayscale contrast-125 rounded-none">
+                        </div>
+                        <div class="min-w-0">
+                            <span class="text-[8px] font-mono uppercase tracking-widest text-stone-400 font-bold block mb-0.5">
+                                ARTICLE // PROTOCOL
+                            </span>
+                            <h4 class="text-[10px] font-extrabold text-black group-hover:underline uppercase tracking-wide leading-snug">
+                                Read our specialized clinical standards
+                            </h4>
+                        </div>
+                    </a>
+
+                    <!-- Diagonal-Hatched Display Number (Inspo: Striped '15' in Top-Right) -->
+                    <div class="hidden xl:block select-none pointer-events-none leading-none font-black text-[5.5rem] tracking-tighter"
+                         style="background: repeating-linear-gradient(-45deg, #1c1917, #1c1917 2px, transparent 2px, transparent 6px); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        18
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- LAYER 3B (z-30): BOTTOM ROW (Bottom-Left Video Preview Tile & Bottom-Right High-Contrast Black Booking Card) -->
+            <div class="relative z-30 flex flex-col lg:flex-row items-stretch lg:items-end justify-between gap-6 mt-6 lg:mt-0">
+                
+                <!-- Bottom-Left: 4K Surgical Macro Video Preview Tile with Center Play Button -->
+                <div class="max-w-xs sm:max-w-[300px] space-y-2.5">
+                    <div class="relative w-full h-36 sm:h-40 bg-stone-900 border border-stone-300 overflow-hidden group/vid rounded-none shadow-md cursor-pointer"
                          onclick="openProcedureModal(0)"
                          title="Click to view surgical specifications">
-                        <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=800&q=80" 
-                             alt="Clinical Procedure Video Preview" 
-                             class="w-full h-full object-cover filter grayscale contrast-125 group-hover:scale-105 transition duration-700 rounded-none">
+                        <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=800&q=80"
+                             alt="Clinical Procedure Video Preview"
+                             class="w-full h-full object-cover filter contrast-115 rounded-none">
                         
-                        <!-- Top Tech Tag -->
-                        <div class="absolute top-2 left-2 px-2 py-0.5 bg-black/85 text-white font-mono text-[9px] uppercase tracking-widest flex items-center space-x-1.5 rounded-none z-10">
+                        <div class="absolute top-2.5 left-2.5 px-2 py-0.5 bg-black/85 text-white font-mono text-[8px] uppercase tracking-widest flex items-center space-x-1.5 rounded-none z-10">
                             <span class="w-1.5 h-1.5 bg-emerald-400"></span>
                             <span>4K SURGICAL MACRO</span>
                         </div>
 
-                        <!-- Center Play Button with hover scale -->
-                        <div class="absolute inset-0 bg-black/20 flex items-center justify-center z-10">
-                            <div class="w-11 h-11 bg-white text-black flex items-center justify-center shadow-md transition transform group-hover:scale-110 rounded-none">
+                        <!-- Center Play Button (Sharp Square, Zero Round Borders) -->
+                        <div class="absolute inset-0 bg-black/25 flex items-center justify-center z-10">
+                            <div class="w-11 h-11 bg-black text-white border border-white flex items-center justify-center shadow-lg transition transform group-hover/vid:scale-105 rounded-none">
                                 <i data-lucide="play" class="w-4 h-4 fill-current ml-0.5"></i>
                             </div>
                         </div>
 
-                        <!-- Bottom Tag -->
-                        <div class="absolute bottom-2 right-2 px-2 py-0.5 bg-black/85 text-white font-mono text-[9px] uppercase tracking-wider rounded-none z-10">
+                        <div class="absolute bottom-2.5 right-2.5 px-2 py-0.5 bg-white text-black font-mono text-[8px] font-bold uppercase tracking-wider rounded-none z-10">
                             SPEC 01 // EXPLORE
                         </div>
                     </div>
 
-                    <!-- Text Block (Caption directly below media like Image 1) -->
-                    <div>
-                        <p class="text-[11px] sm:text-xs text-stone-600 leading-relaxed font-light">
-                            Exploring opportunities to make specialized restorative and aesthetic dentistry more precise, gentle, and accessible.
-                        </p>
-                        <div class="mt-2 flex items-center space-x-2 text-[9px] font-mono uppercase tracking-wider text-stone-400 font-semibold">
-                            <span>5-MICRON ACCURACY</span>
-                            <span>·</span>
-                            <span>ZERO-TRAUMA PROTOCOL</span>
-                        </div>
-                    </div>
+                    <p class="text-[11px] text-stone-600 leading-relaxed font-normal bg-white/90 lg:bg-transparent">
+                        Exploring opportunities to make specialized restorative and aesthetic dentistry more precise, gentle, and accessible.
+                    </p>
                 </div>
 
-            </div>
-
-            <!-- CENTER COLUMN: Large Centerpiece Image spanning Full Height of Hero Section (Stationary, Clean, Zero Round Borders) -->
-            <div class="lg:col-span-5 h-full relative flex items-center justify-center min-h-0 -my-6 lg:-my-8 py-0 z-20">
-                <div class="relative w-full h-full min-h-[460px] lg:min-h-0 overflow-hidden border-x lg:border border-stone-200 bg-stone-900 shadow-2xl rounded-none">
+                <!-- Bottom-Right: Sleek Solid Black Status & Booking Card (Inspo: Bottom-Right Dark Match Card, Zero Round Borders) -->
+                <div class="w-full sm:w-[340px] bg-stone-950 text-white border border-black p-5 shadow-xl rounded-none flex flex-col justify-between space-y-4">
                     
-                    <!-- 100% VISIBLE FULL-CONTRAST STATIC IMAGE -->
-                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1600&q=85" 
-                         alt="SDC Precision Dental Suite" 
-                         class="w-full h-full object-cover filter contrast-[1.05] brightness-95 rounded-none">
+                    <!-- Card Top Row: Badge + Clinic Hours -->
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-1 bg-white text-black font-mono text-[9px] font-black uppercase tracking-widest rounded-none">
+                            DIRECT BOOKING
+                        </span>
+                        <span class="text-[10px] font-mono text-stone-400 uppercase tracking-wider">
+                            Mon–Sat · 09:00–18:00
+                        </span>
+                    </div>
 
-                </div>
-            </div>
-
-            <!-- RIGHT COLUMN: Card (Top) | Doctor Preview (Middle) | Text & CTA (Bottom) -->
-            <div class="lg:col-span-3 flex flex-col justify-between space-y-6 lg:space-y-0 z-20">
-
-                <!-- 1. Card Block (Specialized Article Teaser like Image 1) -->
-                <div class="max-w-xs">
-                    <a href="#standards" class="group block border border-stone-200 bg-white p-3 hover:border-black transition duration-300 rounded-none shadow-xs">
-                        <div class="w-full h-32 bg-stone-900 mb-3 overflow-hidden relative rounded-none">
-                            <img src="https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&fit=crop&w=600&q=80"
-                                alt="Clinical Standards"
-                                class="w-full h-full object-cover filter grayscale contrast-125 group-hover:scale-105 transition duration-500 rounded-none">
-                            <div class="absolute top-2 left-2 px-1.5 py-0.5 bg-black text-white text-[8px] font-mono uppercase tracking-wider rounded-none">
-                                PEER-REVIEWED
+                    <!-- Card Middle Row: Branches / Chief Clinician Matchup -->
+                    <div class="flex items-center justify-between py-2 border-y border-stone-800">
+                        <div class="flex items-center space-x-2.5">
+                            <div class="w-8 h-8 bg-stone-800 border border-stone-700 overflow-hidden flex-shrink-0 rounded-none">
+                                <img src="https://images.unsplash.com/photo-1594824813637-e54e4df5e206?auto=format&fit=crop&w=200&q=80"
+                                     alt="Dr. Eleanor Vance"
+                                     class="w-full h-full object-cover filter grayscale contrast-125 rounded-none">
+                            </div>
+                            <div>
+                                <div class="text-xs font-extrabold uppercase tracking-tight text-white">Makati Suite</div>
+                                <div class="text-[9px] font-mono text-stone-400 uppercase">Dr. E. Vance, DMD</div>
                             </div>
                         </div>
-                        <span
-                            class="text-[9px] font-mono uppercase tracking-widest text-stone-400 font-bold block mb-1">
-                            ARTICLE // PROTOCOL
-                        </span>
-                        <h4
-                            class="text-[11px] font-bold text-black group-hover:underline uppercase tracking-wide leading-snug">
-                            Read the specialized article on our standards
-                        </h4>
-                    </a>
-                </div>
 
-                <!-- 2. Middle Specialist Block (Mirroring Image 1's author badge) -->
-                <div class="max-w-xs border border-stone-200 bg-stone-50/80 p-3 flex items-center space-x-3 rounded-none">
-                    <div class="w-11 h-11 bg-stone-900 border border-stone-300 overflow-hidden flex-shrink-0 rounded-none relative">
-                        <img src="https://images.unsplash.com/photo-1594824813637-e54e4df5e206?auto=format&fit=crop&w=300&q=80" 
-                             alt="Dr. Eleanor Vance, DMD" 
-                             class="w-full h-full object-cover filter grayscale contrast-125">
-                        <div class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-black text-white flex items-center justify-center text-[9px] font-bold">
-                            +
+                        <div class="px-2 py-1 border border-stone-700 text-[9px] font-mono font-bold text-stone-400 uppercase rounded-none">
+                            &amp;
+                        </div>
+
+                        <div class="text-right">
+                            <div class="text-xs font-extrabold uppercase tracking-tight text-white">Pasig Suite</div>
+                            <div class="text-[9px] font-mono text-emerald-400 uppercase">Slots Open</div>
                         </div>
                     </div>
-                    <div class="min-w-0">
-                        <span class="text-[8px] font-mono uppercase tracking-widest text-stone-400 font-bold block">
-                            CHIEF CLINICIAN
-                        </span>
-                        <div class="text-[11px] font-bold text-black uppercase tracking-tight truncate">
-                            Dr. Eleanor Vance, DMD
-                        </div>
-                        <div class="text-[9px] font-mono text-stone-500 uppercase tracking-wide truncate">
-                            Prosthodontics & Surgery
-                        </div>
-                    </div>
-                </div>
 
-                <!-- 3. Text Block & 4. CTA Block (Bottom-Right like Image 1) -->
-                <div class="space-y-4 max-w-xs pt-3 border-t border-stone-200">
-                    <div>
-                        <span
-                            class="text-[9px] font-mono uppercase tracking-widest text-stone-400 font-bold block mb-1">
-                            CARE & INNOVATION
+                    <!-- Card Bottom Row: Clinical Label + Direct CTA -->
+                    <div class="flex items-center justify-between pt-0.5">
+                        <span class="text-[10px] font-mono text-stone-400 uppercase tracking-wider">
+                            Class-B Sterile Suites
                         </span>
-                        <p class="text-[11px] sm:text-xs text-stone-600 leading-relaxed font-light">
-                            An inspiration for putting the patient more in the center of dental development and modern
-                            healthcare.
-                        </p>
-                    </div>
-
-                    <!-- CTA Link/Button (Sharp 90-degree edges, like Image 1) -->
-                    <div class="flex items-center justify-between pt-1">
                         <a href="#booking-form"
-                            class="inline-flex items-center space-x-2 text-xs font-black uppercase tracking-[0.2em] text-black hover:text-stone-600 transition group border-b-2 border-black pb-1 rounded-none">
-                            <span>Read More // Book</span>
-                            <i data-lucide="arrow-right"
-                                class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
-                        </a>
-                        <a href="#services" class="text-[10px] font-mono text-stone-400 hover:text-black uppercase tracking-wider transition">
-                            [ Suite ↓ ]
+                           class="inline-flex items-center space-x-1.5 text-[11px] font-black uppercase tracking-[0.18em] text-white hover:text-emerald-400 transition group/cta rounded-none">
+                            <span>Book Now</span>
+                            <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform group-hover/cta:translate-x-1"></i>
                         </a>
                     </div>
+
                 </div>
 
             </div>
