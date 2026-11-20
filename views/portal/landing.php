@@ -64,6 +64,25 @@ $currentUser = Session::user();
             z-index: 30;
             box-shadow: 0 35px 80px -20px rgba(0, 0, 0, 0.95);
         }
+
+        /* Smooth Upward Click Glide Animation */
+        @keyframes smoothGlideUp {
+            0% {
+                transform: translateY(0);
+            }
+            35% {
+                transform: translateY(-8px);
+            }
+            70% {
+                transform: translateY(-2px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        .animate-glide-up {
+            animation: smoothGlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col font-sans">
@@ -101,12 +120,16 @@ $currentUser = Session::user();
     <!-- Main Navigation Bar -->
     <header class="bg-white text-slate-800 border-b border-slate-200 sticky top-0 z-30 shadow-xs">
         <div class="max-w-6xl mx-auto px-4 py-3.5 flex items-center justify-between">
-            <!-- Brand with Official Logo -->
-            <a href="<?= BASE_URL ?>/index.php" class="flex items-center space-x-3 group">
-                <div class="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center p-1.5 shadow-xs flex-shrink-0 transition transform group-hover:scale-105">
+            <!-- Brand with Official Logo (Smooth Upward Animation & Scroll to Top on Click) -->
+            <a href="<?= BASE_URL ?>/index.php" 
+               id="brandLogoLink" 
+               onclick="handleBrandClick(event)" 
+               class="flex items-center space-x-3 group cursor-pointer transition-transform duration-300 ease-out hover:-translate-y-0.5 select-none"
+               title="Return to top">
+                <div class="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center p-1.5 shadow-xs flex-shrink-0 transition-transform duration-300 ease-out group-hover:scale-105 group-hover:-translate-y-0.5">
                     <img src="<?= BASE_URL ?>/assets/images/logo.png" alt="SDC Dental Care" class="w-full h-full object-contain">
                 </div>
-                <div>
+                <div class="transition-transform duration-300 ease-out group-hover:-translate-y-0.5">
                     <h1 class="text-base font-extrabold text-slate-900 tracking-tight leading-tight">SDC DENTAL</h1>
                     <p class="text-[10px] text-slate-500 font-bold tracking-wider uppercase">Care Management</p>
                 </div>
@@ -916,8 +939,8 @@ $currentUser = Session::user();
     <!-- Clinic Footer with Logo -->
     <footer class="bg-white text-slate-500 text-xs py-12 border-t border-slate-200">
         <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="flex items-center space-x-3.5">
-                <div class="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center p-1.5 shadow-xs flex-shrink-0">
+            <div class="flex items-center space-x-3.5 cursor-pointer group transition-transform duration-300 ease-out hover:-translate-y-0.5 select-none" onclick="handleBrandClick(event)" title="Return to top">
+                <div class="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center p-1.5 shadow-xs flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
                     <img src="<?= BASE_URL ?>/assets/images/logo.png" alt="SDC Logo" class="w-full h-full object-contain">
                 </div>
                 <div>
@@ -939,6 +962,24 @@ $currentUser = Session::user();
 
     <script>
         lucide.createIcons();
+
+        function handleBrandClick(event) {
+            if (event) event.preventDefault();
+
+            // Trigger smooth upward micro-animation on the logo element
+            const brandLink = document.getElementById('brandLogoLink');
+            if (brandLink) {
+                brandLink.classList.remove('animate-glide-up');
+                void brandLink.offsetWidth; // Force CSS repaint / reflow
+                brandLink.classList.add('animate-glide-up');
+            }
+
+            // Smoothly glide window to top
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
 
         function prefillConcern(serviceName) {
             const el = document.getElementById('inpDentalConcern');
