@@ -229,10 +229,10 @@ $currentUser = Session::user();
             <div class="relative z-30 flex flex-col lg:flex-row items-start justify-between gap-6">
                 
                 <!-- Top-Left: Editorial Quote & Title Block (Above Giant Text) -->
-                <div class="max-w-xs sm:max-w-sm bg-white/95 lg:bg-transparent p-2 lg:p-0 rounded-none">
-                    <div class="text-2xl font-serif font-black text-black leading-none mb-1">“</div>
-                    <h1 class="text-lg sm:text-xl lg:text-[1.35rem] font-black tracking-tight uppercase leading-[1.15] text-black font-sans">
-                        ADVANCED CLINICAL DENTISTRY ENGINEERED FOR ZERO-TRAUMA PRECISION &amp; LIFELONG AESTHETICS.
+                <div class="max-w-md lg:max-w-lg bg-white/95 lg:bg-transparent p-2 lg:p-0 rounded-none">
+                    <div class="text-3xl sm:text-4xl font-serif font-black text-black leading-none mb-1.5">“</div>
+                    <h1 class="text-xl sm:text-2xl lg:text-[1.75rem] font-black tracking-tight uppercase leading-[1.15] text-black font-sans">
+                        CRAFTING HEALTHY, CONFIDENT SMILES THROUGH GENTLE CARE AND MODERN DENTISTRY.
                     </h1>
                 </div>
 
