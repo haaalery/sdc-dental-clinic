@@ -111,8 +111,8 @@ $currentUser = Session::user();
             SDC
         </div>
 
-        <!-- 1. NAVIGATION BAR (Sticky/Fixed Top across page, Integrated inside Hero, Image 1 Aesthetic, Zero Round Borders) -->
-        <nav id="mainHeroNav" class="fixed top-0 left-0 w-full z-40 bg-white/95 backdrop-blur-md border-b border-stone-200/90 px-6 sm:px-10 lg:px-14 py-3.5 sm:py-4 flex items-center justify-between transition-shadow duration-300 rounded-none">
+        <!-- 1. NAVIGATION BAR (Solid Opaque White, Sticky/Fixed Top across page, Integrated inside Hero, Image 1 Aesthetic, Zero Round Borders) -->
+        <nav id="mainHeroNav" class="fixed top-0 left-0 w-full z-40 bg-white border-b border-stone-200 px-6 sm:px-10 lg:px-14 py-3.5 sm:py-4 flex items-center justify-between transition-shadow duration-200 rounded-none">
             <!-- Brand with Official Logo -->
             <a href="<?= BASE_URL ?>/index.php" 
                id="brandLogoLink" 
@@ -1096,17 +1096,15 @@ $currentUser = Session::user();
             });
         })();
 
-        // Sticky Navbar Scroll Elevation
+        // Sticky Navbar Scroll Elevation (Solid opaque white, clean border)
         (function initStickyNavShadow() {
             const nav = document.getElementById('mainHeroNav');
             if (!nav) return;
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 20) {
-                    nav.classList.add('shadow-md', 'bg-white/98');
-                    nav.classList.remove('bg-white/95');
+                    nav.classList.add('shadow-sm');
                 } else {
-                    nav.classList.remove('shadow-md', 'bg-white/98');
-                    nav.classList.add('bg-white/95');
+                    nav.classList.remove('shadow-sm');
                 }
             }, { passive: true });
         })();
