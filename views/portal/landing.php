@@ -296,43 +296,17 @@ $currentUser = Session::user();
 
         </div>
 
-        <!-- 3. Infinite Scope of Practice Editorial Marquee Ribbon (Inside Hero at Bottom, Zero Round Borders) -->
+        <!-- 3. Infinite Scope of Practice Editorial Marquee Ribbon (All Clinic Services, Inside Hero at Bottom, Zero Round Borders) -->
         <div
             class="w-full border-t border-[#E5E1D8] bg-[#F7F6F2] py-3 overflow-hidden select-none rounded-none flex-shrink-0">
             <div
                 class="ticker-track flex items-center space-x-8 whitespace-nowrap font-mono text-[11px] font-bold tracking-[0.26em] uppercase text-stone-500">
-                <span>✦ COSMETIC LASER WHITENING</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ PORCELAIN RESTORATION</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ ULTRASONIC PERIODONTICS</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ DIGITAL INTRAORAL RADIOGRAPHY</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ MICROSCOPIC ENDODONTICS</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ INVISIBLE ORTHODONTIC ALIGNMENT</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ CLASS-B VACUUM STERILIZATION</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ ITEMIZED POS FEE TRANSPARENCY</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ COSMETIC LASER WHITENING</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ PORCELAIN RESTORATION</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ ULTRASONIC PERIODONTICS</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ DIGITAL INTRAORAL RADIOGRAPHY</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ MICROSCOPIC ENDODONTICS</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ INVISIBLE ORTHODONTIC ALIGNMENT</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ CLASS-B VACUUM STERILIZATION</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ ITEMIZED POS FEE TRANSPARENCY</span>
-                <span class="text-stone-300">/</span>
+                <?php for ($loop = 0; $loop < 2; $loop++): ?>
+                    <?php foreach ($treatments as $t): ?>
+                        <span>✦ <?= htmlspecialchars($t['treatment_name']) ?></span>
+                        <span class="text-stone-300">/</span>
+                    <?php endforeach; ?>
+                <?php endfor; ?>
             </div>
         </div>
 
