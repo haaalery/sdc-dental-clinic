@@ -62,7 +62,7 @@ $currentUser = Session::user();
         }
         .gallery-strip:hover {
             z-index: 30;
-            box-shadow: 0 35px 80px -20px rgba(0, 0, 0, 0.95);
+            box-shadow: 0 35px 70px -15px rgba(28, 25, 23, 0.45);
         }
 
     </style>
@@ -332,31 +332,31 @@ $currentUser = Session::user();
         ];
     }
     ?>
-    <section id="services" class="py-24 bg-[#0a0f18] text-white overflow-hidden border-b border-slate-800 relative">
+    <section id="services" class="py-24 bg-[#EFECE6] text-stone-900 overflow-hidden border-b border-[#E5E1D8] relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div>
-                    <span class="text-[11px] uppercase tracking-[0.25em] font-semibold text-teal-400 block mb-2">
+                    <span class="text-[11px] uppercase tracking-[0.25em] font-semibold text-stone-500 block mb-2">
                         Clinical Catalog
                     </span>
-                    <h3 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-                        Signature Treatments<span class="font-serif italic font-normal text-slate-400">.</span>
+                    <h3 class="text-3xl sm:text-5xl font-extrabold text-stone-950 tracking-tight">
+                        Signature Treatments<span class="font-serif italic font-normal text-stone-500">.</span>
                     </h3>
-                    <p class="text-slate-400 text-xs sm:text-sm mt-3 max-w-xl leading-relaxed">
+                    <p class="text-stone-600 text-xs sm:text-sm mt-3 max-w-xl leading-relaxed">
                         Nine focused dental disciplines across our Makati and Pasig clinics. Hover across each slice to expand, or click any picture to open the full procedure lookbook.
                     </p>
                 </div>
 
                 <!-- Minimalist Navigation Controls -->
                 <div class="flex items-center space-x-5">
-                    <span class="hidden sm:inline-block text-[11px] uppercase tracking-widest text-slate-500 font-mono">
+                    <span class="hidden sm:inline-block text-[11px] uppercase tracking-widest text-stone-500 font-mono">
                         [ 01 — 09 ]
                     </span>
                     <div class="flex items-center space-x-2">
-                        <button id="sliderPrevBtn" aria-label="Previous treatment" class="w-12 h-12 rounded-full border border-white/20 hover:border-white hover:bg-white hover:text-slate-950 text-white flex items-center justify-center transition shadow-lg">
+                        <button id="sliderPrevBtn" aria-label="Previous treatment" class="w-12 h-12 rounded-full border border-[#D5CFC3] hover:border-stone-950 hover:bg-stone-950 hover:text-white text-stone-800 bg-white/70 backdrop-blur-sm flex items-center justify-center transition shadow-xs">
                             <i data-lucide="chevron-left" class="w-5 h-5"></i>
                         </button>
-                        <button id="sliderNextBtn" aria-label="Next treatment" class="w-12 h-12 rounded-full border border-white/20 hover:border-white hover:bg-white hover:text-slate-950 text-white flex items-center justify-center transition shadow-lg">
+                        <button id="sliderNextBtn" aria-label="Next treatment" class="w-12 h-12 rounded-full border border-[#D5CFC3] hover:border-stone-950 hover:bg-stone-950 hover:text-white text-stone-800 bg-white/70 backdrop-blur-sm flex items-center justify-center transition shadow-xs">
                             <i data-lucide="chevron-right" class="w-5 h-5"></i>
                         </button>
                     </div>
@@ -366,8 +366,8 @@ $currentUser = Session::user();
 
         <!-- Seamless Edge-to-Edge Straight Slideshow (Expands on Hover, Clicks to Open Modal) -->
         <div class="w-full relative overflow-hidden py-4">
-            <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#0a0f18] to-transparent z-20 pointer-events-none"></div>
-            <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#0a0f18] to-transparent z-20 pointer-events-none"></div>
+            <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#EFECE6] to-transparent z-20 pointer-events-none"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#EFECE6] to-transparent z-20 pointer-events-none"></div>
 
             <div id="servicesTrack" class="flex items-stretch space-x-0 py-6 px-8 sm:px-16 overflow-x-auto no-scrollbar scroll-smooth cursor-grab active:cursor-grabbing select-none">
                 <?php foreach ($treatmentsData as $idx => $trt): ?>
@@ -375,7 +375,7 @@ $currentUser = Session::user();
                     <button type="button" 
                             onclick="openProcedureModal(<?= $idx ?>)"
                             title="Click to view full details for <?= htmlspecialchars($trt['name']) ?>"
-                            class="gallery-strip group relative h-[590px] w-[170px] sm:w-[200px] md:w-[220px] hover:w-[580px] sm:hover:w-[720px] md:hover:w-[840px] -ml-[1px] first:ml-0 overflow-hidden border-r border-t border-b border-white/10 first:border-l bg-slate-950 block cursor-pointer text-left focus:outline-none">
+                            class="gallery-strip group relative h-[590px] w-[170px] sm:w-[200px] md:w-[220px] hover:w-[580px] sm:hover:w-[720px] md:hover:w-[840px] -ml-[1px] first:ml-0 overflow-hidden border-r border-t border-b border-[#D5CFC3] first:border-l bg-stone-900 block cursor-pointer text-left focus:outline-none shadow-sm">
                         
                         <div class="gallery-strip-inner absolute inset-0 w-full h-full">
                             <img src="<?= htmlspecialchars($trt['image']) ?>" 
