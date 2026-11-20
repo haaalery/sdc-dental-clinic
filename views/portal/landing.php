@@ -6,11 +6,12 @@ $currentUser = Session::user();
 ?>
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth scroll-pt-[72px]">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= APP_NAME ?> - Premium Dental Care</title>
-    
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -43,23 +44,38 @@ $currentUser = Session::user();
     <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .font-serif { font-family: 'Playfair Display', Georgia, serif; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
         /* Clean Architectural Vertical Strip Accordion (Stationary, Crisp) */
         .gallery-strip {
             transition: width 0.75s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, z-index 0.2s ease;
             flex-shrink: 0;
             will-change: width;
         }
+
         .gallery-strip:hover {
             z-index: 30;
             box-shadow: 0 35px 70px -15px rgba(28, 25, 23, 0.45);
@@ -67,23 +83,40 @@ $currentUser = Session::user();
 
         /* Smooth Infinite Editorial Marquee */
         @keyframes tickerTape {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
         }
+
         .ticker-track {
             display: flex;
             width: 200%;
             animation: tickerTape 32s linear infinite;
         }
+
         .ticker-track:hover {
             animation-play-state: paused;
         }
 
         /* Interactive Clinical Hotspot Pulse */
         @keyframes pulseGlow {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.7); }
-            50% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(20, 184, 166, 0); }
+
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.7);
+            }
+
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 0 10px rgba(20, 184, 166, 0);
+            }
         }
+
         .hotspot-pulse {
             animation: pulseGlow 2.8s infinite;
         }
@@ -92,55 +125,48 @@ $currentUser = Session::user();
         .hero-perspective {
             perspective: 1200px;
         }
+
         .hero-tilt-card {
             transform-style: preserve-3d;
             transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: transform;
         }
-
     </style>
 </head>
+
 <body class="bg-[#F7F6F2] text-stone-900 antialiased min-h-screen flex flex-col font-sans">
 
     <!-- Full Hero Section with Navigation Inside (Faithfully matching Image 1 Aesthetic & Image 2 Wireframe Layout, Zero Round Borders) -->
     <section id="heroSection" class="relative w-full lg:h-screen min-h-screen bg-white border-b border-[#E5E1D8] flex flex-col justify-between overflow-hidden rounded-none select-none pt-[72px] group">
         
-        <!-- Full Hero Section Background Image (Edge-to-Edge Full Screen) -->
-        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1600&q=85" 
-                 alt="SDC Precision Dental Suite" 
-                 class="w-full h-full object-cover filter contrast-[1.05] brightness-95 transition-transform duration-700 ease-out group-hover:scale-105 rounded-none">
-            
-            <!-- High-Key Architectural Overlay Wash: Keeps Left and Right text razor sharp while center suite remains vivid -->
-            <div class="absolute inset-0 bg-white/75 lg:bg-gradient-to-r lg:from-white/95 lg:via-white/30 lg:to-white/95"></div>
-
-            <!-- Subtle Futuristic Blueprint & Watermark Grid (From Image 1) -->
-            <div class="absolute inset-0 opacity-[0.035]" style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(to right, #000 1px, transparent 1px); background-size: 70px 70px;"></div>
-        </div>
-        
+        <!-- Subtle Futuristic Blueprint & Watermark Grid (From Image 1) -->
+        <div class="absolute inset-0 opacity-[0.035] pointer-events-none" style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(to right, #000 1px, transparent 1px); background-size: 70px 70px;"></div>
         <div class="absolute right-12 top-20 text-[18vw] font-black text-black/[0.015] pointer-events-none uppercase font-mono tracking-tighter z-0">
             SDC
         </div>
 
         <!-- 1. NAVIGATION BAR (Solid Opaque White, Sticky/Fixed Top across page, Integrated inside Hero, Image 1 Aesthetic, Zero Round Borders) -->
-        <nav id="mainHeroNav" class="fixed top-0 left-0 w-full z-40 bg-white border-b border-stone-200 px-6 sm:px-10 lg:px-14 py-3.5 sm:py-4 flex items-center justify-between transition-shadow duration-200 rounded-none">
+        <nav id="mainHeroNav"
+            class="fixed top-0 left-0 w-full z-40 bg-white border-b border-stone-200 px-6 sm:px-10 lg:px-14 py-3.5 sm:py-4 flex items-center justify-between transition-shadow duration-200 rounded-none">
             <!-- Brand with Official Logo -->
-            <a href="<?= BASE_URL ?>/index.php" 
-               id="brandLogoLink" 
-               onclick="handleBrandClick(event)" 
-               class="flex items-center space-x-3 cursor-pointer select-none group"
-               title="Return to top">
-                <div class="w-10 h-10 rounded-none bg-black flex items-center justify-center p-1.5 shadow-xs flex-shrink-0">
-                    <img src="<?= BASE_URL ?>/assets/images/logo.png" alt="SDC Dental Care" class="w-full h-full object-contain">
+            <a href="<?= BASE_URL ?>/index.php" id="brandLogoLink" onclick="handleBrandClick(event)"
+                class="flex items-center space-x-3 cursor-pointer select-none group" title="Return to top">
+                <div
+                    class="w-10 h-10 rounded-none bg-black flex items-center justify-center p-1.5 shadow-xs flex-shrink-0">
+                    <img src="<?= BASE_URL ?>/assets/images/logo.png" alt="SDC Dental Care"
+                        class="w-full h-full object-contain">
                 </div>
                 <div>
-                    <h1 class="text-base font-extrabold text-black tracking-tight leading-none uppercase">SDC DENTAL</h1>
-                    <p class="text-[9px] text-stone-500 font-mono tracking-[0.2em] uppercase font-bold mt-1">Clinical Atelier</p>
+                    <h1 class="text-base font-extrabold text-black tracking-tight leading-none uppercase">SDC DENTAL
+                    </h1>
+                    <p class="text-[9px] text-stone-500 font-mono tracking-[0.2em] uppercase font-bold mt-1">Clinical
+                        Atelier</p>
                 </div>
             </a>
 
             <!-- Navigation Links (Matching Image 1 Style & Spacing) -->
-            <div class="hidden md:flex items-center space-x-8 uppercase font-mono text-[11px] font-bold tracking-[0.2em] text-stone-600">
+            <div
+                class="hidden md:flex items-center space-x-8 uppercase font-mono text-[11px] font-bold tracking-[0.2em] text-stone-600">
                 <a href="#services" class="hover:text-black transition">Services</a>
                 <a href="#standards" class="hover:text-black transition">Standards</a>
                 <a href="#dentists" class="hover:text-black transition">Doctors</a>
@@ -155,18 +181,21 @@ $currentUser = Session::user();
                 </div>
 
                 <?php if ($isLoggedIn): ?>
-                    <a href="<?= BASE_URL ?>/index.php?page=dashboard" class="hidden sm:inline-flex items-center space-x-1.5 uppercase font-mono text-[11px] font-bold tracking-wider text-black hover:text-stone-600 transition">
+                    <a href="<?= BASE_URL ?>/index.php?page=dashboard"
+                        class="hidden sm:inline-flex items-center space-x-1.5 uppercase font-mono text-[11px] font-bold tracking-wider text-black hover:text-stone-600 transition">
                         <i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i>
                         <span>Dashboard</span>
                     </a>
                 <?php else: ?>
-                    <a href="<?= BASE_URL ?>/index.php?page=login" class="hidden sm:inline-flex items-center space-x-1.5 uppercase font-mono text-[11px] font-bold tracking-wider text-stone-600 hover:text-black transition">
+                    <a href="<?= BASE_URL ?>/index.php?page=login"
+                        class="hidden sm:inline-flex items-center space-x-1.5 uppercase font-mono text-[11px] font-bold tracking-wider text-stone-600 hover:text-black transition">
                         <i data-lucide="lock" class="w-3 h-3 text-stone-400"></i>
                         <span>Staff Login</span>
                     </a>
                 <?php endif; ?>
 
-                <a href="#booking-form" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-black hover:bg-stone-800 text-white text-xs font-bold uppercase tracking-wider rounded-none shadow-xs transition">
+                <a href="#booking-form"
+                    class="inline-flex items-center space-x-2 px-5 py-2.5 bg-black hover:bg-stone-800 text-white text-xs font-bold uppercase tracking-wider rounded-none shadow-xs transition">
                     <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
                     <span>Book Appointment</span>
                 </a>
@@ -174,8 +203,9 @@ $currentUser = Session::user();
         </nav>
 
         <!-- 2. Wireframe 3-Column Layout: Left (Title, Media, Text) | Center (Hotspots Over Full Hero) | Right (Card, Text, CTA) -->
-        <div class="w-full flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch px-6 sm:px-10 lg:px-14 py-6 lg:py-8 relative z-10">
-            
+        <div
+            class="w-full flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch px-6 sm:px-10 lg:px-14 py-6 lg:py-8 relative z-10">
+
             <!-- Architectural Corner Crosshairs (High-Tech Blueprint Aesthetic) -->
             <span class="absolute top-2 left-6 sm:left-10 text-stone-300 font-mono text-xs select-none pointer-events-none">+</span>
             <span class="absolute top-2 right-6 sm:right-10 text-stone-300 font-mono text-xs select-none pointer-events-none">+</span>
@@ -184,7 +214,7 @@ $currentUser = Session::user();
 
             <!-- LEFT COLUMN: Title (Top) | Media (Middle) | Text (Bottom) -->
             <div class="lg:col-span-4 flex flex-col justify-between space-y-6 lg:space-y-0 z-20">
-                
+
                 <!-- 1. Title Block (Directly on canvas like Image 1) -->
                 <div>
                     <div class="inline-flex items-center space-x-2 px-2 py-0.5 bg-black text-white text-[9px] font-mono tracking-[0.25em] uppercase font-bold mb-3 rounded-none shadow-xs">
@@ -249,100 +279,97 @@ $currentUser = Session::user();
 
             </div>
 
-            <!-- CENTER COLUMN: Interactive Clinical Hotspots & Operatory Spec floating over Full Hero Background -->
-            <div class="lg:col-span-5 h-[420px] sm:h-[500px] lg:h-full relative flex flex-col justify-between min-h-0 py-4 z-20">
-                
-                <!-- Tech Coordinates Header -->
-                <div class="flex items-center justify-between">
-                    <span class="text-[9px] font-mono uppercase tracking-widest text-stone-500 bg-white/90 border border-stone-200 px-2.5 py-1 rounded-none select-none shadow-xs">
-                        LAT: 14.5547° N // LON: 121.0244° E
-                    </span>
-                    <span class="text-[9px] font-mono uppercase tracking-widest text-emerald-700 bg-white/90 border border-stone-200 px-2.5 py-1 rounded-none select-none shadow-xs flex items-center space-x-1.5">
-                        <span class="w-1.5 h-1.5 bg-emerald-500 animate-pulse"></span>
-                        <span>OPERATORY ACTIVE</span>
-                    </span>
-                </div>
-
-                <!-- Interactive Hotspots Grid floating in 3D Perspective -->
-                <div class="relative w-full flex-1 my-4 hero-perspective">
-                    <div id="heroTiltCard" class="hero-tilt-card relative w-full h-full">
-                        
-                        <!-- HOTSPOT 01: 3D Scanner (Top Left) -->
-                        <div class="absolute top-[22%] left-[24%] z-30 group/hotspot">
-                            <div class="relative w-7 h-7 bg-black text-white text-[10px] font-mono font-bold flex items-center justify-center border border-white shadow-lg cursor-pointer hover:bg-stone-800 rounded-none transition transform group-hover/hotspot:scale-110">
-                                <span>01</span>
-                                <span class="absolute inset-0 border border-teal-400 animate-ping opacity-60 rounded-none pointer-events-none"></span>
-                            </div>
-                            <!-- Hotspot Tooltip Card -->
-                            <div class="absolute left-9 top-1/2 -translate-y-1/2 w-52 sm:w-60 bg-white text-stone-900 border border-stone-300 p-3 shadow-2xl opacity-0 group-hover/hotspot:opacity-100 transition-all duration-200 pointer-events-none rounded-none z-40">
-                                <span class="text-[8px] font-mono tracking-widest uppercase text-stone-400 font-bold block mb-1">EQUIPMENT // 01</span>
-                                <div class="text-xs font-black uppercase text-black leading-tight">3D Digital Oral Scanner</div>
-                                <div class="text-[10px] text-stone-500 mt-1 leading-snug">5-micron volumetric accuracy for virtual crown milling without messy impressions.</div>
-                            </div>
-                        </div>
-
-                        <!-- HOTSPOT 02: Autoclave Suite (Mid Right) -->
-                        <div class="absolute top-[48%] right-[20%] z-30 group/hotspot">
-                            <div class="relative w-7 h-7 bg-black text-white text-[10px] font-mono font-bold flex items-center justify-center border border-white shadow-lg cursor-pointer hover:bg-stone-800 rounded-none transition transform group-hover/hotspot:scale-110">
-                                <span>02</span>
-                                <span class="absolute inset-0 border border-teal-400 animate-ping opacity-60 rounded-none pointer-events-none"></span>
-                            </div>
-                            <!-- Hotspot Tooltip Card -->
-                            <div class="absolute right-9 top-1/2 -translate-y-1/2 w-52 sm:w-60 bg-white text-stone-900 border border-stone-300 p-3 shadow-2xl opacity-0 group-hover/hotspot:opacity-100 transition-all duration-200 pointer-events-none rounded-none z-40">
-                                <span class="text-[8px] font-mono tracking-widest uppercase text-stone-400 font-bold block mb-1">EQUIPMENT // 02</span>
-                                <div class="text-xs font-black uppercase text-black leading-tight">Class-B Vacuum Autoclave</div>
-                                <div class="text-[10px] text-stone-500 mt-1 leading-snug">Hospital-grade fractionated vacuum sterilization with verified digital spore tracking.</div>
-                            </div>
-                        </div>
-
-                        <!-- HOTSPOT 03: Ultrasonic Scaler (Bottom Left) -->
-                        <div class="absolute bottom-[20%] left-[26%] z-30 group/hotspot">
-                            <div class="relative w-7 h-7 bg-black text-white text-[10px] font-mono font-bold flex items-center justify-center border border-white shadow-lg cursor-pointer hover:bg-stone-800 rounded-none transition transform group-hover/hotspot:scale-110">
-                                <span>03</span>
-                                <span class="absolute inset-0 border border-teal-400 animate-ping opacity-60 rounded-none pointer-events-none"></span>
-                            </div>
-                            <!-- Hotspot Tooltip Card -->
-                            <div class="absolute left-9 bottom-0 w-52 sm:w-60 bg-white text-stone-900 border border-stone-300 p-3 shadow-2xl opacity-0 group-hover/hotspot:opacity-100 transition-all duration-200 pointer-events-none rounded-none z-40">
-                                <span class="text-[8px] font-mono tracking-widest uppercase text-stone-400 font-bold block mb-1">EQUIPMENT // 03</span>
-                                <div class="text-xs font-black uppercase text-black leading-tight">Piezo Ultrasonic Scaler</div>
-                                <div class="text-[10px] text-stone-500 mt-1 leading-snug">Deep calculus debridement with micro-vibrations, safeguarding healthy dental enamel.</div>
-                            </div>
-                        </div>
-
+            <!-- CENTER COLUMN: Large Centerpiece Image spanning Full Height of Hero Section with 3D Tilt & Interactive Hotspots -->
+            <div class="lg:col-span-5 h-full relative flex items-center justify-center min-h-0 hero-perspective -my-6 lg:-my-8 py-0 z-20">
+                <div id="heroTiltCard" class="hero-tilt-card relative w-full h-full min-h-[460px] lg:min-h-0 overflow-hidden border-x lg:border border-stone-200 bg-stone-900 shadow-2xl group rounded-none">
+                    
+                    <!-- 100% VISIBLE FULL-CONTRAST IMAGE -->
+                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1600&q=85" 
+                         alt="SDC Precision Dental Suite" 
+                         class="w-full h-full object-cover filter contrast-[1.05] brightness-95 transition-transform duration-700 ease-out group-hover:scale-105 rounded-none">
+                    
+                    <!-- Tech Coordinates Header Tag -->
+                    <div class="absolute top-3 left-3 text-[9px] font-mono uppercase tracking-widest text-white/90 bg-black/75 px-2.5 py-1 rounded-none pointer-events-none z-20 flex items-center space-x-2">
+                        <span class="w-1.5 h-1.5 bg-emerald-400 animate-pulse"></span>
+                        <span>LAT: 14.5547° N // LON: 121.0244° E</span>
                     </div>
-                </div>
-                
-                <!-- Center Bottom Atelier Badge -->
-                <div class="bg-white/90 border border-stone-200 p-3.5 shadow-sm rounded-none">
-                    <span class="text-[10px] font-mono tracking-widest uppercase text-teal-800 font-bold mb-1 flex items-center space-x-2">
-                        <span class="w-2 h-2 bg-teal-500"></span>
-                        <span>PRECISION OPERATORY // ATELIER SUITE</span>
-                    </span>
-                    <p class="text-xs text-stone-600 font-light leading-relaxed">
-                        High-precision diagnostic imaging and Class-B vacuum autoclave surgical suites.
-                    </p>
-                </div>
 
+                    <!-- HOTSPOT 01: 3D Scanner (Top Left) -->
+                    <div class="absolute top-[26%] left-[26%] z-30 group/hotspot">
+                        <div class="relative w-7 h-7 bg-black text-white text-[10px] font-mono font-bold flex items-center justify-center border border-white shadow-lg cursor-pointer hover:bg-stone-800 rounded-none transition transform group-hover/hotspot:scale-110">
+                            <span>01</span>
+                            <span class="absolute inset-0 border border-teal-400 animate-ping opacity-60 rounded-none pointer-events-none"></span>
+                        </div>
+                        <!-- Hotspot Tooltip Card -->
+                        <div class="absolute left-9 top-1/2 -translate-y-1/2 w-52 sm:w-60 bg-white text-stone-900 border border-stone-300 p-3 shadow-2xl opacity-0 group-hover/hotspot:opacity-100 transition-all duration-200 pointer-events-none rounded-none z-40">
+                            <span class="text-[8px] font-mono tracking-widest uppercase text-stone-400 font-bold block mb-1">EQUIPMENT // 01</span>
+                            <div class="text-xs font-black uppercase text-black leading-tight">3D Digital Oral Scanner</div>
+                            <div class="text-[10px] text-stone-500 mt-1 leading-snug">5-micron volumetric accuracy for virtual crown milling without messy impressions.</div>
+                        </div>
+                    </div>
+
+                    <!-- HOTSPOT 02: Autoclave Suite (Mid Right) -->
+                    <div class="absolute top-[52%] right-[22%] z-30 group/hotspot">
+                        <div class="relative w-7 h-7 bg-black text-white text-[10px] font-mono font-bold flex items-center justify-center border border-white shadow-lg cursor-pointer hover:bg-stone-800 rounded-none transition transform group-hover/hotspot:scale-110">
+                            <span>02</span>
+                            <span class="absolute inset-0 border border-teal-400 animate-ping opacity-60 rounded-none pointer-events-none"></span>
+                        </div>
+                        <!-- Hotspot Tooltip Card -->
+                        <div class="absolute right-9 top-1/2 -translate-y-1/2 w-52 sm:w-60 bg-white text-stone-900 border border-stone-300 p-3 shadow-2xl opacity-0 group-hover/hotspot:opacity-100 transition-all duration-200 pointer-events-none rounded-none z-40">
+                            <span class="text-[8px] font-mono tracking-widest uppercase text-stone-400 font-bold block mb-1">EQUIPMENT // 02</span>
+                            <div class="text-xs font-black uppercase text-black leading-tight">Class-B Vacuum Autoclave</div>
+                            <div class="text-[10px] text-stone-500 mt-1 leading-snug">Hospital-grade fractionated vacuum sterilization with verified digital spore tracking.</div>
+                        </div>
+                    </div>
+
+                    <!-- HOTSPOT 03: Ultrasonic Scaler (Bottom Left) -->
+                    <div class="absolute bottom-[24%] left-[28%] z-30 group/hotspot">
+                        <div class="relative w-7 h-7 bg-black text-white text-[10px] font-mono font-bold flex items-center justify-center border border-white shadow-lg cursor-pointer hover:bg-stone-800 rounded-none transition transform group-hover/hotspot:scale-110">
+                            <span>03</span>
+                            <span class="absolute inset-0 border border-teal-400 animate-ping opacity-60 rounded-none pointer-events-none"></span>
+                        </div>
+                        <!-- Hotspot Tooltip Card -->
+                        <div class="absolute left-9 bottom-0 w-52 sm:w-60 bg-white text-stone-900 border border-stone-300 p-3 shadow-2xl opacity-0 group-hover/hotspot:opacity-100 transition-all duration-200 pointer-events-none rounded-none z-40">
+                            <span class="text-[8px] font-mono tracking-widest uppercase text-stone-400 font-bold block mb-1">EQUIPMENT // 03</span>
+                            <div class="text-xs font-black uppercase text-black leading-tight">Piezo Ultrasonic Scaler</div>
+                            <div class="text-[10px] text-stone-500 mt-1 leading-snug">Deep calculus debridement with micro-vibrations, safeguarding healthy dental enamel.</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Centerpiece Bottom Gradient & Title -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex flex-col justify-end p-6 sm:p-8 text-white pointer-events-none rounded-none">
+                        <span class="text-[10px] font-mono tracking-widest uppercase text-teal-300 font-bold mb-1 flex items-center space-x-2">
+                            <span class="w-2 h-2 bg-teal-400"></span>
+                            <span>PRECISION OPERATORY // ATELIER SUITE</span>
+                        </span>
+                        <p class="text-xs text-stone-200 font-light leading-relaxed max-w-sm">
+                            High-precision diagnostic imaging and Class-B vacuum autoclave surgical suites.
+                        </p>
+                    </div>
+
+                </div>
             </div>
 
             <!-- RIGHT COLUMN: Card (Top) | Doctor Preview (Middle) | Text & CTA (Bottom) -->
             <div class="lg:col-span-3 flex flex-col justify-between space-y-6 lg:space-y-0 z-20">
-                
+
                 <!-- 1. Card Block (Specialized Article Teaser like Image 1) -->
                 <div class="max-w-xs">
                     <a href="#standards" class="group block border border-stone-200 bg-white p-3 hover:border-black transition duration-300 rounded-none shadow-xs">
                         <div class="w-full h-32 bg-stone-900 mb-3 overflow-hidden relative rounded-none">
-                            <img src="https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&fit=crop&w=600&q=80" 
-                                 alt="Clinical Standards" 
-                                 class="w-full h-full object-cover filter grayscale contrast-125 group-hover:scale-105 transition duration-500 rounded-none">
+                            <img src="https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&fit=crop&w=600&q=80"
+                                alt="Clinical Standards"
+                                class="w-full h-full object-cover filter grayscale contrast-125 group-hover:scale-105 transition duration-500 rounded-none">
                             <div class="absolute top-2 left-2 px-1.5 py-0.5 bg-black text-white text-[8px] font-mono uppercase tracking-wider rounded-none">
                                 PEER-REVIEWED
                             </div>
                         </div>
-                        <span class="text-[9px] font-mono uppercase tracking-widest text-stone-400 font-bold block mb-1">
+                        <span
+                            class="text-[9px] font-mono uppercase tracking-widest text-stone-400 font-bold block mb-1">
                             ARTICLE // PROTOCOL
                         </span>
-                        <h4 class="text-[11px] font-bold text-black group-hover:underline uppercase tracking-wide leading-snug">
+                        <h4
+                            class="text-[11px] font-bold text-black group-hover:underline uppercase tracking-wide leading-snug">
                             Read the specialized article on our standards
                         </h4>
                     </a>
@@ -374,19 +401,23 @@ $currentUser = Session::user();
                 <!-- 3. Text Block & 4. CTA Block (Bottom-Right like Image 1) -->
                 <div class="space-y-4 max-w-xs pt-3 border-t border-stone-200">
                     <div>
-                        <span class="text-[9px] font-mono uppercase tracking-widest text-stone-400 font-bold block mb-1">
+                        <span
+                            class="text-[9px] font-mono uppercase tracking-widest text-stone-400 font-bold block mb-1">
                             CARE & INNOVATION
                         </span>
                         <p class="text-[11px] sm:text-xs text-stone-600 leading-relaxed font-light">
-                            An inspiration for putting the patient more in the center of dental development and modern healthcare.
+                            An inspiration for putting the patient more in the center of dental development and modern
+                            healthcare.
                         </p>
                     </div>
 
                     <!-- CTA Link/Button (Sharp 90-degree edges, like Image 1) -->
                     <div class="flex items-center justify-between pt-1">
-                        <a href="#booking-form" class="inline-flex items-center space-x-2 text-xs font-black uppercase tracking-[0.2em] text-black hover:text-stone-600 transition group border-b-2 border-black pb-1 rounded-none">
+                        <a href="#booking-form"
+                            class="inline-flex items-center space-x-2 text-xs font-black uppercase tracking-[0.2em] text-black hover:text-stone-600 transition group border-b-2 border-black pb-1 rounded-none">
                             <span>Read More // Book</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                            <i data-lucide="arrow-right"
+                                class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
                         </a>
                         <a href="#services" class="text-[10px] font-mono text-stone-400 hover:text-black uppercase tracking-wider transition">
                             [ Suite ↓ ]
@@ -399,8 +430,10 @@ $currentUser = Session::user();
         </div>
 
         <!-- 3. Infinite Scope of Practice Editorial Marquee Ribbon (Inside Hero at Bottom, Zero Round Borders) -->
-        <div class="w-full border-t border-[#E5E1D8] bg-[#F7F6F2] py-3 overflow-hidden select-none rounded-none flex-shrink-0">
-            <div class="ticker-track flex items-center space-x-8 whitespace-nowrap font-mono text-[11px] font-bold tracking-[0.26em] uppercase text-stone-500">
+        <div
+            class="w-full border-t border-[#E5E1D8] bg-[#F7F6F2] py-3 overflow-hidden select-none rounded-none flex-shrink-0">
+            <div
+                class="ticker-track flex items-center space-x-8 whitespace-nowrap font-mono text-[11px] font-bold tracking-[0.26em] uppercase text-stone-500">
                 <span>✦ COSMETIC LASER WHITENING</span>
                 <span class="text-stone-300">/</span>
                 <span>✦ PORCELAIN RESTORATION</span>
@@ -556,7 +589,8 @@ $currentUser = Session::user();
                         Signature Treatments<span class="font-serif italic font-normal text-stone-500">.</span>
                     </h3>
                     <p class="text-stone-600 text-xs sm:text-sm mt-3 max-w-xl leading-relaxed">
-                        Nine focused dental disciplines across our Makati and Pasig clinics. Hover across each slice to expand, or click any picture to open the full procedure lookbook.
+                        Nine focused dental disciplines across our Makati and Pasig clinics. Hover across each slice to
+                        expand, or click any picture to open the full procedure lookbook.
                     </p>
                 </div>
 
@@ -566,10 +600,12 @@ $currentUser = Session::user();
                         [ 01 — 09 ]
                     </span>
                     <div class="flex items-center space-x-2">
-                        <button id="sliderPrevBtn" aria-label="Previous treatment" class="w-12 h-12 rounded-full border border-[#D5CFC3] hover:border-stone-950 hover:bg-stone-950 hover:text-white text-stone-800 bg-white/70 backdrop-blur-sm flex items-center justify-center transition shadow-xs">
+                        <button id="sliderPrevBtn" aria-label="Previous treatment"
+                            class="w-12 h-12 rounded-full border border-[#D5CFC3] hover:border-stone-950 hover:bg-stone-950 hover:text-white text-stone-800 bg-white/70 backdrop-blur-sm flex items-center justify-center transition shadow-xs">
                             <i data-lucide="chevron-left" class="w-5 h-5"></i>
                         </button>
-                        <button id="sliderNextBtn" aria-label="Next treatment" class="w-12 h-12 rounded-full border border-[#D5CFC3] hover:border-stone-950 hover:bg-stone-950 hover:text-white text-stone-800 bg-white/70 backdrop-blur-sm flex items-center justify-center transition shadow-xs">
+                        <button id="sliderNextBtn" aria-label="Next treatment"
+                            class="w-12 h-12 rounded-full border border-[#D5CFC3] hover:border-stone-950 hover:bg-stone-950 hover:text-white text-stone-800 bg-white/70 backdrop-blur-sm flex items-center justify-center transition shadow-xs">
                             <i data-lucide="chevron-right" class="w-5 h-5"></i>
                         </button>
                     </div>
@@ -579,21 +615,24 @@ $currentUser = Session::user();
 
         <!-- Seamless Edge-to-Edge Straight Slideshow (Expands on Hover, Clicks to Open Modal) -->
         <div class="w-full relative overflow-hidden py-4">
-            <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#EFECE6] to-transparent z-20 pointer-events-none"></div>
-            <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#EFECE6] to-transparent z-20 pointer-events-none"></div>
+            <div
+                class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#EFECE6] to-transparent z-20 pointer-events-none">
+            </div>
+            <div
+                class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#EFECE6] to-transparent z-20 pointer-events-none">
+            </div>
 
-            <div id="servicesTrack" class="flex items-stretch space-x-0 py-6 px-8 sm:px-16 overflow-x-auto no-scrollbar scroll-smooth cursor-grab active:cursor-grabbing select-none">
+            <div id="servicesTrack"
+                class="flex items-stretch space-x-0 py-6 px-8 sm:px-16 overflow-x-auto no-scrollbar scroll-smooth cursor-grab active:cursor-grabbing select-none">
                 <?php foreach ($treatmentsData as $idx => $trt): ?>
                     <!-- Pure Photographic Strip (Straight, Stationary, Zero Text) -->
-                    <button type="button" 
-                            onclick="openProcedureModal(<?= $idx ?>)"
-                            title="Click to view full details for <?= htmlspecialchars($trt['name']) ?>"
-                            class="gallery-strip group relative h-[590px] w-[170px] sm:w-[200px] md:w-[220px] hover:w-[580px] sm:hover:w-[720px] md:hover:w-[840px] -ml-[1px] first:ml-0 overflow-hidden border-r border-t border-b border-[#D5CFC3] first:border-l bg-stone-900 block cursor-pointer text-left focus:outline-none shadow-sm">
-                        
+                    <button type="button" onclick="openProcedureModal(<?= $idx ?>)"
+                        title="Click to view full details for <?= htmlspecialchars($trt['name']) ?>"
+                        class="gallery-strip group relative h-[590px] w-[170px] sm:w-[200px] md:w-[220px] hover:w-[580px] sm:hover:w-[720px] md:hover:w-[840px] -ml-[1px] first:ml-0 overflow-hidden border-r border-t border-b border-[#D5CFC3] first:border-l bg-stone-900 block cursor-pointer text-left focus:outline-none shadow-sm">
+
                         <div class="gallery-strip-inner absolute inset-0 w-full h-full">
-                            <img src="<?= htmlspecialchars($trt['image']) ?>" 
-                                 alt="<?= htmlspecialchars($trt['name']) ?>" 
-                                 class="absolute inset-0 w-full h-full object-cover">
+                            <img src="<?= htmlspecialchars($trt['image']) ?>" alt="<?= htmlspecialchars($trt['name']) ?>"
+                                class="absolute inset-0 w-full h-full object-cover">
                         </div>
                     </button>
                 <?php endforeach; ?>
@@ -602,18 +641,23 @@ $currentUser = Session::user();
     </section>
 
     <!-- Editorial Procedure Exhibition Modal (Only Details & Photos of THAT Selected Procedure) -->
-    <div id="procedureModal" class="fixed inset-0 z-[70] flex items-center justify-center bg-black/80 backdrop-blur-md p-3 sm:p-6 md:p-8 hidden opacity-0 transition-opacity duration-300">
-        
+    <div id="procedureModal"
+        class="fixed inset-0 z-[70] flex items-center justify-center bg-black/80 backdrop-blur-md p-3 sm:p-6 md:p-8 hidden opacity-0 transition-opacity duration-300">
+
         <!-- Modal Container (Warm Linen Luxury Aesthetic from Reference Screenshot) -->
-        <div class="bg-[#f4efe8] text-stone-900 rounded-3xl overflow-hidden shadow-2xl max-w-6xl w-full max-h-[92vh] flex flex-col border border-stone-300 transform scale-95 transition-transform duration-300" id="modalContainer">
-            
+        <div class="bg-[#f4efe8] text-stone-900 rounded-3xl overflow-hidden shadow-2xl max-w-6xl w-full max-h-[92vh] flex flex-col border border-stone-300 transform scale-95 transition-transform duration-300"
+            id="modalContainer">
+
             <!-- Top Minimalist Catalogue Bar -->
-            <div class="flex items-center justify-between border-b border-stone-300/80 px-6 sm:px-8 py-4 text-[11px] uppercase tracking-[0.22em] font-mono text-stone-500 bg-[#f4efe8]">
+            <div
+                class="flex items-center justify-between border-b border-stone-300/80 px-6 sm:px-8 py-4 text-[11px] uppercase tracking-[0.22em] font-mono text-stone-500 bg-[#f4efe8]">
                 <span id="modalTopCode">PROCEDURE // SPECIFICATION</span>
-                <span class="font-serif italic font-normal text-stone-800 text-sm normal-case hidden sm:inline">SDC Dental Atelier</span>
+                <span class="font-serif italic font-normal text-stone-800 text-sm normal-case hidden sm:inline">SDC
+                    Dental Atelier</span>
                 <div class="flex items-center space-x-4">
                     <span id="modalActiveCounter" class="font-semibold text-stone-800">VIEW 01 / 04</span>
-                    <button type="button" onclick="closeProcedureModal()" class="text-stone-500 hover:text-stone-950 font-bold uppercase tracking-wider text-xs flex items-center space-x-1 transition">
+                    <button type="button" onclick="closeProcedureModal()"
+                        class="text-stone-500 hover:text-stone-950 font-bold uppercase tracking-wider text-xs flex items-center space-x-1 transition">
                         <span>Close [✕]</span>
                     </button>
                 </div>
@@ -622,56 +666,65 @@ $currentUser = Session::user();
             <!-- Middle Stage: Left Big Picture / Right Large Editorial Headline & Details -->
             <div class="flex-1 overflow-y-auto no-scrollbar p-6 sm:p-10">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                    
+
                     <!-- Left: Big Picture Display Frame (Swaps when clicking thumbnails below) -->
                     <div class="lg:col-span-5 relative">
-                        <div class="relative w-full aspect-[3/4] sm:h-[460px] rounded-2xl overflow-hidden shadow-xl bg-stone-900 border border-stone-300/80 group">
-                            <img id="modalBigImage" 
-                                 src="" 
-                                 alt="" 
-                                 class="w-full h-full object-cover transition-all duration-500 ease-out filter brightness-95">
+                        <div
+                            class="relative w-full aspect-[3/4] sm:h-[460px] rounded-2xl overflow-hidden shadow-xl bg-stone-900 border border-stone-300/80 group">
+                            <img id="modalBigImage" src="" alt=""
+                                class="w-full h-full object-cover transition-all duration-500 ease-out filter brightness-95">
                         </div>
                     </div>
 
                     <!-- Right: Big Editorial Headline & Clinical Info for THAT Procedure -->
                     <div class="lg:col-span-7 flex flex-col justify-center">
                         <div class="mb-3">
-                            <span id="modalCategory" class="text-xs uppercase tracking-[0.25em] font-mono text-stone-500 block mb-2">
+                            <span id="modalCategory"
+                                class="text-xs uppercase tracking-[0.25em] font-mono text-stone-500 block mb-2">
                                 01 / COSMETIC DENTISTRY
                             </span>
-                            
+
                             <!-- Large High-Fashion Headline (Le Oh Botanic style) -->
-                            <h3 id="modalTitle" class="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-stone-950 tracking-tight leading-[1.08]">
+                            <h3 id="modalTitle"
+                                class="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-stone-950 tracking-tight leading-[1.08]">
                                 Laser Teeth Whitening
                             </h3>
                         </div>
 
                         <!-- Upfront Fee -->
                         <div class="flex items-baseline space-x-3 my-4">
-                            <span id="modalPrice" class="text-3xl sm:text-4xl font-mono font-bold text-stone-950 tracking-tight">
+                            <span id="modalPrice"
+                                class="text-3xl sm:text-4xl font-mono font-bold text-stone-950 tracking-tight">
                                 ₱6,500.00
                             </span>
                             <span class="text-xs font-mono text-stone-500">standard clinical rate</span>
                         </div>
 
                         <!-- Clinical Overview Description -->
-                        <p id="modalDescription" class="text-stone-700 text-sm sm:text-base leading-relaxed max-w-xl font-light mb-6">
-                            Professional in-clinic clinical bleaching engineered to gently lift deep enamel discoloration by up to 6–8 shades in a single sitting.
+                        <p id="modalDescription"
+                            class="text-stone-700 text-sm sm:text-base leading-relaxed max-w-xl font-light mb-6">
+                            Professional in-clinic clinical bleaching engineered to gently lift deep enamel
+                            discoloration by up to 6–8 shades in a single sitting.
                         </p>
 
                         <!-- Editorial Specifications Bar -->
-                        <div class="grid grid-cols-3 gap-3 border-t border-b border-stone-300/80 py-4 mb-2 text-xs max-w-xl">
+                        <div
+                            class="grid grid-cols-3 gap-3 border-t border-b border-stone-300/80 py-4 mb-2 text-xs max-w-xl">
                             <div>
-                                <span class="block text-[9px] uppercase tracking-widest text-stone-400 mb-0.5">Session</span>
+                                <span
+                                    class="block text-[9px] uppercase tracking-widest text-stone-400 mb-0.5">Session</span>
                                 <span id="modalDuration" class="font-bold text-stone-900 text-sm">60 Mins</span>
                             </div>
                             <div>
-                                <span class="block text-[9px] uppercase tracking-widest text-stone-400 mb-0.5">Comfort</span>
+                                <span
+                                    class="block text-[9px] uppercase tracking-widest text-stone-400 mb-0.5">Comfort</span>
                                 <span id="modalComfort" class="font-bold text-stone-900 text-sm">Enamel-Safe</span>
                             </div>
                             <div>
-                                <span class="block text-[9px] uppercase tracking-widest text-stone-400 mb-0.5">Scope</span>
-                                <span id="modalInclusions" class="font-bold text-stone-900 text-sm truncate block">Blue LED Laser</span>
+                                <span
+                                    class="block text-[9px] uppercase tracking-widest text-stone-400 mb-0.5">Scope</span>
+                                <span id="modalInclusions" class="font-bold text-stone-900 text-sm truncate block">Blue
+                                    LED Laser</span>
                             </div>
                         </div>
                     </div>
@@ -689,7 +742,8 @@ $currentUser = Session::user();
                     </div>
 
                     <!-- Filmstrip of Photos for THIS Procedure Only -->
-                    <div id="modalGalleryFilmstrip" class="flex items-center space-x-3 sm:space-x-4 overflow-x-auto no-scrollbar py-2 select-none">
+                    <div id="modalGalleryFilmstrip"
+                        class="flex items-center space-x-3 sm:space-x-4 overflow-x-auto no-scrollbar py-2 select-none">
                         <!-- Populated dynamically via JavaScript with photos of the selected procedure -->
                     </div>
                 </div>
@@ -826,20 +880,20 @@ $currentUser = Session::user();
         });
 
         // Slideshow Navigation (Prev/Next buttons, wheel, drag)
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const track = document.getElementById('servicesTrack');
             const prevBtn = document.getElementById('sliderPrevBtn');
             const nextBtn = document.getElementById('sliderNextBtn');
-            
+
             if (track) {
                 const scrollStep = 380;
                 if (prevBtn) {
-                    prevBtn.addEventListener('click', function() {
+                    prevBtn.addEventListener('click', function () {
                         track.scrollBy({ left: -scrollStep, behavior: 'smooth' });
                     });
                 }
                 if (nextBtn) {
-                    nextBtn.addEventListener('click', function() {
+                    nextBtn.addEventListener('click', function () {
                         track.scrollBy({ left: scrollStep, behavior: 'smooth' });
                     });
                 }
@@ -877,56 +931,71 @@ $currentUser = Session::user();
     <section id="standards" class="py-24 bg-[#FAF9F5] border-b border-[#E5E1D8]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-xl mb-14">
-                <span class="text-[11px] uppercase tracking-[0.25em] font-semibold text-stone-400 block mb-2">Practice Standard</span>
+                <span class="text-[11px] uppercase tracking-[0.25em] font-semibold text-stone-400 block mb-2">Practice
+                    Standard</span>
                 <h3 class="text-3xl sm:text-4xl font-extrabold text-stone-950 tracking-tight">
                     Our Clinical Principles<span class="font-serif italic font-normal text-stone-500">.</span>
                 </h3>
                 <p class="text-sm text-stone-600 mt-3 leading-relaxed">
-                    Conservative diagnostics, hospital-grade instrument reprocessing, and an ethical doctor-patient relationship.
+                    Conservative diagnostics, hospital-grade instrument reprocessing, and an ethical doctor-patient
+                    relationship.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Principle 01 -->
-                <div class="p-8 rounded-3xl bg-white border border-[#E5E1D8] flex flex-col justify-between hover:border-stone-400/80 shadow-xs transition">
+                <div
+                    class="p-8 rounded-3xl bg-white border border-[#E5E1D8] flex flex-col justify-between hover:border-stone-400/80 shadow-xs transition">
                     <div>
-                        <span class="font-mono text-xs font-bold text-stone-400 tracking-widest uppercase block mb-6">01 / STERILIZATION</span>
+                        <span class="font-mono text-xs font-bold text-stone-400 tracking-widest uppercase block mb-6">01
+                            / STERILIZATION</span>
                         <h4 class="text-lg font-bold text-stone-950 mb-3">Class-B Steam Autoclave</h4>
                         <p class="text-xs text-stone-600 leading-relaxed font-normal">
-                            All surgical handpieces, burs, and diagnostic sets undergo enzymatic ultrasonic cleaning and Class-B vacuum autoclave steam sterilization, sealed in individual medical indicator pouches.
+                            All surgical handpieces, burs, and diagnostic sets undergo enzymatic ultrasonic cleaning and
+                            Class-B vacuum autoclave steam sterilization, sealed in individual medical indicator
+                            pouches.
                         </p>
                     </div>
-                    <div class="pt-6 mt-6 border-t border-[#EFECE6] flex items-center space-x-2 text-[11px] text-stone-500 font-medium">
+                    <div
+                        class="pt-6 mt-6 border-t border-[#EFECE6] flex items-center space-x-2 text-[11px] text-stone-500 font-medium">
                         <i data-lucide="shield-check" class="w-4 h-4 text-teal-600"></i>
                         <span>Zero reuse on single-use items</span>
                     </div>
                 </div>
 
                 <!-- Principle 02 -->
-                <div class="p-8 rounded-3xl bg-white border border-[#E5E1D8] flex flex-col justify-between hover:border-stone-400/80 shadow-xs transition">
+                <div
+                    class="p-8 rounded-3xl bg-white border border-[#E5E1D8] flex flex-col justify-between hover:border-stone-400/80 shadow-xs transition">
                     <div>
-                        <span class="font-mono text-xs font-bold text-stone-400 tracking-widest uppercase block mb-6">02 / DIAGNOSIS</span>
+                        <span class="font-mono text-xs font-bold text-stone-400 tracking-widest uppercase block mb-6">02
+                            / DIAGNOSIS</span>
                         <h4 class="text-lg font-bold text-stone-950 mb-3">Conservative Treatment Planning</h4>
                         <p class="text-xs text-stone-600 leading-relaxed font-normal">
-                            We advocate tooth preservation first. Every finding is backed by clinical diagnostics and detailed explanation before any procedure begins—no forced or unnecessary dental work.
+                            We advocate tooth preservation first. Every finding is backed by clinical diagnostics and
+                            detailed explanation before any procedure begins—no forced or unnecessary dental work.
                         </p>
                     </div>
-                    <div class="pt-6 mt-6 border-t border-[#EFECE6] flex items-center space-x-2 text-[11px] text-stone-500 font-medium">
+                    <div
+                        class="pt-6 mt-6 border-t border-[#EFECE6] flex items-center space-x-2 text-[11px] text-stone-500 font-medium">
                         <i data-lucide="user-check" class="w-4 h-4 text-teal-600"></i>
                         <span>Attending clinician consultation</span>
                     </div>
                 </div>
 
                 <!-- Principle 03 -->
-                <div class="p-8 rounded-3xl bg-white border border-[#E5E1D8] flex flex-col justify-between hover:border-stone-400/80 shadow-xs transition">
+                <div
+                    class="p-8 rounded-3xl bg-white border border-[#E5E1D8] flex flex-col justify-between hover:border-stone-400/80 shadow-xs transition">
                     <div>
-                        <span class="font-mono text-xs font-bold text-stone-400 tracking-widest uppercase block mb-6">03 / BILLING</span>
+                        <span class="font-mono text-xs font-bold text-stone-400 tracking-widest uppercase block mb-6">03
+                            / BILLING</span>
                         <h4 class="text-lg font-bold text-stone-950 mb-3">Transparent Itemized Receipts</h4>
                         <p class="text-xs text-stone-600 leading-relaxed font-normal">
-                            You receive a complete itemized POS breakdown before leaving the chair. Payments accepted via Cash, GCash, Maya, and major debit/credit cards with zero arbitrary surcharges.
+                            You receive a complete itemized POS breakdown before leaving the chair. Payments accepted
+                            via Cash, GCash, Maya, and major debit/credit cards with zero arbitrary surcharges.
                         </p>
                     </div>
-                    <div class="pt-6 mt-6 border-t border-[#EFECE6] flex items-center space-x-2 text-[11px] text-stone-500 font-medium">
+                    <div
+                        class="pt-6 mt-6 border-t border-[#EFECE6] flex items-center space-x-2 text-[11px] text-stone-500 font-medium">
                         <i data-lucide="receipt" class="w-4 h-4 text-teal-600"></i>
                         <span>Full fee transparency</span>
                     </div>
@@ -940,31 +1009,44 @@ $currentUser = Session::user();
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
                 <div>
-                    <span class="text-[11px] uppercase tracking-[0.25em] font-semibold text-stone-400 block mb-2">Clinical Team</span>
+                    <span
+                        class="text-[11px] uppercase tracking-[0.25em] font-semibold text-stone-400 block mb-2">Clinical
+                        Team</span>
                     <h3 class="text-3xl sm:text-4xl font-extrabold text-stone-950 tracking-tight">
                         Our Attending Dentists<span class="font-serif italic font-normal text-stone-500">.</span>
                     </h3>
-                    <p class="text-sm text-stone-600 mt-2">Licensed practitioners leading patient consultations and surgical procedures.</p>
+                    <p class="text-sm text-stone-600 mt-2">Licensed practitioners leading patient consultations and
+                        surgical procedures.</p>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <?php foreach ($dentists as $doc): ?>
-                    <div class="bg-white rounded-3xl p-8 border border-[#E5E1D8] shadow-xs flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 hover:shadow-md transition">
-                        <div class="w-16 h-16 rounded-2xl bg-stone-950 text-white font-serif font-bold text-xl flex items-center justify-center flex-shrink-0 shadow-sm">
+                    <div
+                        class="bg-white rounded-3xl p-8 border border-[#E5E1D8] shadow-xs flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 hover:shadow-md transition">
+                        <div
+                            class="w-16 h-16 rounded-2xl bg-stone-950 text-white font-serif font-bold text-xl flex items-center justify-center flex-shrink-0 shadow-sm">
                             Dr
                         </div>
                         <div class="flex-1">
                             <div class="flex items-center space-x-2">
-                                <h4 class="font-bold text-stone-950 text-base tracking-tight"><?= htmlspecialchars($doc['full_name']) ?></h4>
-                                <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#EFECE6] text-stone-700">DMD</span>
+                                <h4 class="font-bold text-stone-950 text-base tracking-tight">
+                                    <?= htmlspecialchars($doc['full_name']) ?>
+                                </h4>
+                                <span
+                                    class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#EFECE6] text-stone-700">DMD</span>
                             </div>
-                            <p class="text-xs text-stone-700 font-semibold mt-1"><?= htmlspecialchars($doc['specialization'] ?: 'General & Aesthetic Dentistry') ?></p>
+                            <p class="text-xs text-stone-700 font-semibold mt-1">
+                                <?= htmlspecialchars($doc['specialization'] ?: 'General & Aesthetic Dentistry') ?>
+                            </p>
                             <?php if (!empty($doc['license_no'])): ?>
-                                <p class="text-[11px] text-stone-400 font-mono mt-0.5">PRC License: <?= htmlspecialchars($doc['license_no']) ?></p>
+                                <p class="text-[11px] text-stone-400 font-mono mt-0.5">PRC License:
+                                    <?= htmlspecialchars($doc['license_no']) ?>
+                                </p>
                             <?php endif; ?>
                             <p class="text-xs text-stone-600 mt-3 leading-relaxed">
-                                Direct patient assessments, preventive care, complex restorative dentistry, and dental health consultations across Makati and Pasig branches.
+                                Direct patient assessments, preventive care, complex restorative dentistry, and dental
+                                health consultations across Makati and Pasig branches.
                             </p>
                         </div>
                     </div>
@@ -979,7 +1061,8 @@ $currentUser = Session::user();
             <div class="mb-10">
                 <span class="text-xs uppercase font-bold tracking-wider text-stone-500 block mb-1">Visit Us</span>
                 <h3 class="text-2xl font-extrabold text-stone-950 tracking-tight">Clinic Hours & Branch Locations</h3>
-                <p class="text-xs text-stone-600 mt-1">Conveniently accessible clinic branches with clean clinical operatories.</p>
+                <p class="text-xs text-stone-600 mt-1">Conveniently accessible clinic branches with clean clinical
+                    operatories.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-stone-700">
@@ -990,7 +1073,8 @@ $currentUser = Session::user();
                                 <i data-lucide="map-pin" class="w-4 h-4 text-stone-900"></i>
                                 <span><?= htmlspecialchars($br['branch_name']) ?></span>
                             </h4>
-                            <span class="font-mono text-[11px] font-bold text-stone-700 px-2 py-0.5 rounded bg-[#EFECE6] border border-[#E5E1D8]">
+                            <span
+                                class="font-mono text-[11px] font-bold text-stone-700 px-2 py-0.5 rounded bg-[#EFECE6] border border-[#E5E1D8]">
                                 <?= htmlspecialchars($br['branch_code']) ?>
                             </span>
                         </div>
@@ -1013,15 +1097,19 @@ $currentUser = Session::user();
     <section id="booking-form" class="py-20 bg-[#F0ECE4] border-b border-[#E5E1D8]">
         <div class="max-w-4xl mx-auto px-4">
             <div class="text-center mb-8">
-                <span class="text-xs uppercase font-bold tracking-wider text-stone-500 block mb-1">Direct Scheduling</span>
-                <h3 class="text-2xl md:text-3xl font-extrabold text-stone-950 tracking-tight">Request an Appointment Online</h3>
+                <span class="text-xs uppercase font-bold tracking-wider text-stone-500 block mb-1">Direct
+                    Scheduling</span>
+                <h3 class="text-2xl md:text-3xl font-extrabold text-stone-950 tracking-tight">Request an Appointment
+                    Online</h3>
                 <p class="text-xs text-stone-600 mt-1 max-w-lg mx-auto">
-                    Fill out the form below with your preferred schedule and dental concern. Our reception desk will review availability and confirm your booking right away.
+                    Fill out the form below with your preferred schedule and dental concern. Our reception desk will
+                    review availability and confirm your booking right away.
                 </p>
             </div>
 
             <?php if ($portalError = Session::flash('portal_error')): ?>
-                <div class="mb-6 p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-semibold flex items-center space-x-2 shadow-2xs">
+                <div
+                    class="mb-6 p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-semibold flex items-center space-x-2 shadow-2xs">
                     <i data-lucide="alert-circle" class="w-4 h-4 text-rose-500 flex-shrink-0"></i>
                     <span><?= htmlspecialchars($portalError) ?></span>
                 </div>
@@ -1036,7 +1124,7 @@ $currentUser = Session::user();
                                 Your Full Name <span class="text-rose-500">*</span>
                             </label>
                             <input type="text" name="name" required placeholder="e.g. Maria Santos"
-                                   class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 placeholder-stone-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
+                                class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 placeholder-stone-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
                         </div>
 
                         <!-- Phone Number -->
@@ -1045,7 +1133,7 @@ $currentUser = Session::user();
                                 Contact Phone Number <span class="text-rose-500">*</span>
                             </label>
                             <input type="tel" name="phone" required placeholder="e.g. 0917 123 4567"
-                                   class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 placeholder-stone-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
+                                class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 placeholder-stone-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
                         </div>
                     </div>
 
@@ -1055,8 +1143,9 @@ $currentUser = Session::user();
                             <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
                                 Preferred Date <span class="text-rose-500">*</span>
                             </label>
-                            <input type="date" name="preferred_date" required min="<?= date('Y-m-d') ?>" value="<?= date('Y-m-d', strtotime('+1 day')) ?>"
-                                   class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
+                            <input type="date" name="preferred_date" required min="<?= date('Y-m-d') ?>"
+                                value="<?= date('Y-m-d', strtotime('+1 day')) ?>"
+                                class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
                         </div>
 
                         <!-- Preferred Time Slot -->
@@ -1064,7 +1153,8 @@ $currentUser = Session::user();
                             <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
                                 Preferred Time <span class="text-rose-500">*</span>
                             </label>
-                            <select name="preferred_time" required class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
+                            <select name="preferred_time" required
+                                class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
                                 <option value="09:00:00">09:00 AM - Morning Slot</option>
                                 <option value="10:00:00">10:00 AM - Morning Slot</option>
                                 <option value="11:00:00">11:00 AM - Morning Slot</option>
@@ -1082,7 +1172,8 @@ $currentUser = Session::user();
                             <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
                                 Clinic Branch
                             </label>
-                            <select name="branch_id" class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
+                            <select name="branch_id"
+                                class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
                                 <?php foreach ($branches as $branch): ?>
                                     <option value="<?= $branch['id'] ?>">
                                         <?= htmlspecialchars($branch['branch_name']) ?>
@@ -1096,11 +1187,13 @@ $currentUser = Session::user();
                             <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
                                 Preferred Dentist (Optional)
                             </label>
-                            <select name="preferred_dentist_id" class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
+                            <select name="preferred_dentist_id"
+                                class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
                                 <option value="">Any Available Attending Dentist</option>
                                 <?php foreach ($dentists as $d): ?>
                                     <option value="<?= $d['dentist_id'] ?>">
-                                        <?= htmlspecialchars($d['full_name']) ?> (<?= htmlspecialchars($d['specialization']) ?>)
+                                        <?= htmlspecialchars($d['full_name']) ?>
+                                        (<?= htmlspecialchars($d['specialization']) ?>)
                                     </option>
                                 <?php endforeach; ?>
                             </select>
@@ -1112,18 +1205,21 @@ $currentUser = Session::user();
                         <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
                             Dental Concern / Reason for Visit <span class="text-rose-500">*</span>
                         </label>
-                        <textarea name="dental_concern" id="inpDentalConcern" rows="3" required placeholder="Please describe what you are experiencing (e.g. Toothache, routine dental cleaning, filling replacement, wisdom tooth extraction, braces consultation)..."
-                                  class="w-full p-3.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 placeholder-stone-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition"></textarea>
+                        <textarea name="dental_concern" id="inpDentalConcern" rows="3" required
+                            placeholder="Please describe what you are experiencing (e.g. Toothache, routine dental cleaning, filling replacement, wisdom tooth extraction, braces consultation)..."
+                            class="w-full p-3.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 placeholder-stone-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition"></textarea>
                     </div>
 
                     <!-- Submit Button -->
                     <div class="pt-2">
-                        <button type="submit" class="w-full py-3.5 px-6 bg-stone-950 hover:bg-stone-800 text-white font-bold rounded-2xl shadow-xs transition flex items-center justify-center space-x-2 text-sm">
+                        <button type="submit"
+                            class="w-full py-3.5 px-6 bg-stone-950 hover:bg-stone-800 text-white font-bold rounded-2xl shadow-xs transition flex items-center justify-center space-x-2 text-sm">
                             <i data-lucide="check-circle" class="w-4 h-4"></i>
                             <span>Submit Appointment Request</span>
                         </button>
                         <p class="text-center text-[11px] text-stone-500 mt-2.5">
-                            No upfront payment required. Our front desk staff will verify clinic availability and contact you directly.
+                            No upfront payment required. Our front desk staff will verify clinic availability and
+                            contact you directly.
                         </p>
                     </div>
                 </form>
@@ -1134,14 +1230,18 @@ $currentUser = Session::user();
     <!-- Clinic Footer with Logo (Warm Linen Tone) -->
     <footer class="bg-[#EFECE6] text-stone-600 text-xs py-14 border-t border-[#E5E1D8]">
         <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="flex items-center space-x-3.5 cursor-pointer select-none" onclick="handleBrandClick(event)" title="Return to top">
-                <div class="w-10 h-10 rounded-xl bg-stone-950 flex items-center justify-center p-1.5 shadow-xs flex-shrink-0">
-                    <img src="<?= BASE_URL ?>/assets/images/logo.png" alt="SDC Logo" class="w-full h-full object-contain">
+            <div class="flex items-center space-x-3.5 cursor-pointer select-none" onclick="handleBrandClick(event)"
+                title="Return to top">
+                <div
+                    class="w-10 h-10 rounded-xl bg-stone-950 flex items-center justify-center p-1.5 shadow-xs flex-shrink-0">
+                    <img src="<?= BASE_URL ?>/assets/images/logo.png" alt="SDC Logo"
+                        class="w-full h-full object-contain">
                 </div>
                 <div>
                     <p class="font-extrabold text-stone-950 text-sm tracking-tight"><?= APP_NAME ?></p>
                     <p class="text-[11px] text-stone-500 mt-0.5">Professional Healthcare & Clinical Dental Services</p>
-                    <p class="text-[11px] text-stone-400 mt-1">&copy; <?= date('Y') ?> <?= APP_NAME ?>. All rights reserved.</p>
+                    <p class="text-[11px] text-stone-400 mt-1">&copy; <?= date('Y') ?> <?= APP_NAME ?>. All rights
+                        reserved.</p>
                 </div>
             </div>
 
@@ -1150,7 +1250,8 @@ $currentUser = Session::user();
                 <a href="#standards" class="hover:text-stone-950 transition">Clinical Standards</a>
                 <a href="#dentists" class="hover:text-stone-950 transition">Dentists</a>
                 <a href="#booking-form" class="hover:text-stone-950 transition">Book Visit</a>
-                <a href="<?= BASE_URL ?>/index.php?page=login" class="text-stone-950 hover:underline font-bold transition">Staff Login &rarr;</a>
+                <a href="<?= BASE_URL ?>/index.php?page=login"
+                    class="text-stone-950 hover:underline font-bold transition">Staff Login &rarr;</a>
             </div>
         </div>
     </footer>
@@ -1209,13 +1310,13 @@ $currentUser = Session::user();
                         const rect = card.getBoundingClientRect();
                         const cardX = rect.left + rect.width / 2;
                         const cardY = rect.top + rect.height / 2;
-                        
+
                         const deltaX = (e.clientX - cardX) / (window.innerWidth / 2);
                         const deltaY = (e.clientY - cardY) / (window.innerHeight / 2);
-                        
+
                         const rotX = -deltaY * 7;
                         const rotY = deltaX * 7;
-                        
+
                         card.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
                         ticking = false;
                     });
@@ -1242,4 +1343,5 @@ $currentUser = Session::user();
         })();
     </script>
 </body>
+
 </html>
