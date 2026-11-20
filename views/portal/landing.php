@@ -5,7 +5,7 @@ $isLoggedIn = Session::isLoggedIn();
 $currentUser = Session::user();
 ?>
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth scroll-pt-[72px]">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -103,7 +103,7 @@ $currentUser = Session::user();
 <body class="bg-[#F7F6F2] text-stone-900 antialiased min-h-screen flex flex-col font-sans">
 
     <!-- Full Hero Section with Navigation Inside (Faithfully matching Image 1 Aesthetic & Image 2 Wireframe Layout, Zero Round Borders) -->
-    <section id="heroSection" class="relative w-full lg:h-screen min-h-screen bg-white border-b border-[#E5E1D8] flex flex-col justify-between overflow-hidden rounded-none select-none">
+    <section id="heroSection" class="relative w-full lg:h-screen min-h-screen bg-white border-b border-[#E5E1D8] flex flex-col justify-between overflow-hidden rounded-none select-none pt-[72px]">
         
         <!-- Subtle Futuristic Blueprint & Watermark Grid (From Image 1) -->
         <div class="absolute inset-0 opacity-[0.035] pointer-events-none" style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(to right, #000 1px, transparent 1px); background-size: 70px 70px;"></div>
@@ -111,8 +111,8 @@ $currentUser = Session::user();
             SDC
         </div>
 
-        <!-- 1. NAVIGATION BAR (Integrated Inside Hero Section at Top, Image 1 Aesthetic, Zero Round Borders) -->
-        <nav class="w-full border-b border-stone-200/90 px-6 sm:px-10 lg:px-14 py-4 flex items-center justify-between z-30 bg-white/95 backdrop-blur-sm rounded-none">
+        <!-- 1. NAVIGATION BAR (Sticky/Fixed Top across page, Integrated inside Hero, Image 1 Aesthetic, Zero Round Borders) -->
+        <nav id="mainHeroNav" class="fixed top-0 left-0 w-full z-40 bg-white/95 backdrop-blur-md border-b border-stone-200/90 px-6 sm:px-10 lg:px-14 py-3.5 sm:py-4 flex items-center justify-between transition-shadow duration-300 rounded-none">
             <!-- Brand with Official Logo -->
             <a href="<?= BASE_URL ?>/index.php" 
                id="brandLogoLink" 
@@ -470,7 +470,7 @@ $currentUser = Session::user();
     </section>
 
     <!-- Editorial Procedure Exhibition Modal (Only Details & Photos of THAT Selected Procedure) -->
-    <div id="procedureModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-3 sm:p-6 md:p-8 hidden opacity-0 transition-opacity duration-300">
+    <div id="procedureModal" class="fixed inset-0 z-[70] flex items-center justify-center bg-black/80 backdrop-blur-md p-3 sm:p-6 md:p-8 hidden opacity-0 transition-opacity duration-300">
         
         <!-- Modal Container (Warm Linen Luxury Aesthetic from Reference Screenshot) -->
         <div class="bg-[#f4efe8] text-stone-900 rounded-3xl overflow-hidden shadow-2xl max-w-6xl w-full max-h-[92vh] flex flex-col border border-stone-300 transform scale-95 transition-transform duration-300" id="modalContainer">
@@ -1094,6 +1094,21 @@ $currentUser = Session::user();
             hero.addEventListener('mouseleave', () => {
                 card.style.transform = 'rotateX(0deg) rotateY(0deg)';
             });
+        })();
+
+        // Sticky Navbar Scroll Elevation
+        (function initStickyNavShadow() {
+            const nav = document.getElementById('mainHeroNav');
+            if (!nav) return;
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    nav.classList.add('shadow-md', 'bg-white/98');
+                    nav.classList.remove('bg-white/95');
+                } else {
+                    nav.classList.remove('shadow-md', 'bg-white/98');
+                    nav.classList.add('bg-white/95');
+                }
+            }, { passive: true });
         })();
     </script>
 </body>
