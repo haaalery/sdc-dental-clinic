@@ -54,15 +54,11 @@ $currentUser = Session::user();
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Awwwards Clean Architectural Vertical Strip Accordion (Straight, Position-Aware) */
+        /* Clean Architectural Vertical Strip Accordion (Stationary, Crisp) */
         .gallery-strip {
             transition: width 0.75s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, z-index 0.2s ease;
             flex-shrink: 0;
             will-change: width;
-        }
-        .gallery-strip img {
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
-            will-change: transform;
         }
         .gallery-strip:hover {
             z-index: 30;
@@ -294,17 +290,17 @@ $currentUser = Session::user();
                     <?php foreach ($treatments as $idx => $trt): 
                         $imgUrl = $trtPhotos[$trt['treatment_code']] ?? 'https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=900&q=80';
                     ?>
-                        <!-- Pure Photographic Strip (Straight, Zero Text, Expands on Hover) -->
+                        <!-- Pure Photographic Strip (Straight, Stationary, Zero Text) -->
                         <a href="#booking-form" 
                            onclick="prefillConcern('<?= addslashes(htmlspecialchars($trt['treatment_name'])) ?>')"
                            title="<?= htmlspecialchars($trt['treatment_name']) ?> — <?= APP_CURRENCY ?><?= number_format($trt['standard_price'], 2) ?>"
                            class="gallery-strip group relative h-[590px] w-[170px] sm:w-[200px] md:w-[220px] hover:w-[580px] sm:hover:w-[720px] md:hover:w-[840px] -ml-[1px] first:ml-0 overflow-hidden border-r border-t border-b border-white/10 first:border-l bg-slate-950 block cursor-pointer">
                             
-                            <!-- Pure Full Image Frame (No Text Overlay) -->
+                            <!-- Pure Full Image Frame (Stationary, Crisp, Full Opacity) -->
                             <div class="gallery-strip-inner absolute inset-0 w-full h-full">
                                 <img src="<?= $imgUrl ?>" 
                                      alt="<?= htmlspecialchars($trt['treatment_name']) ?>" 
-                                     class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105 filter brightness-95 group-hover:brightness-105">
+                                     class="absolute inset-0 w-full h-full object-cover">
                             </div>
                         </a>
                     <?php endforeach; ?>
@@ -316,7 +312,7 @@ $currentUser = Session::user();
     </section>
 
     <script>
-        // High-Precision Drag, Scroll, Wheel & Position-Aware Hover Parallax
+        // High-Precision Drag, Scroll & Wheel Navigation
         document.addEventListener('DOMContentLoaded', function() {
             const track = document.getElementById('servicesTrack');
             const prevBtn = document.getElementById('sliderPrevBtn');
@@ -336,62 +332,6 @@ $currentUser = Session::user();
                         track.scrollBy({ left: scrollStep, behavior: 'smooth' });
                     });
                 }
-
-                // Position-Aware Hover: Auto-Align into Viewport & Coordinate-Based Parallax
-                const strips = track.querySelectorAll('.gallery-strip');
-                let autoScrollTimeout;
-
-                strips.forEach((strip, index) => {
-                    strip.addEventListener('mouseenter', function() {
-                        // Dim neighboring strips subtly to highlight the active photo
-                        strips.forEach(s => {
-                            if (s !== strip) {
-                                s.style.opacity = '0.65';
-                                s.style.filter = 'grayscale(25%)';
-                            } else {
-                                s.style.opacity = '1';
-                                s.style.filter = 'none';
-                            }
-                        });
-
-                        // Position-based viewport auto-framing
-                        clearTimeout(autoScrollTimeout);
-                        autoScrollTimeout = setTimeout(() => {
-                            const trackRect = track.getBoundingClientRect();
-                            const stripRect = strip.getBoundingClientRect();
-                            
-                            // Check if the expanded strip extends outside visible bounds
-                            if (stripRect.right > trackRect.right - 60 || stripRect.left < trackRect.left + 60) {
-                                strip.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-                            }
-                        }, 120);
-                    });
-
-                    // Cursor-position responsive parallax within the active picture
-                    strip.addEventListener('mousemove', function(e) {
-                        const rect = strip.getBoundingClientRect();
-                        const x = (e.clientX - rect.left) / rect.width;
-                        const y = (e.clientY - rect.top) / rect.height;
-                        const img = strip.querySelector('img');
-                        if (img) {
-                            const moveX = (x - 0.5) * -30;
-                            const moveY = (y - 0.5) * -18;
-                            img.style.transform = `scale(1.06) translate(${moveX}px, ${moveY}px)`;
-                        }
-                    });
-
-                    strip.addEventListener('mouseleave', function() {
-                        const img = strip.querySelector('img');
-                        if (img) {
-                            img.style.transform = '';
-                        }
-                        // Reset siblings
-                        strips.forEach(s => {
-                            s.style.opacity = '';
-                            s.style.filter = '';
-                        });
-                    });
-                });
 
                 // Mouse Wheel Horizontal Scroll
                 track.addEventListener('wheel', (e) => {
