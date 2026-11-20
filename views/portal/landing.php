@@ -247,123 +247,246 @@ $currentUser = Session::user();
         'TRT-009' => ['duration' => '60 mins', 'comfort' => 'Enamel-Safe', 'inclusions' => 'Blue LED Laser Whitening System'],
     ];
     ?>
-    <section id="services" class="py-24 bg-[#0a0f18] text-white overflow-hidden border-b border-slate-800 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
-                <div>
-                    <span class="text-[11px] uppercase tracking-[0.25em] font-semibold text-teal-400 block mb-2">
-                        Clinical Catalog
-                    </span>
-                    <h3 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-                        Signature Treatments<span class="font-serif italic font-normal text-slate-400">.</span>
-                    </h3>
-                    <p class="text-slate-400 text-xs sm:text-sm mt-3 max-w-xl leading-relaxed">
-                        Nine focused dental disciplines across our Makati and Pasig clinics. Hover across each slice to inspect the treatment overview, clinical duration, and upfront fees.
-                    </p>
+    <!-- Services & Treatments Section (Awwwards Master-Detail Exhibition Showcase) -->
+    <?php
+    $treatmentsData = [];
+    foreach ($treatments as $idx => $t) {
+        $code = $t['treatment_code'];
+        $treatmentsData[] = [
+            'id' => $t['id'],
+            'index' => str_pad($idx + 1, 2, '0', STR_PAD_LEFT),
+            'code' => $code,
+            'name' => $t['treatment_name'],
+            'category' => $t['category'],
+            'price' => APP_CURRENCY . number_format($t['standard_price'], 2),
+            'description' => $t['description'] ?: 'Comprehensive procedure conducted by certified attending dental clinicians.',
+            'image' => $trtPhotos[$code] ?? 'https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=1200&q=85',
+            'duration' => $trtDetails[$code]['duration'] ?? '45 mins',
+            'comfort' => $trtDetails[$code]['comfort'] ?? 'Clinical Grade',
+            'inclusions' => $trtDetails[$code]['inclusions'] ?? 'Consultation Included'
+        ];
+    }
+    $initialTrt = $treatmentsData[0] ?? null;
+    ?>
+    <section id="services" class="py-24 bg-[#f3eee7] text-stone-900 border-b border-stone-300/80 overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Minimalist Editorial Top Bar -->
+            <div class="flex items-center justify-between border-b border-stone-300 pb-5 mb-10 text-[11px] uppercase tracking-[0.22em] font-mono text-stone-500">
+                <span>Catalogue // Clinical Disciplines</span>
+                <span class="font-serif italic font-normal text-stone-800 text-sm normal-case tracking-normal">SDC Dental Atelier</span>
+                <span id="activeCounter" class="font-semibold text-stone-800">01 / <?= str_pad(count($treatmentsData), 2, '0', STR_PAD_LEFT) ?></span>
+            </div>
+
+            <!-- Main Stage (Left: Big Feature Picture / Right: Large Editorial Headline & Info) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center mb-12">
+                
+                <!-- Left: Big Picture Display -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative w-full aspect-[3/4] sm:h-[540px] rounded-2xl overflow-hidden shadow-2xl bg-stone-900 border border-stone-300/80 group">
+                        <img id="mainStageImage" 
+                             src="<?= htmlspecialchars($initialTrt['image'] ?? '') ?>" 
+                             alt="<?= htmlspecialchars($initialTrt['name'] ?? '') ?>" 
+                             class="w-full h-full object-cover transition-all duration-700 ease-out filter brightness-95">
+                        
+                        <!-- Floating Minimalist Card Tag -->
+                        <div class="absolute bottom-5 left-5 right-5 p-4 rounded-xl bg-stone-950/80 backdrop-blur-md text-white flex items-center justify-between shadow-lg">
+                            <div>
+                                <span id="mainStageCategoryPill" class="text-[10px] uppercase tracking-widest text-teal-400 font-mono font-bold block">
+                                    <?= htmlspecialchars($initialTrt['category'] ?? '') ?>
+                                </span>
+                                <p id="mainStageCodePill" class="text-xs font-mono text-stone-400 mt-0.5">
+                                    <?= htmlspecialchars($initialTrt['code'] ?? '') ?>
+                                </p>
+                            </div>
+                            <a id="mainStageBookingBtn" 
+                               href="#booking-form" 
+                               onclick="prefillConcern('<?= addslashes(htmlspecialchars($initialTrt['name'] ?? '')) ?>')"
+                               class="px-4 py-2 bg-white text-stone-950 text-xs font-bold rounded-lg hover:bg-teal-400 transition flex items-center space-x-1.5 shadow-xs">
+                                <span>Schedule Visit</span>
+                                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Minimalist Navigation Controls -->
-                <div class="flex items-center space-x-5">
-                    <span class="hidden sm:inline-block text-[11px] uppercase tracking-widest text-slate-500 font-mono">
-                        [ 01 — 09 ]
-                    </span>
-                    <div class="flex items-center space-x-2">
-                        <button id="sliderPrevBtn" aria-label="Previous treatment" class="w-12 h-12 rounded-full border border-white/20 hover:border-white hover:bg-white hover:text-slate-950 text-white flex items-center justify-center transition shadow-lg">
-                            <i data-lucide="chevron-left" class="w-5 h-5"></i>
-                        </button>
-                        <button id="sliderNextBtn" aria-label="Next treatment" class="w-12 h-12 rounded-full border border-white/20 hover:border-white hover:bg-white hover:text-slate-950 text-white flex items-center justify-center transition shadow-lg">
-                            <i data-lucide="chevron-right" class="w-5 h-5"></i>
-                        </button>
+                <!-- Right: Big Editorial Headline & Comprehensive Procedure Overview -->
+                <div class="lg:col-span-7 flex flex-col justify-center">
+                    <div class="mb-4">
+                        <span id="mainStageCategory" class="text-xs uppercase tracking-[0.25em] font-mono text-stone-500 block mb-3">
+                            <?= htmlspecialchars($initialTrt['index'] ?? '01') ?> / <?= htmlspecialchars($initialTrt['category'] ?? '') ?>
+                        </span>
+                        
+                        <!-- Big High-Fashion Headline (Le Oh Botanic style) -->
+                        <h3 id="mainStageTitle" class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-stone-950 tracking-tight leading-[1.08] transition-opacity duration-300">
+                            <?= htmlspecialchars($initialTrt['name'] ?? '') ?>
+                        </h3>
+                    </div>
+
+                    <!-- Fee -->
+                    <div class="flex items-baseline space-x-3 my-6">
+                        <span id="mainStagePrice" class="text-3xl sm:text-4xl font-mono font-bold text-stone-950 tracking-tight">
+                            <?= htmlspecialchars($initialTrt['price'] ?? '') ?>
+                        </span>
+                        <span class="text-xs font-mono text-stone-500">standard clinic rate</span>
+                    </div>
+
+                    <!-- Clinical Description -->
+                    <p id="mainStageDescription" class="text-stone-700 text-sm sm:text-base leading-relaxed max-w-xl font-light mb-8">
+                        <?= htmlspecialchars($initialTrt['description'] ?? '') ?>
+                    </p>
+
+                    <!-- Editorial Specification Bar -->
+                    <div class="grid grid-cols-3 gap-4 border-t border-b border-stone-300 py-5 mb-8 text-xs max-w-xl">
+                        <div>
+                            <span class="block text-[10px] uppercase tracking-widest text-stone-400 mb-1">Session</span>
+                            <span id="mainStageDuration" class="font-bold text-stone-900 text-sm">
+                                <?= htmlspecialchars($initialTrt['duration'] ?? '') ?>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] uppercase tracking-widest text-stone-400 mb-1">Comfort</span>
+                            <span id="mainStageComfort" class="font-bold text-stone-900 text-sm">
+                                <?= htmlspecialchars($initialTrt['comfort'] ?? '') ?>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] uppercase tracking-widest text-stone-400 mb-1">Inclusions</span>
+                            <span id="mainStageInclusions" class="font-bold text-stone-900 text-sm truncate block">
+                                <?= htmlspecialchars($initialTrt['inclusions'] ?? '') ?>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Primary Action -->
+                    <div>
+                        <a id="mainStagePrimaryCta" 
+                           href="#booking-form" 
+                           onclick="prefillConcern('<?= addslashes(htmlspecialchars($initialTrt['name'] ?? '')) ?>')"
+                           class="inline-flex items-center space-x-2.5 px-8 py-4 bg-stone-950 hover:bg-stone-800 text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-lg transition">
+                            <span>Schedule This Procedure</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Seamless Edge-to-Edge Diagonal Accordion (Expands to Pure Full Slide on Hover) -->
-        <div class="w-full relative overflow-hidden py-4">
-            <!-- Subtle Vignette Masks on Left & Right Edges -->
-            <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#0a0f18] to-transparent z-20 pointer-events-none"></div>
-            <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#0a0f18] to-transparent z-20 pointer-events-none"></div>
+            <!-- Bottom: Clickable Horizontal Thumbnail Filmstrip (Transfers to the Big Picture) -->
+            <div class="pt-8 border-t border-stone-300">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-[11px] uppercase tracking-widest font-mono text-stone-500">
+                        Select a procedure (Click or hover thumbnail to transfer to stage):
+                    </span>
+                    <span class="text-xs text-stone-400 hidden sm:inline font-mono">
+                        9 Available Disciplines
+                    </span>
+                </div>
 
-            <div id="servicesTrack" class="flex items-stretch space-x-0 py-6 px-8 sm:px-16 overflow-x-auto no-scrollbar scroll-smooth cursor-grab active:cursor-grabbing select-none">
-                <?php if (!empty($treatments)): ?>
-                    <?php foreach ($treatments as $idx => $trt): 
-                        $imgUrl = $trtPhotos[$trt['treatment_code']] ?? 'https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=900&q=80';
-                    ?>
-                        <!-- Pure Photographic Strip (Straight, Stationary, Zero Text) -->
-                        <a href="#booking-form" 
-                           onclick="prefillConcern('<?= addslashes(htmlspecialchars($trt['treatment_name'])) ?>')"
-                           title="<?= htmlspecialchars($trt['treatment_name']) ?> — <?= APP_CURRENCY ?><?= number_format($trt['standard_price'], 2) ?>"
-                           class="gallery-strip group relative h-[590px] w-[170px] sm:w-[200px] md:w-[220px] hover:w-[580px] sm:hover:w-[720px] md:hover:w-[840px] -ml-[1px] first:ml-0 overflow-hidden border-r border-t border-b border-white/10 first:border-l bg-slate-950 block cursor-pointer">
+                <!-- Filmstrip Row -->
+                <div id="thumbnailFilmstrip" class="flex items-center space-x-3 sm:space-x-4 overflow-x-auto no-scrollbar py-2 select-none">
+                    <?php foreach ($treatmentsData as $idx => $item): ?>
+                        <button type="button" 
+                                onclick="selectTreatment(<?= $idx ?>)" 
+                                onmouseenter="previewTreatment(<?= $idx ?>)"
+                                data-index="<?= $idx ?>"
+                                class="thumb-card group relative h-32 sm:h-36 w-20 sm:w-24 rounded-xl overflow-hidden border-2 <?= $idx === 0 ? 'border-stone-950 ring-2 ring-stone-950/20' : 'border-stone-300/80 hover:border-stone-600' ?> transition-all flex-shrink-0 cursor-pointer shadow-sm">
+                            <img src="<?= htmlspecialchars($item['image']) ?>" 
+                                 alt="<?= htmlspecialchars($item['name']) ?>" 
+                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                             
-                            <!-- Pure Full Image Frame (Stationary, Crisp, Full Opacity) -->
-                            <div class="gallery-strip-inner absolute inset-0 w-full h-full">
-                                <img src="<?= $imgUrl ?>" 
-                                     alt="<?= htmlspecialchars($trt['treatment_name']) ?>" 
-                                     class="absolute inset-0 w-full h-full object-cover">
-                            </div>
-                        </a>
+                            <div class="absolute inset-0 bg-stone-950/20 group-hover:bg-transparent transition-colors"></div>
+                            
+                            <span class="absolute top-1.5 left-1.5 text-[9px] font-mono font-bold text-white bg-black/60 px-1 rounded">
+                                <?= $item['index'] ?>
+                            </span>
+                        </button>
                     <?php endforeach; ?>
-                <?php else: ?>
-                    <p class="text-xs text-slate-400 italic">No services listed at this moment.</p>
-                <?php endif; ?>
+                </div>
             </div>
+
         </div>
     </section>
 
     <script>
-        // High-Precision Drag, Scroll & Wheel Navigation
-        document.addEventListener('DOMContentLoaded', function() {
-            const track = document.getElementById('servicesTrack');
-            const prevBtn = document.getElementById('sliderPrevBtn');
-            const nextBtn = document.getElementById('sliderNextBtn');
-            
-            if (track) {
-                const scrollStep = 380;
-                
-                if (prevBtn) {
-                    prevBtn.addEventListener('click', function() {
-                        track.scrollBy({ left: -scrollStep, behavior: 'smooth' });
-                    });
+        const treatmentsList = <?= json_encode($treatmentsData) ?>;
+        let selectedIndex = 0;
+
+        function updateStage(t) {
+            const img = document.getElementById('mainStageImage');
+            const title = document.getElementById('mainStageTitle');
+            const category = document.getElementById('mainStageCategory');
+            const categoryPill = document.getElementById('mainStageCategoryPill');
+            const codePill = document.getElementById('mainStageCodePill');
+            const price = document.getElementById('mainStagePrice');
+            const desc = document.getElementById('mainStageDescription');
+            const duration = document.getElementById('mainStageDuration');
+            const comfort = document.getElementById('mainStageComfort');
+            const inclusions = document.getElementById('mainStageInclusions');
+            const counter = document.getElementById('activeCounter');
+            const bookingBtn = document.getElementById('mainStageBookingBtn');
+            const primaryCta = document.getElementById('mainStagePrimaryCta');
+
+            if (img && title) {
+                // Smooth image swap with subtle opacity fade
+                img.style.opacity = '0.4';
+                setTimeout(() => {
+                    img.src = t.image;
+                    img.alt = t.name;
+                    img.style.opacity = '1';
+                }, 150);
+
+                title.innerText = t.name;
+                category.innerText = `${t.index} / ${t.category}`;
+                categoryPill.innerText = t.category;
+                codePill.innerText = t.code;
+                price.innerText = t.price;
+                desc.innerText = t.description;
+                duration.innerText = t.duration;
+                comfort.innerText = t.comfort;
+                inclusions.innerText = t.inclusions;
+                counter.innerText = `${t.index} / ${String(treatmentsList.length).padStart(2, '0')}`;
+
+                if (bookingBtn) {
+                    bookingBtn.onclick = () => prefillConcern(t.name);
                 }
-                
-                if (nextBtn) {
-                    nextBtn.addEventListener('click', function() {
-                        track.scrollBy({ left: scrollStep, behavior: 'smooth' });
-                    });
+                if (primaryCta) {
+                    primaryCta.onclick = () => prefillConcern(t.name);
                 }
-
-                // Mouse Wheel Horizontal Scroll
-                track.addEventListener('wheel', (e) => {
-                    if (e.deltaY !== 0) {
-                        e.preventDefault();
-                        track.scrollBy({ left: e.deltaY * 1.5, behavior: 'auto' });
-                    }
-                }, { passive: false });
-
-                // Mouse Drag-To-Scroll
-                let isDown = false;
-                let startX;
-                let scrollLeft;
-
-                track.addEventListener('mousedown', (e) => {
-                    isDown = true;
-                    startX = e.pageX - track.offsetLeft;
-                    scrollLeft = track.scrollLeft;
-                });
-
-                track.addEventListener('mouseleave', () => { isDown = false; });
-                track.addEventListener('mouseup', () => { isDown = false; });
-
-                track.addEventListener('mousemove', (e) => {
-                    if (!isDown) return;
-                    e.preventDefault();
-                    const x = e.pageX - track.offsetLeft;
-                    const walk = (x - startX) * 1.6;
-                    track.scrollLeft = scrollLeft - walk;
-                });
+                if (window.lucide) {
+                    lucide.createIcons();
+                }
             }
-        });
+        }
+
+        function highlightThumbnail(index) {
+            const thumbs = document.querySelectorAll('.thumb-card');
+            thumbs.forEach((th, i) => {
+                if (i === index) {
+                    th.classList.add('border-stone-950', 'ring-2', 'ring-stone-950/20');
+                    th.classList.remove('border-stone-300/80');
+                } else {
+                    th.classList.remove('border-stone-950', 'ring-2', 'ring-stone-950/20');
+                    th.classList.add('border-stone-300/80');
+                }
+            });
+        }
+
+        function selectTreatment(index) {
+            selectedIndex = index;
+            const t = treatmentsList[index];
+            if (t) {
+                updateStage(t);
+                highlightThumbnail(index);
+            }
+        }
+
+        function previewTreatment(index) {
+            const t = treatmentsList[index];
+            if (t) {
+                updateStage(t);
+                highlightThumbnail(index);
+            }
+        }
     </script>
 
     <!-- Clinical Standards & What to Expect (Refined Editorial Layout) -->
