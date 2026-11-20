@@ -165,55 +165,139 @@ $currentUser = Session::user();
         <!-- 2. Wireframe 3-Column Layout: Left (Title, Media, Text) | Center (Image) | Right (Card, Text, CTA) -->
         <div class="w-full flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch px-6 sm:px-10 lg:px-14 py-6 lg:py-8 relative z-10">
             
+            <!-- Architectural Corner Crosshairs (High-Tech Blueprint Aesthetic) -->
+            <span class="absolute top-2 left-6 sm:left-10 text-stone-300 font-mono text-xs select-none pointer-events-none">+</span>
+            <span class="absolute top-2 right-6 sm:right-10 text-stone-300 font-mono text-xs select-none pointer-events-none">+</span>
+            <span class="absolute bottom-2 left-6 sm:left-10 text-stone-300 font-mono text-xs select-none pointer-events-none">+</span>
+            <span class="absolute bottom-2 right-6 sm:right-10 text-stone-300 font-mono text-xs select-none pointer-events-none">+</span>
+
             <!-- LEFT COLUMN: Title (Top) | Media (Middle) | Text (Bottom) -->
             <div class="lg:col-span-4 flex flex-col justify-between space-y-6 lg:space-y-0 z-20">
                 
                 <!-- 1. Title Block (Directly on canvas like Image 1) -->
                 <div>
-                    <h1 class="text-4xl sm:text-5xl lg:text-[3.4rem] xl:text-[4rem] font-black tracking-tight uppercase leading-[0.92] text-black font-sans">
+                    <div class="inline-flex items-center space-x-2 px-2 py-0.5 bg-black text-white text-[9px] font-mono tracking-[0.25em] uppercase font-bold mb-3 rounded-none shadow-xs">
+                        <span class="w-1.5 h-1.5 bg-emerald-400 animate-pulse"></span>
+                        <span>CLINICAL ATELIER // EST. 2018</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4.2rem] font-black tracking-tight uppercase leading-[0.9] text-black font-sans">
                         ADVANCED <br>
                         CLINICAL <br>
                         DENTISTRY
                     </h1>
-                    <div class="mt-3 flex items-center space-x-2 text-[10px] font-mono tracking-[0.25em] uppercase text-stone-500 font-bold">
+                    <div class="mt-3 flex items-center space-x-2 text-[10px] font-mono tracking-[0.22em] uppercase text-stone-500 font-bold">
                         <span>SDC ATELIER</span>
                         <span>·</span>
                         <span>TECHNOLOGY</span>
+                        <span>·</span>
+                        <span class="text-emerald-700">ISO-13485</span>
                     </div>
                 </div>
 
                 <!-- 2. Media Block & 3. Text Block (Pinned at Bottom-Left like Image 1) -->
                 <div class="space-y-3 max-w-sm">
-                    <!-- Media Tile with Play Button (Zero Round Borders) -->
-                    <div class="relative w-full h-32 sm:h-40 bg-stone-900 border border-stone-200 overflow-hidden group rounded-none shadow-sm">
+                    <!-- Media Tile with Play Button (Interactive Procedure Exhibition Trigger, Zero Round Borders) -->
+                    <div class="relative w-full h-32 sm:h-40 bg-stone-900 border border-stone-200 overflow-hidden group rounded-none shadow-sm cursor-pointer" 
+                         onclick="openProcedureModal(0)"
+                         title="Click to view surgical specifications">
                         <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=800&q=80" 
                              alt="Clinical Procedure Video Preview" 
                              class="w-full h-full object-cover filter grayscale contrast-125 group-hover:scale-105 transition duration-700 rounded-none">
-                        <div class="absolute inset-0 bg-black/25 flex items-center justify-center">
-                            <a href="#services" class="w-11 h-11 bg-white text-black flex items-center justify-center shadow-md transition transform group-hover:scale-110 rounded-none cursor-pointer" aria-label="Watch clinical preview">
+                        
+                        <!-- Top Tech Tag -->
+                        <div class="absolute top-2 left-2 px-2 py-0.5 bg-black/85 text-white font-mono text-[9px] uppercase tracking-widest flex items-center space-x-1.5 rounded-none z-10">
+                            <span class="w-1.5 h-1.5 bg-emerald-400"></span>
+                            <span>4K SURGICAL MACRO</span>
+                        </div>
+
+                        <!-- Center Play Button with hover scale -->
+                        <div class="absolute inset-0 bg-black/20 flex items-center justify-center z-10">
+                            <div class="w-11 h-11 bg-white text-black flex items-center justify-center shadow-md transition transform group-hover:scale-110 rounded-none">
                                 <i data-lucide="play" class="w-4 h-4 fill-current ml-0.5"></i>
-                            </a>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Tag -->
+                        <div class="absolute bottom-2 right-2 px-2 py-0.5 bg-black/85 text-white font-mono text-[9px] uppercase tracking-wider rounded-none z-10">
+                            SPEC 01 // EXPLORE
                         </div>
                     </div>
 
                     <!-- Text Block (Caption directly below media like Image 1) -->
-                    <p class="text-[11px] sm:text-xs text-stone-600 leading-relaxed font-light">
-                        Exploring opportunities to make specialized restorative and aesthetic dentistry more precise, gentle, and accessible.
-                    </p>
+                    <div>
+                        <p class="text-[11px] sm:text-xs text-stone-600 leading-relaxed font-light">
+                            Exploring opportunities to make specialized restorative and aesthetic dentistry more precise, gentle, and accessible.
+                        </p>
+                        <div class="mt-2 flex items-center space-x-2 text-[9px] font-mono uppercase tracking-wider text-stone-400 font-semibold">
+                            <span>5-MICRON ACCURACY</span>
+                            <span>·</span>
+                            <span>ZERO-TRAUMA PROTOCOL</span>
+                        </div>
+                    </div>
                 </div>
 
             </div>
 
-            <!-- CENTER COLUMN: Large Centerpiece Image (Seamlessly floating with depth like Image 1) -->
-            <div class="lg:col-span-5 h-[420px] sm:h-[500px] lg:h-full relative flex items-center justify-center min-h-0">
-                <div class="relative w-full h-full max-h-full overflow-hidden border border-stone-200 bg-stone-100 shadow-xl group rounded-none">
+            <!-- CENTER COLUMN: Large Centerpiece Image with 3D Tilt & Interactive Clinical Hotspots -->
+            <div class="lg:col-span-5 h-[420px] sm:h-[500px] lg:h-full relative flex items-center justify-center min-h-0 hero-perspective">
+                <div id="heroTiltCard" class="hero-tilt-card relative w-full h-full max-h-full overflow-hidden border border-stone-200 bg-stone-100 shadow-xl group rounded-none">
+                    
                     <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1600&q=85" 
                          alt="SDC Precision Dental Suite" 
                          class="w-full h-full object-cover filter contrast-[1.05] brightness-95 transition-transform duration-700 ease-out group-hover:scale-105 rounded-none">
                     
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent flex flex-col justify-end p-6 sm:p-8 text-white pointer-events-none rounded-none">
-                        <span class="text-[10px] font-mono tracking-widest uppercase text-teal-300 font-bold mb-1">
-                            PRECISION OPERATORY // ATELIER
+                    <!-- Tech Corner Blueprint Marks -->
+                    <div class="absolute top-3 left-3 text-[9px] font-mono uppercase tracking-widest text-white/80 bg-black/60 px-2 py-0.5 rounded-none pointer-events-none z-20">
+                        LAT: 14.5547° N // LON: 121.0244° E
+                    </div>
+
+                    <!-- HOTSPOT 01: 3D Scanner (Top Left) -->
+                    <div class="absolute top-[28%] left-[26%] z-30 group/hotspot">
+                        <div class="relative w-7 h-7 bg-black text-white text-[10px] font-mono font-bold flex items-center justify-center border border-white shadow-lg cursor-pointer hover:bg-stone-800 rounded-none transition transform group-hover/hotspot:scale-110">
+                            <span>01</span>
+                            <span class="absolute inset-0 border border-teal-400 animate-ping opacity-60 rounded-none pointer-events-none"></span>
+                        </div>
+                        <!-- Hotspot Tooltip Card -->
+                        <div class="absolute left-9 top-1/2 -translate-y-1/2 w-52 sm:w-60 bg-white text-stone-900 border border-stone-300 p-3 shadow-2xl opacity-0 group-hover/hotspot:opacity-100 transition-all duration-200 pointer-events-none rounded-none z-40">
+                            <span class="text-[8px] font-mono tracking-widest uppercase text-stone-400 font-bold block mb-1">EQUIPMENT // 01</span>
+                            <div class="text-xs font-black uppercase text-black leading-tight">3D Digital Oral Scanner</div>
+                            <div class="text-[10px] text-stone-500 mt-1 leading-snug">5-micron volumetric accuracy for virtual crown milling without messy impressions.</div>
+                        </div>
+                    </div>
+
+                    <!-- HOTSPOT 02: Autoclave Suite (Mid Right) -->
+                    <div class="absolute top-[52%] right-[22%] z-30 group/hotspot">
+                        <div class="relative w-7 h-7 bg-black text-white text-[10px] font-mono font-bold flex items-center justify-center border border-white shadow-lg cursor-pointer hover:bg-stone-800 rounded-none transition transform group-hover/hotspot:scale-110">
+                            <span>02</span>
+                            <span class="absolute inset-0 border border-teal-400 animate-ping opacity-60 rounded-none pointer-events-none"></span>
+                        </div>
+                        <!-- Hotspot Tooltip Card -->
+                        <div class="absolute right-9 top-1/2 -translate-y-1/2 w-52 sm:w-60 bg-white text-stone-900 border border-stone-300 p-3 shadow-2xl opacity-0 group-hover/hotspot:opacity-100 transition-all duration-200 pointer-events-none rounded-none z-40">
+                            <span class="text-[8px] font-mono tracking-widest uppercase text-stone-400 font-bold block mb-1">EQUIPMENT // 02</span>
+                            <div class="text-xs font-black uppercase text-black leading-tight">Class-B Vacuum Autoclave</div>
+                            <div class="text-[10px] text-stone-500 mt-1 leading-snug">Hospital-grade fractionated vacuum sterilization with verified digital spore tracking.</div>
+                        </div>
+                    </div>
+
+                    <!-- HOTSPOT 03: Ultrasonic Scaler (Bottom Left) -->
+                    <div class="absolute bottom-[24%] left-[28%] z-30 group/hotspot">
+                        <div class="relative w-7 h-7 bg-black text-white text-[10px] font-mono font-bold flex items-center justify-center border border-white shadow-lg cursor-pointer hover:bg-stone-800 rounded-none transition transform group-hover/hotspot:scale-110">
+                            <span>03</span>
+                            <span class="absolute inset-0 border border-teal-400 animate-ping opacity-60 rounded-none pointer-events-none"></span>
+                        </div>
+                        <!-- Hotspot Tooltip Card -->
+                        <div class="absolute left-9 bottom-0 w-52 sm:w-60 bg-white text-stone-900 border border-stone-300 p-3 shadow-2xl opacity-0 group-hover/hotspot:opacity-100 transition-all duration-200 pointer-events-none rounded-none z-40">
+                            <span class="text-[8px] font-mono tracking-widest uppercase text-stone-400 font-bold block mb-1">EQUIPMENT // 03</span>
+                            <div class="text-xs font-black uppercase text-black leading-tight">Piezo Ultrasonic Scaler</div>
+                            <div class="text-[10px] text-stone-500 mt-1 leading-snug">Deep calculus debridement with micro-vibrations, safeguarding healthy dental enamel.</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Centerpiece Bottom Gradient & Title -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6 sm:p-8 text-white pointer-events-none rounded-none">
+                        <span class="text-[10px] font-mono tracking-widest uppercase text-teal-300 font-bold mb-1 flex items-center space-x-2">
+                            <span class="w-2 h-2 bg-teal-400"></span>
+                            <span>PRECISION OPERATORY // ATELIER SUITE</span>
                         </span>
                         <p class="text-xs text-stone-200 font-light leading-relaxed max-w-sm">
                             High-precision diagnostic imaging and Class-B vacuum autoclave surgical suites.
@@ -222,16 +306,19 @@ $currentUser = Session::user();
                 </div>
             </div>
 
-            <!-- RIGHT COLUMN: Card (Top) | Text (Middle) | CTA (Bottom) -->
+            <!-- RIGHT COLUMN: Card (Top) | Doctor Preview (Middle) | Text & CTA (Bottom) -->
             <div class="lg:col-span-3 flex flex-col justify-between space-y-6 lg:space-y-0 z-20">
                 
                 <!-- 1. Card Block (Specialized Article Teaser like Image 1) -->
                 <div class="max-w-xs">
-                    <a href="#standards" class="group block border border-stone-200 bg-white p-3 hover:border-black transition rounded-none shadow-xs">
+                    <a href="#standards" class="group block border border-stone-200 bg-white p-3 hover:border-black transition duration-300 rounded-none shadow-xs">
                         <div class="w-full h-32 bg-stone-900 mb-3 overflow-hidden relative rounded-none">
                             <img src="https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&fit=crop&w=600&q=80" 
                                  alt="Clinical Standards" 
                                  class="w-full h-full object-cover filter grayscale contrast-125 group-hover:scale-105 transition duration-500 rounded-none">
+                            <div class="absolute top-2 left-2 px-1.5 py-0.5 bg-black text-white text-[8px] font-mono uppercase tracking-wider rounded-none">
+                                PEER-REVIEWED
+                            </div>
                         </div>
                         <span class="text-[9px] font-mono uppercase tracking-widest text-stone-400 font-bold block mb-1">
                             ARTICLE // PROTOCOL
@@ -242,8 +329,31 @@ $currentUser = Session::user();
                     </a>
                 </div>
 
-                <!-- 2. Text Block & 3. CTA Block (Bottom-Right like Image 1) -->
-                <div class="space-y-5 max-w-xs pt-4 border-t border-stone-200">
+                <!-- 2. Middle Specialist Block (Mirroring Image 1's author badge) -->
+                <div class="max-w-xs border border-stone-200 bg-stone-50/80 p-3 flex items-center space-x-3 rounded-none">
+                    <div class="w-11 h-11 bg-stone-900 border border-stone-300 overflow-hidden flex-shrink-0 rounded-none relative">
+                        <img src="https://images.unsplash.com/photo-1594824813637-e54e4df5e206?auto=format&fit=crop&w=300&q=80" 
+                             alt="Dr. Eleanor Vance, DMD" 
+                             class="w-full h-full object-cover filter grayscale contrast-125">
+                        <div class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-black text-white flex items-center justify-center text-[9px] font-bold">
+                            +
+                        </div>
+                    </div>
+                    <div class="min-w-0">
+                        <span class="text-[8px] font-mono uppercase tracking-widest text-stone-400 font-bold block">
+                            CHIEF CLINICIAN
+                        </span>
+                        <div class="text-[11px] font-bold text-black uppercase tracking-tight truncate">
+                            Dr. Eleanor Vance, DMD
+                        </div>
+                        <div class="text-[9px] font-mono text-stone-500 uppercase tracking-wide truncate">
+                            Prosthodontics & Surgery
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Text Block & 4. CTA Block (Bottom-Right like Image 1) -->
+                <div class="space-y-4 max-w-xs pt-3 border-t border-stone-200">
                     <div>
                         <span class="text-[9px] font-mono uppercase tracking-widest text-stone-400 font-bold block mb-1">
                             CARE & INNOVATION
@@ -254,10 +364,13 @@ $currentUser = Session::user();
                     </div>
 
                     <!-- CTA Link/Button (Sharp 90-degree edges, like Image 1) -->
-                    <div>
+                    <div class="flex items-center justify-between pt-1">
                         <a href="#booking-form" class="inline-flex items-center space-x-2 text-xs font-black uppercase tracking-[0.2em] text-black hover:text-stone-600 transition group border-b-2 border-black pb-1 rounded-none">
                             <span>Read More // Book</span>
                             <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                        <a href="#services" class="text-[10px] font-mono text-stone-400 hover:text-black uppercase tracking-wider transition">
+                            [ Suite ↓ ]
                         </a>
                     </div>
                 </div>
