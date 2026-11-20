@@ -54,23 +54,21 @@ $currentUser = Session::user();
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Awwwards Seamless Diagonal Slanted Strip Accordion */
-        .diagonal-strip {
-            transform: skewX(-9deg);
-            transition: width 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s ease, box-shadow 0.4s ease, z-index 0.2s ease;
+        /* Awwwards Clean Architectural Vertical Strip Accordion (Straight, Non-Diagonal) */
+        .gallery-strip {
+            transition: width 0.75s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, z-index 0.2s ease;
             flex-shrink: 0;
-            will-change: width, transform;
+            will-change: width;
         }
-        .diagonal-strip-inner {
-            transform: skewX(9deg) scale(1.28);
+        .gallery-strip-inner {
             transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .diagonal-strip:hover {
+        .gallery-strip:hover {
             z-index: 30;
-            box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.9);
+            box-shadow: 0 35px 80px -20px rgba(0, 0, 0, 0.95);
         }
-        .diagonal-strip:hover .diagonal-strip-inner {
-            transform: skewX(9deg) scale(1.15);
+        .gallery-strip:hover .gallery-strip-inner {
+            transform: scale(1.04);
         }
         .writing-vertical-rl {
             writing-mode: vertical-rl;
@@ -291,7 +289,7 @@ $currentUser = Session::user();
             </div>
         </div>
 
-        <!-- Seamless Edge-to-Edge Diagonal Accordion -->
+        <!-- Seamless Edge-to-Edge Vertical Accordion Gallery (Clean Architectural Monolith) -->
         <div class="w-full relative overflow-hidden py-4">
             <!-- Subtle Vignette Masks on Left & Right Edges -->
             <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#0a0f18] to-transparent z-20 pointer-events-none"></div>
@@ -304,11 +302,11 @@ $currentUser = Session::user();
                         $padIndex = str_pad($idx + 1, 2, '0', STR_PAD_LEFT);
                         $meta = $trtDetails[$trt['treatment_code']] ?? ['duration' => '45 mins', 'comfort' => 'Clinical Grade', 'inclusions' => 'Consultation Included'];
                     ?>
-                        <!-- Seamless Diagonal Strip (Touches Adjacent Strip With Zero Gap) -->
-                        <div class="diagonal-strip group relative h-[580px] w-[170px] sm:w-[200px] md:w-[220px] hover:w-[540px] sm:hover:w-[600px] md:hover:w-[660px] -ml-[1px] first:ml-0 overflow-hidden border-r border-t border-b border-white/10 first:border-l bg-slate-950">
+                        <!-- Seamless Vertical Accordion Strip (Straight, Touching Adjacent Slices with Zero Gap) -->
+                        <div class="gallery-strip group relative h-[590px] w-[180px] sm:w-[210px] md:w-[230px] hover:w-[540px] sm:hover:w-[620px] md:hover:w-[680px] -ml-[1px] first:ml-0 overflow-hidden border-r border-t border-b border-white/10 first:border-l bg-slate-950">
                             
-                            <!-- Counter-Skewed Container to keep imagery and typography un-distorted -->
-                            <div class="diagonal-strip-inner absolute inset-0 w-full h-full">
+                            <!-- Un-skewed, Native High-Res Image & Content Frame -->
+                            <div class="gallery-strip-inner absolute inset-0 w-full h-full">
                                 
                                 <!-- Background Image with Parallax Scale & Soft Blur on Hover -->
                                 <img src="<?= $imgUrl ?>" 
