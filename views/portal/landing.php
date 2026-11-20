@@ -168,17 +168,17 @@ $currentUser = Session::user();
         </div>
     </header>
 
-    <!-- Full Hero Section Following Wireframe (Zero Round Borders, Pure Architectural modernist grid) -->
-    <section id="heroSection" class="relative w-full min-h-[calc(100vh-72px)] bg-[#F7F6F2] border-b border-[#E5E1D8] px-4 sm:px-8 lg:px-12 py-6 sm:py-8 flex flex-col justify-between overflow-hidden rounded-none">
+    <!-- Full Hero Section Following Wireframe (Zero Round Borders, Full Screen Centerpiece Image) -->
+    <section id="heroSection" class="relative w-full lg:h-[calc(100vh-72px)] min-h-[calc(100vh-72px)] bg-[#F7F6F2] border-b border-[#E5E1D8] flex flex-col justify-between overflow-hidden rounded-none">
         
         <!-- Subtle Architectural Ambient Watermark Grid -->
         <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: linear-gradient(#1c1917 1px, transparent 1px), linear-gradient(to right, #1c1917 1px, transparent 1px); background-size: 80px 80px;"></div>
 
-        <!-- Wireframe 3-Column Layout: Left (Title, Media, Text) | Center (Image) | Right (Card, Text, CTA) -->
-        <div class="w-full flex-1 grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-stretch relative z-10 my-auto rounded-none">
+        <!-- Wireframe 3-Column Layout: Left (Title, Media, Text) | Center (Full-Screen Image) | Right (Card, Text, CTA) -->
+        <div class="w-full h-full flex-1 grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch relative z-10 rounded-none">
             
             <!-- LEFT COLUMN (Title, Media, Text) -->
-            <div class="lg:col-span-4 flex flex-col justify-between space-y-5 rounded-none">
+            <div class="lg:col-span-4 p-4 sm:p-6 lg:p-8 flex flex-col justify-between space-y-4 lg:space-y-6 border-b lg:border-b-0 lg:border-r border-[#E5E1D8] bg-[#F7F6F2] rounded-none">
                 
                 <!-- 1. Title Block -->
                 <div class="bg-white border border-[#E5E1D8] p-6 sm:p-8 flex-1 flex flex-col justify-center rounded-none shadow-xs">
@@ -188,7 +188,7 @@ $currentUser = Session::user();
                             SDC ATELIER // METRO MANILA
                         </span>
                     </div>
-                    <h2 class="text-3xl sm:text-4xl lg:text-[2.75rem] xl:text-[3.2rem] font-black tracking-tight uppercase leading-[0.92] text-stone-950 rounded-none">
+                    <h2 class="text-3xl sm:text-4xl lg:text-[2.6rem] xl:text-[3.1rem] font-black tracking-tight uppercase leading-[0.92] text-stone-950 rounded-none">
                         ADVANCED <br>
                         <span class="tracking-tight text-stone-900">CLINICAL</span> <br>
                         <span class="font-serif italic font-normal text-stone-600 lowercase tracking-normal">dentistry</span>
@@ -196,16 +196,16 @@ $currentUser = Session::user();
                 </div>
 
                 <!-- 2. Media Block -->
-                <div class="relative w-full h-44 sm:h-48 bg-stone-900 border border-[#E5E1D8] overflow-hidden group rounded-none shadow-xs">
+                <div class="relative w-full h-44 sm:h-52 bg-stone-900 border border-[#E5E1D8] overflow-hidden group rounded-none shadow-xs flex-shrink-0">
                     <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=800&q=80" 
                          alt="Clinical procedure media" 
                          class="w-full h-full object-cover filter brightness-90 group-hover:scale-105 transition duration-700 rounded-none">
                     <div class="absolute inset-0 bg-black/30 flex items-center justify-center rounded-none">
-                        <a href="#services" class="w-11 h-11 bg-white text-stone-950 flex items-center justify-center shadow-lg transition transform group-hover:scale-110 rounded-none" aria-label="Watch clinical preview">
+                        <a href="#services" class="w-12 h-12 bg-white text-stone-950 flex items-center justify-center shadow-lg transition transform group-hover:scale-110 rounded-none" aria-label="Watch clinical preview">
                             <i data-lucide="play" class="w-4 h-4 fill-current ml-0.5"></i>
                         </a>
                     </div>
-                    <div class="absolute top-2.5 left-2.5 bg-stone-950/85 px-2 py-0.5 text-white font-mono text-[9px] uppercase tracking-widest border border-white/10 rounded-none">
+                    <div class="absolute top-2.5 left-2.5 bg-stone-950/85 px-2.5 py-1 text-white font-mono text-[9px] uppercase tracking-widest border border-white/10 rounded-none">
                         MEDIA // 01
                     </div>
                 </div>
@@ -222,38 +222,36 @@ $currentUser = Session::user();
 
             </div>
 
-            <!-- CENTER COLUMN (Image: Single tall vertical image block) -->
-            <div class="lg:col-span-5 h-full flex flex-col min-h-[500px] lg:min-h-full rounded-none">
-                <div class="relative w-full h-full flex-1 bg-stone-950 border border-[#E5E1D8] overflow-hidden group select-none rounded-none shadow-md">
-                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1600&q=85" 
-                         alt="SDC High-Tech Clinical Operatory" 
-                         class="w-full h-full object-cover filter brightness-95 transition-transform duration-700 ease-out group-hover:scale-105 rounded-none">
-                    
-                    <div class="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-transparent to-transparent flex flex-col justify-end p-8 text-white pointer-events-none rounded-none">
-                        <span class="text-[10px] font-mono tracking-widest uppercase text-teal-300 font-bold mb-1">
-                            DIAGNOSTIC SUITE // OPERATORY
-                        </span>
-                        <p class="text-xs text-stone-300 font-light leading-relaxed max-w-sm">
-                            Class-B vacuum autoclave sterilization, surgical precision, and unhurried doctor consultations.
-                        </p>
-                    </div>
+            <!-- CENTER COLUMN (Image: 100% Full Screen Height, Top-to-Bottom Edge-to-Edge) -->
+            <div class="lg:col-span-5 h-[500px] sm:h-[650px] lg:h-full relative overflow-hidden bg-stone-950 rounded-none group select-none">
+                <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1800&q=85" 
+                     alt="SDC High-Tech Clinical Operatory" 
+                     class="w-full h-full object-cover filter brightness-95 transition-transform duration-700 ease-out group-hover:scale-105 rounded-none">
+                
+                <div class="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-950/20 to-transparent flex flex-col justify-end p-8 sm:p-10 text-white pointer-events-none rounded-none">
+                    <span class="text-[10px] font-mono tracking-widest uppercase text-teal-300 font-bold mb-1">
+                        DIAGNOSTIC SUITE // FULL-SCALE OPERATORY
+                    </span>
+                    <p class="text-xs sm:text-sm text-stone-300 font-light leading-relaxed max-w-md">
+                        Hospital-grade Class-B sterilization, surgical precision lighting, and quiet ergonomic suites.
+                    </p>
+                </div>
 
-                    <div class="absolute top-4 left-4 bg-stone-950/85 px-3 py-1 text-white font-mono text-[10px] uppercase tracking-widest border border-white/10 rounded-none">
-                        CENTRAL ATELIER
-                    </div>
+                <div class="absolute top-6 left-6 bg-stone-950/85 px-3.5 py-1.5 text-white font-mono text-[10px] uppercase tracking-widest border border-white/10 rounded-none">
+                    CENTRAL ATELIER // FULL VIEW
                 </div>
             </div>
 
             <!-- RIGHT COLUMN (Card, Text, CTA) -->
-            <div class="lg:col-span-3 flex flex-col justify-between space-y-5 rounded-none">
+            <div class="lg:col-span-3 p-4 sm:p-6 lg:p-8 flex flex-col justify-between space-y-4 lg:space-y-6 border-t lg:border-t-0 lg:border-l border-[#E5E1D8] bg-[#F7F6F2] rounded-none">
                 
                 <!-- 1. Card Block -->
-                <a href="#standards" class="group block p-4 bg-white border border-[#E5E1D8] hover:border-stone-900 rounded-none shadow-xs transition">
+                <a href="#standards" class="group block p-5 bg-white border border-[#E5E1D8] hover:border-stone-900 rounded-none shadow-xs transition">
                     <div class="w-full h-36 bg-stone-900 mb-3 relative overflow-hidden rounded-none">
                         <img src="https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&fit=crop&w=600&q=80" 
                              alt="Sterilization & Clinical Standards" 
                              class="w-full h-full object-cover group-hover:scale-105 transition duration-500 filter brightness-95 rounded-none">
-                        <div class="absolute top-2 left-2 px-2 py-0.5 bg-black/70 text-white font-mono text-[9px] font-bold rounded-none">
+                        <div class="absolute top-2.5 left-2.5 px-2.5 py-0.5 bg-black/70 text-white font-mono text-[9px] font-bold rounded-none">
                             PROTOCOL
                         </div>
                     </div>
@@ -286,45 +284,45 @@ $currentUser = Session::user();
             </div>
 
         </div>
-
-        <!-- Infinite Scope of Practice Editorial Marquee Ribbon (Zero Rounded Corners) -->
-        <div class="w-full border-t border-[#E5E1D8] pt-4 pb-1 mt-6 overflow-hidden select-none rounded-none">
-            <div class="ticker-track flex items-center space-x-8 whitespace-nowrap font-mono text-[11px] font-bold tracking-[0.26em] uppercase text-stone-500">
-                <span>✦ COSMETIC LASER WHITENING</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ PORCELAIN RESTORATION</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ ULTRASONIC PERIODONTICS</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ DIGITAL INTRAORAL RADIOGRAPHY</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ MICROSCOPIC ENDODONTICS</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ INVISIBLE ORTHODONTIC ALIGNMENT</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ CLASS-B VACUUM STERILIZATION</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ ITEMIZED POS FEE TRANSPARENCY</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ COSMETIC LASER WHITENING</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ PORCELAIN RESTORATION</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ ULTRASONIC PERIODONTICS</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ DIGITAL INTRAORAL RADIOGRAPHY</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ MICROSCOPIC ENDODONTICS</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ INVISIBLE ORTHODONTIC ALIGNMENT</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ CLASS-B VACUUM STERILIZATION</span>
-                <span class="text-stone-300">/</span>
-                <span>✦ ITEMIZED POS FEE TRANSPARENCY</span>
-                <span class="text-stone-300">/</span>
-            </div>
-        </div>
     </section>
+
+    <!-- Infinite Scope of Practice Editorial Marquee Ribbon (Zero Rounded Corners) -->
+    <div class="w-full border-b border-[#E5E1D8] bg-[#EFECE6] py-3.5 overflow-hidden select-none rounded-none">
+        <div class="ticker-track flex items-center space-x-8 whitespace-nowrap font-mono text-[11px] font-bold tracking-[0.26em] uppercase text-stone-500">
+            <span>✦ COSMETIC LASER WHITENING</span>
+            <span class="text-stone-300">/</span>
+            <span>✦ PORCELAIN RESTORATION</span>
+            <span class="text-stone-300">/</span>
+            <span>✦ ULTRASONIC PERIODONTICS</span>
+            <span class="text-stone-300">/</span>
+            <span>✦ DIGITAL INTRAORAL RADIOGRAPHY</span>
+            <span class="text-stone-300">/</span>
+            <span>✦ MICROSCOPIC ENDODONTICS</span>
+            <span class="text-stone-300">/</span>
+            <span>✦ INVISIBLE ORTHODONTIC ALIGNMENT</span>
+            <span class="text-stone-300">/</span>
+            <span>✦ CLASS-B VACUUM STERILIZATION</span>
+            <span class="text-stone-300">/</span>
+            <span>✦ ITEMIZED POS FEE TRANSPARENCY</span>
+            <span class="text-stone-300">/</span>
+            <span>✦ COSMETIC LASER WHITENING</span>
+            <span class="text-stone-300">/</span>
+            <span>✦ PORCELAIN RESTORATION</span>
+            <span class="text-stone-300">/</span>
+            <span>✦ ULTRASONIC PERIODONTICS</span>
+            <span class="text-stone-300">/</span>
+            <span>✦ DIGITAL INTRAORAL RADIOGRAPHY</span>
+            <span class="text-stone-300">/</span>
+            <span>✦ MICROSCOPIC ENDODONTICS</span>
+            <span class="text-stone-300">/</span>
+            <span>✦ INVISIBLE ORTHODONTIC ALIGNMENT</span>
+            <span class="text-stone-300">/</span>
+            <span>✦ CLASS-B VACUUM STERILIZATION</span>
+            <span class="text-stone-300">/</span>
+            <span>✦ ITEMIZED POS FEE TRANSPARENCY</span>
+            <span class="text-stone-300">/</span>
+        </div>
+    </div>
 
     <!-- Services & Treatments Section (Awwwards Contiguous Diagonal Slices) -->
     <?php
