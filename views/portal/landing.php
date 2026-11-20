@@ -412,17 +412,6 @@ $currentUser = Session::user();
                                  src="" 
                                  alt="" 
                                  class="w-full h-full object-cover transition-all duration-500 ease-out filter brightness-95">
-                            
-                            <!-- Floating Info Tag on the Big Picture -->
-                            <div class="absolute bottom-4 left-4 right-4 p-3.5 rounded-xl bg-stone-950/80 backdrop-blur-md text-white flex items-center justify-between shadow-md">
-                                <div>
-                                    <span id="modalCategoryPill" class="text-[9px] uppercase tracking-widest text-teal-400 font-mono font-bold block">
-                                        COSMETIC
-                                    </span>
-                                    <p id="modalCodePill" class="text-xs font-mono text-stone-400">TRT-009</p>
-                                </div>
-                                <span class="text-[10px] text-stone-300 font-mono">Clinical Procedure View</span>
-                            </div>
                         </div>
                     </div>
 
@@ -453,7 +442,7 @@ $currentUser = Session::user();
                         </p>
 
                         <!-- Editorial Specifications Bar -->
-                        <div class="grid grid-cols-3 gap-3 border-t border-b border-stone-300/80 py-4 mb-6 text-xs max-w-xl">
+                        <div class="grid grid-cols-3 gap-3 border-t border-b border-stone-300/80 py-4 mb-2 text-xs max-w-xl">
                             <div>
                                 <span class="block text-[9px] uppercase tracking-widest text-stone-400 mb-0.5">Session</span>
                                 <span id="modalDuration" class="font-bold text-stone-900 text-sm">60 Mins</span>
@@ -466,17 +455,6 @@ $currentUser = Session::user();
                                 <span class="block text-[9px] uppercase tracking-widest text-stone-400 mb-0.5">Scope</span>
                                 <span id="modalInclusions" class="font-bold text-stone-900 text-sm truncate block">Blue LED Laser</span>
                             </div>
-                        </div>
-
-                        <!-- Action Button -->
-                        <div>
-                            <a id="modalBookingBtn" 
-                               href="#booking-form" 
-                               onclick="closeProcedureModal()"
-                               class="inline-flex items-center space-x-2 px-8 py-3.5 bg-stone-950 hover:bg-stone-800 text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-lg transition">
-                                <span>Schedule This Procedure</span>
-                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -516,32 +494,20 @@ $currentUser = Session::user();
             const title = document.getElementById('modalTitle');
             const category = document.getElementById('modalCategory');
             const topCode = document.getElementById('modalTopCode');
-            const categoryPill = document.getElementById('modalCategoryPill');
-            const codePill = document.getElementById('modalCodePill');
             const price = document.getElementById('modalPrice');
             const desc = document.getElementById('modalDescription');
             const duration = document.getElementById('modalDuration');
             const comfort = document.getElementById('modalComfort');
             const inclusions = document.getElementById('modalInclusions');
-            const bookingBtn = document.getElementById('modalBookingBtn');
 
-            title.innerText = t.name;
-            category.innerText = `${t.index} / ${t.category.toUpperCase()}`;
-            topCode.innerText = `${t.code} // ${t.category.toUpperCase()}`;
-            categoryPill.innerText = t.category;
-            codePill.innerText = t.code;
-            price.innerText = t.price;
-            desc.innerText = t.description;
-            duration.innerText = t.duration;
-            comfort.innerText = t.comfort;
-            inclusions.innerText = t.inclusions;
-
-            if (bookingBtn) {
-                bookingBtn.onclick = () => {
-                    closeProcedureModal();
-                    prefillConcern(t.name);
-                };
-            }
+            if (title) title.innerText = t.name;
+            if (category) category.innerText = `${t.index} / ${t.category.toUpperCase()}`;
+            if (topCode) topCode.innerText = `${t.code} // ${t.category.toUpperCase()}`;
+            if (price) price.innerText = t.price;
+            if (desc) desc.innerText = t.description;
+            if (duration) duration.innerText = t.duration;
+            if (comfort) comfort.innerText = t.comfort;
+            if (inclusions) inclusions.innerText = t.inclusions;
 
             // Set the big image to the first photo of this procedure
             setBigImage(t.gallery[0], 0, t.gallery.length);
@@ -556,9 +522,6 @@ $currentUser = Session::user();
                 btn.className = `modal-photo-thumb group relative h-28 sm:h-32 w-20 sm:w-24 rounded-xl overflow-hidden border-2 ${pIdx === 0 ? 'border-stone-950 ring-2 ring-stone-950/20' : 'border-stone-300/80 hover:border-stone-800'} transition-all flex-shrink-0 cursor-pointer shadow-sm`;
                 btn.innerHTML = `
                     <img src="${photoUrl}" alt="${t.name} view ${pIdx + 1}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                    <span class="absolute top-1.5 left-1.5 text-[9px] font-mono font-bold text-white bg-black/60 px-1 rounded">
-                        0${pIdx + 1}
-                    </span>
                 `;
                 btn.onclick = () => {
                     setBigImage(photoUrl, pIdx, t.gallery.length);
