@@ -103,11 +103,22 @@ $currentUser = Session::user();
 <body class="bg-[#F7F6F2] text-stone-900 antialiased min-h-screen flex flex-col font-sans">
 
     <!-- Full Hero Section with Navigation Inside (Faithfully matching Image 1 Aesthetic & Image 2 Wireframe Layout, Zero Round Borders) -->
-    <section id="heroSection" class="relative w-full lg:h-screen min-h-screen bg-white border-b border-[#E5E1D8] flex flex-col justify-between overflow-hidden rounded-none select-none pt-[72px]">
+    <section id="heroSection" class="relative w-full lg:h-screen min-h-screen bg-white border-b border-[#E5E1D8] flex flex-col justify-between overflow-hidden rounded-none select-none pt-[72px] group">
         
-        <!-- Subtle Futuristic Blueprint & Watermark Grid (From Image 1) -->
-        <div class="absolute inset-0 opacity-[0.035] pointer-events-none" style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(to right, #000 1px, transparent 1px); background-size: 70px 70px;"></div>
-        <div class="absolute right-12 top-20 text-[18vw] font-black text-black/[0.015] pointer-events-none uppercase font-mono tracking-tighter">
+        <!-- Full Hero Section Background Image (Edge-to-Edge Full Screen) -->
+        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1600&q=85" 
+                 alt="SDC Precision Dental Suite" 
+                 class="w-full h-full object-cover filter contrast-[1.05] brightness-95 transition-transform duration-700 ease-out group-hover:scale-105 rounded-none">
+            
+            <!-- High-Key Architectural Overlay Wash: Keeps Left and Right text razor sharp while center suite remains vivid -->
+            <div class="absolute inset-0 bg-white/75 lg:bg-gradient-to-r lg:from-white/95 lg:via-white/30 lg:to-white/95"></div>
+
+            <!-- Subtle Futuristic Blueprint & Watermark Grid (From Image 1) -->
+            <div class="absolute inset-0 opacity-[0.035]" style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(to right, #000 1px, transparent 1px); background-size: 70px 70px;"></div>
+        </div>
+        
+        <div class="absolute right-12 top-20 text-[18vw] font-black text-black/[0.015] pointer-events-none uppercase font-mono tracking-tighter z-0">
             SDC
         </div>
 
@@ -162,7 +173,7 @@ $currentUser = Session::user();
             </div>
         </nav>
 
-        <!-- 2. Wireframe 3-Column Layout: Left (Title, Media, Text) | Center (Image) | Right (Card, Text, CTA) -->
+        <!-- 2. Wireframe 3-Column Layout: Left (Title, Media, Text) | Center (Hotspots Over Full Hero) | Right (Card, Text, CTA) -->
         <div class="w-full flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch px-6 sm:px-10 lg:px-14 py-6 lg:py-8 relative z-10">
             
             <!-- Architectural Corner Crosshairs (High-Tech Blueprint Aesthetic) -->
@@ -238,72 +249,80 @@ $currentUser = Session::user();
 
             </div>
 
-            <!-- CENTER COLUMN: Large Centerpiece Image with 3D Tilt & Interactive Clinical Hotspots -->
-            <div class="lg:col-span-5 h-[420px] sm:h-[500px] lg:h-full relative flex items-center justify-center min-h-0 hero-perspective">
-                <div id="heroTiltCard" class="hero-tilt-card relative w-full h-full max-h-full overflow-hidden border border-stone-200 bg-stone-100 shadow-xl group rounded-none">
-                    
-                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1600&q=85" 
-                         alt="SDC Precision Dental Suite" 
-                         class="w-full h-full object-cover filter contrast-[1.05] brightness-95 transition-transform duration-700 ease-out group-hover:scale-105 rounded-none">
-                    
-                    <!-- Tech Corner Blueprint Marks -->
-                    <div class="absolute top-3 left-3 text-[9px] font-mono uppercase tracking-widest text-white/80 bg-black/60 px-2 py-0.5 rounded-none pointer-events-none z-20">
+            <!-- CENTER COLUMN: Interactive Clinical Hotspots & Operatory Spec floating over Full Hero Background -->
+            <div class="lg:col-span-5 h-[420px] sm:h-[500px] lg:h-full relative flex flex-col justify-between min-h-0 py-4 z-20">
+                
+                <!-- Tech Coordinates Header -->
+                <div class="flex items-center justify-between">
+                    <span class="text-[9px] font-mono uppercase tracking-widest text-stone-500 bg-white/90 border border-stone-200 px-2.5 py-1 rounded-none select-none shadow-xs">
                         LAT: 14.5547° N // LON: 121.0244° E
-                    </div>
+                    </span>
+                    <span class="text-[9px] font-mono uppercase tracking-widest text-emerald-700 bg-white/90 border border-stone-200 px-2.5 py-1 rounded-none select-none shadow-xs flex items-center space-x-1.5">
+                        <span class="w-1.5 h-1.5 bg-emerald-500 animate-pulse"></span>
+                        <span>OPERATORY ACTIVE</span>
+                    </span>
+                </div>
 
-                    <!-- HOTSPOT 01: 3D Scanner (Top Left) -->
-                    <div class="absolute top-[28%] left-[26%] z-30 group/hotspot">
-                        <div class="relative w-7 h-7 bg-black text-white text-[10px] font-mono font-bold flex items-center justify-center border border-white shadow-lg cursor-pointer hover:bg-stone-800 rounded-none transition transform group-hover/hotspot:scale-110">
-                            <span>01</span>
-                            <span class="absolute inset-0 border border-teal-400 animate-ping opacity-60 rounded-none pointer-events-none"></span>
+                <!-- Interactive Hotspots Grid floating in 3D Perspective -->
+                <div class="relative w-full flex-1 my-4 hero-perspective">
+                    <div id="heroTiltCard" class="hero-tilt-card relative w-full h-full">
+                        
+                        <!-- HOTSPOT 01: 3D Scanner (Top Left) -->
+                        <div class="absolute top-[22%] left-[24%] z-30 group/hotspot">
+                            <div class="relative w-7 h-7 bg-black text-white text-[10px] font-mono font-bold flex items-center justify-center border border-white shadow-lg cursor-pointer hover:bg-stone-800 rounded-none transition transform group-hover/hotspot:scale-110">
+                                <span>01</span>
+                                <span class="absolute inset-0 border border-teal-400 animate-ping opacity-60 rounded-none pointer-events-none"></span>
+                            </div>
+                            <!-- Hotspot Tooltip Card -->
+                            <div class="absolute left-9 top-1/2 -translate-y-1/2 w-52 sm:w-60 bg-white text-stone-900 border border-stone-300 p-3 shadow-2xl opacity-0 group-hover/hotspot:opacity-100 transition-all duration-200 pointer-events-none rounded-none z-40">
+                                <span class="text-[8px] font-mono tracking-widest uppercase text-stone-400 font-bold block mb-1">EQUIPMENT // 01</span>
+                                <div class="text-xs font-black uppercase text-black leading-tight">3D Digital Oral Scanner</div>
+                                <div class="text-[10px] text-stone-500 mt-1 leading-snug">5-micron volumetric accuracy for virtual crown milling without messy impressions.</div>
+                            </div>
                         </div>
-                        <!-- Hotspot Tooltip Card -->
-                        <div class="absolute left-9 top-1/2 -translate-y-1/2 w-52 sm:w-60 bg-white text-stone-900 border border-stone-300 p-3 shadow-2xl opacity-0 group-hover/hotspot:opacity-100 transition-all duration-200 pointer-events-none rounded-none z-40">
-                            <span class="text-[8px] font-mono tracking-widest uppercase text-stone-400 font-bold block mb-1">EQUIPMENT // 01</span>
-                            <div class="text-xs font-black uppercase text-black leading-tight">3D Digital Oral Scanner</div>
-                            <div class="text-[10px] text-stone-500 mt-1 leading-snug">5-micron volumetric accuracy for virtual crown milling without messy impressions.</div>
-                        </div>
-                    </div>
 
-                    <!-- HOTSPOT 02: Autoclave Suite (Mid Right) -->
-                    <div class="absolute top-[52%] right-[22%] z-30 group/hotspot">
-                        <div class="relative w-7 h-7 bg-black text-white text-[10px] font-mono font-bold flex items-center justify-center border border-white shadow-lg cursor-pointer hover:bg-stone-800 rounded-none transition transform group-hover/hotspot:scale-110">
-                            <span>02</span>
-                            <span class="absolute inset-0 border border-teal-400 animate-ping opacity-60 rounded-none pointer-events-none"></span>
+                        <!-- HOTSPOT 02: Autoclave Suite (Mid Right) -->
+                        <div class="absolute top-[48%] right-[20%] z-30 group/hotspot">
+                            <div class="relative w-7 h-7 bg-black text-white text-[10px] font-mono font-bold flex items-center justify-center border border-white shadow-lg cursor-pointer hover:bg-stone-800 rounded-none transition transform group-hover/hotspot:scale-110">
+                                <span>02</span>
+                                <span class="absolute inset-0 border border-teal-400 animate-ping opacity-60 rounded-none pointer-events-none"></span>
+                            </div>
+                            <!-- Hotspot Tooltip Card -->
+                            <div class="absolute right-9 top-1/2 -translate-y-1/2 w-52 sm:w-60 bg-white text-stone-900 border border-stone-300 p-3 shadow-2xl opacity-0 group-hover/hotspot:opacity-100 transition-all duration-200 pointer-events-none rounded-none z-40">
+                                <span class="text-[8px] font-mono tracking-widest uppercase text-stone-400 font-bold block mb-1">EQUIPMENT // 02</span>
+                                <div class="text-xs font-black uppercase text-black leading-tight">Class-B Vacuum Autoclave</div>
+                                <div class="text-[10px] text-stone-500 mt-1 leading-snug">Hospital-grade fractionated vacuum sterilization with verified digital spore tracking.</div>
+                            </div>
                         </div>
-                        <!-- Hotspot Tooltip Card -->
-                        <div class="absolute right-9 top-1/2 -translate-y-1/2 w-52 sm:w-60 bg-white text-stone-900 border border-stone-300 p-3 shadow-2xl opacity-0 group-hover/hotspot:opacity-100 transition-all duration-200 pointer-events-none rounded-none z-40">
-                            <span class="text-[8px] font-mono tracking-widest uppercase text-stone-400 font-bold block mb-1">EQUIPMENT // 02</span>
-                            <div class="text-xs font-black uppercase text-black leading-tight">Class-B Vacuum Autoclave</div>
-                            <div class="text-[10px] text-stone-500 mt-1 leading-snug">Hospital-grade fractionated vacuum sterilization with verified digital spore tracking.</div>
-                        </div>
-                    </div>
 
-                    <!-- HOTSPOT 03: Ultrasonic Scaler (Bottom Left) -->
-                    <div class="absolute bottom-[24%] left-[28%] z-30 group/hotspot">
-                        <div class="relative w-7 h-7 bg-black text-white text-[10px] font-mono font-bold flex items-center justify-center border border-white shadow-lg cursor-pointer hover:bg-stone-800 rounded-none transition transform group-hover/hotspot:scale-110">
-                            <span>03</span>
-                            <span class="absolute inset-0 border border-teal-400 animate-ping opacity-60 rounded-none pointer-events-none"></span>
+                        <!-- HOTSPOT 03: Ultrasonic Scaler (Bottom Left) -->
+                        <div class="absolute bottom-[20%] left-[26%] z-30 group/hotspot">
+                            <div class="relative w-7 h-7 bg-black text-white text-[10px] font-mono font-bold flex items-center justify-center border border-white shadow-lg cursor-pointer hover:bg-stone-800 rounded-none transition transform group-hover/hotspot:scale-110">
+                                <span>03</span>
+                                <span class="absolute inset-0 border border-teal-400 animate-ping opacity-60 rounded-none pointer-events-none"></span>
+                            </div>
+                            <!-- Hotspot Tooltip Card -->
+                            <div class="absolute left-9 bottom-0 w-52 sm:w-60 bg-white text-stone-900 border border-stone-300 p-3 shadow-2xl opacity-0 group-hover/hotspot:opacity-100 transition-all duration-200 pointer-events-none rounded-none z-40">
+                                <span class="text-[8px] font-mono tracking-widest uppercase text-stone-400 font-bold block mb-1">EQUIPMENT // 03</span>
+                                <div class="text-xs font-black uppercase text-black leading-tight">Piezo Ultrasonic Scaler</div>
+                                <div class="text-[10px] text-stone-500 mt-1 leading-snug">Deep calculus debridement with micro-vibrations, safeguarding healthy dental enamel.</div>
+                            </div>
                         </div>
-                        <!-- Hotspot Tooltip Card -->
-                        <div class="absolute left-9 bottom-0 w-52 sm:w-60 bg-white text-stone-900 border border-stone-300 p-3 shadow-2xl opacity-0 group-hover/hotspot:opacity-100 transition-all duration-200 pointer-events-none rounded-none z-40">
-                            <span class="text-[8px] font-mono tracking-widest uppercase text-stone-400 font-bold block mb-1">EQUIPMENT // 03</span>
-                            <div class="text-xs font-black uppercase text-black leading-tight">Piezo Ultrasonic Scaler</div>
-                            <div class="text-[10px] text-stone-500 mt-1 leading-snug">Deep calculus debridement with micro-vibrations, safeguarding healthy dental enamel.</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Centerpiece Bottom Gradient & Title -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6 sm:p-8 text-white pointer-events-none rounded-none">
-                        <span class="text-[10px] font-mono tracking-widest uppercase text-teal-300 font-bold mb-1 flex items-center space-x-2">
-                            <span class="w-2 h-2 bg-teal-400"></span>
-                            <span>PRECISION OPERATORY // ATELIER SUITE</span>
-                        </span>
-                        <p class="text-xs text-stone-200 font-light leading-relaxed max-w-sm">
-                            High-precision diagnostic imaging and Class-B vacuum autoclave surgical suites.
-                        </p>
+
                     </div>
                 </div>
+                
+                <!-- Center Bottom Atelier Badge -->
+                <div class="bg-white/90 border border-stone-200 p-3.5 shadow-sm rounded-none">
+                    <span class="text-[10px] font-mono tracking-widest uppercase text-teal-800 font-bold mb-1 flex items-center space-x-2">
+                        <span class="w-2 h-2 bg-teal-500"></span>
+                        <span>PRECISION OPERATORY // ATELIER SUITE</span>
+                    </span>
+                    <p class="text-xs text-stone-600 font-light leading-relaxed">
+                        High-precision diagnostic imaging and Class-B vacuum autoclave surgical suites.
+                    </p>
+                </div>
+
             </div>
 
             <!-- RIGHT COLUMN: Card (Top) | Doctor Preview (Middle) | Text & CTA (Bottom) -->
