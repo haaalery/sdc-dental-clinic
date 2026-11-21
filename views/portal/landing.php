@@ -220,21 +220,30 @@ $currentUser = Session::user();
             <span
                 class="absolute bottom-2 right-6 sm:right-10 text-stone-300 font-mono text-xs select-none pointer-events-none z-10">+</span>
 
-            <!-- LAYER 1 (z-10): Giant Monumental Full-Width Background Typography (Sits Behind the Handpiece Cutout) -->
+            <!-- LAYER 1 (z-10): 3D Porcelain Molar Tooth Base & Glossy Studio Floor Reflection (Sits Behind SDC DENTAL CARE) -->
             <div
-                class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none select-none z-10 px-4 overflow-hidden">
+                class="relative lg:absolute lg:inset-y-0 lg:left-[44%] lg:-translate-x-1/2 z-10 flex items-end justify-center pointer-events-none select-none my-4 lg:my-0 h-[380px] sm:h-[460px] lg:h-full">
+                <img src="<?= BASE_URL ?>/assets/images/dental_tooth_mirror_base.png"
+                    alt="SDC 3D Porcelain Molar Tooth and Dental Mirror"
+                    class="h-[96%] w-auto max-w-none object-contain rounded-none">
+            </div>
+
+            <!-- LAYER 2 (z-20): Giant Monumental Full-Width Typography (In Front of White Tooth, Behind Chrome Mirror Stem) -->
+            <div
+                class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none select-none z-20 px-4 overflow-hidden">
                 <h2
                     class="text-[10.8vw] lg:text-[10.4vw] font-black uppercase tracking-tighter leading-none text-stone-950 whitespace-nowrap text-center">
                     SDC&nbsp;DENTAL&nbsp;CARE
                 </h2>
             </div>
 
-            <!-- LAYER 2 (z-20): Full-Height Foreground Cutout Image (Dental Mouth Mirror & Explorer Probe overlapping Giant Text) -->
+            <!-- LAYER 3 (z-[25]): Foreground Chrome Dental Mirror Stem & Head (Slices Diagonally In Front of N and T) -->
             <div
-                class="relative lg:absolute lg:inset-y-0 lg:left-1/2 lg:-translate-x-1/2 z-20 flex items-center justify-center pointer-events-none select-none my-4 lg:my-0 h-[360px] sm:h-[440px] lg:h-full">
-                <img src="<?= BASE_URL ?>/assets/images/dental_mirror_probe_cutout.png"
-                    alt="SDC Precision Dental Mouth Mirror and Explorer Probe"
-                    class="h-full w-auto max-w-none object-contain filter drop-shadow-[0_28px_36px_rgba(0,0,0,0.22)] rounded-none">
+                class="hidden lg:flex lg:absolute lg:inset-y-0 lg:left-[44%] lg:-translate-x-1/2 z-[25] items-end justify-center pointer-events-none select-none lg:h-full">
+                <img src="<?= BASE_URL ?>/assets/images/dental_mirror_foreground.png"
+                    alt=""
+                    aria-hidden="true"
+                    class="h-[96%] w-auto max-w-none object-contain filter drop-shadow-[0_10px_14px_rgba(0,0,0,0.28)] rounded-none">
             </div>
 
             <!-- LAYER 3A (z-30): TOP ROW (Top-Left Large Display Headline matching Reference Image) -->
@@ -283,7 +292,7 @@ $currentUser = Session::user();
                         <div class="flex items-center space-x-2.5">
                             <div
                                 class="w-8 h-8 bg-stone-800 border border-stone-700 overflow-hidden flex-shrink-0 rounded-none">
-                                <img src="https://images.unsplash.com/photo-1594824813637-e54e4df5e206?auto=format&fit=crop&w=200&q=80"
+                                <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=200&q=80"
                                     alt="Dr. Eleanor Vance"
                                     class="w-full h-full object-cover filter grayscale contrast-125 rounded-none">
                             </div>
