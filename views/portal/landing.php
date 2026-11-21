@@ -81,6 +81,17 @@ $currentUser = Session::user();
             box-shadow: 0 35px 70px -15px rgba(28, 25, 23, 0.45);
         }
 
+        /* Attending Dentists Architectural Vertical Strip Accordion (Mirrors Signature Treatments) */
+        .doctor-strip {
+            transition: flex 0.75s cubic-bezier(0.16, 1, 0.3, 1), width 0.75s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, z-index 0.2s ease;
+            will-change: flex, width;
+        }
+
+        .doctor-strip:hover {
+            z-index: 30;
+            box-shadow: 0 35px 70px -15px rgba(28, 25, 23, 0.45);
+        }
+
         /* Smooth Infinite Editorial Marquee */
         @keyframes tickerTape {
             0% {
@@ -534,6 +545,88 @@ $currentUser = Session::user();
             'care_tips' => $clinical['care_tips'] ?? 'Maintain daily brushing, flossing, and follow clinician home care recommendations.'
         ];
     }
+    
+    // Curated Attending Dentists Showcase (Limited to 2-3 specialists, with temporary high-res placeholder photography)
+$dentistProfilesMap = [
+    [
+        'id' => 1,
+        'dentist_id' => 1,
+        'index' => '01',
+        'name' => 'Dr. Maria Santos, DMD',
+        'title' => 'Chief Orthodontist & Aesthetic Specialist',
+        'department' => 'Orthodontics & Aesthetics',
+        'license' => 'PRC-0089211',
+        'education' => 'UP College of Dentistry · Fellow, World Federation of Orthodontists',
+        'experience' => '12+ Years Clinical Practice',
+        'schedule' => 'Makati Suite: Mon / Wed / Fri (09:00 - 18:00)',
+        'photo' => 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=1200&q=85',
+        'gallery' => [
+            'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=1200&q=85'
+        ],
+        'bio' => 'Dr. Maria Santos leads our orthodontic and aesthetic smile architecture practice. Trained at the UP College of Dentistry with advanced orthodontic fellowships, she specializes in custom metal and ceramic bracket systems, clear aligners, and harmonic facial smile makeovers.',
+        'specialties' => [
+            'Fixed Orthodontic Braces (Metal & Ceramic Systems)',
+            'Digital Clear Aligner Treatment Planning',
+            'Biomimetic Direct Composite Veneers',
+            'Pediatric & Adult Interceptive Orthodontics'
+        ],
+        'branches' => 'Makati Executive Suite · Pasig Dental Atelier'
+    ],
+    [
+        'id' => 2,
+        'dentist_id' => 2,
+        'index' => '02',
+        'name' => 'Dr. James Cruz, DMD, MSD',
+        'title' => 'Oral & Maxillofacial Surgeon / Endodontist',
+        'department' => 'Oral Surgery & Endodontics',
+        'license' => 'PRC-0091442',
+        'education' => 'UST Faculty of Medicine & Surgery · Master of Science in Dentistry',
+        'experience' => '10+ Years Surgical Practice',
+        'schedule' => 'Pasig Atelier: Tue / Thu / Sat (09:00 - 18:00)',
+        'photo' => 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=1200&q=85',
+        'gallery' => [
+            'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=1200&q=85'
+        ],
+        'bio' => 'Dr. James Cruz is our surgical and endodontic director. With a Master of Science in Dentistry, he specializes in painless micro-endodontic root canal therapy, complex odontectomies for impacted third molars, and bone-preserving atraumatic surgical extractions under profound local comfort.',
+        'specialties' => [
+            'Surgical Extraction / Odontectomy (Impacted Molars)',
+            'Rotary Root Canal Therapy & Retreatment',
+            'Atraumatic Surgical Extractions & Bone Grafts',
+            'Profound Anesthesia & Gentle Pain Management'
+        ],
+        'branches' => 'Pasig City Dental Atelier · Makati Suite'
+    ],
+    [
+        'id' => 3,
+        'dentist_id' => 1,
+        'index' => '03',
+        'name' => 'Dr. Eleanor Vance, DMD',
+        'title' => 'Periodontics & Conservative Restorative Director',
+        'department' => 'Periodontics & Restorative',
+        'license' => 'PRC-0094833',
+        'education' => 'CEU School of Dentistry · Fellow, International College of Dentists',
+        'experience' => '9+ Years Clinical Practice',
+        'schedule' => 'Makati Suite: Mon / Thu · Pasig: Wed / Sat',
+        'photo' => 'https://images.unsplash.com/photo-1594824813637-e54e4df5e206?auto=format&fit=crop&w=1200&q=85',
+        'gallery' => [
+            'https://images.unsplash.com/photo-1594824813637-e54e4df5e206?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=85',
+            'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=85'
+        ],
+        'bio' => 'Dr. Eleanor Vance champions a tooth-preservation philosophy, leading our periodontal health and comprehensive diagnosis services. She specializes in deep ultrasonic scaling, root planing, and aesthetic biomimetic tooth restorations that seamlessly match natural enamel contours.',
+        'specialties' => [
+            'Therapeutic Deep Scaling & Periodontal Root Planing',
+            'Aesthetic Composite Resin Tooth Restorations',
+            'Comprehensive Oral Diagnostic Roadmaps',
+            'Long-Term Preventive Enamel & Gingival Care'
+        ],
+        'branches' => 'Makati Executive Suite · Pasig Atelier'
+    ]
+];
     ?>
     <section id="services" class="py-24 bg-[#EFECE6] text-stone-900 overflow-hidden border-b border-[#E5E1D8] relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
@@ -887,7 +980,196 @@ $currentUser = Session::user();
 
         // Close on ESC key or clicking outside container
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeProcedureModal();
+            if (e.key === 'Escape') {
+                closeProcedureModal();
+                closeDoctorModal();
+            }
+        });
+
+        // ==========================================
+        // Attending Clinicians Exhibition Modal & Slider
+        // ==========================================
+        const allDoctors = <?= json_encode($dentistProfilesMap) ?>;
+        let currentDoctor = null;
+
+        function openDoctorModal(index) {
+            const doc = allDoctors[index];
+            if (!doc) return;
+            currentDoctor = doc;
+
+            const title = document.getElementById('docModalTitle');
+            const category = document.getElementById('docModalCategory');
+            const topCode = document.getElementById('docModalTopCode');
+            const license = document.getElementById('docModalLicense');
+            const bio = document.getElementById('docModalBio');
+            const exp = document.getElementById('docModalExperience');
+            const branch = document.getElementById('docModalBranch');
+            const edu = document.getElementById('docModalEducation');
+            const sched = document.getElementById('docModalSchedule');
+
+            if (title) title.innerText = doc.name;
+            if (category) category.innerText = `${doc.index} / ${doc.department.toUpperCase()}`;
+            if (topCode) topCode.innerText = `CLINICIAN // ${doc.index}`;
+            if (license) license.innerText = `${doc.license} · ${doc.education.split('·')[0].trim()}`;
+            if (bio) bio.innerText = doc.bio;
+            if (exp) exp.innerText = doc.experience;
+            if (branch) branch.innerText = doc.branches.split('·')[0].trim();
+            if (edu) edu.innerText = doc.education;
+            if (sched) sched.innerText = doc.schedule;
+
+            // Specialties list
+            const list = document.getElementById('docModalSpecialtiesList');
+            if (list) {
+                list.innerHTML = '';
+                if (doc.specialties && doc.specialties.length) {
+                    doc.specialties.forEach(function(item) {
+                        const li = document.createElement('li');
+                        li.className = 'flex items-start space-x-2';
+                        li.innerHTML = '<span class="text-stone-900 font-bold text-[10px] mt-0.5">✦</span><span>' + item + '</span>';
+                        list.appendChild(li);
+                    });
+                }
+            }
+
+            // Big Image
+            setDoctorBigImage(doc.gallery[0], 0, doc.gallery.length);
+
+            // Filmstrip
+            const filmstrip = document.getElementById('docModalGalleryFilmstrip');
+            if (filmstrip) {
+                filmstrip.innerHTML = '';
+                doc.gallery.forEach((photoUrl, pIdx) => {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = `doc-modal-thumb group relative h-28 sm:h-32 w-20 sm:w-24 rounded-xl overflow-hidden border-2 ${pIdx === 0 ? 'border-stone-950 ring-2 ring-stone-950/20' : 'border-stone-300/80 hover:border-stone-800'} transition-all flex-shrink-0 cursor-pointer shadow-sm`;
+                    btn.innerHTML = `<img src="${photoUrl}" alt="${doc.name} view ${pIdx + 1}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">`;
+                    btn.onclick = () => {
+                        setDoctorBigImage(photoUrl, pIdx, doc.gallery.length);
+                        highlightDoctorThumb(pIdx);
+                    };
+                    btn.onmouseenter = () => {
+                        setDoctorBigImage(photoUrl, pIdx, doc.gallery.length);
+                        highlightDoctorThumb(pIdx);
+                    };
+                    filmstrip.appendChild(btn);
+                });
+            }
+
+            const modal = document.getElementById('doctorModal');
+            const container = document.getElementById('doctorModalContainer');
+            if (modal && container) {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    container.classList.remove('scale-95');
+                    container.classList.add('scale-100');
+                }, 10);
+                document.body.style.overflow = 'hidden';
+            }
+
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+
+        function setDoctorBigImage(url, index, total) {
+            const bigImg = document.getElementById('docModalBigImage');
+            const counter = document.getElementById('docModalActiveCounter');
+            if (bigImg) {
+                bigImg.style.opacity = '0.35';
+                setTimeout(() => {
+                    bigImg.src = url;
+                    bigImg.style.opacity = '1';
+                }, 120);
+            }
+            if (counter) {
+                counter.innerText = `VIEW 0${index + 1} / 0${total}`;
+            }
+        }
+
+        function highlightDoctorThumb(index) {
+            const thumbs = document.querySelectorAll('.doc-modal-thumb');
+            thumbs.forEach((th, i) => {
+                if (i === index) {
+                    th.classList.add('border-stone-950', 'ring-2', 'ring-stone-950/20');
+                    th.classList.remove('border-stone-300/80');
+                } else {
+                    th.classList.remove('border-stone-950', 'ring-2', 'ring-stone-950/20');
+                    th.classList.add('border-stone-300/80');
+                }
+            });
+        }
+
+        function closeDoctorModal() {
+            const modal = document.getElementById('doctorModal');
+            const container = document.getElementById('doctorModalContainer');
+            if (modal && container) {
+                modal.classList.add('opacity-0');
+                container.classList.remove('scale-100');
+                container.classList.add('scale-95');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }, 300);
+            }
+        }
+
+        function bookWithCurrentDoctor() {
+            if (!currentDoctor) return;
+            const docId = currentDoctor.dentist_id;
+            closeDoctorModal();
+            const sel = document.getElementById('selPreferredDentist');
+            if (sel && docId) {
+                sel.value = docId;
+            }
+            const target = document.getElementById('booking-form');
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        document.getElementById('doctorModal')?.addEventListener('click', (e) => {
+            if (e.target === document.getElementById('doctorModal')) {
+                closeDoctorModal();
+            }
+        });
+
+        // Prev/Next buttons for dentists track
+        document.addEventListener('DOMContentLoaded', function () {
+            const dTrack = document.getElementById('dentistsTrack');
+            const dPrev = document.getElementById('docPrevBtn');
+            const dNext = document.getElementById('docNextBtn');
+            if (dTrack) {
+                const step = 320;
+                if (dPrev) dPrev.addEventListener('click', () => dTrack.scrollBy({ left: -step, behavior: 'smooth' }));
+                if (dNext) dNext.addEventListener('click', () => dTrack.scrollBy({ left: step, behavior: 'smooth' }));
+
+                dTrack.addEventListener('wheel', (e) => {
+                    if (e.deltaY !== 0) {
+                        e.preventDefault();
+                        dTrack.scrollBy({ left: e.deltaY * 1.5, behavior: 'auto' });
+                    }
+                }, { passive: false });
+
+                let isDown = false;
+                let startX;
+                let scrollLeft;
+
+                dTrack.addEventListener('mousedown', (e) => {
+                    isDown = true;
+                    startX = e.pageX - dTrack.offsetLeft;
+                    scrollLeft = dTrack.scrollLeft;
+                });
+                dTrack.addEventListener('mouseleave', () => { isDown = false; });
+                dTrack.addEventListener('mouseup', () => { isDown = false; });
+                dTrack.addEventListener('mousemove', (e) => {
+                    if (!isDown) return;
+                    e.preventDefault();
+                    const x = e.pageX - dTrack.offsetLeft;
+                    const walk = (x - startX) * 1.6;
+                    dTrack.scrollLeft = scrollLeft - walk;
+                });
+            }
         });
 
         document.getElementById('procedureModal')?.addEventListener('click', (e) => {
@@ -1021,56 +1303,232 @@ $currentUser = Session::user();
         </div>
     </section>
 
-    <!-- Our Attending Dentists (Clean Editorial Portrait Cards) -->
-    <section id="dentists" class="py-24 bg-[#F7F6F2] border-b border-[#E5E1D8]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+    <!-- Our Attending Dentists (Signature Treatments Inspo: Contiguous Photographic Strips) -->
+    <section id="dentists" class="py-24 bg-[#EFECE6] text-stone-900 overflow-hidden border-b border-[#E5E1D8] relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div>
-                    <span
-                        class="text-[11px] uppercase tracking-[0.25em] font-semibold text-stone-400 block mb-2">Clinical
-                        Team</span>
-                    <h3 class="text-3xl sm:text-4xl font-extrabold text-stone-950 tracking-tight">
+                    <span class="text-[11px] uppercase tracking-[0.25em] font-semibold text-stone-500 block mb-2">
+                        Clinical Faculty
+                    </span>
+                    <h3 class="text-3xl sm:text-5xl font-extrabold text-stone-950 tracking-tight">
                         Our Attending Dentists<span class="font-serif italic font-normal text-stone-500">.</span>
                     </h3>
-                    <p class="text-sm text-stone-600 mt-2">Licensed practitioners leading patient consultations and
-                        surgical procedures.</p>
+                    <p class="text-stone-600 text-xs sm:text-sm mt-3 max-w-xl leading-relaxed">
+                        Three dedicated dental specialists leading diagnostics, surgery, orthodontics, and smile aesthetics across our Makati and Pasig clinics. Hover across each clinician to expand, or click to explore their credentials.
+                    </p>
+                </div>
+
+                <!-- Minimalist Navigation Controls -->
+                <div class="flex items-center space-x-5">
+                    <span class="hidden sm:inline-block text-[11px] uppercase tracking-widest text-stone-500 font-mono">
+                        [ 01 — 03 ]
+                    </span>
+                    <div class="flex items-center space-x-2">
+                        <button id="docPrevBtn" aria-label="Previous clinician"
+                            class="w-12 h-12 rounded-full border border-[#D5CFC3] hover:border-stone-950 hover:bg-stone-950 hover:text-white text-stone-800 bg-white/70 backdrop-blur-sm flex items-center justify-center transition shadow-xs cursor-pointer">
+                            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                        </button>
+                        <button id="docNextBtn" aria-label="Next clinician"
+                            class="w-12 h-12 rounded-full border border-[#D5CFC3] hover:border-stone-950 hover:bg-stone-950 hover:text-white text-stone-800 bg-white/70 backdrop-blur-sm flex items-center justify-center transition shadow-xs cursor-pointer">
+                            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <?php foreach ($dentists as $doc): ?>
-                    <div
-                        class="bg-white rounded-3xl p-8 border border-[#E5E1D8] shadow-xs flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 hover:shadow-md transition">
-                        <div
-                            class="w-16 h-16 rounded-2xl bg-stone-950 text-white font-serif font-bold text-xl flex items-center justify-center flex-shrink-0 shadow-sm">
-                            Dr
+        <!-- Seamless Edge-to-Edge Straight Slideshow (Expands on Hover, Clicks to Open Modal) -->
+        <div class="w-full relative overflow-hidden py-4">
+            <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#EFECE6] to-transparent z-20 pointer-events-none"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#EFECE6] to-transparent z-20 pointer-events-none"></div>
+
+            <div id="dentistsTrack"
+                class="flex items-stretch space-x-0 py-6 px-4 sm:px-8 lg:px-16 overflow-x-auto no-scrollbar scroll-smooth cursor-grab active:cursor-grabbing select-none max-w-7xl mx-auto">
+                <?php foreach ($dentistProfilesMap as $idx => $doc): ?>
+                    <!-- Pure Photographic Strip with Sleek Expanding Bottom Card -->
+                    <button type="button" onclick="openDoctorModal(<?= $idx ?>)"
+                        title="Click to view full credentials for <?= htmlspecialchars($doc['name']) ?>"
+                        class="doctor-strip group relative h-[560px] sm:h-[600px] flex-1 min-w-[240px] md:min-w-[280px] hover:flex-[2.4] -ml-[1px] first:ml-0 overflow-hidden border-r border-t border-b border-[#D5CFC3] first:border-l bg-stone-900 block cursor-pointer text-left focus:outline-none shadow-sm">
+
+                        <!-- Background Photo -->
+                        <div class="absolute inset-0 w-full h-full overflow-hidden">
+                            <img src="<?= htmlspecialchars($doc['photo']) ?>" alt="<?= htmlspecialchars($doc['name']) ?>"
+                                 class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out filter brightness-95 contrast-105 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/10"></div>
                         </div>
-                        <div class="flex-1">
-                            <div class="flex items-center space-x-2">
-                                <h4 class="font-bold text-stone-950 text-base tracking-tight">
-                                    <?= htmlspecialchars($doc['full_name']) ?>
-                                </h4>
-                                <span
-                                    class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#EFECE6] text-stone-700">DMD</span>
-                            </div>
-                            <p class="text-xs text-stone-700 font-semibold mt-1">
-                                <?= htmlspecialchars($doc['specialization'] ?: 'General & Aesthetic Dentistry') ?>
+
+                        <!-- Top Minimalist Index & Department Tag -->
+                        <div class="absolute top-6 left-6 right-6 flex items-center justify-between text-white z-10 pointer-events-none">
+                            <span class="font-mono text-xs uppercase tracking-widest px-2.5 py-1 bg-black/60 backdrop-blur-md border border-white/15">
+                                [ <?= $doc['index'] ?> ]
+                            </span>
+                            <span class="text-[10px] uppercase font-mono font-bold tracking-[0.2em] text-stone-300 hidden sm:inline-block">
+                                <?= htmlspecialchars($doc['department']) ?>
+                            </span>
+                        </div>
+
+                        <!-- Bottom Stationary & Expanding Info Overlay -->
+                        <div class="absolute bottom-0 inset-x-0 p-6 sm:p-8 z-10 text-white flex flex-col justify-end">
+                            <span class="text-[10px] font-mono uppercase tracking-[0.22em] text-stone-300 mb-1.5 block">
+                                <?= htmlspecialchars($doc['license']) ?> · <?= htmlspecialchars($doc['experience']) ?>
+                            </span>
+                            <h4 class="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-white mb-1 group-hover:text-emerald-300 transition-colors">
+                                <?= htmlspecialchars($doc['name']) ?>
+                            </h4>
+                            <p class="text-xs text-stone-300 font-sans font-medium line-clamp-1 mb-2">
+                                <?= htmlspecialchars($doc['title']) ?>
                             </p>
-                            <?php if (!empty($doc['license_no'])): ?>
-                                <p class="text-[11px] text-stone-400 font-mono mt-0.5">PRC License:
-                                    <?= htmlspecialchars($doc['license_no']) ?>
+
+                            <!-- Expanded Details (Reveals on Hover) -->
+                            <div class="opacity-0 max-h-0 group-hover:opacity-100 group-hover:max-h-40 overflow-hidden transition-all duration-500 ease-out space-y-3 pt-2 border-t border-white/20">
+                                <p class="text-xs text-stone-200 line-clamp-2 leading-relaxed font-light">
+                                    <?= htmlspecialchars($doc['bio']) ?>
                                 </p>
-                            <?php endif; ?>
-                            <p class="text-xs text-stone-600 mt-3 leading-relaxed">
-                                Direct patient assessments, preventive care, complex restorative dentistry, and dental
-                                health consultations across Makati and Pasig branches.
-                            </p>
+                                <div class="flex items-center justify-between pt-1">
+                                    <span class="text-[10px] font-mono text-stone-300 uppercase tracking-wider">
+                                        <?= htmlspecialchars($doc['branches']) ?>
+                                    </span>
+                                    <span class="inline-flex items-center space-x-1.5 text-xs font-bold uppercase tracking-wider text-white group-hover:text-emerald-300">
+                                        <span>View Credentials</span>
+                                        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </button>
                 <?php endforeach; ?>
             </div>
         </div>
     </section>
+
+    <!-- Editorial Attending Clinician Exhibition Modal (Mirrors Signature Treatments Aesthetic) -->
+    <div id="doctorModal"
+        class="fixed inset-0 z-[70] flex items-center justify-center bg-black/80 backdrop-blur-md p-3 sm:p-6 md:p-8 hidden opacity-0 transition-opacity duration-300">
+
+        <!-- Modal Container (Warm Linen Luxury Aesthetic from Reference Screenshot) -->
+        <div class="bg-[#f4efe8] text-stone-900 rounded-3xl overflow-hidden shadow-2xl max-w-6xl w-full max-h-[92vh] flex flex-col border border-stone-300 transform scale-95 transition-transform duration-300"
+            id="doctorModalContainer">
+
+            <!-- Top Minimalist Catalogue Bar -->
+            <div
+                class="flex items-center justify-between border-b border-stone-300/80 px-6 sm:px-8 py-4 text-[11px] uppercase tracking-[0.22em] font-mono text-stone-500 bg-[#f4efe8]">
+                <span id="docModalTopCode">CLINICIAN // SPECIFICATION</span>
+                <span class="font-serif italic font-normal text-stone-800 text-sm normal-case hidden sm:inline">SDC
+                    Dental Atelier · Faculty</span>
+                <div class="flex items-center space-x-4">
+                    <span id="docModalActiveCounter" class="font-semibold text-stone-800">VIEW 01 / 03</span>
+                    <button type="button" onclick="closeDoctorModal()"
+                        class="text-stone-500 hover:text-stone-950 font-bold uppercase tracking-wider text-xs flex items-center space-x-1 transition cursor-pointer">
+                        <span>Close [✕]</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Middle Stage: Left Big Picture / Right Large Editorial Headline & Details -->
+            <div class="flex-1 overflow-y-auto no-scrollbar p-6 sm:p-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+
+                    <!-- Left: Big Portrait Display Frame -->
+                    <div class="lg:col-span-5 relative">
+                        <div
+                            class="relative w-full aspect-[3/4] sm:h-[460px] rounded-2xl overflow-hidden shadow-xl bg-stone-900 border border-stone-300/80 group">
+                            <img id="docModalBigImage" src="" alt="Attending Clinician"
+                                class="w-full h-full object-cover transition-all duration-500 ease-out filter brightness-95">
+                        </div>
+                    </div>
+
+                    <!-- Right: Large Editorial Headline & Clinician Details -->
+                    <div class="lg:col-span-7 flex flex-col justify-center">
+                        <div class="mb-3">
+                            <span id="docModalCategory"
+                                class="text-xs uppercase tracking-[0.25em] font-mono text-stone-500 block mb-2">
+                                01 / ORTHODONTICS & AESTHETICS
+                            </span>
+
+                            <h3 id="docModalTitle"
+                                class="text-3xl sm:text-5xl lg:text-5xl font-serif font-bold text-stone-950 tracking-tight leading-[1.08]">
+                                Dr. Maria Santos, DMD
+                            </h3>
+                        </div>
+
+                        <!-- Certification Badge -->
+                        <div class="inline-flex items-center space-x-2 my-2 py-1.5 px-3 bg-stone-200/80 text-stone-800 text-[11px] font-mono font-bold uppercase tracking-wider rounded-md max-w-fit">
+                            <i data-lucide="badge-check" class="w-3.5 h-3.5 text-stone-700"></i>
+                            <span id="docModalLicense">PRC License #0089211 · Board Certified</span>
+                        </div>
+
+                        <!-- Clinical Overview Bio -->
+                        <p id="docModalBio"
+                            class="text-stone-700 text-sm sm:text-base leading-relaxed max-w-xl font-light mb-4">
+                        </p>
+
+                        <!-- Editorial Specifications Bar -->
+                        <div
+                            class="grid grid-cols-3 gap-3 border-t border-b border-stone-300/80 py-3 mb-4 text-xs max-w-xl">
+                            <div>
+                                <span class="block text-[9px] uppercase tracking-widest text-stone-400 mb-0.5">Experience</span>
+                                <span id="docModalExperience" class="font-bold text-stone-900 text-sm">12+ Years</span>
+                            </div>
+                            <div>
+                                <span class="block text-[9px] uppercase tracking-widest text-stone-400 mb-0.5">Primary Suite</span>
+                                <span id="docModalBranch" class="font-bold text-stone-900 text-sm">Makati</span>
+                            </div>
+                            <div>
+                                <span class="block text-[9px] uppercase tracking-widest text-stone-400 mb-0.5">Credentials</span>
+                                <span id="docModalEducation" class="font-bold text-stone-900 text-xs truncate block">UP Dentistry</span>
+                            </div>
+                        </div>
+
+                        <!-- Scope of Practice & Key Procedures -->
+                        <div class="p-4 bg-white/75 rounded-2xl border border-stone-300/80 max-w-xl mb-3">
+                            <h4 class="text-[10px] font-mono font-bold uppercase tracking-widest text-stone-500 mb-2 flex items-center space-x-1.5">
+                                <i data-lucide="award" class="w-3.5 h-3.5 text-stone-700"></i>
+                                <span>Clinical Focus & Scope of Practice</span>
+                            </h4>
+                            <ul id="docModalSpecialtiesList" class="space-y-1.5 text-xs text-stone-700">
+                                <!-- Populated dynamically -->
+                            </ul>
+                        </div>
+
+                        <!-- Schedule & Locations -->
+                        <div class="p-3 bg-white/60 rounded-xl border border-stone-200 max-w-xl text-xs mb-4">
+                            <span class="text-[9px] font-mono font-bold text-stone-400 uppercase tracking-widest block mb-0.5">Consultation Hours</span>
+                            <p id="docModalSchedule" class="text-stone-700 font-mono text-[11px] leading-relaxed"></p>
+                        </div>
+
+                        <!-- Direct CTA Row -->
+                        <div class="pt-3 border-t border-stone-300/80 max-w-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                            <span class="text-xs text-stone-500 font-mono">Book direct consultation with clinician:</span>
+                            <button type="button" onclick="bookWithCurrentDoctor()"
+                                class="px-5 py-2.5 bg-stone-950 hover:bg-black text-white text-xs font-bold uppercase tracking-wider rounded-none shadow-sm transition inline-flex items-center space-x-2 cursor-pointer">
+                                <span>Book With This Doctor</span>
+                                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom: Gallery of THIS Specific Clinician (Clicking transfers to the Big Picture) -->
+                <div class="mt-8 pt-6 border-t border-stone-300">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-[11px] uppercase tracking-widest font-mono text-stone-500">
+                            Clinical Practice & Operatory Views (Click thumbnail to view):
+                        </span>
+                        <span class="text-xs text-stone-400 hidden sm:inline font-mono">
+                            Editorial Lookbook
+                        </span>
+                    </div>
+
+                    <!-- Filmstrip of Photos for THIS Doctor Only -->
+                    <div id="docModalGalleryFilmstrip"
+                        class="flex items-center space-x-3 sm:space-x-4 overflow-x-auto no-scrollbar py-2 select-none">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <!-- Clinic Hours & Branch Locations -->
     <section id="locations" class="py-16 bg-[#FAF9F5] border-b border-[#E5E1D8]">
@@ -1227,7 +1685,7 @@ $currentUser = Session::user();
                         <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
                             Preferred Dentist (Optional)
                         </label>
-                        <select name="preferred_dentist_id"
+                        <select name="preferred_dentist_id" id="selPreferredDentist"
                             class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
                             <option value="">Any Available Attending Dentist</option>
                             <?php foreach ($dentists as $d): ?>
