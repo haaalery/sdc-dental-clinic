@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg8" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="metalBracket" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="50%" stop-color="#cbd5e1" />
+      <stop offset="100%" stop-color="#64748b" />
+    </linearGradient>
+  </defs>
+
+  <rect width="400" height="240" rx="16" fill="url(#bg8)" />
+
+  <!-- Four Anterior Front Teeth in Gentle Smile Arc -->
+  <g transform="translate(65, 80)">
+    <!-- Canine Left -->
+    <path d="M20 25 C25 15, 38 10, 48 20 C54 28, 52 75, 48 95 L22 95 C18 75, 15 28, 20 25 Z" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2" />
+    <!-- Central Incisor Left -->
+    <path d="M60 10 C70 5, 88 5, 98 10 C106 20, 104 80, 100 100 L58 100 C54 80, 52 20, 60 10 Z" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" />
+    <!-- Central Incisor Right -->
+    <path d="M112 10 C122 5, 140 5, 150 10 C158 20, 156 80, 152 100 L110 100 C106 80, 104 20, 112 10 Z" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" />
+    <!-- Canine Right -->
+    <path d="M162 20 C172 10, 185 15, 190 25 C195 28, 192 75, 188 95 L162 95 C158 75, 156 28, 162 20 Z" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2" />
+
+    <!-- Continuous Nickel-Titanium Archwire -->
+    <path d="M15 55 Q105 70, 195 55" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" fill="none" />
+
+    <!-- Precision Metal Brackets -->
+    <!-- Bracket 1 -->
+    <rect x="25" y="45" width="18" height="18" rx="2" fill="url(#metalBracket)" stroke="#334155" stroke-width="1.5" />
+    <circle cx="34" cy="54" r="3" fill="#38bdf8" />
+    <!-- Bracket 2 -->
+    <rect x="69" y="48" width="20" height="20" rx="2" fill="url(#metalBracket)" stroke="#334155" stroke-width="1.5" />
+    <circle cx="79" cy="58" r="3" fill="#38bdf8" />
+    <!-- Bracket 3 -->
+    <rect x="121" y="48" width="20" height="20" rx="2" fill="url(#metalBracket)" stroke="#334155" stroke-width="1.5" />
+    <circle cx="131" cy="58" r="3" fill="#38bdf8" />
+    <!-- Bracket 4 -->
+    <rect x="167" y="45" width="18" height="18" rx="2" fill="url(#metalBracket)" stroke="#334155" stroke-width="1.5" />
+    <circle cx="176" cy="54" r="3" fill="#38bdf8" />
+  </g>
+
+  <!-- Alignment Sparkle / Precision Indicator -->
+  <g transform="translate(285, 45)">
+    <circle cx="16" cy="16" r="16" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" />
+    <path d="M8 16 L24 16 M16 8 L16 24" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" />
+  </g>
+
+  <g transform="translate(24, 24)">
+    <rect width="120" height="24" rx="6" fill="#1e293b" stroke="#334155" />
+    <circle cx="14" cy="12" r="4" fill="#3b82f6" />
+    <text x="24" y="16" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" letter-spacing="1">ORTHODONTICS</text>
+  </g>
+</svg>

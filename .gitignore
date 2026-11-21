@@ -1,0 +1,15 @@
+# Uploads
+/uploads/patients/*
+!/uploads/patients/.gitkeep
+/uploads/expenses/*
+!/uploads/expenses/.gitkeep
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE & Logs
+.idea/
+.vscode/
+*.log

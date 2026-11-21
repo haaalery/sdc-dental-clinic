@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="boneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+  </defs>
+
+  <rect width="400" height="240" rx="16" fill="url(#bg6)" />
+
+  <!-- Jawbone Anatomy Profile (Mandible outline) -->
+  <path d="M50 140 C120 120, 200 130, 260 110 C290 100, 320 80, 350 40 L350 200 L50 200 Z" fill="url(#boneGrad)" stroke="#475569" stroke-width="2" />
+
+  <!-- Standing Second Molar -->
+  <g transform="translate(100, 80)">
+    <path d="M25 15 C35 8, 45 8, 55 15 C65 10, 75 10, 85 18 C92 28, 90 50, 86 70 C83 85, 78 115, 70 120 C64 125, 60 105, 57 90 C54 105, 50 125, 44 120 C38 115, 32 85, 29 70 C25 50, 22 28, 25 15 Z" 
+          fill="#f8fafc" stroke="#e2e8f0" stroke-width="2" />
+  </g>
+
+  <!-- Angled / Impacted Third Molar (Wisdom Tooth) -->
+  <g transform="translate(245, 115) rotate(-55)">
+    <path d="M25 15 C35 8, 45 8, 55 15 C65 10, 75 10, 85 18 C92 28, 90 50, 86 70 C83 85, 78 115, 70 120 C64 125, 60 105, 57 90 C54 105, 50 125, 44 120 C38 115, 32 85, 29 70 C25 50, 22 28, 25 15 Z" 
+          fill="#e2e8f0" stroke="#cbd5e1" stroke-width="2" />
+    <!-- Surgical Sectioning Line -->
+    <line x1="55" y1="15" x2="55" y2="75" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="3 3" />
+  </g>
+
+  <!-- Surgical Scalpel Silhouette / Indicator -->
+  <g transform="translate(250, 35)">
+    <path d="M0 0 L40 10 L80 15 L20 2 Z" fill="#94a3b8" />
+  </g>
+
+  <g transform="translate(24, 24)">
+    <rect width="115" height="24" rx="6" fill="#1e293b" stroke="#334155" />
+    <circle cx="14" cy="12" r="4" fill="#a855f7" />
+    <text x="24" y="16" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" letter-spacing="1">ORAL SURGERY</text>
+  </g>
+</svg>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg9" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="laserBeam" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#818cf8" stop-opacity="0.1" />
+    </linearGradient>
+    <radialGradient id="whiteningGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="400" height="240" rx="16" fill="url(#bg9)" />
+  <circle cx="200" cy="125" r="95" fill="url(#whiteningGlow)" />
+
+  <!-- Radiant Front Tooth -->
+  <g transform="translate(155, 60)">
+    <path d="M25 15 C35 5, 55 5, 65 15 C75 25, 78 70, 72 105 C68 125, 50 135, 45 135 C40 135, 22 125, 18 105 C12 70, 15 25, 25 15 Z" 
+          fill="#ffffff" stroke="#e0f2fe" stroke-width="3" filter="drop-shadow(0px 0px 8px rgba(56, 189, 248, 0.4))" />
+    <!-- Bright Reflection Highlight -->
+    <path d="M30 25 C35 18, 55 18, 60 25" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" fill="none" />
+  </g>
+
+  <!-- Laser Whitening Emitter Device -->
+  <g transform="translate(60, 45)">
+    <rect x="20" y="30" width="35" height="22" rx="4" fill="#334155" stroke="#475569" stroke-width="2" />
+    <path d="M55 35 L75 30 L75 52 L55 47 Z" fill="#94a3b8" />
+    <circle cx="75" cy="41" r="5" fill="#38bdf8" />
+    <!-- Focused Laser Cone -->
+    <polygon points="75,41 180,85 160,140" fill="url(#laserBeam)" />
+  </g>
+
+  <!-- Multi-point Brilliant Sparkles -->
+  <g transform="translate(250, 75)">
+    <path d="M0 -12 L3 -3 L12 0 L3 3 L0 12 L-3 3 L-12 0 L-3 -3 Z" fill="#ffffff" />
+    <circle cx="0" cy="0" r="3" fill="#38bdf8" />
+  </g>
+  <g transform="translate(135, 155)">
+    <path d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" fill="#ffffff" />
+  </g>
+  <g transform="translate(265, 145)">
+    <path d="M0 -6 L1.5 -1.5 L6 0 L1.5 1.5 L0 6 L-1.5 1.5 L-6 0 L-1.5 -1.5 Z" fill="#38bdf8" />
+  </g>
+
+  <g transform="translate(24, 24)">
+    <rect width="105" height="24" rx="6" fill="#1e293b" stroke="#334155" />
+    <circle cx="14" cy="12" r="4" fill="#ec4899" />
+    <text x="24" y="16" fill="#e2e8f0" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" letter-spacing="1">COSMETIC</text>
+  </g>
+</svg>
