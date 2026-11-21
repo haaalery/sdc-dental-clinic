@@ -2,7 +2,26 @@
 $pageTitle = 'Register Patient Profile';
 require_once __DIR__ . '/../layouts/header.php';
 
-$presetName = $_GET['name'] ?? '';
+$presetFirstName = $_GET['first_name'] ?? '';
+$presetMi = $_GET['middle_initial'] ?? '';
+$presetLastName = $_GET['last_name'] ?? '';
+
+// Fallback: If legacy single 'name' parameter is passed (e.g. "Sofia D. Santos" or "Juan Dela Cruz")
+if (empty($presetFirstName) && !empty($_GET['name'])) {
+    $parts = preg_split('/\s+/', trim($_GET['name']));
+    $presetFirstName = $parts[0] ?? '';
+    if (count($parts) === 2) {
+        $presetLastName = $parts[1];
+    } elseif (count($parts) >= 3) {
+        // Check if second token is a middle initial (e.g. "D.", "D", length <= 2 or ends with dot)
+        if (strlen($parts[1]) <= 2 || str_ends_with($parts[1], '.')) {
+            $presetMi = $parts[1];
+            $presetLastName = implode(' ', array_slice($parts, 2));
+        } else {
+            $presetLastName = implode(' ', array_slice($parts, 1));
+        }
+    }
+}
 $presetPhone = $_GET['phone'] ?? '';
 $linkAppointmentId = $_GET['link_appointment_id'] ?? null;
 ?>
@@ -27,20 +46,28 @@ $linkAppointmentId = $_GET['link_appointment_id'] ?? null;
                 </div>
             <?php endif; ?>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+                <div class="md:col-span-5">
                     <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                         First Name <span class="text-rose-500">*</span>
                     </label>
-                    <input type="text" name="first_name" required value="<?= htmlspecialchars($presetName) ?>" placeholder="e.g. Juan"
+                    <input type="text" name="first_name" required value="<?= htmlspecialchars($presetFirstName) ?>" placeholder="e.g. Sofia"
                            class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition">
                 </div>
 
-                <div>
+                <div class="md:col-span-2">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                        M.I. <span class="text-slate-400 font-normal lowercase">(opt)</span>
+                    </label>
+                    <input type="text" name="middle_initial" maxlength="10" value="<?= htmlspecialchars($presetMi) ?>" placeholder="e.g. D."
+                           class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition text-center uppercase">
+                </div>
+
+                <div class="md:col-span-5">
                     <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
                         Last Name <span class="text-rose-500">*</span>
                     </label>
-                    <input type="text" name="last_name" required placeholder="e.g. Dela Cruz"
+                    <input type="text" name="last_name" required value="<?= htmlspecialchars($presetLastName) ?>" placeholder="e.g. Santos"
                            class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition">
                 </div>
             </div>

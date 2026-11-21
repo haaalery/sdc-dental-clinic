@@ -21,12 +21,14 @@ class Invoice {
 
     public static function findById(int $id): ?array {
         $sql = "SELECT i.*, 
-                       p.patient_code, p.first_name, p.last_name, p.phone as patient_phone, p.address as patient_address, p.occupation,
+                       p.patient_code, p.first_name, p.middle_initial, p.last_name, p.phone as patient_phone, p.address as patient_address, p.occupation,
+                       a.guest_name, a.guest_phone,
+                       COALESCE(TRIM(CONCAT(p.first_name, ' ', COALESCE(p.middle_initial, ''), ' ', p.last_name)), a.guest_name, 'Guest Patient') as display_patient_name,
                        b.branch_name, b.branch_code, b.address as branch_address, b.contact_number as branch_phone,
                        a.appointment_code, a.appointment_date, a.dental_concern,
                        u_dentist.full_name as attending_dentist_name
                 FROM billing_invoices i
-                JOIN patients p ON i.patient_id = p.id
+                LEFT JOIN patients p ON i.patient_id = p.id
                 JOIN branches b ON i.branch_id = b.id
                 JOIN appointments a ON i.appointment_id = a.id
                 LEFT JOIN dentists d ON a.assigned_dentist_id = d.id
@@ -44,8 +46,8 @@ class Invoice {
      */
     public static function syncFromAppointment(int $appointmentId, float $discount = 0.00): int {
         $appointment = Database::fetch("SELECT * FROM appointments WHERE id = ?", [$appointmentId]);
-        if (!$appointment || empty($appointment['patient_id'])) {
-            throw new Exception("Appointment or linked patient not found.");
+        if (!$appointment) {
+            throw new Exception("Appointment not found.");
         }
 
         // Sum of treatments performed
@@ -60,9 +62,17 @@ class Invoice {
             $status = ($balance <= 0 && $totalAmount > 0) ? 'paid' : (($paidAmount > 0) ? 'partially_paid' : 'unpaid');
 
             $sql = "UPDATE billing_invoices 
-                    SET subtotal = ?, discount_amount = ?, total_amount = ?, balance_amount = ?, payment_status = ? 
+                    SET patient_id = COALESCE(?, patient_id), subtotal = ?, discount_amount = ?, total_amount = ?, balance_amount = ?, payment_status = ? 
                     WHERE id = ?";
-            Database::query($sql, [$subtotal, $discount, $totalAmount, $balance, $status, $existing['id']]);
+            Database::query($sql, [
+                !empty($appointment['patient_id']) ? (int)$appointment['patient_id'] : null,
+                $subtotal,
+                $discount,
+                $totalAmount,
+                $balance,
+                $status,
+                $existing['id']
+            ]);
             return (int) $existing['id'];
         } else {
             $invNum = self::generateInvoiceNumber();
@@ -71,7 +81,7 @@ class Invoice {
             Database::query($sql, [
                 $invNum,
                 $appointmentId,
-                $appointment['patient_id'],
+                !empty($appointment['patient_id']) ? (int)$appointment['patient_id'] : null,
                 $appointment['branch_id'],
                 $subtotal,
                 $discount,
@@ -101,7 +111,7 @@ class Invoice {
         Database::query($sql, [
             $receiptNumber,
             $invoiceId,
-            $invoice['patient_id'],
+            !empty($invoice['patient_id']) ? (int)$invoice['patient_id'] : null,
             $invoice['branch_id'],
             $amount,
             $paymentMethod,
@@ -144,14 +154,16 @@ class Invoice {
     public static function getReceiptDetails(int $paymentId): ?array {
         $sql = "SELECT p.*, 
                        i.invoice_number, i.subtotal, i.discount_amount, i.total_amount, i.paid_amount as total_invoice_paid, i.balance_amount as remaining_balance,
-                       pt.patient_code, pt.first_name, pt.last_name, pt.phone as patient_phone, pt.occupation,
+                       pt.patient_code, pt.first_name, pt.middle_initial, pt.last_name, pt.phone as patient_phone, pt.occupation,
+                       a.guest_name, a.guest_phone,
+                       COALESCE(TRIM(CONCAT(pt.first_name, ' ', COALESCE(pt.middle_initial, ''), ' ', pt.last_name)), a.guest_name, 'Guest Patient') as display_patient_name,
                        b.branch_name, b.branch_code, b.address as branch_address, b.contact_number as branch_phone,
                        a.appointment_code, a.appointment_date, a.dental_concern,
                        u_staff.full_name as cashier_name,
                        u_dentist.full_name as attending_dentist_name, d.license_no as dentist_license
                 FROM payments p
                 JOIN billing_invoices i ON p.invoice_id = i.id
-                JOIN patients pt ON p.patient_id = pt.id
+                LEFT JOIN patients pt ON p.patient_id = pt.id
                 JOIN branches b ON p.branch_id = b.id
                 JOIN appointments a ON i.appointment_id = a.id
                 JOIN users u_staff ON p.received_by = u_staff.id
@@ -171,11 +183,14 @@ class Invoice {
      */
     public static function getAllInvoices(array $filters = []): array {
         $sql = "SELECT i.*, 
-                       p.patient_code, p.first_name, p.last_name, p.phone as patient_phone,
+                       p.patient_code, p.first_name, p.middle_initial, p.last_name, p.phone as patient_phone,
+                       a.guest_name, a.guest_phone,
+                       COALESCE(TRIM(CONCAT(p.first_name, ' ', COALESCE(p.middle_initial, ''), ' ', p.last_name)), a.guest_name, 'Guest Patient') as display_patient_name,
+                       COALESCE(p.phone, a.guest_phone) as display_patient_phone,
                        b.branch_name,
                        a.appointment_code, a.appointment_date
                 FROM billing_invoices i
-                JOIN patients p ON i.patient_id = p.id
+                LEFT JOIN patients p ON i.patient_id = p.id
                 JOIN branches b ON i.branch_id = b.id
                 JOIN appointments a ON i.appointment_id = a.id
                 WHERE 1=1";

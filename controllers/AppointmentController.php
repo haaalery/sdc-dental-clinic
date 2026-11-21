@@ -144,6 +144,16 @@ class AppointmentController {
 
         if ($id && in_array($status, [STATUS_CONFIRMED, STATUS_IN_PROGRESS, STATUS_COMPLETED, STATUS_CANCELLED, STATUS_NO_SHOW])) {
             Appointment::updateStatus($id, $status);
+
+            // Automatically generate or sync invoice if session is completed or in progress
+            if (in_array($status, [STATUS_COMPLETED, STATUS_IN_PROGRESS])) {
+                try {
+                    Invoice::syncFromAppointment($id);
+                } catch (Throwable $e) {
+                    // Gracefully continue if no procedures are logged yet
+                }
+            }
+
             Session::flash('success', "Appointment status updated to " . ucfirst(str_replace('_', ' ', $status)));
         }
 

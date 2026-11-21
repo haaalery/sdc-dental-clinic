@@ -63,6 +63,7 @@ CREATE TABLE `patients` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `patient_code` VARCHAR(30) UNIQUE NOT NULL,
     `first_name` VARCHAR(50) NOT NULL,
+    `middle_initial` VARCHAR(10) NULL DEFAULT NULL,
     `last_name` VARCHAR(50) NOT NULL,
     `gender` ENUM('male', 'female', 'other') DEFAULT 'other',
     `date_of_birth` DATE NULL,
@@ -147,7 +148,7 @@ CREATE TABLE `billing_invoices` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `invoice_number` VARCHAR(30) UNIQUE NOT NULL,
     `appointment_id` INT NOT NULL,
-    `patient_id` INT NOT NULL,
+    `patient_id` INT NULL,
     `branch_id` INT NOT NULL,
     `subtotal` DECIMAL(10,2) NOT NULL,
     `discount_amount` DECIMAL(10,2) DEFAULT 0.00,
@@ -158,7 +159,7 @@ CREATE TABLE `billing_invoices` (
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (`appointment_id`) REFERENCES `appointments`(`id`),
-    FOREIGN KEY (`patient_id`) REFERENCES `patients`(`id`),
+    FOREIGN KEY (`patient_id`) REFERENCES `patients`(`id`) ON DELETE SET NULL,
     FOREIGN KEY (`branch_id`) REFERENCES `branches`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -167,7 +168,7 @@ CREATE TABLE `payments` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `receipt_number` VARCHAR(30) UNIQUE NOT NULL,
     `invoice_id` INT NOT NULL,
-    `patient_id` INT NOT NULL,
+    `patient_id` INT NULL,
     `branch_id` INT NOT NULL,
     `amount_paid` DECIMAL(10,2) NOT NULL,
     `payment_method` ENUM('Cash', 'Online', 'Card') NOT NULL,
@@ -176,7 +177,7 @@ CREATE TABLE `payments` (
     `payment_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `notes` TEXT,
     FOREIGN KEY (`invoice_id`) REFERENCES `billing_invoices`(`id`),
-    FOREIGN KEY (`patient_id`) REFERENCES `patients`(`id`),
+    FOREIGN KEY (`patient_id`) REFERENCES `patients`(`id`) ON DELETE SET NULL,
     FOREIGN KEY (`branch_id`) REFERENCES `branches`(`id`),
     FOREIGN KEY (`received_by`) REFERENCES `users`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -215,14 +216,14 @@ CREATE TABLE `supplies` (
 CREATE TABLE `patient_supply_usage` (
     `id` INT AUTO_INCREMENT PRIMARY KEY,
     `appointment_id` INT NOT NULL,
-    `patient_id` INT NOT NULL,
+    `patient_id` INT NULL,
     `supply_id` INT NOT NULL,
     `quantity_used` INT NOT NULL,
     `recorded_by` INT NOT NULL,
     `recorded_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `notes` VARCHAR(255) NULL,
     FOREIGN KEY (`appointment_id`) REFERENCES `appointments`(`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`patient_id`) REFERENCES `patients`(`id`),
+    FOREIGN KEY (`patient_id`) REFERENCES `patients`(`id`) ON DELETE SET NULL,
     FOREIGN KEY (`supply_id`) REFERENCES `supplies`(`id`),
     FOREIGN KEY (`recorded_by`) REFERENCES `users`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

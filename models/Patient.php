@@ -20,9 +20,9 @@ class Patient {
                 FROM patients p";
         $params = [];
         if ($search) {
-            $sql .= " WHERE p.first_name LIKE ? OR p.last_name LIKE ? OR p.patient_code LIKE ? OR p.phone LIKE ? OR p.occupation LIKE ?";
+            $sql .= " WHERE p.first_name LIKE ? OR p.middle_initial LIKE ? OR p.last_name LIKE ? OR p.patient_code LIKE ? OR p.phone LIKE ? OR p.occupation LIKE ?";
             $term = "%$search%";
-            $params = [$term, $term, $term, $term, $term];
+            $params = [$term, $term, $term, $term, $term, $term];
         }
         $sql .= " ORDER BY p.id DESC";
         return Database::fetchAll($sql, $params);
@@ -34,11 +34,12 @@ class Patient {
 
     public static function create(array $data): int {
         $code = self::generateCode();
-        $sql = "INSERT INTO patients (patient_code, first_name, last_name, gender, date_of_birth, phone, email, address, occupation, medical_history, allergies) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO patients (patient_code, first_name, middle_initial, last_name, gender, date_of_birth, phone, email, address, occupation, medical_history, allergies) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         Database::query($sql, [
             $code,
             $data['first_name'],
+            !empty($data['middle_initial']) ? trim($data['middle_initial']) : null,
             $data['last_name'],
             $data['gender'] ?? 'other',
             !empty($data['date_of_birth']) ? $data['date_of_birth'] : null,
@@ -53,10 +54,11 @@ class Patient {
     }
 
     public static function update(int $id, array $data): bool {
-        $sql = "UPDATE patients SET first_name = ?, last_name = ?, gender = ?, date_of_birth = ?, phone = ?, email = ?, address = ?, occupation = ?, medical_history = ?, allergies = ? 
+        $sql = "UPDATE patients SET first_name = ?, middle_initial = ?, last_name = ?, gender = ?, date_of_birth = ?, phone = ?, email = ?, address = ?, occupation = ?, medical_history = ?, allergies = ? 
                 WHERE id = ?";
         Database::query($sql, [
             $data['first_name'],
+            !empty($data['middle_initial']) ? trim($data['middle_initial']) : null,
             $data['last_name'],
             $data['gender'] ?? 'other',
             !empty($data['date_of_birth']) ? $data['date_of_birth'] : null,

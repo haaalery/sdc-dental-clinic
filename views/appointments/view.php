@@ -2,9 +2,28 @@
 $pageTitle = 'Appointment: ' . htmlspecialchars($appointment['appointment_code']);
 require_once __DIR__ . '/../layouts/header.php';
 $userRole = Session::role();
+$isClinicianOrAdmin = in_array($userRole, ['admin', 'dentist']);
+
+$middleInitStr = !empty($appointment['middle_initial']) ? ' ' . $appointment['middle_initial'] : '';
 $patientName = $appointment['patient_id'] 
-    ? ($appointment['first_name'] . ' ' . $appointment['last_name']) 
+    ? trim($appointment['first_name'] . $middleInitStr . ' ' . $appointment['last_name']) 
     : ($appointment['guest_name'] . ' (Online Guest)');
+
+// Prepare parsed guest name for quick registration
+$guestParts = preg_split('/\s+/', trim($appointment['guest_name'] ?? ''));
+$guestFirst = $guestParts[0] ?? '';
+$guestMi = '';
+$guestLast = '';
+if (count($guestParts) === 2) {
+    $guestLast = $guestParts[1];
+} elseif (count($guestParts) >= 3) {
+    if (strlen($guestParts[1]) <= 2 || str_ends_with($guestParts[1], '.')) {
+        $guestMi = $guestParts[1];
+        $guestLast = implode(' ', array_slice($guestParts, 2));
+    } else {
+        $guestLast = implode(' ', array_slice($guestParts, 1));
+    }
+}
 ?>
 
 <!-- Header -->
@@ -86,7 +105,7 @@ $patientName = $appointment['patient_id']
             <?php else: ?>
                 <div class="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-800">
                     Online Guest Booking. 
-                    <a href="<?= BASE_URL ?>/index.php?page=patient_create&name=<?= urlencode($appointment['guest_name']) ?>&phone=<?= urlencode($appointment['guest_phone']) ?>&link_appointment_id=<?= $appointment['id'] ?>" 
+                    <a href="<?= BASE_URL ?>/index.php?page=patient_create&first_name=<?= urlencode($guestFirst) ?>&middle_initial=<?= urlencode($guestMi) ?>&last_name=<?= urlencode($guestLast) ?>&phone=<?= urlencode($appointment['guest_phone']) ?>&link_appointment_id=<?= $appointment['id'] ?>" 
                        class="font-bold underline block mt-1">Register as Permanent Patient &rarr;</a>
                 </div>
             <?php endif; ?>
@@ -169,10 +188,17 @@ $patientName = $appointment['patient_id']
 
         <!-- Billing & Balance Summary Card -->
         <div class="bg-white rounded-2xl border border-slate-200 shadow-xs p-5">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center space-x-2">
-                <i data-lucide="credit-card" class="w-4 h-4 text-teal-600"></i>
-                <span>Billing & Balance Due</span>
-            </h3>
+            <div class="flex items-center justify-between mb-3">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center space-x-2">
+                    <i data-lucide="credit-card" class="w-4 h-4 text-teal-600"></i>
+                    <span>Billing & Balance Due</span>
+                </h3>
+                <?php if ($invoice): ?>
+                    <span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider <?= $invoice['payment_status'] === 'paid' ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-amber-100 text-amber-800 border border-amber-200' ?>">
+                        <?= str_replace('_', ' ', $invoice['payment_status']) ?>
+                    </span>
+                <?php endif; ?>
+            </div>
 
             <?php if ($invoice): ?>
                 <div class="space-y-2 text-xs">
@@ -198,13 +224,14 @@ $patientName = $appointment['patient_id']
 
                 <div class="mt-4 pt-3 border-t border-slate-100 space-y-2">
                     <a href="<?= BASE_URL ?>/index.php?page=invoice_view&id=<?= $invoice['id'] ?>" 
-                       class="block w-full py-2 text-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-semibold rounded-xl shadow-xs transition">
-                        Manage Payments & Receipts
+                       class="block w-full py-2.5 text-center bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold rounded-xl shadow-xs transition flex items-center justify-center space-x-1.5">
+                        <i data-lucide="receipt" class="w-3.5 h-3.5"></i>
+                        <span>View Invoice & Collect Payment</span>
                     </a>
                 </div>
             <?php else: ?>
                 <div class="text-center py-4 text-xs text-slate-400">
-                    No treatments billed yet. Invoice will generate once clinical treatments are logged below.
+                    No treatments billed yet. Invoice generates automatically once clinical procedures are performed.
                 </div>
             <?php endif; ?>
         </div>
@@ -217,7 +244,7 @@ $patientName = $appointment['patient_id']
             <div class="flex items-center justify-between mb-4">
                 <div>
                     <h3 class="text-base font-bold text-slate-900">Clinical Treatments Performed</h3>
-                    <p class="text-xs text-slate-500">Procedures recorded by dentist with transparent commission splits.</p>
+                    <p class="text-xs text-slate-500"><?= $isClinicianOrAdmin ? 'Procedures recorded by dentist with transparent commission splits.' : 'Itemized procedures and charged fees for this patient appointment.' ?></p>
                 </div>
                 <button onclick="document.getElementById('addTreatmentForm').classList.toggle('hidden')" 
                         class="px-3 py-1.5 bg-teal-600 hover:bg-teal-700 text-white text-xs font-semibold rounded-lg flex items-center space-x-1 transition">
@@ -238,14 +265,14 @@ $patientName = $appointment['patient_id']
                                 <option value="">-- Choose Procedure --</option>
                                 <?php foreach ($activeTreatments as $trt): ?>
                                     <option value="<?= $trt['id'] ?>" data-price="<?= $trt['standard_price'] ?>" data-rate="<?= $trt['fixed_commission_rate'] ?>">
-                                        <?= htmlspecialchars($trt['treatment_name']) ?> (<?= APP_CURRENCY ?><?= number_format($trt['standard_price'], 2) ?> | Split: <?= (int)$trt['fixed_commission_rate'] ?>%)
+                                        <?= htmlspecialchars($trt['treatment_name']) ?> (<?= APP_CURRENCY ?><?= number_format($trt['standard_price'], 2) ?><?= $isClinicianOrAdmin ? ' | Split: ' . (int)$trt['fixed_commission_rate'] . '%' : '' ?>)
                                     </option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">Attending Dentist (Receives Commission)</label>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Attending Dentist<?= $isClinicianOrAdmin ? ' (Receives Commission)' : '' ?></label>
                             <select name="dentist_id" required class="w-full p-2 bg-white border border-slate-200 rounded-lg text-xs">
                                 <?php foreach ($dentists as $d): ?>
                                     <option value="<?= $d['dentist_id'] ?>" <?= ($appointment['assigned_dentist_id'] == $d['dentist_id']) ? 'selected' : '' ?>>
@@ -256,22 +283,24 @@ $patientName = $appointment['patient_id']
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 <?= $isClinicianOrAdmin ? 'sm:grid-cols-2' : '' ?> gap-4">
                         <div>
                             <label class="block text-xs font-bold text-slate-700 mb-1">Actual Charged Fee (<?= APP_CURRENCY ?>)</label>
                             <input type="number" step="0.01" name="actual_price" id="inpActualPrice" required 
                                    class="w-full p-2 bg-white border border-slate-200 rounded-lg text-xs font-semibold">
                         </div>
 
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">Commission Split %</label>
-                            <select name="custom_commission_rate" id="selCommRate" class="w-full p-2 bg-white border border-slate-200 rounded-lg text-xs">
-                                <option value="20">20% Dentist / 80% Clinic</option>
-                                <option value="30" selected>30% Dentist / 70% Clinic</option>
-                                <option value="40">40% Dentist / 60% Clinic</option>
-                                <option value="50">50% Dentist / 50% Clinic</option>
-                            </select>
-                        </div>
+                        <?php if ($isClinicianOrAdmin): ?>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Commission Split %</label>
+                                <select name="custom_commission_rate" id="selCommRate" class="w-full p-2 bg-white border border-slate-200 rounded-lg text-xs">
+                                    <option value="20">20% Dentist / 80% Clinic</option>
+                                    <option value="30" selected>30% Dentist / 70% Clinic</option>
+                                    <option value="40">40% Dentist / 60% Clinic</option>
+                                    <option value="50">50% Dentist / 50% Clinic</option>
+                                </select>
+                            </div>
+                        <?php endif; ?>
                     </div>
 
                     <div>
@@ -285,7 +314,7 @@ $patientName = $appointment['patient_id']
                             Cancel
                         </button>
                         <button type="submit" class="px-4 py-1.5 bg-teal-600 hover:bg-teal-700 text-white text-xs font-semibold rounded-lg">
-                            Save Procedure & Compute Split
+                            <?= $isClinicianOrAdmin ? 'Save Procedure & Compute Split' : 'Save Procedure' ?>
                         </button>
                     </div>
                 </form>
@@ -299,16 +328,18 @@ $patientName = $appointment['patient_id']
                             <th class="py-2.5 px-3">Procedure</th>
                             <th class="py-2.5 px-3">Dentist</th>
                             <th class="py-2.5 px-3 text-right">Fee</th>
-                            <th class="py-2.5 px-3 text-center">Split</th>
-                            <th class="py-2.5 px-3 text-right">Dentist Share</th>
-                            <th class="py-2.5 px-3 text-center">Formula</th>
+                            <?php if ($isClinicianOrAdmin): ?>
+                                <th class="py-2.5 px-3 text-center">Split</th>
+                                <th class="py-2.5 px-3 text-right">Dentist Share</th>
+                                <th class="py-2.5 px-3 text-center">Formula</th>
+                            <?php endif; ?>
                             <th class="py-2.5 px-3 text-center">Remove</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100">
                         <?php if (empty($performedTreatments)): ?>
                             <tr>
-                                <td colspan="7" class="text-center py-6 text-slate-400 italic">No treatments recorded yet for this appointment.</td>
+                                <td colspan="<?= $isClinicianOrAdmin ? 7 : 4 ?>" class="text-center py-6 text-slate-400 italic">No treatments recorded yet for this appointment.</td>
                             </tr>
                         <?php else: ?>
                             <?php foreach ($performedTreatments as $pt): ?>
@@ -321,14 +352,16 @@ $patientName = $appointment['patient_id']
                                     </td>
                                     <td class="py-2.5 px-3 text-slate-600">Dr. <?= htmlspecialchars($pt['dentist_name']) ?></td>
                                     <td class="py-2.5 px-3 text-right font-mono font-bold text-slate-900"><?= APP_CURRENCY ?><?= number_format($pt['actual_price'], 2) ?></td>
-                                    <td class="py-2.5 px-3 text-center font-bold text-teal-600"><?= (int)$pt['commission_rate'] ?>%</td>
-                                    <td class="py-2.5 px-3 text-right font-mono font-bold text-teal-700"><?= APP_CURRENCY ?><?= number_format($pt['dentist_commission_amount'], 2) ?></td>
-                                    <td class="py-2.5 px-3 text-center">
-                                        <button onclick="openTreatmentFormulaModal('<?= addslashes(htmlspecialchars($pt['treatment_name'])) ?>', '<?= addslashes(htmlspecialchars($pt['dentist_name'])) ?>', <?= (float)$pt['actual_price'] ?>, <?= (float)$pt['commission_rate'] ?>, <?= (float)$pt['dentist_commission_amount'] ?>, <?= (float)$pt['clinic_share_amount'] ?>)" 
-                                                class="px-2 py-1 bg-slate-100 hover:bg-teal-50 hover:text-teal-700 text-slate-600 text-[10px] font-semibold rounded border border-slate-200 transition">
-                                            View Math
-                                        </button>
-                                    </td>
+                                    <?php if ($isClinicianOrAdmin): ?>
+                                        <td class="py-2.5 px-3 text-center font-bold text-teal-600"><?= (int)$pt['commission_rate'] ?>%</td>
+                                        <td class="py-2.5 px-3 text-right font-mono font-bold text-teal-700"><?= APP_CURRENCY ?><?= number_format($pt['dentist_commission_amount'], 2) ?></td>
+                                        <td class="py-2.5 px-3 text-center">
+                                            <button onclick="openTreatmentFormulaModal('<?= addslashes(htmlspecialchars($pt['treatment_name'])) ?>', '<?= addslashes(htmlspecialchars($pt['dentist_name'])) ?>', <?= (float)$pt['actual_price'] ?>, <?= (float)$pt['commission_rate'] ?>, <?= (float)$pt['dentist_commission_amount'] ?>, <?= (float)$pt['clinic_share_amount'] ?>)" 
+                                                    class="px-2 py-1 bg-slate-100 hover:bg-teal-50 hover:text-teal-700 text-slate-600 text-[10px] font-semibold rounded border border-slate-200 transition">
+                                                View Math
+                                            </button>
+                                        </td>
+                                    <?php endif; ?>
                                     <td class="py-2.5 px-3 text-center">
                                         <form action="<?= BASE_URL ?>/index.php?page=treatment_delete_performed" method="POST" onsubmit="return confirm('Remove this performed treatment?');">
                                             <input type="hidden" name="id" value="<?= $pt['id'] ?>">
@@ -364,24 +397,29 @@ $patientName = $appointment['patient_id']
             <div id="addSupplyUsageForm" class="hidden mb-6 p-4 bg-slate-50 border border-slate-200 rounded-xl">
                 <form action="<?= BASE_URL ?>/index.php?page=inventory_record_usage" method="POST" class="space-y-3">
                     <input type="hidden" name="appointment_id" value="<?= $appointment['id'] ?>">
-                    <input type="hidden" name="patient_id" value="<?= $appointment['patient_id'] ?>">
+                    <input type="hidden" name="patient_id" value="<?= $appointment['patient_id'] ?? '' ?>">
 
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         <div class="sm:col-span-2">
-                            <label class="block text-xs font-bold text-slate-700 mb-1">Supply Item</label>
-                            <select name="supply_id" required class="w-full p-2 bg-white border border-slate-200 rounded-lg text-xs">
-                                <option value="">-- Choose Item From Stock --</option>
-                                <?php foreach ($availableSupplies as $sup): ?>
-                                    <option value="<?= $sup['id'] ?>">
-                                        <?= htmlspecialchars($sup['item_name']) ?> (<?= $sup['current_stock'] ?> <?= $sup['unit_of_measure'] ?> available)
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Select Supply Item</label>
+                            <select name="supply_id" id="selSupplyItem" onchange="onSupplySelected(this)" required class="w-full p-2 bg-white border border-slate-200 rounded-lg text-xs">
+                                <option value="">-- Choose Item From Clinic Inventory --</option>
+                                <?php foreach ($availableSupplies as $sup): 
+                                    $stock = (int)$sup['current_stock'];
+                                    $reorder = (int)$sup['reorder_level'];
+                                    $stockTag = ($stock <= 0) ? ' [OUT OF STOCK]' : (($stock <= $reorder) ? ' [LOW STOCK]' : '');
+                                ?>
+                                    <option value="<?= $sup['id'] ?>" data-stock="<?= $stock ?>" data-unit="<?= htmlspecialchars($sup['unit_of_measure']) ?>" <?= $stock <= 0 ? 'disabled' : '' ?>>
+                                        <?= htmlspecialchars($sup['item_name']) ?> — <?= $stock ?> <?= htmlspecialchars($sup['unit_of_measure']) ?> available<?= $stockTag ?>
                                     </option>
                                 <?php endforeach; ?>
                             </select>
+                            <div id="supplyStockNotice" class="text-[11px] font-semibold mt-1 hidden"></div>
                         </div>
 
                         <div>
                             <label class="block text-xs font-bold text-slate-700 mb-1">Quantity Used</label>
-                            <input type="number" min="1" name="quantity_used" value="1" required 
+                            <input type="number" min="1" name="quantity_used" id="inpSupplyQty" value="1" required 
                                    class="w-full p-2 bg-white border border-slate-200 rounded-lg text-xs">
                         </div>
                     </div>
@@ -440,10 +478,38 @@ $patientName = $appointment['patient_id']
 function updatePriceFromTreatment(select) {
     const opt = select.options[select.selectedIndex];
     if (opt && opt.dataset.price) {
-        document.getElementById('inpActualPrice').value = opt.dataset.price;
-        if (opt.dataset.rate) {
-            document.getElementById('selCommRate').value = parseInt(opt.dataset.rate);
+        const inpPrice = document.getElementById('inpActualPrice');
+        if (inpPrice) inpPrice.value = opt.dataset.price;
+        const selRate = document.getElementById('selCommRate');
+        if (selRate && opt.dataset.rate) {
+            selRate.value = parseInt(opt.dataset.rate, 10);
         }
+    }
+}
+
+function onSupplySelected(select) {
+    const opt = select.options[select.selectedIndex];
+    const notice = document.getElementById('supplyStockNotice');
+    const qtyInput = document.getElementById('inpSupplyQty');
+    if (!notice || !qtyInput) return;
+
+    if (opt && opt.value && opt.dataset.stock !== undefined) {
+        const stock = parseInt(opt.dataset.stock, 10);
+        const unit = opt.dataset.unit || 'units';
+        qtyInput.max = stock;
+        notice.classList.remove('hidden');
+        if (stock <= 0) {
+            notice.className = 'text-[11px] font-semibold mt-1 text-rose-600';
+            notice.textContent = '❌ Out of stock in clinic inventory.';
+        } else if (stock <= 10) {
+            notice.className = 'text-[11px] font-semibold mt-1 text-amber-600';
+            notice.textContent = `⚠️ Available in clinic inventory: ${stock} ${unit} (Low Stock)`;
+        } else {
+            notice.className = 'text-[11px] font-semibold mt-1 text-emerald-600';
+            notice.textContent = `✓ Available in clinic inventory: ${stock} ${unit}`;
+        }
+    } else {
+        notice.classList.add('hidden');
     }
 }
 </script>

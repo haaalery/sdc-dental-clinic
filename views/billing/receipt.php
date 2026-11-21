@@ -69,14 +69,18 @@ require_once __DIR__ . '/../../config/session.php';
         </div>
 
         <!-- Patient & Attending Dentist Details -->
+        <?php
+        $receiptPatientName = $receipt['display_patient_name'] ?? trim(($receipt['first_name'] ?? '') . ' ' . ($receipt['last_name'] ?? ''));
+        $receiptPatientId = !empty($receipt['patient_code']) ? htmlspecialchars($receipt['patient_code']) : 'ONLINE-GUEST';
+        ?>
         <div class="py-3 border-b border-dashed border-slate-300 text-xs space-y-1">
             <div class="flex justify-between">
                 <span class="text-slate-500">Patient Name:</span>
-                <span class="font-bold text-slate-900"><?= htmlspecialchars($receipt['first_name'] . ' ' . $receipt['last_name']) ?></span>
+                <span class="font-bold text-slate-900"><?= htmlspecialchars($receiptPatientName) ?></span>
             </div>
             <div class="flex justify-between">
                 <span class="text-slate-500">Patient ID:</span>
-                <span class="receipt-mono font-medium"><?= htmlspecialchars($receipt['patient_code']) ?></span>
+                <span class="receipt-mono font-medium"><?= $receiptPatientId ?></span>
             </div>
             <?php if (!empty($receipt['occupation'])): ?>
                 <div class="flex justify-between">

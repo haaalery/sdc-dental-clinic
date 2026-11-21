@@ -45,9 +45,9 @@ class Supply {
     }
 
     /**
-     * Record per-patient supply usage (Recorded by Assistant)
+     * Record per-patient supply usage (Recorded by Assistant / Front Desk)
      */
-    public static function recordPatientUsage(int $appointmentId, int $patientId, int $supplyId, int $quantityUsed, int $recordedBy, ?string $notes = null): int {
+    public static function recordPatientUsage(int $appointmentId, ?int $patientId, int $supplyId, int $quantityUsed, int $recordedBy, ?string $notes = null): int {
         if ($quantityUsed <= 0) {
             throw new Exception("Quantity used must be greater than 0.");
         }
@@ -57,15 +57,19 @@ class Supply {
             throw new Exception("Supply item not found.");
         }
 
+        if ((int)$supply['current_stock'] < $quantityUsed) {
+            throw new Exception("Requested quantity ($quantityUsed) exceeds available stock (" . $supply['current_stock'] . " " . $supply['unit_of_measure'] . ").");
+        }
+
         // Deduct inventory stock
         Database::query("UPDATE supplies SET current_stock = GREATEST(0, current_stock - ?) WHERE id = ?", [$quantityUsed, $supplyId]);
 
-        // Log patient usage
+        // Log patient usage (patient_id can be null for guest bookings)
         $sql = "INSERT INTO patient_supply_usage (appointment_id, patient_id, supply_id, quantity_used, recorded_by, notes) 
                 VALUES (?, ?, ?, ?, ?, ?)";
         Database::query($sql, [
             $appointmentId,
-            $patientId,
+            $patientId ?: null,
             $supplyId,
             $quantityUsed,
             $recordedBy,

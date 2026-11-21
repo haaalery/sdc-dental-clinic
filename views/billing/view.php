@@ -13,9 +13,13 @@ $balance = (float)$invoice['balance_amount'];
                 <?= str_replace('_', ' ', $invoice['payment_status']) ?>
             </span>
         </div>
+        <?php
+        $patientDisplay = $invoice['display_patient_name'] ?? trim(($invoice['first_name'] ?? '') . ' ' . ($invoice['last_name'] ?? ''));
+        $codeDisplay = !empty($invoice['patient_code']) ? ' (' . htmlspecialchars($invoice['patient_code']) . ')' : ' (Online Guest)';
+        ?>
         <p class="text-xs text-slate-500 mt-1">
-            Patient: <strong class="text-slate-800"><?= htmlspecialchars($invoice['first_name'] . ' ' . $invoice['last_name']) ?></strong> 
-            (<?= htmlspecialchars($invoice['patient_code']) ?>) • <?= htmlspecialchars($invoice['branch_name']) ?>
+            Patient: <strong class="text-slate-800"><?= htmlspecialchars($patientDisplay) ?></strong> 
+            <?= $codeDisplay ?> • <?= htmlspecialchars($invoice['branch_name']) ?>
         </p>
     </div>
 

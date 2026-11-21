@@ -80,13 +80,13 @@ class InventoryController {
         }
 
         $appointmentId = (int)($_POST['appointment_id'] ?? 0);
-        $patientId = (int)($_POST['patient_id'] ?? 0);
+        $patientId = !empty($_POST['patient_id']) ? (int)$_POST['patient_id'] : null;
         $supplyId = (int)($_POST['supply_id'] ?? 0);
         $quantity = (int)($_POST['quantity_used'] ?? 1);
         $notes = trim($_POST['notes'] ?? '');
         $recordedBy = Session::user()['id'];
 
-        if (!$appointmentId || !$patientId || !$supplyId || $quantity <= 0) {
+        if (!$appointmentId || !$supplyId || $quantity <= 0) {
             Session::flash('error', 'Please select a supply item and enter a valid quantity.');
             header('Location: ' . BASE_URL . '/index.php?page=appointment_view&id=' . $appointmentId);
             exit;
@@ -94,7 +94,7 @@ class InventoryController {
 
         try {
             Supply::recordPatientUsage($appointmentId, $patientId, $supplyId, $quantity, $recordedBy, $notes);
-            Session::flash('success', "Logged $quantity unit(s) of supply consumed for this patient.");
+            Session::flash('success', "Logged $quantity unit(s) of supply consumed for this session.");
         } catch (Throwable $e) {
             Session::flash('error', 'Error recording supply usage: ' . $e->getMessage());
         }

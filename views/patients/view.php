@@ -1,5 +1,6 @@
 <?php
-$pageTitle = 'Patient Record: ' . htmlspecialchars($patient['first_name'] . ' ' . $patient['last_name']);
+$patientFullName = trim($patient['first_name'] . (!empty($patient['middle_initial']) ? ' ' . $patient['middle_initial'] : '') . ' ' . $patient['last_name']);
+$pageTitle = 'Patient Record: ' . htmlspecialchars($patientFullName);
 require_once __DIR__ . '/../layouts/header.php';
 ?>
 
@@ -11,7 +12,7 @@ require_once __DIR__ . '/../layouts/header.php';
         </div>
         <div>
             <div class="flex items-center space-x-3">
-                <h2 class="text-2xl font-bold text-slate-900 tracking-tight"><?= htmlspecialchars($patient['first_name'] . ' ' . $patient['last_name']) ?></h2>
+                <h2 class="text-2xl font-bold text-slate-900 tracking-tight"><?= htmlspecialchars($patientFullName) ?></h2>
                 <span class="font-mono text-xs font-bold px-2 py-0.5 rounded bg-slate-200 text-slate-700"><?= htmlspecialchars($patient['patient_code']) ?></span>
             </div>
             <p class="text-xs text-slate-500 mt-0.5">

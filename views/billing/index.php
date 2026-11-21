@@ -70,8 +70,10 @@ $filterStatus = $_GET['status'] ?? '';
                                 <?= htmlspecialchars($inv['invoice_number']) ?>
                             </td>
                             <td class="py-3 px-4 font-bold text-slate-900">
-                                <?= htmlspecialchars($inv['first_name'] . ' ' . $inv['last_name']) ?>
-                                <span class="text-[10px] text-slate-400 block font-normal"><?= htmlspecialchars($inv['patient_code']) ?></span>
+                                <?= htmlspecialchars($inv['display_patient_name'] ?? trim(($inv['first_name'] ?? '') . ' ' . ($inv['last_name'] ?? ''))) ?>
+                                <span class="text-[10px] text-slate-400 block font-normal">
+                                    <?= !empty($inv['patient_code']) ? htmlspecialchars($inv['patient_code']) : 'Online Guest Booking' ?>
+                                </span>
                             </td>
                             <td class="py-3 px-4 font-mono">
                                 <a href="<?= BASE_URL ?>/index.php?page=appointment_view&id=<?= $inv['appointment_id'] ?>" class="text-teal-600 hover:underline">

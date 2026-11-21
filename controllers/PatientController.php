@@ -32,6 +32,7 @@ class PatientController {
         try {
             $data = [
                 'first_name'      => trim($_POST['first_name'] ?? ''),
+                'middle_initial'  => trim($_POST['middle_initial'] ?? ''),
                 'last_name'       => trim($_POST['last_name'] ?? ''),
                 'gender'          => $_POST['gender'] ?? 'other',
                 'date_of_birth'   => !empty($_POST['date_of_birth']) ? $_POST['date_of_birth'] : null,

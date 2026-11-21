@@ -161,6 +161,19 @@ class Appointment {
      */
     public static function linkPatient(int $appointmentId, int $patientId): bool {
         Database::query("UPDATE appointments SET patient_id = ?, status = 'confirmed' WHERE id = ?", [$patientId, $appointmentId]);
+
+        // Backfill linked patient_id across supplies, invoices, and payment records
+        Database::query("UPDATE patient_supply_usage SET patient_id = ? WHERE appointment_id = ? AND (patient_id IS NULL OR patient_id = 0)", [$patientId, $appointmentId]);
+        Database::query("UPDATE billing_invoices SET patient_id = ? WHERE appointment_id = ?", [$patientId, $appointmentId]);
+        Database::query("UPDATE payments SET patient_id = ? WHERE invoice_id IN (SELECT id FROM billing_invoices WHERE appointment_id = ?)", [$patientId, $appointmentId]);
+
+        // Re-sync invoice so patient totals and details update immediately
+        try {
+            Invoice::syncFromAppointment($appointmentId);
+        } catch (Throwable $e) {
+            // Ignore if no treatments recorded yet
+        }
+
         return true;
     }
 }

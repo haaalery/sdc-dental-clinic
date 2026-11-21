@@ -8,6 +8,7 @@ require_once __DIR__ . '/constants.php';
 
 class Database {
     private static ?PDO $instance = null;
+    private static bool $schemaMigrated = false;
 
     private const DB_HOST = '127.0.0.1';
     private const DB_PORT = '3306';
@@ -27,12 +28,43 @@ class Database {
 
             try {
                 self::$instance = new PDO($dsn, self::DB_USER, self::DB_PASS, $options);
+                self::ensureSchemaUpdates();
             } catch (PDOException $e) {
                 // If database does not exist or connection fails, log or provide structured error
                 throw new PDOException("Database connection error: " . $e->getMessage(), (int)$e->getCode());
             }
         }
         return self::$instance;
+    }
+
+    /**
+     * Auto-apply lightweight schema migrations for middle initial and nullable foreign keys
+     */
+    public static function ensureSchemaUpdates(): void {
+        if (self::$schemaMigrated || self::$instance === null) {
+            return;
+        }
+
+        try {
+            // 1. Ensure middle_initial column exists in patients
+            $col = self::$instance->query("SHOW COLUMNS FROM `patients` LIKE 'middle_initial'")->fetch();
+            if (!$col) {
+                self::$instance->exec("ALTER TABLE `patients` ADD COLUMN `middle_initial` VARCHAR(10) NULL DEFAULT NULL AFTER `first_name`");
+            }
+
+            // 2. Ensure patient_supply_usage allows NULL for guest patient usage
+            self::$instance->exec("ALTER TABLE `patient_supply_usage` MODIFY COLUMN `patient_id` INT NULL");
+
+            // 3. Ensure billing_invoices allows NULL for guest patient invoices
+            self::$instance->exec("ALTER TABLE `billing_invoices` MODIFY COLUMN `patient_id` INT NULL");
+
+            // 4. Ensure payments allows NULL for guest patient payments
+            self::$instance->exec("ALTER TABLE `payments` MODIFY COLUMN `patient_id` INT NULL");
+        } catch (Throwable $e) {
+            // Gracefully ignore if tables do not exist yet or privileges restricted
+        }
+
+        self::$schemaMigrated = true;
     }
 
     /**

@@ -68,7 +68,7 @@ $search = $_GET['search'] ?? '';
                                 <?= htmlspecialchars($p['patient_code']) ?>
                             </td>
                             <td class="py-3 px-4">
-                                <span class="font-bold text-slate-900 block"><?= htmlspecialchars($p['first_name'] . ' ' . $p['last_name']) ?></span>
+                                <span class="font-bold text-slate-900 block"><?= htmlspecialchars(trim($p['first_name'] . (!empty($p['middle_initial']) ? ' ' . $p['middle_initial'] : '') . ' ' . $p['last_name'])) ?></span>
                                 <span class="text-[11px] text-slate-400"><?= ucfirst($p['gender']) ?><?= $p['date_of_birth'] ? ', ' . (date('Y') - date('Y', strtotime($p['date_of_birth']))) . ' yrs' : '' ?></span>
                             </td>
                             <td class="py-3 px-4 font-mono"><?= htmlspecialchars($p['phone']) ?></td>

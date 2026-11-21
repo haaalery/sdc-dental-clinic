@@ -92,7 +92,9 @@ class TreatmentController {
         $treatmentId = (int)($_POST['treatment_id'] ?? 0);
         $dentistId = (int)($_POST['dentist_id'] ?? 0);
         $actualPrice = (float)($_POST['actual_price'] ?? 0);
-        $customRate = !empty($_POST['custom_commission_rate']) ? (float)$_POST['custom_commission_rate'] : null;
+        $userRole = Session::role();
+        // Receptionists (front_desk) must not provide or alter commission splits; use default treatment rate
+        $customRate = ($userRole === 'front_desk') ? null : (!empty($_POST['custom_commission_rate']) ? (float)$_POST['custom_commission_rate'] : null);
         $notes = trim($_POST['notes'] ?? '');
 
         if (!$appointmentId || !$treatmentId || !$dentistId || $actualPrice <= 0) {
@@ -107,7 +109,10 @@ class TreatmentController {
             // Automatically update or generate invoice draft for this appointment
             Invoice::syncFromAppointment($appointmentId);
 
-            Session::flash('success', 'Treatment recorded! Commission and clinic split computed transparently.');
+            $msg = ($userRole === 'front_desk')
+                ? 'Procedure recorded and added to appointment.'
+                : 'Treatment recorded! Commission and clinic split computed transparently.';
+            Session::flash('success', $msg);
         } catch (Throwable $e) {
             Session::flash('error', 'Error recording treatment: ' . $e->getMessage());
         }
