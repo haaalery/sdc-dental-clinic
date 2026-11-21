@@ -137,11 +137,15 @@ $currentUser = Session::user();
 <body class="bg-[#F7F6F2] text-stone-900 antialiased min-h-screen flex flex-col font-sans">
 
     <!-- Full Hero Section with Navigation Inside (Faithfully matching Image 1 Aesthetic & Image 2 Wireframe Layout, Zero Round Borders) -->
-    <section id="heroSection" class="relative w-full lg:h-screen min-h-screen bg-white border-b border-[#E5E1D8] flex flex-col justify-between overflow-hidden rounded-none select-none pt-[72px] group">
-        
+    <section id="heroSection"
+        class="relative w-full lg:h-screen min-h-screen bg-white border-b border-[#E5E1D8] flex flex-col justify-between overflow-hidden rounded-none select-none pt-[72px] group">
+
         <!-- Subtle Futuristic Blueprint & Watermark Grid (From Image 1) -->
-        <div class="absolute inset-0 opacity-[0.035] pointer-events-none" style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(to right, #000 1px, transparent 1px); background-size: 70px 70px;"></div>
-        <div class="absolute right-12 top-20 text-[18vw] font-black text-black/[0.015] pointer-events-none uppercase font-mono tracking-tighter z-0">
+        <div class="absolute inset-0 opacity-[0.035] pointer-events-none"
+            style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(to right, #000 1px, transparent 1px); background-size: 70px 70px;">
+        </div>
+        <div
+            class="absolute right-12 top-20 text-[18vw] font-black text-black/[0.015] pointer-events-none uppercase font-mono tracking-tighter z-0">
             SDC
         </div>
 
@@ -203,39 +207,50 @@ $currentUser = Session::user();
         </nav>
 
         <!-- 2. Main Hero Canvas: Arda Guler Inspired Multi-Layer Cutout Composition (Zero Round Borders) -->
-        <div class="w-full flex-1 min-h-[640px] lg:min-h-0 relative flex flex-col justify-between px-6 sm:px-10 lg:px-14 py-6 lg:py-8 overflow-hidden">
+        <div
+            class="w-full flex-1 min-h-[640px] lg:min-h-0 relative flex flex-col justify-between px-6 sm:px-10 lg:px-14 py-6 lg:py-8 overflow-hidden">
 
             <!-- Architectural Corner Crosshairs -->
-            <span class="absolute top-2 left-6 sm:left-10 text-stone-300 font-mono text-xs select-none pointer-events-none z-10">+</span>
-            <span class="absolute top-2 right-6 sm:right-10 text-stone-300 font-mono text-xs select-none pointer-events-none z-10">+</span>
-            <span class="absolute bottom-2 left-6 sm:left-10 text-stone-300 font-mono text-xs select-none pointer-events-none z-10">+</span>
-            <span class="absolute bottom-2 right-6 sm:right-10 text-stone-300 font-mono text-xs select-none pointer-events-none z-10">+</span>
+            <span
+                class="absolute top-2 left-6 sm:left-10 text-stone-300 font-mono text-xs select-none pointer-events-none z-10">+</span>
+            <span
+                class="absolute top-2 right-6 sm:right-10 text-stone-300 font-mono text-xs select-none pointer-events-none z-10">+</span>
+            <span
+                class="absolute bottom-2 left-6 sm:left-10 text-stone-300 font-mono text-xs select-none pointer-events-none z-10">+</span>
+            <span
+                class="absolute bottom-2 right-6 sm:right-10 text-stone-300 font-mono text-xs select-none pointer-events-none z-10">+</span>
 
             <!-- LAYER 1 (z-10): Giant Monumental Full-Width Background Typography (Sits Behind the Handpiece Cutout) -->
-            <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none select-none z-10 px-4 overflow-hidden">
-                <h2 class="text-[10.8vw] lg:text-[10.4vw] font-black uppercase tracking-tighter leading-none text-stone-950 whitespace-nowrap text-center">
+            <div
+                class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none select-none z-10 px-4 overflow-hidden">
+                <h2
+                    class="text-[10.8vw] lg:text-[10.4vw] font-black uppercase tracking-tighter leading-none text-stone-950 whitespace-nowrap text-center">
                     SDC&nbsp;DENTAL&nbsp;CARE
                 </h2>
             </div>
 
-            <!-- LAYER 2 (z-20): Full-Height Foreground Cutout Image (Dental Handpiece & Ultrasonic Scaler overlapping Giant Text) -->
-            <div class="relative lg:absolute lg:inset-y-0 lg:left-1/2 lg:-translate-x-1/2 z-20 flex items-center justify-center pointer-events-none select-none my-4 lg:my-0 h-[360px] sm:h-[440px] lg:h-full">
-                <img src="<?= BASE_URL ?>/assets/images/dental_handpiece_scaler_cutout.png"
-                     alt="SDC Precision Dental Handpiece and Ultrasonic Scaler"
-                     class="h-full w-auto max-w-none object-contain filter drop-shadow-[0_28px_36px_rgba(0,0,0,0.22)] rounded-none">
+            <!-- LAYER 2 (z-20): Full-Height Foreground Cutout Image (Dental Mouth Mirror & Explorer Probe overlapping Giant Text) -->
+            <div
+                class="relative lg:absolute lg:inset-y-0 lg:left-1/2 lg:-translate-x-1/2 z-20 flex items-center justify-center pointer-events-none select-none my-4 lg:my-0 h-[360px] sm:h-[440px] lg:h-full">
+                <img src="<?= BASE_URL ?>/assets/images/dental_mirror_probe_cutout.png"
+                    alt="SDC Precision Dental Mouth Mirror and Explorer Probe"
+                    class="h-full w-auto max-w-none object-contain filter drop-shadow-[0_28px_36px_rgba(0,0,0,0.22)] rounded-none">
             </div>
 
             <!-- LAYER 3A (z-30): TOP ROW (Top-Left Large Display Headline matching Reference Image) -->
-            <div class="relative z-30 flex flex-col lg:flex-row items-start justify-between gap-6 sm:pl-8 lg:pl-16 xl:pl-24 lg:pt-6">
-                
+            <div
+                class="relative z-30 flex flex-col lg:flex-row items-start justify-between gap-6 sm:pl-8 lg:pl-16 xl:pl-24 lg:pt-6">
+
                 <!-- Top-Left: Large 3-Line Staggered Display Headline (Above Giant Text) -->
                 <div class="bg-white/95 lg:bg-transparent p-2 lg:p-0 rounded-none">
-                    <h1 class="text-4xl sm:text-5xl lg:text-[3.4rem] xl:text-[4rem] font-black tracking-tight uppercase leading-[0.92] text-black font-sans">
+                    <h1
+                        class="text-4xl sm:text-5xl lg:text-[3.4rem] xl:text-[4rem] font-black tracking-tight uppercase leading-[0.92] text-black font-sans">
                         <span class="block pl-6 sm:pl-10">CRAFTING</span>
                         <span class="block">CONFIDENT</span>
                         <span class="inline-flex items-center pl-6 sm:pl-10 gap-4">
                             <span>SMILES</span>
-                            <span class="text-[9px] sm:text-[10px] font-mono font-bold tracking-[0.2em] uppercase text-stone-500 leading-tight">
+                            <span
+                                class="text-[9px] sm:text-[10px] font-mono font-bold tracking-[0.2em] uppercase text-stone-500 leading-tight">
                                 GENTLE CARE &amp;<br>MODERN DENTISTRY
                             </span>
                         </span>
@@ -245,14 +260,17 @@ $currentUser = Session::user();
             </div>
 
             <!-- LAYER 3B (z-30): BOTTOM ROW (Bottom-Right High-Contrast Black Booking Card) -->
-            <div class="relative z-30 flex flex-col lg:flex-row items-stretch lg:items-end justify-end gap-6 mt-6 lg:mt-0">
+            <div
+                class="relative z-30 flex flex-col lg:flex-row items-stretch lg:items-end justify-end gap-6 mt-6 lg:mt-0">
 
                 <!-- Bottom-Right: Sleek Solid Black Status & Booking Card (Inspo: Bottom-Right Dark Match Card, Zero Round Borders) -->
-                <div class="w-full sm:w-[340px] bg-stone-950 text-white border border-black p-5 shadow-xl rounded-none flex flex-col justify-between space-y-4">
-                    
+                <div
+                    class="w-full sm:w-[340px] bg-stone-950 text-white border border-black p-5 shadow-xl rounded-none flex flex-col justify-between space-y-4">
+
                     <!-- Card Top Row: Badge + Clinic Hours -->
                     <div class="flex items-center justify-between">
-                        <span class="px-2.5 py-1 bg-white text-black font-mono text-[9px] font-black uppercase tracking-widest rounded-none">
+                        <span
+                            class="px-2.5 py-1 bg-white text-black font-mono text-[9px] font-black uppercase tracking-widest rounded-none">
                             DIRECT BOOKING
                         </span>
                         <span class="text-[10px] font-mono text-stone-400 uppercase tracking-wider">
@@ -263,18 +281,21 @@ $currentUser = Session::user();
                     <!-- Card Middle Row: Branches / Chief Clinician Matchup -->
                     <div class="flex items-center justify-between py-2 border-y border-stone-800">
                         <div class="flex items-center space-x-2.5">
-                            <div class="w-8 h-8 bg-stone-800 border border-stone-700 overflow-hidden flex-shrink-0 rounded-none">
+                            <div
+                                class="w-8 h-8 bg-stone-800 border border-stone-700 overflow-hidden flex-shrink-0 rounded-none">
                                 <img src="https://images.unsplash.com/photo-1594824813637-e54e4df5e206?auto=format&fit=crop&w=200&q=80"
-                                     alt="Dr. Eleanor Vance"
-                                     class="w-full h-full object-cover filter grayscale contrast-125 rounded-none">
+                                    alt="Dr. Eleanor Vance"
+                                    class="w-full h-full object-cover filter grayscale contrast-125 rounded-none">
                             </div>
                             <div>
-                                <div class="text-xs font-extrabold uppercase tracking-tight text-white">Makati Suite</div>
+                                <div class="text-xs font-extrabold uppercase tracking-tight text-white">Makati Suite
+                                </div>
                                 <div class="text-[9px] font-mono text-stone-400 uppercase">Dr. E. Vance, DMD</div>
                             </div>
                         </div>
 
-                        <div class="px-2 py-1 border border-stone-700 text-[9px] font-mono font-bold text-stone-400 uppercase rounded-none">
+                        <div
+                            class="px-2 py-1 border border-stone-700 text-[9px] font-mono font-bold text-stone-400 uppercase rounded-none">
                             &amp;
                         </div>
 
@@ -290,9 +311,10 @@ $currentUser = Session::user();
                             Class-B Sterile Suites
                         </span>
                         <a href="#booking-form"
-                           class="inline-flex items-center space-x-1.5 text-[11px] font-black uppercase tracking-[0.18em] text-white hover:text-emerald-400 transition group/cta rounded-none">
+                            class="inline-flex items-center space-x-1.5 text-[11px] font-black uppercase tracking-[0.18em] text-white hover:text-emerald-400 transition group/cta rounded-none">
                             <span>Book Now</span>
-                            <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform group-hover/cta:translate-x-1"></i>
+                            <i data-lucide="arrow-right"
+                                class="w-3.5 h-3.5 transition-transform group-hover/cta:translate-x-1"></i>
                         </a>
                     </div>
 
