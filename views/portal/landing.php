@@ -153,20 +153,22 @@ $currentUser = Session::user();
         <nav id="mainHeroNav"
             class="fixed top-0 left-0 w-full z-40 bg-white border-b border-stone-200 px-6 sm:px-10 lg:px-14 py-3.5 sm:py-4 flex items-center justify-between transition-shadow duration-200 rounded-none">
             <!-- Brand with Official Logo -->
-            <a href="<?= BASE_URL ?>/index.php" id="brandLogoLink" onclick="handleBrandClick(event)"
-                class="flex items-center space-x-3 cursor-pointer select-none group" title="Return to top">
-                <div
-                    class="w-10 h-10 rounded-none bg-black flex items-center justify-center p-1.5 shadow-xs flex-shrink-0">
-                    <img src="<?= BASE_URL ?>/assets/images/logo.png" alt="SDC Dental Care"
-                        class="w-full h-full object-contain">
-                </div>
-                <div>
-                    <h1 class="text-base font-extrabold text-black tracking-tight leading-none uppercase">SDC DENTAL
-                    </h1>
-                    <p class="text-[9px] text-stone-500 font-mono tracking-[0.2em] uppercase font-bold mt-1">Clinical
-                        Atelier</p>
-                </div>
-            </a>
+            <div class="flex items-center lg:pr-12 xl:pr-20 lg:border-r lg:border-stone-200/80">
+                <a href="<?= BASE_URL ?>/index.php" id="brandLogoLink" onclick="handleBrandClick(event)"
+                    class="flex items-center space-x-3 cursor-pointer select-none group" title="Return to top">
+                    <div
+                        class="w-10 h-10 rounded-none bg-black flex items-center justify-center p-1.5 shadow-xs flex-shrink-0">
+                        <img src="<?= BASE_URL ?>/assets/images/logo.png" alt="SDC Dental Care"
+                            class="w-full h-full object-contain">
+                    </div>
+                    <div>
+                        <h1 class="text-base font-extrabold text-black tracking-tight leading-none uppercase">SDC DENTAL
+                        </h1>
+                        <p class="text-[9px] text-stone-500 font-mono tracking-[0.2em] uppercase font-bold mt-1">Clinical
+                            Atelier</p>
+                    </div>
+                </a>
+            </div>
 
             <!-- Navigation Links (Matching Image 1 Style & Spacing) -->
             <div
@@ -178,7 +180,7 @@ $currentUser = Session::user();
             </div>
 
             <!-- Right Actions (Staff Login & Appointment CTA with zero rounded borders) -->
-            <div class="flex items-center space-x-4">
+            <div class="flex items-center space-x-4 lg:pl-10 xl:pl-14 lg:border-l lg:border-stone-200/80">
                 <div class="hidden xl:flex items-center space-x-2 text-[11px] font-mono text-stone-500 mr-2">
                     <i data-lucide="phone" class="w-3.5 h-3.5 text-stone-400"></i>
                     <span>+63 917 111 2233</span>
@@ -206,7 +208,7 @@ $currentUser = Session::user();
             </div>
         </nav>
 
-        <!-- 2. Main Hero Canvas: Arda Guler Inspired Multi-Layer Cutout Composition (Zero Round Borders) -->
+        <!-- 2. Main Hero Canvas: Cloned Multi-Layer 3D Porcelain Tooth & Mirror Composition -->
         <div
             class="w-full flex-1 min-h-[640px] lg:min-h-0 relative flex flex-col justify-between px-6 sm:px-10 lg:px-14 py-6 lg:py-8 overflow-hidden">
 
@@ -220,12 +222,21 @@ $currentUser = Session::user();
             <span
                 class="absolute bottom-2 right-6 sm:right-10 text-stone-300 font-mono text-xs select-none pointer-events-none z-10">+</span>
 
+            <!-- Technical Leader Line connecting Tooth Target Dot to 01 / OUR APPROACH Card (Desktop) -->
+            <svg class="hidden lg:block absolute inset-0 w-full h-full pointer-events-none z-[12]" viewBox="0 0 1440 760" preserveAspectRatio="none">
+                <polyline points="858,205 1122,205 1152,162 1175,162" fill="none" stroke="#DFDDD8" stroke-width="1.2" />
+            </svg>
+            <!-- Target Node Dot on Right Crown of Molar Tooth -->
+            <div class="hidden lg:flex absolute left-[59.6%] top-[27%] -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white border border-stone-300 shadow-xs items-center justify-center pointer-events-none z-[15]">
+                <span class="w-1.5 h-1.5 rounded-full bg-stone-800"></span>
+            </div>
+
             <!-- LAYER 1 (z-10): 3D Porcelain Molar Tooth Base & Glossy Studio Floor Reflection (Sits Behind SDC DENTAL CARE) -->
             <div
-                class="relative lg:absolute lg:inset-y-0 lg:left-[44%] lg:-translate-x-1/2 z-10 flex items-end justify-center pointer-events-none select-none my-4 lg:my-0 h-[380px] sm:h-[460px] lg:h-full">
+                class="relative lg:absolute lg:inset-y-0 lg:left-[46%] lg:-translate-x-1/2 z-10 flex items-end justify-center pointer-events-none select-none my-4 lg:my-0 h-[380px] sm:h-[460px] lg:h-full">
                 <img src="<?= BASE_URL ?>/assets/images/dental_tooth_mirror_base.png"
                     alt="SDC 3D Porcelain Molar Tooth and Dental Mirror"
-                    class="h-[96%] w-auto max-w-none object-contain rounded-none">
+                    class="h-[97%] w-auto max-w-none object-contain rounded-none">
             </div>
 
             <!-- LAYER 2 (z-20): Giant Monumental Full-Width Typography (In Front of White Tooth, Behind Chrome Mirror Stem) -->
@@ -239,21 +250,21 @@ $currentUser = Session::user();
 
             <!-- LAYER 3 (z-[25]): Foreground Chrome Dental Mirror Stem & Head (Slices Diagonally In Front of N and T) -->
             <div
-                class="hidden lg:flex lg:absolute lg:inset-y-0 lg:left-[44%] lg:-translate-x-1/2 z-[25] items-end justify-center pointer-events-none select-none lg:h-full">
+                class="hidden lg:flex lg:absolute lg:inset-y-0 lg:left-[46%] lg:-translate-x-1/2 z-[25] items-end justify-center pointer-events-none select-none lg:h-full">
                 <img src="<?= BASE_URL ?>/assets/images/dental_mirror_foreground.png"
                     alt=""
                     aria-hidden="true"
-                    class="h-[96%] w-auto max-w-none object-contain filter drop-shadow-[0_10px_14px_rgba(0,0,0,0.28)] rounded-none">
+                    class="h-[97%] w-auto max-w-none object-contain filter drop-shadow-[0_10px_14px_rgba(0,0,0,0.28)] rounded-none">
             </div>
 
-            <!-- LAYER 3A (z-30): TOP ROW (Top-Left Large Display Headline matching Reference Image) -->
+            <!-- LAYER 3A (z-30): TOP ROW (Top-Left Display Headline + Subcopy & Top-Right 01 / OUR APPROACH Card) -->
             <div
-                class="relative z-30 flex flex-col lg:flex-row items-start justify-between gap-6 sm:pl-8 lg:pl-16 xl:pl-24 lg:pt-6">
+                class="relative z-30 flex flex-col lg:flex-row items-start justify-between gap-6 sm:pl-6 lg:pl-10 xl:pl-16 lg:pt-3">
 
-                <!-- Top-Left: Large 3-Line Staggered Display Headline (Above Giant Text) -->
+                <!-- Top-Left: Large 3-Line Staggered Display Headline + Editorial Subcopy -->
                 <div class="bg-white/95 lg:bg-transparent p-2 lg:p-0 rounded-none">
                     <h1
-                        class="text-4xl sm:text-5xl lg:text-[3.4rem] xl:text-[4rem] font-black tracking-tight uppercase leading-[0.92] text-black font-sans">
+                        class="text-4xl sm:text-5xl lg:text-[3.35rem] xl:text-[3.85rem] font-black tracking-tight uppercase leading-[0.92] text-black font-sans">
                         <span class="block pl-6 sm:pl-10">CRAFTING</span>
                         <span class="block">CONFIDENT</span>
                         <span class="inline-flex items-center pl-6 sm:pl-10 gap-4">
@@ -264,13 +275,60 @@ $currentUser = Session::user();
                             </span>
                         </span>
                     </h1>
+
+                    <!-- Short Divider Dash + Sub-Headline & Body Copy (Cloned from Reference) -->
+                    <div class="max-w-[270px] sm:max-w-[295px]">
+                        <div class="w-6 h-[1.5px] bg-stone-400 mt-4 mb-2.5"></div>
+                        <h3 class="text-sm sm:text-[15px] font-bold text-stone-950 tracking-tight leading-snug">
+                            Dentistry, designed around you.
+                        </h3>
+                        <p class="text-xs sm:text-[12.5px] text-stone-500 leading-relaxed mt-1 font-normal">
+                            Gentle care, modern techniques, and<br>personalized treatment for every smile.
+                        </p>
+                    </div>
                 </div>
+
+                <!-- Top-Right: 01 / OUR APPROACH Floating Callout Card (Cloned from Reference) -->
+                <a href="#standards"
+                    class="hidden lg:block w-[235px] xl:w-[248px] bg-white border border-stone-200/80 shadow-[0_18px_40px_rgba(0,0,0,0.06)] p-5 lg:mr-2 xl:mr-6 lg:mt-3 hover:border-stone-400 transition group/approach">
+                    <div class="flex items-center justify-between text-[9px] font-mono tracking-[0.2em] uppercase text-stone-500 font-semibold">
+                        <span>01 / OUR APPROACH</span>
+                        <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-stone-700 transition-transform group-hover/approach:translate-x-0.5 group-hover/approach:-translate-y-0.5"></i>
+                    </div>
+                    <h4 class="text-base xl:text-[17px] font-bold text-stone-950 leading-[1.2] tracking-tight mt-2.5">
+                        Precision meets<br>comfort.
+                    </h4>
+                    <p class="text-[11px] text-stone-400 leading-relaxed mt-2 font-normal">
+                        Thoughtful dentistry.<br>Exceptional attention to detail.
+                    </p>
+                </a>
 
             </div>
 
-            <!-- LAYER 3B (z-30): BOTTOM ROW (Bottom-Right High-Contrast Black Booking Card) -->
+            <!-- LAYER 3B (z-30): BOTTOM ROW (Bottom-Left SCROLL TO EXPLORE & Bottom-Right High-Contrast Black Booking Card) -->
             <div
-                class="relative z-30 flex flex-col lg:flex-row items-stretch lg:items-end justify-end gap-6 mt-6 lg:mt-0">
+                class="relative z-30 flex flex-col lg:flex-row items-stretch lg:items-end justify-between gap-6 mt-6 lg:mt-0">
+
+                <!-- Bottom-Left: SCROLL TO EXPLORE Mouse Indicator & Stepped Arrow Line (Cloned from Reference) -->
+                <a href="#services" class="hidden lg:inline-flex flex-col items-start group/scroll select-none mb-1">
+                    <div class="flex items-center space-x-3">
+                        <!-- Minimalist Mouse Icon -->
+                        <div class="w-[18px] h-[28px] rounded-full border border-stone-400 flex justify-center pt-1.5 group-hover/scroll:border-black transition">
+                            <span class="w-[1.5px] h-2 bg-stone-500 group-hover/scroll:bg-black"></span>
+                        </div>
+                        <span class="text-[9px] font-sans font-bold tracking-[0.18em] uppercase text-stone-700 group-hover/scroll:text-black transition">
+                            SCROLL TO EXPLORE
+                        </span>
+                    </div>
+                    <!-- Horizontal Line bending down to Arrow -->
+                    <div class="flex items-start mt-2.5 pl-0.5">
+                        <div class="w-28 h-px bg-stone-300"></div>
+                        <div class="flex flex-col items-center -ml-px">
+                            <div class="w-px h-2 bg-stone-300"></div>
+                            <span class="text-[9px] leading-none text-stone-400 -mt-0.5">&darr;</span>
+                        </div>
+                    </div>
+                </a>
 
                 <!-- Bottom-Right: Sleek Solid Black Status & Booking Card (Inspo: Bottom-Right Dark Match Card, Zero Round Borders) -->
                 <div
