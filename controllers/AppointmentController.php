@@ -167,20 +167,35 @@ class AppointmentController {
             exit;
         }
 
-        $name = trim($_POST['name'] ?? '');
+        $firstName = trim($_POST['first_name'] ?? '');
+        $middleInitial = trim($_POST['middle_initial'] ?? '');
+        $lastName = trim($_POST['last_name'] ?? '');
         $phone = trim($_POST['phone'] ?? '');
         $date = $_POST['preferred_date'] ?? '';
         $time = $_POST['preferred_time'] ?? '';
         $concern = trim($_POST['dental_concern'] ?? '');
 
-        if (empty($name) || empty($phone) || empty($date) || empty($time) || empty($concern)) {
-            Session::flash('portal_error', 'Please fill in all required fields (Name, Phone, Preferred Date, Preferred Time, and Dental Concern).');
+        // Support both separated name fields and legacy single name field
+        if (empty($firstName) && empty($lastName) && !empty($_POST['name'])) {
+            $fullName = trim($_POST['name']);
+        } else {
+            $nameParts = array_filter([$firstName, $middleInitial, $lastName], fn($part) => $part !== '');
+            $fullName = implode(' ', $nameParts);
+        }
+
+        if (empty($fullName) || empty($phone) || empty($date) || empty($time)) {
+            Session::flash('portal_error', 'Please fill in all required fields (First Name, Last Name, Contact Phone, Preferred Date, and Time).');
             header('Location: ' . BASE_URL . '/index.php#booking-form');
             exit;
         }
 
+        // If dental concern was omitted or removed from the form, provide a professional default
+        if (empty($concern)) {
+            $concern = 'General Dental Consultation / Checkup';
+        }
+
         $data = [
-            'name'                 => $name,
+            'name'                 => $fullName,
             'phone'                => $phone,
             'preferred_date'       => $date,
             'preferred_time'       => $time,

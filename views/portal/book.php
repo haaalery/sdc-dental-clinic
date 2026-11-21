@@ -67,21 +67,42 @@ require_once __DIR__ . '/../../config/session.php';
             <p class="text-xs text-slate-500 mb-6">All fields marked with an asterisk (<span class="text-rose-500">*</span>) are required.</p>
 
             <form action="<?= BASE_URL ?>/index.php?page=portal_submit" method="POST" class="space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <!-- Patient Name -->
-                    <div>
+                <!-- Patient Name (First Name, Middle Initial Optional, Last Name) -->
+                <div class="grid grid-cols-1 sm:grid-cols-12 gap-4">
+                    <!-- First Name -->
+                    <div class="sm:col-span-5">
                         <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                            Full Name <span class="text-rose-500">*</span>
+                            First Name <span class="text-rose-500">*</span>
                         </label>
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
                                 <i data-lucide="user" class="w-4 h-4"></i>
                             </span>
-                            <input type="text" name="name" required placeholder="e.g. Maria Santos"
+                            <input type="text" name="first_name" required placeholder="e.g. Maria"
                                    class="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition">
                         </div>
                     </div>
 
+                    <!-- Middle Initial -->
+                    <div class="sm:col-span-2">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                            M.I. <span class="text-slate-400 font-normal text-[10px]">(Optional)</span>
+                        </label>
+                        <input type="text" name="middle_initial" maxlength="5" placeholder="e.g. D."
+                               class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-center uppercase focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition">
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="sm:col-span-5">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                            Last Name <span class="text-rose-500">*</span>
+                        </label>
+                        <input type="text" name="last_name" required placeholder="e.g. Santos"
+                               class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <!-- Phone Number -->
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
@@ -94,6 +115,18 @@ require_once __DIR__ . '/../../config/session.php';
                             <input type="tel" name="phone" required placeholder="e.g. 0917 123 4567"
                                    class="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition">
                         </div>
+                    </div>
+
+                    <!-- Branch Selection -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                            Clinic Branch
+                        </label>
+                        <select name="branch_id" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition">
+                            <?php foreach ($branches as $branch): ?>
+                                <option value="<?= $branch['id'] ?>"><?= htmlspecialchars($branch['branch_name']) ?> (<?= htmlspecialchars($branch['address']) ?>)</option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                 </div>
 
@@ -134,40 +167,17 @@ require_once __DIR__ . '/../../config/session.php';
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <!-- Branch Selection -->
-                    <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                            Clinic Branch
-                        </label>
-                        <select name="branch_id" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition">
-                            <?php foreach ($branches as $branch): ?>
-                                <option value="<?= $branch['id'] ?>"><?= htmlspecialchars($branch['branch_name']) ?> (<?= htmlspecialchars($branch['address']) ?>)</option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-
-                    <!-- Preferred Dentist Selection -->
-                    <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                            Preferred Dentist (Optional)
-                        </label>
-                        <select name="preferred_dentist_id" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition">
-                            <option value="">Any Available Dentist</option>
-                            <?php foreach ($dentists as $d): ?>
-                                <option value="<?= $d['dentist_id'] ?>"><?= htmlspecialchars($d['full_name']) ?> (<?= htmlspecialchars($d['specialization']) ?>)</option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Dental Concern (Required) -->
                 <div>
+                    <!-- Preferred Dentist Selection -->
                     <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                        Dental Concern / Reason for Visit <span class="text-rose-500">*</span>
+                        Preferred Dentist (Optional)
                     </label>
-                    <textarea name="dental_concern" rows="3" required placeholder="Please describe what you are experiencing (e.g. Toothache, routine cleaning, wisdom tooth pain, braces adjustment, broken tooth filling)..."
-                              class="w-full p-3.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition"></textarea>
+                    <select name="preferred_dentist_id" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition">
+                        <option value="">Any Available Dentist</option>
+                        <?php foreach ($dentists as $d): ?>
+                            <option value="<?= $d['dentist_id'] ?>"><?= htmlspecialchars($d['full_name']) ?> (<?= htmlspecialchars($d['specialization']) ?>)</option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
 
                 <div class="pt-2">

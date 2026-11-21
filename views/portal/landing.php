@@ -1119,7 +1119,7 @@ $currentUser = Session::user();
                 <h3 class="text-2xl md:text-3xl font-extrabold text-stone-950 tracking-tight">Request an Appointment
                     Online</h3>
                 <p class="text-xs text-stone-600 mt-1 max-w-lg mx-auto">
-                    Fill out the form below with your preferred schedule and dental concern. Our reception desk will
+                    Fill out the form below with your preferred schedule. Our reception desk will
                     review availability and confirm your booking right away.
                 </p>
             </div>
@@ -1134,16 +1134,40 @@ $currentUser = Session::user();
 
             <div class="bg-white rounded-3xl p-6 md:p-10 border border-[#E5E1D8] shadow-xl text-stone-800">
                 <form action="<?= BASE_URL ?>/index.php?page=portal_submit" method="POST" class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <!-- Patient Full Name -->
-                        <div>
+                    <!-- Hidden treatment tracker for procedure modal bookings -->
+                    <input type="hidden" name="dental_concern" id="inpHiddenConcern" value="">
+
+                    <!-- Patient Name (First Name, Middle Initial Optional, Last Name) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-12 gap-4">
+                        <!-- First Name -->
+                        <div class="sm:col-span-5">
                             <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
-                                Your Full Name <span class="text-rose-500">*</span>
+                                First Name <span class="text-rose-500">*</span>
                             </label>
-                            <input type="text" name="name" required placeholder="e.g. Maria Santos"
+                            <input type="text" name="first_name" required placeholder="e.g. Maria"
                                 class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 placeholder-stone-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
                         </div>
 
+                        <!-- Middle Initial (Optional) -->
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
+                                M.I. <span class="text-stone-400 font-normal text-[10px] lowercase">(optional)</span>
+                            </label>
+                            <input type="text" name="middle_initial" maxlength="5" placeholder="e.g. D."
+                                class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 placeholder-stone-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition uppercase text-center">
+                        </div>
+
+                        <!-- Last Name -->
+                        <div class="sm:col-span-5">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
+                                Last Name <span class="text-rose-500">*</span>
+                            </label>
+                            <input type="text" name="last_name" required placeholder="e.g. Santos"
+                                class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 placeholder-stone-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <!-- Phone Number -->
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
@@ -1151,6 +1175,21 @@ $currentUser = Session::user();
                             </label>
                             <input type="tel" name="phone" required placeholder="e.g. 0917 123 4567"
                                 class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 placeholder-stone-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
+                        </div>
+
+                        <!-- Branch Selection -->
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
+                                Clinic Branch
+                            </label>
+                            <select name="branch_id"
+                                class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
+                                <?php foreach ($branches as $branch): ?>
+                                    <option value="<?= $branch['id'] ?>">
+                                        <?= htmlspecialchars($branch['branch_name']) ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                     </div>
 
@@ -1183,54 +1222,38 @@ $currentUser = Session::user();
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <!-- Branch Selection -->
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
-                                Clinic Branch
-                            </label>
-                            <select name="branch_id"
-                                class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
-                                <?php foreach ($branches as $branch): ?>
-                                    <option value="<?= $branch['id'] ?>">
-                                        <?= htmlspecialchars($branch['branch_name']) ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-
-                        <!-- Preferred Dentist Selection -->
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
-                                Preferred Dentist (Optional)
-                            </label>
-                            <select name="preferred_dentist_id"
-                                class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
-                                <option value="">Any Available Attending Dentist</option>
-                                <?php foreach ($dentists as $d): ?>
-                                    <option value="<?= $d['dentist_id'] ?>">
-                                        <?= htmlspecialchars($d['full_name']) ?>
-                                        (<?= htmlspecialchars($d['specialization']) ?>)
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Dental Concern (Required by Interview Spec) -->
+                    <!-- Preferred Dentist Selection -->
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
-                            Dental Concern / Reason for Visit <span class="text-rose-500">*</span>
+                            Preferred Dentist (Optional)
                         </label>
-                        <textarea name="dental_concern" id="inpDentalConcern" rows="3" required
-                            placeholder="Please describe what you are experiencing (e.g. Toothache, routine dental cleaning, filling replacement, wisdom tooth extraction, braces consultation)..."
-                            class="w-full p-3.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 placeholder-stone-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition"></textarea>
+                        <select name="preferred_dentist_id"
+                            class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
+                            <option value="">Any Available Attending Dentist</option>
+                            <?php foreach ($dentists as $d): ?>
+                                <option value="<?= $d['dentist_id'] ?>">
+                                    <?= htmlspecialchars($d['full_name']) ?>
+                                    (<?= htmlspecialchars($d['specialization']) ?>)
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <!-- Selected Treatment Indicator (Populated when booked via modal) -->
+                    <div id="selectedTreatmentBanner" class="hidden p-3.5 bg-stone-100 rounded-xl border border-stone-200 text-xs flex items-center justify-between">
+                        <div class="flex items-center space-x-2 text-stone-700">
+                            <i data-lucide="sparkles" class="w-4 h-4 text-stone-900"></i>
+                            <span>Selected Treatment: <strong id="selectedTreatmentText" class="text-stone-950 font-bold"></strong></span>
+                        </div>
+                        <button type="button" onclick="clearSelectedTreatment()" class="text-[11px] text-stone-400 hover:text-stone-700 font-mono underline cursor-pointer">
+                            Clear
+                        </button>
                     </div>
 
                     <!-- Submit Button -->
                     <div class="pt-2">
                         <button type="submit"
-                            class="w-full py-3.5 px-6 bg-stone-950 hover:bg-stone-800 text-white font-bold rounded-2xl shadow-xs transition flex items-center justify-center space-x-2 text-sm">
+                            class="w-full py-3.5 px-6 bg-stone-950 hover:bg-stone-800 text-white font-bold rounded-2xl shadow-xs transition flex items-center justify-center space-x-2 text-sm cursor-pointer">
                             <i data-lucide="check-circle" class="w-4 h-4"></i>
                             <span>Submit Appointment Request</span>
                         </button>
@@ -1287,11 +1310,24 @@ $currentUser = Session::user();
         }
 
         function prefillConcern(serviceName) {
-            const el = document.getElementById('inpDentalConcern');
-            if (el) {
-                el.value = 'Inquiry / Treatment request for: ' + serviceName;
-                el.focus();
+            const hidden = document.getElementById('inpHiddenConcern');
+            if (hidden) {
+                hidden.value = 'Inquiry / Treatment request for: ' + serviceName;
             }
+            const banner = document.getElementById('selectedTreatmentBanner');
+            const text = document.getElementById('selectedTreatmentText');
+            if (banner && text) {
+                text.innerText = serviceName;
+                banner.classList.remove('hidden');
+                lucide.createIcons();
+            }
+        }
+
+        function clearSelectedTreatment() {
+            const hidden = document.getElementById('inpHiddenConcern');
+            if (hidden) hidden.value = '';
+            const banner = document.getElementById('selectedTreatmentBanner');
+            if (banner) banner.classList.add('hidden');
         }
 
         // Rotating Hero Headline Word
