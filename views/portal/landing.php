@@ -1043,8 +1043,9 @@ $currentUser = Session::user();
                                             <i data-lucide="phone" class="w-3 h-3 text-stone-700"></i>
                                             <span>DIRECT CONTACT</span>
                                         </span>
-                                        <a href="tel:09658355595" class="inline-flex items-center space-x-1.5 text-lg sm:text-xl font-mono font-black text-stone-950 tracking-wider hover:text-stone-600 transition">
-                                            <span>📞 09658355595</span>
+                                        <a href="tel:09658355595" class="inline-flex items-center space-x-2 text-lg sm:text-xl font-mono font-black text-stone-950 tracking-wider hover:text-stone-600 transition">
+                                            <i data-lucide="phone" class="w-4 h-4 text-stone-900 flex-shrink-0"></i>
+                                            <span>09658355595</span>
                                         </a>
                                     </div>
                                     <span class="text-[10px] font-mono text-stone-400 uppercase tracking-wider mt-2 block">
@@ -1167,8 +1168,9 @@ $currentUser = Session::user();
                                             <i data-lucide="phone" class="w-3 h-3 text-stone-700"></i>
                                             <span>DIRECT CONTACT</span>
                                         </span>
-                                        <a href="tel:09976303973" class="inline-flex items-center space-x-1.5 text-lg sm:text-xl font-mono font-black text-stone-950 tracking-wider hover:text-stone-600 transition">
-                                            <span>📞 09976303973</span>
+                                        <a href="tel:09976303973" class="inline-flex items-center space-x-2 text-lg sm:text-xl font-mono font-black text-stone-950 tracking-wider hover:text-stone-600 transition">
+                                            <i data-lucide="phone" class="w-4 h-4 text-stone-900 flex-shrink-0"></i>
+                                            <span>09976303973</span>
                                         </a>
                                     </div>
                                     <span class="text-[10px] font-mono text-stone-400 uppercase tracking-wider mt-2 block">
