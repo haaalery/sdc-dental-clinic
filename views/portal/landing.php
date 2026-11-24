@@ -916,40 +916,164 @@ $currentUser = Session::user();
         </div>
     </section>
 
-    <!-- Clinic Hours & Branch Locations -->
-    <section id="locations" class="py-16 bg-[#FAF9F5] border-b border-[#E5E1D8]">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="mb-10">
-                <span class="text-xs uppercase font-bold tracking-wider text-stone-500 block mb-1">Visit Us</span>
-                <h3 class="text-2xl font-extrabold text-stone-950 tracking-tight">Clinic Hours & Branch Locations</h3>
-                <p class="text-xs text-stone-600 mt-1">Conveniently accessible clinic branches with clean clinical
-                    operatories.</p>
+    <!-- Clinic Hours & Branch Locations (Architectural Editorial Cards — Zero Round Borders) -->
+    <section id="locations" class="py-24 bg-[#FAF9F5] border-b border-[#E5E1D8] select-none">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+                <div>
+                    <span class="text-[11px] uppercase tracking-[0.25em] font-semibold text-stone-500 block mb-2">
+                        Visit Us
+                    </span>
+                    <h3 class="text-3xl sm:text-5xl font-extrabold text-stone-950 tracking-tight">
+                        Clinic Hours &amp; Branch Locations<span class="font-serif italic font-normal text-stone-500">.</span>
+                    </h3>
+                    <div class="w-6 h-[1.5px] bg-stone-400 mt-4 mb-2.5"></div>
+                    <p class="text-stone-600 text-xs sm:text-sm max-w-xl leading-relaxed">
+                        Two conveniently accessible dental clinics in Zamboanga City equipped with modern clinical operatories.
+                    </p>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-stone-700">
-                <?php foreach ($branches as $br): ?>
-                    <div class="p-6 rounded-2xl bg-white border border-[#E5E1D8] shadow-2xs space-y-3">
-                        <div class="flex items-center justify-between">
-                            <h4 class="font-bold text-stone-950 text-sm flex items-center space-x-2">
-                                <i data-lucide="map-pin" class="w-4 h-4 text-stone-900"></i>
-                                <span><?= htmlspecialchars($br['branch_name']) ?></span>
-                            </h4>
-                            <span
-                                class="font-mono text-[11px] font-bold text-stone-700 px-2 py-0.5 rounded bg-[#EFECE6] border border-[#E5E1D8]">
-                                <?= htmlspecialchars($br['branch_code']) ?>
+            <!-- 2-Column Architectural Branch Cards -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                <!-- CLINIC 1: DOWNTOWN BRANCH -->
+                <article class="bg-white border border-[#E5E1D8] hover:border-stone-950 transition-colors duration-300 shadow-[0_18px_40px_rgba(0,0,0,0.04)] rounded-none flex flex-col justify-between group">
+                    <div>
+                        <!-- Top Bar -->
+                        <div class="border-b border-[#E5E1D8] bg-[#F7F6F2] px-7 py-4 flex items-center justify-between">
+                            <span class="px-2.5 py-1 bg-black text-white font-mono text-[10px] font-black uppercase tracking-[0.2em] rounded-none">
+                                CLINIC 1
+                            </span>
+                            <span class="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-stone-500">
+                                ZAMBOANGA CITY
                             </span>
                         </div>
-                        <p class="text-stone-600"><?= htmlspecialchars($br['address'] ?: 'Clinic address on file.') ?></p>
-                        <p class="flex items-center space-x-1.5 text-stone-600">
-                            <i data-lucide="phone" class="w-3.5 h-3.5 text-stone-400"></i>
-                            <span><?= htmlspecialchars($br['contact_number'] ?: '+63 917 111 2233') ?></span>
-                        </p>
-                        <div class="pt-2 border-t border-[#EFECE6] text-stone-500 flex justify-between items-center">
-                            <span>Regular Operating Hours:</span>
-                            <span class="font-semibold text-stone-900">Mon - Sat: 9:00 AM – 6:00 PM</span>
+
+                        <!-- Main Content -->
+                        <div class="p-7 sm:p-9 space-y-6">
+                            <div>
+                                <h4 class="text-2xl sm:text-3xl font-black text-stone-950 tracking-tight uppercase leading-none">
+                                    DOWNTOWN BRANCH
+                                </h4>
+                                <div class="w-6 h-[1.5px] bg-stone-400 mt-4"></div>
+                            </div>
+
+                            <!-- Address & Landmark -->
+                            <div class="flex items-start space-x-3.5">
+                                <div class="w-9 h-9 bg-[#F7F6F2] border border-[#E5E1D8] flex items-center justify-center flex-shrink-0 mt-0.5 rounded-none">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-stone-900"></i>
+                                </div>
+                                <div>
+                                    <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold block mb-1">
+                                        ADDRESS &amp; LANDMARK
+                                    </span>
+                                    <p class="text-sm font-bold text-stone-900 leading-snug">
+                                        3/f, Unit 4, Centro Capital Bldg, Campaner St., Zamboanga City
+                                    </p>
+                                    <p class="text-xs text-stone-500 mt-1 font-medium">
+                                        (fronting Pasonanca Jeep Terminal)
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Contact Phone -->
+                            <div class="flex items-start space-x-3.5 pt-5 border-t border-stone-200/80">
+                                <div class="w-9 h-9 bg-[#F7F6F2] border border-[#E5E1D8] flex items-center justify-center flex-shrink-0 mt-0.5 rounded-none">
+                                    <i data-lucide="phone" class="w-4 h-4 text-stone-900"></i>
+                                </div>
+                                <div>
+                                    <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold block mb-1">
+                                        CONTACT NUMBER
+                                    </span>
+                                    <a href="tel:09658355595" class="text-lg sm:text-xl font-mono font-black text-stone-950 tracking-wider hover:text-stone-600 transition">
+                                        09658355595
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                <?php endforeach; ?>
+
+                    <!-- Bottom Operating Hours Bar -->
+                    <div class="bg-stone-950 text-white px-7 py-4 border-t border-black flex items-center justify-between rounded-none">
+                        <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-stone-400">
+                            OPERATING HOURS
+                        </span>
+                        <span class="text-xs font-mono font-bold text-white uppercase tracking-wider">
+                            Mon – Sat · 9:00 AM – 6:00 PM
+                        </span>
+                    </div>
+                </article>
+
+                <!-- CLINIC 2: TUGBUNGAN BRANCH -->
+                <article class="bg-white border border-[#E5E1D8] hover:border-stone-950 transition-colors duration-300 shadow-[0_18px_40px_rgba(0,0,0,0.04)] rounded-none flex flex-col justify-between group">
+                    <div>
+                        <!-- Top Bar -->
+                        <div class="border-b border-[#E5E1D8] bg-[#F7F6F2] px-7 py-4 flex items-center justify-between">
+                            <span class="px-2.5 py-1 bg-black text-white font-mono text-[10px] font-black uppercase tracking-[0.2em] rounded-none">
+                                CLINIC 2
+                            </span>
+                            <span class="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-stone-500">
+                                ZAMBOANGA CITY
+                            </span>
+                        </div>
+
+                        <!-- Main Content -->
+                        <div class="p-7 sm:p-9 space-y-6">
+                            <div>
+                                <h4 class="text-2xl sm:text-3xl font-black text-stone-950 tracking-tight uppercase leading-none">
+                                    TUGBUNGAN BRANCH
+                                </h4>
+                                <div class="w-6 h-[1.5px] bg-stone-400 mt-4"></div>
+                            </div>
+
+                            <!-- Address & Landmark -->
+                            <div class="flex items-start space-x-3.5">
+                                <div class="w-9 h-9 bg-[#F7F6F2] border border-[#E5E1D8] flex items-center justify-center flex-shrink-0 mt-0.5 rounded-none">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-stone-900"></i>
+                                </div>
+                                <div>
+                                    <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold block mb-1">
+                                        ADDRESS &amp; LANDMARK
+                                    </span>
+                                    <p class="text-sm font-bold text-stone-900 leading-snug">
+                                        Corner Tugbungan Rd. and Morning Breeze, Zamboanga City
+                                    </p>
+                                    <p class="text-xs text-stone-500 mt-1 font-medium">
+                                        (fronting Joan's Pharmacy)
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Contact Phone -->
+                            <div class="flex items-start space-x-3.5 pt-5 border-t border-stone-200/80">
+                                <div class="w-9 h-9 bg-[#F7F6F2] border border-[#E5E1D8] flex items-center justify-center flex-shrink-0 mt-0.5 rounded-none">
+                                    <i data-lucide="phone" class="w-4 h-4 text-stone-900"></i>
+                                </div>
+                                <div>
+                                    <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold block mb-1">
+                                        CONTACT NUMBER
+                                    </span>
+                                    <a href="tel:09976303973" class="text-lg sm:text-xl font-mono font-black text-stone-950 tracking-wider hover:text-stone-600 transition">
+                                        09976303973
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Operating Hours Bar -->
+                    <div class="bg-stone-950 text-white px-7 py-4 border-t border-black flex items-center justify-between rounded-none">
+                        <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-stone-400">
+                            OPERATING HOURS
+                        </span>
+                        <span class="text-xs font-mono font-bold text-white uppercase tracking-wider">
+                            Mon – Sat · 9:00 AM – 6:00 PM
+                        </span>
+                    </div>
+                </article>
+
             </div>
         </div>
     </section>
