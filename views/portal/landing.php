@@ -863,145 +863,171 @@ $currentUser = Session::user();
         });
     </script>
 
-    <!-- Our Attending Dentists (Architectural Editorial Clinician Dossiers — Zero Round Borders) -->
+    <!-- Our Attending Dentists (Aligned with Hero & Signature Treatments Editorial Design — Zero Round Borders) -->
     <?php
+    // Authentic dental clinic & operatory clinician imagery (no hospital stethoscopes)
     $docPortraits = [
-        0 => 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=85',
-        1 => 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=800&q=85',
-        2 => 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=800&q=85',
-        3 => 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=800&q=85',
+        0 => 'https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=1000&q=85',
+        1 => 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1000&q=85',
+        2 => 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1000&q=85',
+        3 => 'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=1000&q=85',
     ];
     ?>
-    <section id="dentists" class="relative py-24 bg-[#F7F6F2] border-b border-[#E5E1D8] overflow-hidden select-none">
-        <!-- Subtle Architectural Blueprint Grid -->
-        <div class="absolute inset-0 opacity-[0.025] pointer-events-none"
+    <section id="dentists" class="relative py-24 bg-white border-b border-[#E5E1D8] overflow-hidden select-none">
+        <!-- Subtle Architectural Blueprint Grid (Matching Hero Section) -->
+        <div class="absolute inset-0 opacity-[0.03] pointer-events-none"
             style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(to right, #000 1px, transparent 1px); background-size: 70px 70px;">
         </div>
 
+        <!-- Monumental Background Watermark Typography (Echoing Hero Section) -->
+        <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none select-none z-0 overflow-hidden">
+            <span class="text-[12vw] font-black uppercase tracking-tighter leading-none text-stone-950/[0.025] whitespace-nowrap">
+                DENTAL&nbsp;SPECIALISTS
+            </span>
+        </div>
+
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <!-- Section Header -->
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 pb-8 border-b border-[#E5E1D8]">
+            <!-- Section Header (Aligned with Signature Treatments & Hero Typography) -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
                 <div>
-                    <span class="text-[10px] font-mono uppercase tracking-[0.25em] font-bold text-stone-500 block mb-2">
-                        02 / CLINICAL FACULTY &amp; ATTENDING SURGEONS
+                    <span class="text-[11px] uppercase tracking-[0.25em] font-semibold text-stone-500 block mb-2">
+                        Dental Specialists
                     </span>
-                    <h3 class="text-3xl sm:text-5xl font-black text-stone-950 tracking-tight uppercase leading-none">
-                        Our Attending Dentists<span class="font-serif italic font-normal text-stone-400 normal-case">.</span>
+                    <h3 class="text-3xl sm:text-5xl font-extrabold text-stone-950 tracking-tight">
+                        Our Attending Dentists<span class="font-serif italic font-normal text-stone-500">.</span>
                     </h3>
                     <div class="w-6 h-[1.5px] bg-stone-400 mt-4 mb-2.5"></div>
-                    <p class="text-xs sm:text-sm text-stone-600 max-w-xl leading-relaxed">
-                        Board-certified practitioners leading patient consultations, restorative procedures, and surgical care with precision and chairside comfort.
+                    <p class="text-stone-600 text-xs sm:text-sm max-w-xl leading-relaxed">
+                        Board-certified Doctors of Dental Medicine (DMD) dedicated to gentle chairside care, natural tooth preservation, and confident smiles across our Makati and Pasig clinics.
                     </p>
                 </div>
 
-                <!-- Right Header Metadata & Direct Action -->
-                <div class="flex flex-col sm:items-end space-y-2">
-                    <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-stone-500 font-bold">
-                        [ PRC BOARD-CERTIFIED · MAKATI &amp; PASIG ]
+                <!-- Right Header Metadata & Callout Link -->
+                <div class="flex items-center space-x-5">
+                    <span class="hidden sm:inline-block text-[11px] uppercase tracking-widest text-stone-500 font-mono">
+                        [ DMD · PDA · PRC LICENSED ]
                     </span>
                     <a href="#booking-form"
-                        class="inline-flex items-center space-x-2 text-xs font-black uppercase tracking-[0.18em] text-black hover:text-stone-600 transition group border-b-2 border-black pb-1 rounded-none">
-                        <span>Schedule With A Clinician</span>
-                        <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+                        class="inline-flex items-center space-x-2 px-5 py-2.5 bg-black hover:bg-stone-800 text-white text-xs font-bold uppercase tracking-wider rounded-none shadow-xs transition">
+                        <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                        <span>Book A Dentist</span>
                     </a>
                 </div>
             </div>
 
-            <!-- Clinician Dossier Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Dental Clinicians Editorial Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
                 <?php foreach ($dentists as $dIdx => $doc):
                     $docNumber = str_pad($dIdx + 1, 2, '0', STR_PAD_LEFT);
                     $portraitUrl = $docPortraits[$dIdx % count($docPortraits)];
                     $spec = $doc['specialization'] ?: 'General & Aesthetic Dentistry';
                     $isSurgical = stripos($spec, 'Surgery') !== false || stripos($spec, 'Endo') !== false;
+                    $headlinePhilosophy = $isSurgical
+                        ? 'Pain-free root canals & gentle oral surgery.'
+                        : 'Harmonious alignment & natural smile aesthetics.';
                     $bioText = $isSurgical
-                        ? 'Specializes in microscopic root canal therapy, impacted molar odontectomy, and gentle surgical extractions under strict Class-B sterile protocols.'
-                        : 'Focuses on custom orthodontic alignment, biomimetic composite restorations, and preventive oral rehabilitation tailored to natural facial harmony.';
-                    $clinicalApproach = $isSurgical ? 'Micro-Surgical · Gentle' : 'Aesthetic · Conservative';
+                        ? 'Focused on saving natural teeth through microscopic endodontics, stress-free wisdom tooth extractions, and soothing chairside anesthesia.'
+                        : 'Dedicated to custom orthodontic braces, seamless shade-matched composite restorations, and gentle preventive dental care for every patient.';
+                    $proceduresList = $isSurgical
+                        ? ['Root Canal Therapy', 'Wisdom Tooth Surgery', 'Gentle Extractions']
+                        : ['Orthodontic Braces', 'Cosmetic Fillings', 'Oral Prophylaxis & Whitening'];
                 ?>
-                    <article class="bg-white border border-[#DCD7CC] hover:border-stone-950 transition-colors duration-300 shadow-[0_18px_40px_rgba(0,0,0,0.04)] rounded-none group flex flex-col justify-between">
+                    <article class="bg-[#F7F6F2] border border-[#E5E1D8] hover:border-stone-950 transition-all duration-300 shadow-[0_18px_40px_rgba(0,0,0,0.05)] rounded-none group flex flex-col justify-between">
                         
-                        <!-- 1. Top Technical Dossier Bar -->
-                        <div class="border-b border-[#E5E1D8] bg-[#FAF9F5] px-6 py-3 flex items-center justify-between">
-                            <span class="text-[10px] font-mono font-bold uppercase tracking-[0.22em] text-stone-500">
-                                CLINICIAN // <?= $docNumber ?>
-                            </span>
-                            <div class="flex items-center space-x-3">
-                                <span class="inline-flex items-center space-x-1.5 text-[9px] font-mono uppercase tracking-widest text-emerald-700 font-bold">
-                                    <span class="w-1.5 h-1.5 bg-emerald-500"></span>
-                                    <span>ATTENDING</span>
-                                </span>
-                                <span class="px-2 py-0.5 bg-black text-white text-[9px] font-mono font-bold uppercase tracking-widest rounded-none">
-                                    DMD
-                                </span>
+                        <!-- 1. Upper Editorial Dental Operatory Portrait + Hero-Style Floating Approach Callout -->
+                        <div class="relative h-[300px] sm:h-[340px] w-full bg-stone-900 overflow-hidden border-b border-[#E5E1D8] rounded-none">
+                            <img src="<?= htmlspecialchars($portraitUrl) ?>"
+                                 alt="<?= htmlspecialchars($doc['full_name']) ?> - SDC Dental Clinic"
+                                 class="w-full h-full object-cover filter grayscale contrast-110 group-hover:grayscale-0 transition-all duration-700 rounded-none">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/15 pointer-events-none"></div>
+
+                            <!-- Target Node Dot + Stepped Leader Line (Cloned from Hero Tooth Callout) -->
+                            <div class="hidden sm:flex absolute left-[34%] top-[48%] w-4 h-4 rounded-full bg-white border border-stone-300 shadow-sm items-center justify-center pointer-events-none z-20">
+                                <span class="w-1.5 h-1.5 rounded-full bg-stone-900"></span>
+                            </div>
+                            <svg class="hidden sm:block absolute inset-0 w-full h-full pointer-events-none z-10" viewBox="0 0 600 340" preserveAspectRatio="none">
+                                <polyline points="204,163 295,163 320,115 345,115" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.2" />
+                            </svg>
+
+                            <!-- Floating White Callout Card (Matching Hero '01 / OUR APPROACH' Card) -->
+                            <div class="absolute top-5 right-5 w-[215px] sm:w-[235px] bg-white border border-stone-200/90 shadow-[0_18px_40px_rgba(0,0,0,0.12)] p-4 z-20 rounded-none">
+                                <div class="flex items-center justify-between text-[9px] font-mono tracking-[0.2em] uppercase text-stone-500 font-semibold">
+                                    <span><?= $docNumber ?> / ATTENDING DMD</span>
+                                    <i data-lucide="sparkles" class="w-3 h-3 text-stone-700"></i>
+                                </div>
+                                <div class="text-xs sm:text-[13px] font-bold text-stone-950 leading-snug tracking-tight mt-1.5">
+                                    <?= htmlspecialchars($spec) ?>
+                                </div>
+                                <div class="text-[10px] text-stone-400 leading-tight mt-1 font-mono">
+                                    Doctor of Dental Medicine
+                                </div>
                             </div>
                         </div>
 
-                        <!-- 2. Split Portrait & Clinical Profile Body -->
-                        <div class="grid grid-cols-1 sm:grid-cols-12 flex-1">
-                            
-                            <!-- Portrait Column -->
-                            <div class="sm:col-span-5 relative min-h-[260px] sm:min-h-[300px] bg-stone-900 overflow-hidden border-b sm:border-b-0 sm:border-r border-[#E5E1D8] rounded-none">
-                                <img src="<?= htmlspecialchars($portraitUrl) ?>"
-                                     alt="<?= htmlspecialchars($doc['full_name']) ?>"
-                                     class="w-full h-full object-cover object-top filter grayscale contrast-115 group-hover:grayscale-0 transition-all duration-500 rounded-none">
-                                
-                                <?php if (!empty($doc['license_no'])): ?>
-                                    <div class="absolute bottom-3 left-3 bg-black/90 text-white px-2.5 py-1 text-[9px] font-mono font-bold uppercase tracking-widest rounded-none">
-                                        PRC // <?= htmlspecialchars($doc['license_no']) ?>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-
-                            <!-- Dossier Details Column -->
-                            <div class="sm:col-span-7 p-6 sm:p-7 flex flex-col justify-between">
-                                <div>
-                                    <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold block mb-1">
-                                        <?= htmlspecialchars($spec) ?>
-                                    </span>
-                                    <h4 class="text-xl sm:text-2xl font-black text-stone-950 tracking-tight uppercase leading-tight">
+                        <!-- 2. Middle Editorial Clinician Details (Matching Hero Top-Left Subcopy Block) -->
+                        <div class="p-6 sm:p-8 bg-white flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex flex-wrap items-center justify-between gap-2">
+                                    <h4 class="text-2xl sm:text-[1.7rem] font-black text-stone-950 tracking-tight uppercase leading-none">
                                         <?= htmlspecialchars($doc['full_name']) ?>
                                     </h4>
-                                    <div class="w-6 h-[1.5px] bg-stone-400 my-3.5"></div>
-                                    <p class="text-xs text-stone-600 leading-relaxed font-normal">
-                                        <?= htmlspecialchars($bioText) ?>
-                                    </p>
+                                    <span class="px-2.5 py-1 bg-[#F7F6F2] border border-[#E5E1D8] text-stone-800 font-mono text-[10px] font-bold uppercase tracking-widest rounded-none">
+                                        DMD · PDA
+                                    </span>
                                 </div>
 
-                                <!-- 2-Column Clinical Metadata Matrix -->
-                                <div class="grid grid-cols-2 gap-3 pt-4 mt-5 border-t border-stone-200/80">
-                                    <div>
-                                        <span class="text-[8px] font-mono uppercase tracking-widest text-stone-400 font-bold block">
-                                            ACTIVE SUITES
-                                        </span>
-                                        <span class="text-[11px] font-bold text-stone-900 uppercase tracking-tight">
-                                            Makati &amp; Pasig
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <span class="text-[8px] font-mono uppercase tracking-widest text-stone-400 font-bold block">
-                                            PROTOCOL
-                                        </span>
-                                        <span class="text-[11px] font-bold text-stone-900 uppercase tracking-tight">
-                                            <?= $clinicalApproach ?>
-                                        </span>
-                                    </div>
-                                </div>
+                                <!-- Signature Short 24px Gray Dash + Bold Sub-Heading (From Hero) -->
+                                <div class="w-6 h-[1.5px] bg-stone-400 mt-4 mb-2.5"></div>
+                                <h5 class="text-sm sm:text-[15px] font-bold text-stone-950 tracking-tight leading-snug">
+                                    <?= htmlspecialchars($headlinePhilosophy) ?>
+                                </h5>
+                                <p class="text-xs sm:text-[12.5px] text-stone-500 leading-relaxed mt-1.5 font-normal">
+                                    <?= htmlspecialchars($bioText) ?>
+                                </p>
                             </div>
 
+                            <!-- Dental Procedures Focus Pills -->
+                            <div class="pt-5 mt-5 border-t border-stone-200/80">
+                                <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold block mb-2.5">
+                                    CLINICAL SCOPE &amp; PROCEDURES
+                                </span>
+                                <div class="flex flex-wrap gap-2">
+                                    <?php foreach ($proceduresList as $procName): ?>
+                                        <span class="px-2.5 py-1 bg-[#F7F6F2] border border-[#E5E1D8] text-[10px] font-mono font-semibold text-stone-700 uppercase tracking-wider rounded-none">
+                                            ✦ <?= htmlspecialchars($procName) ?>
+                                        </span>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- 3. Bottom Action Strip -->
-                        <div class="border-t border-[#E5E1D8] bg-[#FAF9F5] group-hover:bg-stone-950 group-hover:text-white transition-colors duration-300 px-6 py-3.5 flex items-center justify-between">
-                            <span class="text-[9px] font-mono uppercase tracking-widest text-stone-500 group-hover:text-stone-400 transition-colors">
-                                MON–SAT · BY APPOINTMENT
-                            </span>
-                            <a href="#booking-form"
-                               onclick="selectTreatmentConcern('Consultation with <?= htmlspecialchars(addslashes($doc['full_name'])) ?>')"
-                               class="inline-flex items-center space-x-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-stone-950 group-hover:text-emerald-400 transition-colors rounded-none">
-                                <span>Book Clinician</span>
-                                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                            </a>
+                        <!-- 3. Bottom Solid Black Status & Booking Card (Cloned from Hero Bottom-Right 'DIRECT BOOKING' Card) -->
+                        <div class="bg-stone-950 text-white p-5 border-t border-black rounded-none space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="px-2.5 py-1 bg-white text-black font-mono text-[9px] font-black uppercase tracking-widest rounded-none">
+                                    <?= !empty($doc['license_no']) ? 'PRC // ' . htmlspecialchars($doc['license_no']) : 'PRC VERIFIED DMD' ?>
+                                </span>
+                                <span class="text-[10px] font-mono text-stone-400 uppercase tracking-wider">
+                                    Mon–Sat · 09:00–18:00
+                                </span>
+                            </div>
+
+                            <div class="flex items-center justify-between pt-2.5 border-t border-stone-800">
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-[10px] font-mono text-stone-400 uppercase tracking-wider">
+                                        Makati &amp; Pasig Suites
+                                    </span>
+                                    <span class="text-[9px] font-mono text-emerald-400 uppercase font-bold">
+                                        · Slots Open
+                                    </span>
+                                </div>
+                                <a href="#booking-form"
+                                   onclick="selectTreatmentConcern('Dental Consultation with <?= htmlspecialchars(addslashes($doc['full_name'])) ?>')"
+                                   class="inline-flex items-center space-x-1.5 text-[11px] font-black uppercase tracking-[0.18em] text-white hover:text-emerald-400 transition group/doccta rounded-none">
+                                    <span>Book Doctor</span>
+                                    <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform group-hover/doccta:translate-x-1"></i>
+                                </a>
+                            </div>
                         </div>
 
                     </article>
