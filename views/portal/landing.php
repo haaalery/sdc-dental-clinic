@@ -916,9 +916,16 @@ $currentUser = Session::user();
         </div>
     </section>
 
-    <!-- Clinic Hours & Branch Locations (Architectural Editorial Cards — Zero Round Borders) -->
-    <section id="locations" class="py-24 bg-[#FAF9F5] border-b border-[#E5E1D8] select-none">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Clinic Hours & Branch Locations (Architectural Showcase with Pure Suite Photo & Live Map Toggle — Zero Round Borders) -->
+    <section id="locations" class="relative py-24 bg-[#FAF9F5] border-b border-[#E5E1D8] overflow-hidden select-none">
+        <!-- Subtle Background Watermark Typography -->
+        <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none select-none z-0 overflow-hidden">
+            <span class="text-[11.5vw] font-black uppercase tracking-tighter leading-none text-stone-950/[0.025] whitespace-nowrap">
+                ZAMBOANGA&nbsp;CITY
+            </span>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <!-- Section Header -->
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
                 <div>
@@ -930,147 +937,267 @@ $currentUser = Session::user();
                     </h3>
                     <div class="w-6 h-[1.5px] bg-stone-400 mt-4 mb-2.5"></div>
                     <p class="text-stone-600 text-xs sm:text-sm max-w-xl leading-relaxed">
-                        Two conveniently accessible dental clinics in Zamboanga City equipped with modern clinical operatories.
+                        Two conveniently accessible dental clinics in Zamboanga City equipped with modern clinical operatories and welcoming patient reception lounges.
                     </p>
+                </div>
+
+                <!-- Right Header Operating Schedule Badge -->
+                <div class="flex items-center space-x-3 bg-white border border-[#E5E1D8] px-4 py-2.5 shadow-2xs rounded-none">
+                    <span class="w-2 h-2 bg-emerald-500"></span>
+                    <span class="text-[11px] font-mono font-bold uppercase tracking-[0.18em] text-stone-800">
+                        MON – SAT · 9:00 AM – 6:00 PM
+                    </span>
                 </div>
             </div>
 
-            <!-- 2-Column Architectural Branch Cards -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- 2-Column Architectural Branch Showcase Cards -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
                 <!-- CLINIC 1: DOWNTOWN BRANCH -->
-                <article class="bg-white border border-[#E5E1D8] hover:border-stone-950 transition-colors duration-300 shadow-[0_18px_40px_rgba(0,0,0,0.04)] rounded-none flex flex-col justify-between group">
+                <article class="bg-white border border-[#E5E1D8] hover:border-stone-950 transition-colors duration-300 shadow-[0_18px_40px_rgba(0,0,0,0.05)] rounded-none flex flex-col justify-between group">
                     <div>
-                        <!-- Top Bar -->
-                        <div class="border-b border-[#E5E1D8] bg-[#F7F6F2] px-7 py-4 flex items-center justify-between">
-                            <span class="px-2.5 py-1 bg-black text-white font-mono text-[10px] font-black uppercase tracking-[0.2em] rounded-none">
-                                CLINIC 1
-                            </span>
-                            <span class="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-stone-500">
-                                ZAMBOANGA CITY
-                            </span>
-                        </div>
-
-                        <!-- Main Content -->
-                        <div class="p-7 sm:p-9 space-y-6">
-                            <div>
-                                <h4 class="text-2xl sm:text-3xl font-black text-stone-950 tracking-tight uppercase leading-none">
-                                    DOWNTOWN BRANCH
-                                </h4>
-                                <div class="w-6 h-[1.5px] bg-stone-400 mt-4"></div>
+                        <!-- 1. Top Bar with Photo / Live Map Switcher -->
+                        <div class="border-b border-[#E5E1D8] bg-[#F7F6F2] px-6 sm:px-7 py-3.5 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <span class="px-2.5 py-1 bg-black text-white font-mono text-[10px] font-black uppercase tracking-[0.2em] rounded-none">
+                                    CLINIC 1
+                                </span>
+                                <span class="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-stone-500">
+                                    01 // ZAMBOANGA CITY
+                                </span>
                             </div>
 
-                            <!-- Address & Landmark -->
-                            <div class="flex items-start space-x-3.5">
-                                <div class="w-9 h-9 bg-[#F7F6F2] border border-[#E5E1D8] flex items-center justify-center flex-shrink-0 mt-0.5 rounded-none">
-                                    <i data-lucide="map-pin" class="w-4 h-4 text-stone-900"></i>
-                                </div>
+                            <!-- View Toggle Buttons -->
+                            <div class="inline-flex border border-[#D5CFC3] bg-white rounded-none">
+                                <button type="button"
+                                    id="btnPhotoClinic1"
+                                    onclick="toggleClinicMedia(1, 'photo')"
+                                    class="px-2.5 py-1 text-[9px] font-mono font-bold uppercase tracking-widest bg-stone-950 text-white transition rounded-none">
+                                    Suite
+                                </button>
+                                <button type="button"
+                                    id="btnMapClinic1"
+                                    onclick="toggleClinicMedia(1, 'map')"
+                                    class="px-2.5 py-1 text-[9px] font-mono font-bold uppercase tracking-widest bg-white text-stone-600 hover:text-black transition rounded-none">
+                                    Live Map
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 2. Pure Visual / Interactive Map Panel (Zero Text Overlaid on Photo) -->
+                        <div class="relative h-[240px] sm:h-[260px] w-full bg-stone-900 overflow-hidden border-b border-[#E5E1D8] rounded-none">
+                            <!-- Pure Suite Photo -->
+                            <div id="panelPhotoClinic1" class="w-full h-full">
+                                <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=85"
+                                     alt="SDC Dental Clinic 1 - Downtown Branch"
+                                     class="w-full h-full object-cover filter grayscale contrast-110 group-hover:grayscale-0 transition-all duration-700 rounded-none">
+                            </div>
+                            <!-- Interactive Google Map Embed -->
+                            <div id="panelMapClinic1" class="w-full h-full hidden">
+                                <iframe
+                                    title="Downtown Branch Map - Centro Capital Bldg, Campaner St., Zamboanga City"
+                                    src="https://maps.google.com/maps?q=Centro+Capital+Building,+Campaner+Street,+Zamboanga+City&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                                    class="w-full h-full border-0 filter grayscale contrast-115 hover:grayscale-0 transition duration-500"
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+
+                        <!-- 3. Editorial Branch Details -->
+                        <div class="p-7 sm:p-9 space-y-6">
+                            <div class="flex items-start justify-between gap-4">
                                 <div>
-                                    <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold block mb-1">
-                                        ADDRESS &amp; LANDMARK
+                                    <span class="text-[10px] font-mono uppercase tracking-[0.22em] text-stone-400 font-bold block mb-1">
+                                        CLINIC 1 · CITY PROPER
                                     </span>
-                                    <p class="text-sm font-bold text-stone-900 leading-snug">
+                                    <h4 class="text-2xl sm:text-3xl font-black text-stone-950 tracking-tight uppercase leading-none">
+                                        DOWNTOWN BRANCH
+                                    </h4>
+                                    <div class="w-6 h-[1.5px] bg-stone-400 mt-4"></div>
+                                </div>
+                                <span class="text-3xl sm:text-4xl font-black font-mono text-stone-200 leading-none select-none">
+                                    01
+                                </span>
+                            </div>
+
+                            <!-- 2-Column Split Address & Direct Phone -->
+                            <div class="grid grid-cols-1 sm:grid-cols-12 gap-6 pt-5 border-t border-stone-200/80">
+                                <!-- Address & Landmark -->
+                                <div class="sm:col-span-7 space-y-1.5">
+                                    <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold flex items-center space-x-1.5">
+                                        <i data-lucide="map-pin" class="w-3 h-3 text-stone-700"></i>
+                                        <span>LOCATION &amp; LANDMARK</span>
+                                    </span>
+                                    <p class="text-sm font-bold text-stone-950 leading-snug">
                                         3/f, Unit 4, Centro Capital Bldg, Campaner St., Zamboanga City
                                     </p>
-                                    <p class="text-xs text-stone-500 mt-1 font-medium">
+                                    <p class="inline-block px-2 py-0.5 bg-[#F7F6F2] border border-[#E5E1D8] text-[11px] font-medium text-stone-600 rounded-none">
                                         (fronting Pasonanca Jeep Terminal)
                                     </p>
                                 </div>
-                            </div>
 
-                            <!-- Contact Phone -->
-                            <div class="flex items-start space-x-3.5 pt-5 border-t border-stone-200/80">
-                                <div class="w-9 h-9 bg-[#F7F6F2] border border-[#E5E1D8] flex items-center justify-center flex-shrink-0 mt-0.5 rounded-none">
-                                    <i data-lucide="phone" class="w-4 h-4 text-stone-900"></i>
-                                </div>
-                                <div>
-                                    <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold block mb-1">
-                                        CONTACT NUMBER
+                                <!-- Contact Phone -->
+                                <div class="sm:col-span-5 sm:border-l sm:border-stone-200/80 sm:pl-6 flex flex-col justify-between">
+                                    <div>
+                                        <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold flex items-center space-x-1.5 mb-1.5">
+                                            <i data-lucide="phone" class="w-3 h-3 text-stone-700"></i>
+                                            <span>DIRECT CONTACT</span>
+                                        </span>
+                                        <a href="tel:09658355595" class="inline-flex items-center space-x-1.5 text-lg sm:text-xl font-mono font-black text-stone-950 tracking-wider hover:text-stone-600 transition">
+                                            <span>📞 09658355595</span>
+                                        </a>
+                                    </div>
+                                    <span class="text-[10px] font-mono text-stone-400 uppercase tracking-wider mt-2 block">
+                                        Call or SMS Inquiry
                                     </span>
-                                    <a href="tel:09658355595" class="text-lg sm:text-xl font-mono font-black text-stone-950 tracking-wider hover:text-stone-600 transition">
-                                        09658355595
-                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Bottom Operating Hours Bar -->
-                    <div class="bg-stone-950 text-white px-7 py-4 border-t border-black flex items-center justify-between rounded-none">
-                        <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-stone-400">
-                            OPERATING HOURS
-                        </span>
-                        <span class="text-xs font-mono font-bold text-white uppercase tracking-wider">
+                    <!-- 4. Bottom Solid Black Action & Directions Bar -->
+                    <div class="bg-stone-950 text-white px-6 sm:px-7 py-4 border-t border-black flex flex-wrap items-center justify-between gap-3 rounded-none">
+                        <span class="text-[10px] font-mono uppercase tracking-[0.18em] text-stone-400">
                             Mon – Sat · 9:00 AM – 6:00 PM
                         </span>
+                        <div class="flex items-center space-x-5">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Centro+Capital+Bldg+Campaner+St+Zamboanga+City"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="inline-flex items-center space-x-1 text-[10px] font-mono font-bold uppercase tracking-[0.18em] text-stone-300 hover:text-white transition">
+                                <span>Directions</span>
+                                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                            </a>
+                            <a href="tel:09658355595"
+                               class="inline-flex items-center space-x-1 text-[10px] font-mono font-black uppercase tracking-[0.18em] text-white hover:text-emerald-400 transition">
+                                <span>Call Branch</span>
+                                <i data-lucide="phone-call" class="w-3 h-3"></i>
+                            </a>
+                        </div>
                     </div>
                 </article>
 
                 <!-- CLINIC 2: TUGBUNGAN BRANCH -->
-                <article class="bg-white border border-[#E5E1D8] hover:border-stone-950 transition-colors duration-300 shadow-[0_18px_40px_rgba(0,0,0,0.04)] rounded-none flex flex-col justify-between group">
+                <article class="bg-white border border-[#E5E1D8] hover:border-stone-950 transition-colors duration-300 shadow-[0_18px_40px_rgba(0,0,0,0.05)] rounded-none flex flex-col justify-between group">
                     <div>
-                        <!-- Top Bar -->
-                        <div class="border-b border-[#E5E1D8] bg-[#F7F6F2] px-7 py-4 flex items-center justify-between">
-                            <span class="px-2.5 py-1 bg-black text-white font-mono text-[10px] font-black uppercase tracking-[0.2em] rounded-none">
-                                CLINIC 2
-                            </span>
-                            <span class="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-stone-500">
-                                ZAMBOANGA CITY
-                            </span>
-                        </div>
-
-                        <!-- Main Content -->
-                        <div class="p-7 sm:p-9 space-y-6">
-                            <div>
-                                <h4 class="text-2xl sm:text-3xl font-black text-stone-950 tracking-tight uppercase leading-none">
-                                    TUGBUNGAN BRANCH
-                                </h4>
-                                <div class="w-6 h-[1.5px] bg-stone-400 mt-4"></div>
+                        <!-- 1. Top Bar with Photo / Live Map Switcher -->
+                        <div class="border-b border-[#E5E1D8] bg-[#F7F6F2] px-6 sm:px-7 py-3.5 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <span class="px-2.5 py-1 bg-black text-white font-mono text-[10px] font-black uppercase tracking-[0.2em] rounded-none">
+                                    CLINIC 2
+                                </span>
+                                <span class="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-stone-500">
+                                    02 // ZAMBOANGA CITY
+                                </span>
                             </div>
 
-                            <!-- Address & Landmark -->
-                            <div class="flex items-start space-x-3.5">
-                                <div class="w-9 h-9 bg-[#F7F6F2] border border-[#E5E1D8] flex items-center justify-center flex-shrink-0 mt-0.5 rounded-none">
-                                    <i data-lucide="map-pin" class="w-4 h-4 text-stone-900"></i>
-                                </div>
+                            <!-- View Toggle Buttons -->
+                            <div class="inline-flex border border-[#D5CFC3] bg-white rounded-none">
+                                <button type="button"
+                                    id="btnPhotoClinic2"
+                                    onclick="toggleClinicMedia(2, 'photo')"
+                                    class="px-2.5 py-1 text-[9px] font-mono font-bold uppercase tracking-widest bg-stone-950 text-white transition rounded-none">
+                                    Suite
+                                </button>
+                                <button type="button"
+                                    id="btnMapClinic2"
+                                    onclick="toggleClinicMedia(2, 'map')"
+                                    class="px-2.5 py-1 text-[9px] font-mono font-bold uppercase tracking-widest bg-white text-stone-600 hover:text-black transition rounded-none">
+                                    Live Map
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 2. Pure Visual / Interactive Map Panel (Zero Text Overlaid on Photo) -->
+                        <div class="relative h-[240px] sm:h-[260px] w-full bg-stone-900 overflow-hidden border-b border-[#E5E1D8] rounded-none">
+                            <!-- Pure Suite Photo -->
+                            <div id="panelPhotoClinic2" class="w-full h-full">
+                                <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=1200&q=85"
+                                     alt="SDC Dental Clinic 2 - Tugbungan Branch"
+                                     class="w-full h-full object-cover filter grayscale contrast-110 group-hover:grayscale-0 transition-all duration-700 rounded-none">
+                            </div>
+                            <!-- Interactive Google Map Embed -->
+                            <div id="panelMapClinic2" class="w-full h-full hidden">
+                                <iframe
+                                    title="Tugbungan Branch Map - Corner Tugbungan Rd. and Morning Breeze, Zamboanga City"
+                                    src="https://maps.google.com/maps?q=Tugbungan+Road+Morning+Breeze+Zamboanga+City&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                                    class="w-full h-full border-0 filter grayscale contrast-115 hover:grayscale-0 transition duration-500"
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+
+                        <!-- 3. Editorial Branch Details -->
+                        <div class="p-7 sm:p-9 space-y-6">
+                            <div class="flex items-start justify-between gap-4">
                                 <div>
-                                    <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold block mb-1">
-                                        ADDRESS &amp; LANDMARK
+                                    <span class="text-[10px] font-mono uppercase tracking-[0.22em] text-stone-400 font-bold block mb-1">
+                                        CLINIC 2 · EAST COAST CORRIDOR
                                     </span>
-                                    <p class="text-sm font-bold text-stone-900 leading-snug">
+                                    <h4 class="text-2xl sm:text-3xl font-black text-stone-950 tracking-tight uppercase leading-none">
+                                        TUGBUNGAN BRANCH
+                                    </h4>
+                                    <div class="w-6 h-[1.5px] bg-stone-400 mt-4"></div>
+                                </div>
+                                <span class="text-3xl sm:text-4xl font-black font-mono text-stone-200 leading-none select-none">
+                                    02
+                                </span>
+                            </div>
+
+                            <!-- 2-Column Split Address & Direct Phone -->
+                            <div class="grid grid-cols-1 sm:grid-cols-12 gap-6 pt-5 border-t border-stone-200/80">
+                                <!-- Address & Landmark -->
+                                <div class="sm:col-span-7 space-y-1.5">
+                                    <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold flex items-center space-x-1.5">
+                                        <i data-lucide="map-pin" class="w-3 h-3 text-stone-700"></i>
+                                        <span>LOCATION &amp; LANDMARK</span>
+                                    </span>
+                                    <p class="text-sm font-bold text-stone-950 leading-snug">
                                         Corner Tugbungan Rd. and Morning Breeze, Zamboanga City
                                     </p>
-                                    <p class="text-xs text-stone-500 mt-1 font-medium">
+                                    <p class="inline-block px-2 py-0.5 bg-[#F7F6F2] border border-[#E5E1D8] text-[11px] font-medium text-stone-600 rounded-none">
                                         (fronting Joan's Pharmacy)
                                     </p>
                                 </div>
-                            </div>
 
-                            <!-- Contact Phone -->
-                            <div class="flex items-start space-x-3.5 pt-5 border-t border-stone-200/80">
-                                <div class="w-9 h-9 bg-[#F7F6F2] border border-[#E5E1D8] flex items-center justify-center flex-shrink-0 mt-0.5 rounded-none">
-                                    <i data-lucide="phone" class="w-4 h-4 text-stone-900"></i>
-                                </div>
-                                <div>
-                                    <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold block mb-1">
-                                        CONTACT NUMBER
+                                <!-- Contact Phone -->
+                                <div class="sm:col-span-5 sm:border-l sm:border-stone-200/80 sm:pl-6 flex flex-col justify-between">
+                                    <div>
+                                        <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold flex items-center space-x-1.5 mb-1.5">
+                                            <i data-lucide="phone" class="w-3 h-3 text-stone-700"></i>
+                                            <span>DIRECT CONTACT</span>
+                                        </span>
+                                        <a href="tel:09976303973" class="inline-flex items-center space-x-1.5 text-lg sm:text-xl font-mono font-black text-stone-950 tracking-wider hover:text-stone-600 transition">
+                                            <span>📞 09976303973</span>
+                                        </a>
+                                    </div>
+                                    <span class="text-[10px] font-mono text-stone-400 uppercase tracking-wider mt-2 block">
+                                        Call or SMS Inquiry
                                     </span>
-                                    <a href="tel:09976303973" class="text-lg sm:text-xl font-mono font-black text-stone-950 tracking-wider hover:text-stone-600 transition">
-                                        09976303973
-                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Bottom Operating Hours Bar -->
-                    <div class="bg-stone-950 text-white px-7 py-4 border-t border-black flex items-center justify-between rounded-none">
-                        <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-stone-400">
-                            OPERATING HOURS
-                        </span>
-                        <span class="text-xs font-mono font-bold text-white uppercase tracking-wider">
+                    <!-- 4. Bottom Solid Black Action & Directions Bar -->
+                    <div class="bg-stone-950 text-white px-6 sm:px-7 py-4 border-t border-black flex flex-wrap items-center justify-between gap-3 rounded-none">
+                        <span class="text-[10px] font-mono uppercase tracking-[0.18em] text-stone-400">
                             Mon – Sat · 9:00 AM – 6:00 PM
                         </span>
+                        <div class="flex items-center space-x-5">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Corner+Tugbungan+Rd+and+Morning+Breeze+Zamboanga+City"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="inline-flex items-center space-x-1 text-[10px] font-mono font-bold uppercase tracking-[0.18em] text-stone-300 hover:text-white transition">
+                                <span>Directions</span>
+                                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                            </a>
+                            <a href="tel:09976303973"
+                               class="inline-flex items-center space-x-1 text-[10px] font-mono font-black uppercase tracking-[0.18em] text-white hover:text-emerald-400 transition">
+                                <span>Call Branch</span>
+                                <i data-lucide="phone-call" class="w-3 h-3"></i>
+                            </a>
+                        </div>
                     </div>
                 </article>
 
@@ -1281,6 +1408,27 @@ $currentUser = Session::user();
                 }, 250);
             }, 3200);
         })();
+
+        // Toggle between Pure Suite Photo and Live Google Map in Visit Us Section
+        function toggleClinicMedia(clinicNum, mode) {
+            const photoPanel = document.getElementById('panelPhotoClinic' + clinicNum);
+            const mapPanel = document.getElementById('panelMapClinic' + clinicNum);
+            const btnPhoto = document.getElementById('btnPhotoClinic' + clinicNum);
+            const btnMap = document.getElementById('btnMapClinic' + clinicNum);
+            if (!photoPanel || !mapPanel || !btnPhoto || !btnMap) return;
+
+            if (mode === 'map') {
+                photoPanel.classList.add('hidden');
+                mapPanel.classList.remove('hidden');
+                btnMap.className = 'px-2.5 py-1 text-[9px] font-mono font-bold uppercase tracking-widest bg-stone-950 text-white transition rounded-none';
+                btnPhoto.className = 'px-2.5 py-1 text-[9px] font-mono font-bold uppercase tracking-widest bg-white text-stone-600 hover:text-black transition rounded-none';
+            } else {
+                mapPanel.classList.add('hidden');
+                photoPanel.classList.remove('hidden');
+                btnPhoto.className = 'px-2.5 py-1 text-[9px] font-mono font-bold uppercase tracking-widest bg-stone-950 text-white transition rounded-none';
+                btnMap.className = 'px-2.5 py-1 text-[9px] font-mono font-bold uppercase tracking-widest bg-white text-stone-600 hover:text-black transition rounded-none';
+            }
+        }
 
         // Sticky Navbar Scroll Elevation (Solid opaque white, clean border)
         (function initStickyNavShadow() {
