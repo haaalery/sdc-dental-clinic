@@ -140,10 +140,6 @@ $currentUser = Session::user();
     <section id="heroSection"
         class="relative w-full lg:h-screen min-h-screen bg-white border-b border-[#E5E1D8] flex flex-col justify-between overflow-hidden rounded-none select-none pt-[72px] group">
 
-        <!-- Subtle Futuristic Blueprint & Watermark Grid (From Image 1) -->
-        <div class="absolute inset-0 opacity-[0.035] pointer-events-none"
-            style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(to right, #000 1px, transparent 1px); background-size: 70px 70px;">
-        </div>
         <div
             class="absolute right-12 top-20 text-[18vw] font-black text-black/[0.015] pointer-events-none uppercase font-mono tracking-tighter z-0">
             SDC
@@ -874,11 +870,6 @@ $currentUser = Session::user();
     ];
     ?>
     <section id="dentists" class="relative py-24 bg-white border-b border-[#E5E1D8] overflow-hidden select-none">
-        <!-- Subtle Architectural Blueprint Grid (Matching Hero Section) -->
-        <div class="absolute inset-0 opacity-[0.03] pointer-events-none"
-            style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(to right, #000 1px, transparent 1px); background-size: 70px 70px;">
-        </div>
-
         <!-- Monumental Background Watermark Typography (Echoing Hero Section) -->
         <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none select-none z-0 overflow-hidden">
             <span class="text-[12vw] font-black uppercase tracking-tighter leading-none text-stone-950/[0.025] whitespace-nowrap">
