@@ -859,30 +859,22 @@ $currentUser = Session::user();
         });
     </script>
 
-    <!-- Our Attending Dentists (Aligned with Hero & Signature Treatments Editorial Design — Zero Round Borders) -->
+    <!-- Our Attending Dentists (Minimalist Vertical Portrait Cards — Only Name & Dentist) -->
     <?php
-    // Authentic dental clinic & operatory clinician imagery (no hospital stethoscopes)
     $docPortraits = [
-        0 => 'https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=1000&q=85',
-        1 => 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1000&q=85',
-        2 => 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1000&q=85',
-        3 => 'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=1000&q=85',
+        0 => 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=900&q=85',
+        1 => 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=900&q=85',
+        2 => 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=900&q=85',
+        3 => 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=900&q=85',
     ];
     ?>
     <section id="dentists" class="relative py-24 bg-white border-b border-[#E5E1D8] overflow-hidden select-none">
-        <!-- Monumental Background Watermark Typography (Echoing Hero Section) -->
-        <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none select-none z-0 overflow-hidden">
-            <span class="text-[12vw] font-black uppercase tracking-tighter leading-none text-stone-950/[0.025] whitespace-nowrap">
-                DENTAL&nbsp;SPECIALISTS
-            </span>
-        </div>
-
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <!-- Section Header (Aligned with Signature Treatments & Hero Typography) -->
+            <!-- Section Header -->
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
                 <div>
                     <span class="text-[11px] uppercase tracking-[0.25em] font-semibold text-stone-500 block mb-2">
-                        Dental Specialists
+                        Clinical Team
                     </span>
                     <h3 class="text-3xl sm:text-5xl font-extrabold text-stone-950 tracking-tight">
                         Our Attending Dentists<span class="font-serif italic font-normal text-stone-500">.</span>
@@ -894,72 +886,28 @@ $currentUser = Session::user();
                 </div>
             </div>
 
-            <!-- Dental Clinicians Editorial Grid (Pure Unobstructed Portraits + Clean Architectural Typography) -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <!-- Vertical Portrait Cards Grid (Only Portrait Image, Name, and Dentist) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl">
                 <?php foreach ($dentists as $dIdx => $doc):
-                    $docNumber = str_pad($dIdx + 1, 2, '0', STR_PAD_LEFT);
                     $portraitUrl = $docPortraits[$dIdx % count($docPortraits)];
-                    $spec = $doc['specialization'] ?: 'General & Aesthetic Dentistry';
-                    $isSurgical = stripos($spec, 'Surgery') !== false || stripos($spec, 'Endo') !== false;
-                    $headlinePhilosophy = $isSurgical
-                        ? 'Pain-free root canals & gentle oral surgery.'
-                        : 'Harmonious alignment & natural smile aesthetics.';
-                    $bioText = $isSurgical
-                        ? 'Focused on saving natural teeth through microscopic endodontics, stress-free wisdom tooth extractions, and soothing chairside care.'
-                        : 'Dedicated to custom orthodontic braces, seamless shade-matched composite restorations, and gentle preventive dental care for every patient.';
-                    $proceduresList = $isSurgical
-                        ? ['Root Canal Therapy', 'Wisdom Tooth Surgery', 'Gentle Extractions']
-                        : ['Orthodontic Braces', 'Cosmetic Fillings', 'Oral Prophylaxis & Whitening'];
                 ?>
-                    <article class="grid grid-cols-1 sm:grid-cols-12 bg-white border border-[#E5E1D8] hover:border-stone-950 transition-colors duration-300 shadow-[0_18px_40px_rgba(0,0,0,0.04)] rounded-none group">
+                    <article class="bg-white border border-[#E5E1D8] hover:border-stone-950 transition-colors duration-300 shadow-[0_18px_40px_rgba(0,0,0,0.04)] rounded-none group flex flex-col">
                         
-                        <!-- 1. Pure Unobstructed Picture Column (Zero Text, Zero Overlays, Zero Badges on Image) -->
-                        <div class="sm:col-span-5 relative min-h-[300px] sm:min-h-[380px] bg-stone-900 overflow-hidden border-b sm:border-b-0 sm:border-r border-[#E5E1D8] rounded-none">
+                        <!-- 1. Pure Vertical Portrait Picture (Zero Text or Overlays on Image) -->
+                        <div class="w-full aspect-[3/4] bg-stone-900 overflow-hidden border-b border-[#E5E1D8] rounded-none">
                             <img src="<?= htmlspecialchars($portraitUrl) ?>"
                                  alt="<?= htmlspecialchars($doc['full_name']) ?>"
-                                 class="w-full h-full object-cover object-center filter grayscale contrast-110 group-hover:grayscale-0 transition-all duration-700 rounded-none">
+                                 class="w-full h-full object-cover object-top filter grayscale contrast-110 group-hover:grayscale-0 transition-all duration-700 rounded-none">
                         </div>
 
-                        <!-- 2. Editorial Clinician Profile Column -->
-                        <div class="sm:col-span-7 p-7 sm:p-9 bg-white flex flex-col justify-between">
-                            <div>
-                                <div class="text-[10px] font-mono tracking-[0.22em] uppercase text-stone-400 font-semibold">
-                                    <?= $docNumber ?> / <?= htmlspecialchars($spec) ?>
-                                </div>
-
-                                <h4 class="text-2xl sm:text-[1.75rem] font-black text-stone-950 tracking-tight uppercase leading-tight mt-2.5">
-                                    <?= htmlspecialchars($doc['full_name']) ?>
-                                </h4>
-
-                                <!-- Signature Short 24px Gray Dash + Bold Sub-Heading (Matching Hero) -->
-                                <div class="w-6 h-[1.5px] bg-stone-400 my-4"></div>
-                                <h5 class="text-sm sm:text-[15px] font-bold text-stone-950 tracking-tight leading-snug">
-                                    <?= htmlspecialchars($headlinePhilosophy) ?>
-                                </h5>
-                                <p class="text-xs sm:text-[12.5px] text-stone-500 leading-relaxed mt-1.5 font-normal">
-                                    <?= htmlspecialchars($bioText) ?>
-                                </p>
-                            </div>
-
-                            <div class="pt-5 mt-6 border-t border-stone-200/80 space-y-4">
-                                <div>
-                                    <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold block mb-2">
-                                        CLINICAL FOCUS
-                                    </span>
-                                    <div class="flex flex-wrap gap-1.5">
-                                        <?php foreach ($proceduresList as $procName): ?>
-                                            <span class="px-2.5 py-1 bg-[#F7F6F2] border border-[#E5E1D8] text-[10px] font-mono font-semibold text-stone-700 uppercase tracking-wider rounded-none">
-                                                <?= htmlspecialchars($procName) ?>
-                                            </span>
-                                        <?php endforeach; ?>
-                                    </div>
-                                </div>
-
-                                <div class="pt-3 border-t border-stone-100 flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-stone-400">
-                                    <span>Attending Dentist</span>
-                                    <span>Makati &amp; Pasig Suites</span>
-                                </div>
-                            </div>
+                        <!-- 2. Minimalist Caption Block: Only Name & Dentist -->
+                        <div class="p-6 bg-white">
+                            <h4 class="text-lg sm:text-xl font-black text-stone-950 tracking-tight uppercase leading-tight">
+                                <?= htmlspecialchars($doc['full_name']) ?>
+                            </h4>
+                            <p class="text-xs font-mono uppercase tracking-[0.2em] text-stone-500 mt-1.5">
+                                Dentist
+                            </p>
                         </div>
 
                     </article>
