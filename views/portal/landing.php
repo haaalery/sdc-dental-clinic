@@ -898,15 +898,8 @@ $currentUser = Session::user();
                     </h3>
                     <div class="w-6 h-[1.5px] bg-stone-400 mt-4 mb-2.5"></div>
                     <p class="text-stone-600 text-xs sm:text-sm max-w-xl leading-relaxed">
-                        Board-certified Doctors of Dental Medicine (DMD) dedicated to gentle chairside care, natural tooth preservation, and confident smiles across our Makati and Pasig clinics.
+                        Experienced dentists dedicated to gentle chairside care, natural tooth preservation, and confident smiles across our Makati and Pasig clinics.
                     </p>
-                </div>
-
-                <!-- Right Header Metadata -->
-                <div class="flex items-center">
-                    <span class="text-[11px] uppercase tracking-widest text-stone-500 font-mono">
-                        [ DMD · PDA · PRC LICENSED ]
-                    </span>
                 </div>
             </div>
 
@@ -962,14 +955,9 @@ $currentUser = Session::user();
                         <!-- 2. Middle Editorial Clinician Details (Matching Hero Top-Left Subcopy Block) -->
                         <div class="p-6 sm:p-8 bg-white flex-1 flex flex-col justify-between">
                             <div>
-                                <div class="flex flex-wrap items-center justify-between gap-2">
-                                    <h4 class="text-2xl sm:text-[1.7rem] font-black text-stone-950 tracking-tight uppercase leading-none">
-                                        <?= htmlspecialchars($doc['full_name']) ?>
-                                    </h4>
-                                    <span class="px-2.5 py-1 bg-[#F7F6F2] border border-[#E5E1D8] text-stone-800 font-mono text-[10px] font-bold uppercase tracking-widest rounded-none">
-                                        DMD · PDA
-                                    </span>
-                                </div>
+                                <h4 class="text-2xl sm:text-[1.7rem] font-black text-stone-950 tracking-tight uppercase leading-none">
+                                    <?= htmlspecialchars($doc['full_name']) ?>
+                                </h4>
 
                                 <!-- Signature Short 24px Gray Dash + Bold Sub-Heading (From Hero) -->
                                 <div class="w-6 h-[1.5px] bg-stone-400 mt-4 mb-2.5"></div>
@@ -996,10 +984,10 @@ $currentUser = Session::user();
                             </div>
                         </div>
 
-                        <!-- 3. Bottom Solid Black Credential & Suite Bar (Purely Informational, Zero Booking CTAs) -->
+                        <!-- 3. Bottom Solid Black Suite Bar (Zero Confidential Data, Zero Booking CTAs) -->
                         <div class="bg-stone-950 text-white px-6 py-4 border-t border-black rounded-none flex items-center justify-between">
                             <span class="px-2.5 py-1 bg-white text-black font-mono text-[9px] font-black uppercase tracking-widest rounded-none">
-                                <?= !empty($doc['license_no']) ? 'PRC // ' . htmlspecialchars($doc['license_no']) : 'PRC VERIFIED DMD' ?>
+                                ATTENDING DENTIST
                             </span>
                             <span class="text-[10px] font-mono text-stone-400 uppercase tracking-wider">
                                 Makati &amp; Pasig Dental Suites
