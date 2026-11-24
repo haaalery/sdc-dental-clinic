@@ -1039,9 +1039,8 @@ $currentUser = Session::user();
                                 <!-- Contact Phone -->
                                 <div class="sm:col-span-5 sm:border-l sm:border-stone-200/80 sm:pl-6 flex flex-col justify-between">
                                     <div>
-                                        <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold flex items-center space-x-1.5 mb-1.5">
-                                            <i data-lucide="phone" class="w-3 h-3 text-stone-700"></i>
-                                            <span>DIRECT CONTACT</span>
+                                        <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold block mb-1.5">
+                                            DIRECT CONTACT
                                         </span>
                                         <a href="tel:09658355595" class="inline-flex items-center space-x-2 text-lg sm:text-xl font-mono font-black text-stone-950 tracking-wider hover:text-stone-600 transition">
                                             <i data-lucide="phone" class="w-4 h-4 text-stone-900 flex-shrink-0"></i>
@@ -1164,9 +1163,8 @@ $currentUser = Session::user();
                                 <!-- Contact Phone -->
                                 <div class="sm:col-span-5 sm:border-l sm:border-stone-200/80 sm:pl-6 flex flex-col justify-between">
                                     <div>
-                                        <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold flex items-center space-x-1.5 mb-1.5">
-                                            <i data-lucide="phone" class="w-3 h-3 text-stone-700"></i>
-                                            <span>DIRECT CONTACT</span>
+                                        <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold block mb-1.5">
+                                            DIRECT CONTACT
                                         </span>
                                         <a href="tel:09976303973" class="inline-flex items-center space-x-2 text-lg sm:text-xl font-mono font-black text-stone-950 tracking-wider hover:text-stone-600 transition">
                                             <i data-lucide="phone" class="w-4 h-4 text-stone-900 flex-shrink-0"></i>
