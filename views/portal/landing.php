@@ -902,16 +902,11 @@ $currentUser = Session::user();
                     </p>
                 </div>
 
-                <!-- Right Header Metadata & Callout Link -->
-                <div class="flex items-center space-x-5">
-                    <span class="hidden sm:inline-block text-[11px] uppercase tracking-widest text-stone-500 font-mono">
+                <!-- Right Header Metadata -->
+                <div class="flex items-center">
+                    <span class="text-[11px] uppercase tracking-widest text-stone-500 font-mono">
                         [ DMD · PDA · PRC LICENSED ]
                     </span>
-                    <a href="#booking-form"
-                        class="inline-flex items-center space-x-2 px-5 py-2.5 bg-black hover:bg-stone-800 text-white text-xs font-bold uppercase tracking-wider rounded-none shadow-xs transition">
-                        <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
-                        <span>Book A Dentist</span>
-                    </a>
                 </div>
             </div>
 
@@ -1001,33 +996,14 @@ $currentUser = Session::user();
                             </div>
                         </div>
 
-                        <!-- 3. Bottom Solid Black Status & Booking Card (Cloned from Hero Bottom-Right 'DIRECT BOOKING' Card) -->
-                        <div class="bg-stone-950 text-white p-5 border-t border-black rounded-none space-y-3">
-                            <div class="flex items-center justify-between">
-                                <span class="px-2.5 py-1 bg-white text-black font-mono text-[9px] font-black uppercase tracking-widest rounded-none">
-                                    <?= !empty($doc['license_no']) ? 'PRC // ' . htmlspecialchars($doc['license_no']) : 'PRC VERIFIED DMD' ?>
-                                </span>
-                                <span class="text-[10px] font-mono text-stone-400 uppercase tracking-wider">
-                                    Mon–Sat · 09:00–18:00
-                                </span>
-                            </div>
-
-                            <div class="flex items-center justify-between pt-2.5 border-t border-stone-800">
-                                <div class="flex items-center space-x-2">
-                                    <span class="text-[10px] font-mono text-stone-400 uppercase tracking-wider">
-                                        Makati &amp; Pasig Suites
-                                    </span>
-                                    <span class="text-[9px] font-mono text-emerald-400 uppercase font-bold">
-                                        · Slots Open
-                                    </span>
-                                </div>
-                                <a href="#booking-form"
-                                   onclick="selectTreatmentConcern('Dental Consultation with <?= htmlspecialchars(addslashes($doc['full_name'])) ?>')"
-                                   class="inline-flex items-center space-x-1.5 text-[11px] font-black uppercase tracking-[0.18em] text-white hover:text-emerald-400 transition group/doccta rounded-none">
-                                    <span>Book Doctor</span>
-                                    <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform group-hover/doccta:translate-x-1"></i>
-                                </a>
-                            </div>
+                        <!-- 3. Bottom Solid Black Credential & Suite Bar (Purely Informational, Zero Booking CTAs) -->
+                        <div class="bg-stone-950 text-white px-6 py-4 border-t border-black rounded-none flex items-center justify-between">
+                            <span class="px-2.5 py-1 bg-white text-black font-mono text-[9px] font-black uppercase tracking-widest rounded-none">
+                                <?= !empty($doc['license_no']) ? 'PRC // ' . htmlspecialchars($doc['license_no']) : 'PRC VERIFIED DMD' ?>
+                            </span>
+                            <span class="text-[10px] font-mono text-stone-400 uppercase tracking-wider">
+                                Makati &amp; Pasig Dental Suites
+                            </span>
                         </div>
 
                     </article>
