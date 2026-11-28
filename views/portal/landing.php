@@ -403,181 +403,98 @@ $currentUser = Session::user();
 
     </section>
 
-    <!-- About Us Section (Architectural Bento & Editorial Clinic Story — Zero Round Borders, Pure Unobstructed Photography) -->
-    <section id="about" class="relative py-24 bg-[#FAF9F5] border-b border-[#E5E1D8] overflow-hidden select-none">
-        <!-- Subtle Monumental Background Watermark Typography (Echoing Hero Section) -->
-        <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none select-none z-0 overflow-hidden">
-            <span class="text-[12vw] font-black uppercase tracking-tighter leading-none text-stone-950/[0.025] whitespace-nowrap">
-                SDC&nbsp;ATELIER
-            </span>
-        </div>
-
+    <!-- About Us Section (Open Editorial Spread — Zero Cards, Pure Unboxed Photography & Canvas Typography) -->
+    <section id="about" class="relative py-28 bg-[#FAF9F5] border-b border-[#E5E1D8] overflow-hidden select-none">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            
-            <!-- 1. Split Architectural Section Header -->
-            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-10 mb-12 border-b border-[#E5E1D8]">
-                <div class="max-w-2xl">
-                    <span class="text-[11px] uppercase tracking-[0.25em] font-semibold text-stone-500 block mb-2">
+
+            <!-- 1. Top Open Manifesto Row (Directly on Canvas, Zero Cards) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-start">
+                <div class="lg:col-span-3 pt-1">
+                    <span class="text-[11px] font-mono uppercase tracking-[0.25em] font-semibold text-stone-500 block">
                         01 / About Us
                     </span>
-                    <h3 class="text-3xl sm:text-5xl font-extrabold text-stone-950 tracking-tight leading-[1.06]">
-                        Modern Dentistry, Built on Gentle Care<span class="font-serif italic font-normal text-stone-500">.</span>
+                    <div class="w-6 h-[1.5px] bg-stone-400 mt-3.5"></div>
+                </div>
+
+                <div class="lg:col-span-9">
+                    <h3 class="text-3xl sm:text-5xl lg:text-[3.25rem] font-extrabold text-stone-950 tracking-tight leading-[1.08]">
+                        We believe visiting the dentist should feel calm, unhurried, and reassuring—where gentle care meets modern dentistry<span class="font-serif italic font-normal text-stone-500">.</span>
                     </h3>
-                    <div class="w-6 h-[1.5px] bg-stone-400 mt-5"></div>
-                </div>
-
-                <div class="max-w-md lg:text-right">
-                    <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">
-                        We believe visiting the dentist should feel calm, transparent, and reassuring—combining thoughtful clinical precision with personalized attention for every smile in Zamboanga City.
-                    </p>
                 </div>
             </div>
 
-            <!-- 2. Asymmetric 12-Column Architectural Bento Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            <!-- 2. Middle Open Editorial Split (Single Hairline Rule, Pure Unboxed Picture + Open Canvas Copy) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start pt-14 mt-14 border-t border-[#DCD7CC]">
 
-                <!-- Left Column (5 Cols): Pure Unobstructed Photography + Solid Black Philosophy Card -->
-                <div class="lg:col-span-5 flex flex-col justify-between bg-white border border-[#E5E1D8] shadow-[0_18px_40px_rgba(0,0,0,0.05)] rounded-none group">
-                    <!-- Pure Picture Frame (Zero Text or Overlays on Image) -->
-                    <div class="w-full h-[290px] sm:h-[330px] bg-stone-900 overflow-hidden border-b border-[#E5E1D8] rounded-none flex-shrink-0">
-                        <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1000&q=85"
-                             alt="SDC Dental Care Patient Experience"
-                             class="w-full h-full object-cover filter grayscale contrast-110 group-hover:grayscale-0 transition-all duration-700 rounded-none">
-                    </div>
-
-                    <!-- Solid Black Philosophy Card (Matching Hero Bottom-Right Black Card Aesthetic) -->
-                    <div class="bg-stone-950 text-white p-7 sm:p-8 flex-1 flex flex-col justify-between space-y-5 rounded-none">
-                        <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 bg-white text-black font-mono text-[9px] font-black uppercase tracking-widest rounded-none">
-                                OUR PHILOSOPHY
-                            </span>
-                            <span class="text-[10px] font-mono text-stone-400 uppercase tracking-wider">
-                                Zamboanga City
-                            </span>
-                        </div>
-
-                        <div>
-                            <h4 class="text-lg sm:text-xl font-black text-white uppercase tracking-tight leading-snug">
-                                Every treatment begins with listening.
-                            </h4>
-                            <p class="text-xs text-stone-400 leading-relaxed mt-2 font-normal">
-                                Before any procedure starts, we walk you through clear findings and conservative options—prioritizing natural tooth preservation and your comfort in the chair.
-                            </p>
-                        </div>
-
-                        <div class="pt-3 border-t border-stone-800 flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-stone-400">
-                            <span>Downtown &amp; Tugbungan</span>
-                            <span class="text-emerald-400 font-bold">Patient-First Care</span>
-                        </div>
-                    </div>
+                <!-- Left: Pure Unboxed Vertical Photograph (Zero Card, Zero Text, Zero Overlays) -->
+                <div class="lg:col-span-5">
+                    <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1000&q=85"
+                         alt="SDC Dental Care Patient Experience"
+                         class="w-full aspect-[4/5] object-cover filter grayscale contrast-110 hover:grayscale-0 transition-all duration-700 rounded-none">
                 </div>
 
-                <!-- Right Column (7 Cols): Main Clinic Narrative + Key Metrics + 3 Architectural Pillars -->
-                <div class="lg:col-span-7 flex flex-col justify-between gap-8">
+                <!-- Right: Open Editorial Narrative & Hairline Ledger (Directly on Canvas, Zero Cards) -->
+                <div class="lg:col-span-7 flex flex-col justify-between space-y-12">
 
-                    <!-- Top Story Dossier Card -->
-                    <div class="bg-white border border-[#E5E1D8] p-7 sm:p-10 shadow-[0_18px_40px_rgba(0,0,0,0.04)] rounded-none flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.22em] text-stone-400 font-bold mb-3">
-                                <span>THE CLINIC STORY</span>
-                                <span>[ SDC DENTAL CARE ]</span>
-                            </div>
+                    <!-- Narrative Text Directly on Canvas -->
+                    <div class="space-y-5 max-w-2xl">
+                        <span class="text-[10px] font-mono uppercase tracking-[0.22em] text-stone-500 font-bold block">
+                            SDC DENTAL CARE · ZAMBOANGA CITY
+                        </span>
+                        <h4 class="text-2xl sm:text-3xl font-black text-stone-950 tracking-tight uppercase leading-tight">
+                            Dentistry designed around your comfort, clarity, and lasting oral health.
+                        </h4>
+                        <p class="text-sm sm:text-base text-stone-700 leading-relaxed font-normal">
+                            Serving individuals and families across Zamboanga City from our Downtown and Tugbungan branches, SDC Dental Care was built to replace dental anxiety with genuine warmth. Every visit begins with listening—walking you through clear findings and conservative options that put your natural teeth first.
+                        </p>
+                        <p class="text-xs sm:text-sm text-stone-500 leading-relaxed font-normal">
+                            From routine preventive cleanings and tooth-colored restorations to orthodontic braces and oral surgery, our attending dentists combine modern clinical techniques with an attentive, unhurried chairside approach.
+                        </p>
+                    </div>
 
-                            <h4 class="text-xl sm:text-2xl font-black text-stone-950 tracking-tight uppercase leading-tight">
-                                Dentistry designed around comfort, clarity, and lasting oral health.
-                            </h4>
-                            <div class="w-6 h-[1.5px] bg-stone-400 my-4"></div>
-
-                            <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">
-                                At SDC Dental Care, we bring together preventive prophylaxis, shade-matched restorations, cosmetic whitening, orthodontic alignment, and oral surgery under one roof. Serving individuals and families across our Downtown (Centro Capital Bldg.) and Tugbungan branches, our clinic is built to replace dental anxiety with genuine warmth and clinical precision.
+                    <!-- Open Hairline Principles List (Divided Only by Thin Lines, No Cards) -->
+                    <div class="border-t border-[#DCD7CC] divide-y divide-[#DCD7CC]">
+                        <div class="py-5 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 items-baseline">
+                            <span class="sm:col-span-2 text-xs font-mono font-bold text-stone-400 tracking-widest">
+                                01
+                            </span>
+                            <h5 class="sm:col-span-4 text-sm font-black text-stone-950 uppercase tracking-tight">
+                                Gentle Chairside Care
+                            </h5>
+                            <p class="sm:col-span-6 text-xs text-stone-600 leading-relaxed">
+                                Calm, unhurried appointments tailored to your comfort and pace.
                             </p>
                         </div>
 
-                        <!-- 3-Column Key Clinic Highlights Strip -->
-                        <div class="grid grid-cols-3 gap-4 pt-6 mt-7 border-t border-stone-200/80">
-                            <div>
-                                <div class="text-2xl sm:text-3xl font-black font-mono text-stone-950 leading-none">
-                                    09
-                                </div>
-                                <span class="text-[10px] font-mono uppercase tracking-wider text-stone-500 mt-1.5 block">
-                                    Dental Services
-                                </span>
-                            </div>
-
-                            <div class="border-l border-stone-200/80 pl-4 sm:pl-6">
-                                <div class="text-2xl sm:text-3xl font-black font-mono text-stone-950 leading-none">
-                                    02
-                                </div>
-                                <span class="text-[10px] font-mono uppercase tracking-wider text-stone-500 mt-1.5 block">
-                                    Clinic Branches
-                                </span>
-                            </div>
-
-                            <div class="border-l border-stone-200/80 pl-4 sm:pl-6">
-                                <div class="text-2xl sm:text-3xl font-black font-mono text-stone-950 leading-none">
-                                    6d
-                                </div>
-                                <span class="text-[10px] font-mono uppercase tracking-wider text-stone-500 mt-1.5 block">
-                                    Mon – Sat Care
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Bottom 3-Pillar Architectural Cards -->
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <!-- Pillar 01 -->
-                        <div class="bg-white border border-[#E5E1D8] hover:border-stone-950 transition-colors duration-300 p-5 shadow-2xs rounded-none flex flex-col justify-between">
-                            <div class="flex items-center justify-between text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold mb-3">
-                                <span>01 / COMFORT</span>
-                                <i data-lucide="heart-handshake" class="w-3.5 h-3.5 text-stone-700"></i>
-                            </div>
-                            <div>
-                                <h5 class="text-xs sm:text-sm font-black text-stone-950 uppercase tracking-tight">
-                                    Gentle Chairside Care
-                                </h5>
-                                <p class="text-[11px] text-stone-500 mt-1.5 leading-relaxed">
-                                    Unhurried appointments and soothing care for children and adults.
-                                </p>
-                            </div>
+                        <div class="py-5 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 items-baseline">
+                            <span class="sm:col-span-2 text-xs font-mono font-bold text-stone-400 tracking-widest">
+                                02
+                            </span>
+                            <h5 class="sm:col-span-4 text-sm font-black text-stone-950 uppercase tracking-tight">
+                                Tooth Preservation
+                            </h5>
+                            <p class="sm:col-span-6 text-xs text-stone-600 leading-relaxed">
+                                Conservative diagnostics and honest treatment plans focused on lasting oral health.
+                            </p>
                         </div>
 
-                        <!-- Pillar 02 -->
-                        <div class="bg-white border border-[#E5E1D8] hover:border-stone-950 transition-colors duration-300 p-5 shadow-2xs rounded-none flex flex-col justify-between">
-                            <div class="flex items-center justify-between text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold mb-3">
-                                <span>02 / PRESERVATION</span>
-                                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-stone-700"></i>
-                            </div>
-                            <div>
-                                <h5 class="text-xs sm:text-sm font-black text-stone-950 uppercase tracking-tight">
-                                    Conservative Approach
-                                </h5>
-                                <p class="text-[11px] text-stone-500 mt-1.5 leading-relaxed">
-                                    Tooth-saving diagnostics and honest treatment plans tailored to you.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Pillar 03 -->
-                        <div class="bg-white border border-[#E5E1D8] hover:border-stone-950 transition-colors duration-300 p-5 shadow-2xs rounded-none flex flex-col justify-between">
-                            <div class="flex items-center justify-between text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold mb-3">
-                                <span>03 / HYGIENE</span>
-                                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-stone-700"></i>
-                            </div>
-                            <div>
-                                <h5 class="text-xs sm:text-sm font-black text-stone-950 uppercase tracking-tight">
-                                    Clean Modern Suites
-                                </h5>
-                                <p class="text-[11px] text-stone-500 mt-1.5 leading-relaxed">
-                                    Strict instrument sterilization and hygienic operatories at both clinics.
-                                </p>
-                            </div>
+                        <div class="py-5 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 items-baseline">
+                            <span class="sm:col-span-2 text-xs font-mono font-bold text-stone-400 tracking-widest">
+                                03
+                            </span>
+                            <h5 class="sm:col-span-4 text-sm font-black text-stone-950 uppercase tracking-tight">
+                                Two Zamboanga Clinics
+                            </h5>
+                            <p class="sm:col-span-6 text-xs text-stone-600 leading-relaxed">
+                                Conveniently accessible operatories in Downtown (Centro Capital Bldg.) and Tugbungan.
+                            </p>
                         </div>
                     </div>
 
                 </div>
 
             </div>
+
         </div>
     </section>
 
