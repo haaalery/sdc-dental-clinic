@@ -196,7 +196,7 @@ $currentUser = Session::user();
                     </a>
                 <?php endif; ?>
 
-                <a href="#booking-form"
+                <a href="#booking-form" onclick="openBookingModal(event)"
                     class="inline-flex items-center space-x-2 px-5 py-2.5 bg-black hover:bg-stone-800 text-white text-xs font-bold uppercase tracking-wider rounded-none shadow-xs transition">
                     <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
                     <span>Book Appointment</span>
@@ -373,7 +373,7 @@ $currentUser = Session::user();
                         <span class="text-[10px] font-mono text-stone-400 uppercase tracking-wider">
                             Class-B Sterile Suites
                         </span>
-                        <a href="#booking-form"
+                        <a href="#booking-form" onclick="openBookingModal(event)"
                             class="inline-flex items-center space-x-1.5 text-[11px] font-black uppercase tracking-[0.18em] text-white hover:text-emerald-400 transition group/cta rounded-none">
                             <span>Book Now</span>
                             <i data-lucide="arrow-right"
@@ -1300,68 +1300,89 @@ $currentUser = Session::user();
         </div>
     </section>
 
-    <!-- Online Appointment Booking Form (Warm Linen Surface) -->
-    <section id="booking-form" class="py-20 bg-[#F0ECE4] border-b border-[#E5E1D8]">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="text-center mb-8">
-                <span class="text-xs uppercase font-bold tracking-wider text-stone-500 block mb-1">Direct
-                    Scheduling</span>
-                <h3 class="text-2xl md:text-3xl font-extrabold text-stone-950 tracking-tight">Request an Appointment
-                    Online</h3>
-                <p class="text-xs text-stone-600 mt-1 max-w-lg mx-auto">
-                    Fill out the form below with your preferred schedule and dental concern. Our reception desk will
-                    review availability and confirm your booking right away.
-                </p>
+    <!-- Online Appointment Booking Pop-Up Modal (Architectural Editorial Design — Zero Round Borders) -->
+    <?php $portalError = Session::flash('portal_error'); ?>
+    <div id="bookingModal"
+        onclick="if(event.target === this) closeBookingModal()"
+        class="fixed inset-0 z-[75] flex items-center justify-center bg-black/80 backdrop-blur-sm p-3 sm:p-6 hidden opacity-0 transition-opacity duration-300 select-none">
+
+        <div id="bookingModalContainer"
+            class="bg-white text-stone-900 rounded-none overflow-hidden shadow-2xl max-w-3xl w-full max-h-[92vh] flex flex-col border border-stone-950 transform scale-95 transition-transform duration-300">
+
+            <!-- Top Architectural Modal Bar -->
+            <div class="flex items-center justify-between border-b border-[#E5E1D8] px-6 sm:px-8 py-4 bg-[#F7F6F2] flex-shrink-0">
+                <div class="flex items-center space-x-2.5">
+                    <span class="px-2 py-0.5 bg-black text-white font-mono text-[9px] font-black uppercase tracking-[0.2em] rounded-none">
+                        DIRECT SCHEDULING
+                    </span>
+                    <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-stone-500 font-bold hidden sm:inline">
+                        // ONLINE APPOINTMENT
+                    </span>
+                </div>
+                <button type="button" onclick="closeBookingModal()"
+                    class="text-stone-500 hover:text-stone-950 font-mono font-bold uppercase tracking-widest text-xs flex items-center space-x-1 transition cursor-pointer">
+                    <span>Close [✕]</span>
+                </button>
             </div>
 
-            <?php if ($portalError = Session::flash('portal_error')): ?>
-                <div
-                    class="mb-6 p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-semibold flex items-center space-x-2 shadow-2xs">
-                    <i data-lucide="alert-circle" class="w-4 h-4 text-rose-500 flex-shrink-0"></i>
-                    <span><?= htmlspecialchars($portalError) ?></span>
+            <!-- Scrollable Form Body -->
+            <div class="p-6 sm:p-10 overflow-y-auto flex-1 bg-white">
+                <div class="mb-7">
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-stone-950 tracking-tight">
+                        Request an Appointment Online<span class="font-serif italic font-normal text-stone-500">.</span>
+                    </h3>
+                    <div class="w-6 h-[1.5px] bg-stone-400 mt-3 mb-2.5"></div>
+                    <p class="text-xs text-stone-600 leading-relaxed max-w-xl">
+                        Fill out the form below with your preferred schedule and dental concern. Our reception desk will review availability and confirm your booking right away.
+                    </p>
                 </div>
-            <?php endif; ?>
 
-            <div class="bg-white rounded-3xl p-6 md:p-10 border border-[#E5E1D8] shadow-xl text-stone-800">
-                <form action="<?= BASE_URL ?>/index.php?page=portal_submit" method="POST" class="space-y-6">
+                <?php if ($portalError): ?>
+                    <div class="mb-6 p-4 rounded-none bg-rose-50 border border-rose-300 text-rose-700 text-xs font-semibold flex items-center space-x-2">
+                        <i data-lucide="alert-circle" class="w-4 h-4 text-rose-500 flex-shrink-0"></i>
+                        <span><?= htmlspecialchars($portalError) ?></span>
+                    </div>
+                <?php endif; ?>
+
+                <form action="<?= BASE_URL ?>/index.php?page=portal_submit" method="POST" class="space-y-5">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <!-- Patient Full Name -->
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
+                            <label class="block text-[10px] font-mono font-bold uppercase tracking-[0.18em] text-stone-600 mb-1.5">
                                 Your Full Name <span class="text-rose-500">*</span>
                             </label>
-                            <input type="text" name="name" required placeholder="e.g. Maria Santos"
-                                class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 placeholder-stone-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
+                            <input type="text" name="name" id="inpBookingName" required placeholder="e.g. Maria Santos"
+                                class="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#DCD7CC] rounded-none text-sm text-stone-900 placeholder-stone-400 focus:bg-white focus:outline-none focus:border-stone-950 transition">
                         </div>
 
                         <!-- Phone Number -->
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
+                            <label class="block text-[10px] font-mono font-bold uppercase tracking-[0.18em] text-stone-600 mb-1.5">
                                 Contact Phone Number <span class="text-rose-500">*</span>
                             </label>
                             <input type="tel" name="phone" required placeholder="e.g. 0917 123 4567"
-                                class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 placeholder-stone-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
+                                class="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#DCD7CC] rounded-none text-sm text-stone-900 placeholder-stone-400 focus:bg-white focus:outline-none focus:border-stone-950 transition">
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <!-- Preferred Date -->
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
+                            <label class="block text-[10px] font-mono font-bold uppercase tracking-[0.18em] text-stone-600 mb-1.5">
                                 Preferred Date <span class="text-rose-500">*</span>
                             </label>
                             <input type="date" name="preferred_date" required min="<?= date('Y-m-d') ?>"
                                 value="<?= date('Y-m-d', strtotime('+1 day')) ?>"
-                                class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
+                                class="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#DCD7CC] rounded-none text-sm text-stone-900 focus:bg-white focus:outline-none focus:border-stone-950 transition">
                         </div>
 
                         <!-- Preferred Time Slot -->
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
+                            <label class="block text-[10px] font-mono font-bold uppercase tracking-[0.18em] text-stone-600 mb-1.5">
                                 Preferred Time <span class="text-rose-500">*</span>
                             </label>
                             <select name="preferred_time" required
-                                class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
+                                class="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#DCD7CC] rounded-none text-sm text-stone-900 focus:bg-white focus:outline-none focus:border-stone-950 transition">
                                 <option value="09:00:00">09:00 AM - Morning Slot</option>
                                 <option value="10:00:00">10:00 AM - Morning Slot</option>
                                 <option value="11:00:00">11:00 AM - Morning Slot</option>
@@ -1376,11 +1397,11 @@ $currentUser = Session::user();
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <!-- Branch Selection -->
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
+                            <label class="block text-[10px] font-mono font-bold uppercase tracking-[0.18em] text-stone-600 mb-1.5">
                                 Clinic Branch
                             </label>
                             <select name="branch_id"
-                                class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
+                                class="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#DCD7CC] rounded-none text-sm text-stone-900 focus:bg-white focus:outline-none focus:border-stone-950 transition">
                                 <?php foreach ($branches as $branch): ?>
                                     <option value="<?= $branch['id'] ?>">
                                         <?= htmlspecialchars($branch['branch_name']) ?>
@@ -1391,48 +1412,46 @@ $currentUser = Session::user();
 
                         <!-- Preferred Dentist Selection -->
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
+                            <label class="block text-[10px] font-mono font-bold uppercase tracking-[0.18em] text-stone-600 mb-1.5">
                                 Preferred Dentist (Optional)
                             </label>
                             <select name="preferred_dentist_id"
-                                class="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition">
+                                class="w-full px-3.5 py-2.5 bg-[#FAF9F5] border border-[#DCD7CC] rounded-none text-sm text-stone-900 focus:bg-white focus:outline-none focus:border-stone-950 transition">
                                 <option value="">Any Available Attending Dentist</option>
                                 <?php foreach ($dentists as $d): ?>
                                     <option value="<?= $d['dentist_id'] ?>">
                                         <?= htmlspecialchars($d['full_name']) ?>
-                                        (<?= htmlspecialchars($d['specialization']) ?>)
                                     </option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
                     </div>
 
-                    <!-- Dental Concern (Required by Interview Spec) -->
+                    <!-- Dental Concern -->
                     <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
+                        <label class="block text-[10px] font-mono font-bold uppercase tracking-[0.18em] text-stone-600 mb-1.5">
                             Dental Concern / Reason for Visit <span class="text-rose-500">*</span>
                         </label>
                         <textarea name="dental_concern" id="inpDentalConcern" rows="3" required
                             placeholder="Please describe what you are experiencing (e.g. Toothache, routine dental cleaning, filling replacement, wisdom tooth extraction, braces consultation)..."
-                            class="w-full p-3.5 bg-[#FAF9F6] border border-[#E5E1D8] rounded-xl text-sm text-stone-900 placeholder-stone-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-stone-900 focus:border-stone-900 transition"></textarea>
+                            class="w-full p-3.5 bg-[#FAF9F5] border border-[#DCD7CC] rounded-none text-sm text-stone-900 placeholder-stone-400 focus:bg-white focus:outline-none focus:border-stone-950 transition"></textarea>
                     </div>
 
                     <!-- Submit Button -->
                     <div class="pt-2">
                         <button type="submit"
-                            class="w-full py-3.5 px-6 bg-stone-950 hover:bg-stone-800 text-white font-bold rounded-2xl shadow-xs transition flex items-center justify-center space-x-2 text-sm">
+                            class="w-full py-4 px-6 bg-stone-950 hover:bg-stone-800 text-white font-mono text-xs font-black uppercase tracking-[0.2em] rounded-none shadow-xs transition flex items-center justify-center space-x-2 cursor-pointer">
                             <i data-lucide="check-circle" class="w-4 h-4"></i>
                             <span>Submit Appointment Request</span>
                         </button>
                         <p class="text-center text-[11px] text-stone-500 mt-2.5">
-                            No upfront payment required. Our front desk staff will verify clinic availability and
-                            contact you directly.
+                            No upfront payment required. Our front desk staff will verify clinic availability and contact you directly.
                         </p>
                     </div>
                 </form>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Clinic Footer with Logo (Warm Linen Tone) -->
     <footer class="bg-[#EFECE6] text-stone-600 text-xs py-14 border-t border-[#E5E1D8]">
@@ -1440,7 +1459,7 @@ $currentUser = Session::user();
             <div class="flex items-center space-x-3.5 cursor-pointer select-none" onclick="handleBrandClick(event)"
                 title="Return to top">
                 <div
-                    class="w-10 h-10 rounded-xl bg-stone-950 flex items-center justify-center p-1.5 shadow-xs flex-shrink-0">
+                    class="w-10 h-10 rounded-none bg-stone-950 flex items-center justify-center p-1.5 shadow-xs flex-shrink-0">
                     <img src="<?= BASE_URL ?>/assets/images/logo.png" alt="SDC Logo"
                         class="w-full h-full object-contain">
                 </div>
@@ -1457,7 +1476,7 @@ $currentUser = Session::user();
                 <a href="#services" class="hover:text-stone-950 transition">Services</a>
                 <a href="#dentists" class="hover:text-stone-950 transition">Dentists</a>
                 <a href="#locations" class="hover:text-stone-950 transition">Branches</a>
-                <a href="#booking-form" class="hover:text-stone-950 transition">Book Visit</a>
+                <a href="#booking-form" onclick="openBookingModal(event)" class="hover:text-stone-950 transition">Book Visit</a>
                 <a href="<?= BASE_URL ?>/index.php?page=login"
                     class="text-stone-950 hover:underline font-bold transition">Staff Login &rarr;</a>
             </div>
@@ -1477,11 +1496,56 @@ $currentUser = Session::user();
             });
         }
 
+        function openBookingModal(event) {
+            if (event) event.preventDefault();
+            const modal = document.getElementById('bookingModal');
+            const container = document.getElementById('bookingModalContainer');
+            if (!modal || !container) return;
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            requestAnimationFrame(() => {
+                modal.classList.remove('opacity-0');
+                container.classList.remove('scale-95');
+                container.classList.add('scale-100');
+            });
+        }
+
+        function closeBookingModal() {
+            const modal = document.getElementById('bookingModal');
+            const container = document.getElementById('bookingModalContainer');
+            if (!modal || !container) return;
+
+            modal.classList.add('opacity-0');
+            container.classList.remove('scale-100');
+            container.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 250);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('bookingModal');
+                if (modal && !modal.classList.contains('hidden')) {
+                    closeBookingModal();
+                }
+            }
+        });
+
+        <?php if (!empty($portalError)): ?>
+        document.addEventListener('DOMContentLoaded', () => {
+            openBookingModal();
+        });
+        <?php endif; ?>
+
         function prefillConcern(serviceName) {
+            openBookingModal();
             const el = document.getElementById('inpDentalConcern');
             if (el) {
                 el.value = 'Inquiry / Treatment request for: ' + serviceName;
-                el.focus();
+                setTimeout(() => el.focus(), 260);
             }
         }
 
