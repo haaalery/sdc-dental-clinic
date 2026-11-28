@@ -169,8 +169,8 @@ $currentUser = Session::user();
             <!-- Navigation Links (Matching Image 1 Style & Spacing) -->
             <div
                 class="hidden md:flex items-center space-x-8 uppercase font-mono text-[11px] font-bold tracking-[0.2em] text-stone-600">
+                <a href="#about" class="hover:text-black transition">About Us</a>
                 <a href="#services" class="hover:text-black transition">Services</a>
-                <a href="#standards" class="hover:text-black transition">Standards</a>
                 <a href="#dentists" class="hover:text-black transition">Doctors</a>
                 <a href="#locations" class="hover:text-black transition">Branches</a>
             </div>
@@ -285,7 +285,7 @@ $currentUser = Session::user();
                 </div>
 
                 <!-- Top-Right: 01 / OUR APPROACH Floating Callout Card (Cloned from Reference) -->
-                <a href="#standards"
+                <a href="#about"
                     class="hidden lg:block w-[235px] xl:w-[248px] bg-white border border-stone-200/80 shadow-[0_18px_40px_rgba(0,0,0,0.06)] p-5 lg:mr-2 xl:mr-6 lg:mt-3 hover:border-stone-400 transition group/approach">
                     <div class="flex items-center justify-between text-[9px] font-mono tracking-[0.2em] uppercase text-stone-500 font-semibold">
                         <span>01 / OUR APPROACH</span>
@@ -401,6 +401,94 @@ $currentUser = Session::user();
             </div>
         </div>
 
+    </section>
+
+    <!-- About Us Section (Directly Below Hero Section — Zero Round Borders, Pure Unobstructed Photography) -->
+    <section id="about" class="relative py-24 bg-[#FAF9F5] border-b border-[#E5E1D8] overflow-hidden select-none">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+
+                <!-- Left Column: Editorial Clinic Story & Core Pillars -->
+                <div class="lg:col-span-6">
+                    <span class="text-[11px] uppercase tracking-[0.25em] font-semibold text-stone-500 block mb-2">
+                        About Us
+                    </span>
+                    <h3 class="text-3xl sm:text-5xl font-extrabold text-stone-950 tracking-tight leading-[1.08]">
+                        Modern Dentistry, Built on Gentle Care<span class="font-serif italic font-normal text-stone-500">.</span>
+                    </h3>
+                    <div class="w-6 h-[1.5px] bg-stone-400 mt-5 mb-5"></div>
+
+                    <p class="text-sm sm:text-base font-bold text-stone-900 leading-relaxed">
+                        SDC Dental Care is a patient-centered dental clinic in Zamboanga City dedicated to delivering comfortable, modern, and accessible oral healthcare for every smile.
+                    </p>
+                    <p class="text-xs sm:text-sm text-stone-600 leading-relaxed mt-3.5">
+                        From routine preventive prophylaxis and tooth-colored restorations to orthodontic braces and oral surgery, our attending dentists combine modern clinical equipment with a calm, attentive chairside approach across our Downtown and Tugbungan branches.
+                    </p>
+
+                    <!-- 3-Column Architectural Pillars Matrix -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 mt-8 border-t border-[#E5E1D8]">
+                        <div>
+                            <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold block mb-1">
+                                01 / GENTLE CARE
+                            </span>
+                            <h4 class="text-xs sm:text-sm font-black text-stone-950 uppercase tracking-tight">
+                                Patient-First Comfort
+                            </h4>
+                            <p class="text-[11px] text-stone-500 mt-1 leading-snug">
+                                Calm, unhurried treatments tailored to your pace.
+                            </p>
+                        </div>
+
+                        <div class="sm:border-l sm:border-[#E5E1D8] sm:pl-5">
+                            <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold block mb-1">
+                                02 / PRECISION
+                            </span>
+                            <h4 class="text-xs sm:text-sm font-black text-stone-950 uppercase tracking-tight">
+                                Modern Operatories
+                            </h4>
+                            <p class="text-[11px] text-stone-500 mt-1 leading-snug">
+                                Clean clinical suites and conservative tooth care.
+                            </p>
+                        </div>
+
+                        <div class="sm:border-l sm:border-[#E5E1D8] sm:pl-5">
+                            <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-stone-400 font-bold block mb-1">
+                                03 / ACCESSIBILITY
+                            </span>
+                            <h4 class="text-xs sm:text-sm font-black text-stone-950 uppercase tracking-tight">
+                                2 Clinic Branches
+                            </h4>
+                            <p class="text-[11px] text-stone-500 mt-1 leading-snug">
+                                Conveniently located in Downtown and Tugbungan.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Pure Unobstructed Picture Frame + Clean Bottom Caption Bar -->
+                <div class="lg:col-span-6">
+                    <div class="bg-white border border-[#E5E1D8] shadow-[0_18px_40px_rgba(0,0,0,0.05)] rounded-none group">
+                        <!-- Pure Picture (Zero Text or Overlays on Image) -->
+                        <div class="w-full h-[340px] sm:h-[420px] bg-stone-900 overflow-hidden border-b border-[#E5E1D8] rounded-none">
+                            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=85"
+                                 alt="SDC Dental Care Clinic Interior"
+                                 class="w-full h-full object-cover filter grayscale contrast-110 group-hover:grayscale-0 transition-all duration-700 rounded-none">
+                        </div>
+
+                        <!-- Clean Architectural Caption Bar Below Picture -->
+                        <div class="bg-stone-950 text-white px-6 py-4 flex items-center justify-between rounded-none">
+                            <span class="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-white">
+                                SDC DENTAL CARE
+                            </span>
+                            <span class="text-[10px] font-mono uppercase tracking-[0.18em] text-stone-400">
+                                Downtown &amp; Tugbungan · Zamboanga City
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </section>
 
     <!-- Services & Treatments Section (Awwwards Contiguous Diagonal Slices) -->
@@ -1358,9 +1446,10 @@ $currentUser = Session::user();
             </div>
 
             <div class="flex items-center space-x-6 text-stone-600 font-medium">
+                <a href="#about" class="hover:text-stone-950 transition">About Us</a>
                 <a href="#services" class="hover:text-stone-950 transition">Services</a>
-                <a href="#standards" class="hover:text-stone-950 transition">Clinical Standards</a>
                 <a href="#dentists" class="hover:text-stone-950 transition">Dentists</a>
+                <a href="#locations" class="hover:text-stone-950 transition">Branches</a>
                 <a href="#booking-form" class="hover:text-stone-950 transition">Book Visit</a>
                 <a href="<?= BASE_URL ?>/index.php?page=login"
                     class="text-stone-950 hover:underline font-bold transition">Staff Login &rarr;</a>
